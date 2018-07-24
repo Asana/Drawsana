@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:AMDrawingView.xcodeproj">
+      location = "self:Drawsana.xcodeproj">
    </FileRef>
 </Workspace>
