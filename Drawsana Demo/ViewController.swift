@@ -91,6 +91,10 @@ class ViewController: UIViewController {
     undoButton.isEnabled = drawingView.operationStack.canUndo
     redoButton.isEnabled = drawingView.operationStack.canRedo
     toolButton.setTitle(tools[toolIndex].name, for: .normal)
+
+    for button in [undoButton, redoButton] {
+      button.alpha = button.isEnabled ? 1 : 0.5
+    }
   }
 }
 

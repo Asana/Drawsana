@@ -2,9 +2,12 @@
 
 ## To do
 
-* Undo/redo
 * Use a real coordinate system, not whatever Core Graphics is using
-* Text tool color controls
-* Text tool scale gesture
-* Text tool deletion
-* Text tool rotate gesture
+* Serialization (Codable)
+* Selection tool
+  * Apply user styles if they change
+* Text tool
+  * Color controls (currently only draws black text)
+  * Scale gesture
+  * Deletion?
+  * Rotate gesture
