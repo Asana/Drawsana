@@ -9,7 +9,7 @@
 import CoreGraphics
 
 public protocol ToolStateAppliable {
-  func apply(state: UserSettings)
+  func apply(userSettings: UserSettings)
 }
 
 // MARK: Main protocol
@@ -27,14 +27,14 @@ public protocol DrawingTool: ToolStateAppliable {
   func handleDragEnd(context: ToolOperationContext, point: CGPoint)
   func handleDragCancel(context: ToolOperationContext, point: CGPoint)
 
-  func apply(state: UserSettings)
+  func apply(userSettings: UserSettings)
 
   func renderShapeInProgress(transientContext: CGContext)
 }
 public extension DrawingTool {
   func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) { }
   func deactivate(context: ToolOperationContext) { }
-  func apply(state: UserSettings) { }
+  func apply(userSettings: UserSettings) { }
   func renderShapeInProgress(transientContext: CGContext) { }
 }
 

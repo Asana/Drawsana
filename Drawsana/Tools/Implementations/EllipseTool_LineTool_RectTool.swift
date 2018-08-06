@@ -8,7 +8,11 @@
 
 import CoreGraphics
 
-/// Convenience superclass: create and update shapeInProgress by dragging from point A to point B
+// MARK: Base class for ellipse, line, and rect tools
+
+/**
+ Rect, line, and ellipse are all drawn by dragging from one point to another.
+ */
 public class DrawingToolForShapeWithTwoPoints: DrawingTool {
   public typealias ShapeType = Shape & ShapeWithTwoPoints & ToolStateAppliable
 
@@ -28,15 +32,15 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
     var shape = makeShape()
     shape.a = point
     shape.b = point
-    shape.apply(state: context.userSettings)
-    context.drawing.add(shape: shape)
+    shape.apply(userSettings: context.userSettings)
+    context.operationStack.apply(operation: AddShapeOperation(shape: shape))
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
     shapeInProgress = makeShape()
     shapeInProgress?.a = point
     shapeInProgress?.b = point
-    shapeInProgress?.apply(state: context.userSettings)
+    shapeInProgress?.apply(userSettings: context.userSettings)
   }
 
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
@@ -45,7 +49,7 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
 
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
     shapeInProgress?.b = point
-    context.drawing.add(shape: shapeInProgress!)
+    context.operationStack.apply(operation: AddShapeOperation(shape: shapeInProgress!))
     shapeInProgress = nil
   }
 

@@ -24,6 +24,15 @@ public class Drawing {
     delegate?.drawingDidAddShape(shape)
   }
 
+  func update(shape: Shape) {
+    delegate?.drawingDidUpdateShape(shape)
+  }
+
+  func remove(shape: Shape) {
+    shapes = shapes.filter({ $0 !== shape })
+    delegate?.drawingDidRemoveShape(shape)
+  }
+
   func getShape(at point: CGPoint, filter: ((Shape) -> Bool)? = nil) -> Shape? {
     return shapes.filter({ $0.hitTest(point: point) && filter?($0) != false }).first
   }
@@ -38,4 +47,6 @@ public class Drawing {
 
 public protocol DrawingDelegate: AnyObject {
   func drawingDidAddShape(_ shape: Shape)
+  func drawingDidUpdateShape(_ shape: Shape)
+  func drawingDidRemoveShape(_ shape: Shape)
 }

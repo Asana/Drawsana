@@ -9,7 +9,7 @@
 import CoreGraphics
 import UIKit
 
-public class LineShape: ShapeWithBoundingRect, ShapeWithTwoPoints, AMShapeWithStrokeState, ShapeSelectable {
+public class LineShape: ShapeWithBoundingRect, ShapeWithTwoPoints, ShapeWithStrokeState, ShapeSelectable {
   public let type: String = "Line"
 
   public var id: String = UUID().uuidString

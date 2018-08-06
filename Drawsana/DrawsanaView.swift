@@ -21,14 +21,19 @@ public class DrawsanaView: UIView {
 
   public weak var delegate: DrawsanaViewDelegate?
   public private(set) var tool: DrawingTool?
-  public var userSettings: UserSettings {
-    didSet {
-      tool?.apply(state: userSettings)
-      applySelectionViewState()
-    }
-  }
+
+  public let userSettings = UserSettings(strokeColor: .blue, fillColor: nil, strokeWidth: 20)
   public let toolSettings = ToolSettings(selectedShape: nil, interactiveView: nil, isPersistentBufferDirty: false)
   public lazy var drawing: Drawing = { return Drawing(size: bounds.size, delegate: self) }()
+  public lazy var operationStack: DrawingOperationStack = { return DrawingOperationStack(drawing: drawing) }()
+
+  var toolOperationContext: ToolOperationContext {
+    return ToolOperationContext(
+      drawing: drawing,
+      operationStack: operationStack,
+      userSettings: userSettings,
+      toolSettings: toolSettings)
+  }
 
   // MARK: Buffers
 
@@ -72,7 +77,6 @@ public class DrawsanaView: UIView {
   // MARK: Init
 
   public override init(frame: CGRect) {
-    userSettings = UserSettings(strokeColor: .blue, fillColor: nil, strokeWidth: 20)
     super.init(frame: frame)
     backgroundColor = .red
 
@@ -80,13 +84,13 @@ public class DrawsanaView: UIView {
   }
 
   required public init?(coder aDecoder: NSCoder) {
-    userSettings = UserSettings(strokeColor: .blue, fillColor: nil, strokeWidth: 20)
     super.init(coder: aDecoder)
     commonInit()
   }
 
   private func commonInit() {
     toolSettings.delegate = self
+    userSettings.delegate = self
     isUserInteractionEnabled = true
     layer.actions = [
       "contents": NSNull(),
@@ -127,22 +131,21 @@ public class DrawsanaView: UIView {
     addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(sender:))))
   }
 
+  public override func layoutSubviews() {
+    super.layoutSubviews()
+    drawing.size = frame.size
+  }
+
   // MARK: API
 
   public func set(tool: DrawingTool, shape: Shape? = nil) {
     DispatchQueue.main.async {
       // TODO: why does this break everything if run in the same run loop? Maybe because autoreleasepool?
-      self.tool?.deactivate(context: self.makeToolOperationContext())
+      self.tool?.deactivate(context: self.toolOperationContext)
       self.tool = tool
-      tool.activate(shapeUpdater: self, context: self.makeToolOperationContext(), shape: shape)
+      tool.activate(shapeUpdater: self, context: self.toolOperationContext, shape: shape)
       self.delegate?.drawsanaView(self, didSwitchTo: tool)
     }
-  }
-
-  // ARMK: Internal helpers
-
-  private func makeToolOperationContext() -> ToolOperationContext {
-    return ToolOperationContext(drawing: drawing, userSettings: userSettings, toolSettings: toolSettings)
   }
 
   // MARK: Gesture recognizers
@@ -168,7 +171,6 @@ public class DrawsanaView: UIView {
     }
 
     let point = sender.location(in: self)
-    let context = makeToolOperationContext()
     switch sender.state {
     case .began:
       if let persistentBuffer = persistentBuffer, let cgImage = persistentBuffer.cgImage {
@@ -179,32 +181,31 @@ public class DrawsanaView: UIView {
       } else {
         transientBuffer = nil
       }
-      tool?.handleDragStart(context: context, point: point)
+      tool?.handleDragStart(context: toolOperationContext, point: point)
       updateUncommittedShapeBuffers()
     case .changed:
-      tool?.handleDragContinue(context: context, point: point, velocity: sender.velocity(in: self))
+      tool?.handleDragContinue(context: toolOperationContext, point: point, velocity: sender.velocity(in: self))
       updateUncommittedShapeBuffers()
     case .ended:
-      tool?.handleDragEnd(context: context, point: point)
+      tool?.handleDragEnd(context: toolOperationContext, point: point)
       clearUncommittedShapeBuffers()
     case .failed:
-      tool?.handleDragCancel(context: context, point: point)
+      tool?.handleDragCancel(context: toolOperationContext, point: point)
       clearUncommittedShapeBuffers()
     default:
       assert(false, "State not handled")
     }
 
-    if context.toolSettings.isPersistentBufferDirty {
+    if toolSettings.isPersistentBufferDirty {
       redrawAbsolutelyEverything()
-      context.toolSettings.isPersistentBufferDirty = false
+      toolSettings.isPersistentBufferDirty = false
     }
     // This is cheap to do and annoying to signal, so just do it all the time
     applySelectionViewState()
   }
 
   @objc private func didTap(sender: UITapGestureRecognizer) {
-    let context = makeToolOperationContext()
-    tool?.handleTap(context: context, point: sender.location(in: self))
+    tool?.handleTap(context: toolOperationContext, point: sender.location(in: self))
   }
 
   // MARK: Making stuff show up
@@ -253,6 +254,19 @@ extension DrawsanaView: DrawingDelegate {
     }
     reapplyLayerContents()
   }
+
+  public func drawingDidUpdateShape(_ shape: Shape) {
+    redrawAbsolutelyEverything()
+    applySelectionViewState()
+  }
+
+  public func drawingDidRemoveShape(_ shape: Shape) {
+    redrawAbsolutelyEverything()
+    if shape === toolSettings.selectedShape {
+      toolSettings.selectedShape = nil
+      applySelectionViewState()
+    }
+  }
 }
 
 extension DrawsanaView: ToolSettingsDelegate {
@@ -260,7 +274,7 @@ extension DrawsanaView: ToolSettingsDelegate {
     _ toolSettings: ToolSettings,
     didSetSelectedShape selectedShape: ShapeSelectable?)
   {
-    tool?.apply(state: userSettings)
+    tool?.apply(userSettings: userSettings)
     applySelectionViewState()
   }
 
@@ -282,4 +296,20 @@ extension DrawsanaView: ToolSettingsDelegate {
   {
     // no-op; handled during tool operation
   }
+}
+
+extension DrawsanaView: UserSettingsDelegate {
+  public func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?) {
+    tool?.apply(userSettings: userSettings)
+  }
+
+  public func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?) {
+    tool?.apply(userSettings: userSettings)
+  }
+
+  public func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat) {
+    tool?.apply(userSettings: userSettings)
+  }
+
+
 }

@@ -9,7 +9,7 @@
 import CoreGraphics
 import UIKit
 
-public class EllipseShape: ShapeWithBoundingRect, ShapeWithTwoPoints, AMShapeWithStandardState, ShapeSelectable {
+public class EllipseShape: ShapeWithBoundingRect, ShapeWithTwoPoints, ShapeWithStandardState, ShapeSelectable {
   public let type: String = "Ellipse"
 
   public var id: String = UUID().uuidString

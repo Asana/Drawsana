@@ -13,9 +13,17 @@ import CoreGraphics
  shapes
  */
 public class UserSettings {
-  public var strokeColor: UIColor?
-  public var fillColor: UIColor?
-  public var strokeWidth: CGFloat
+  public weak var delegate: UserSettingsDelegate?
+
+  public var strokeColor: UIColor? {
+    didSet { delegate?.userSettings(self, didChangeStrokeColor: strokeColor) }
+  }
+  public var fillColor: UIColor? {
+    didSet { delegate?.userSettings(self, didChangeFillColor: fillColor) }
+  }
+  public var strokeWidth: CGFloat {
+    didSet { delegate?.userSettings(self, didChangeStrokeWidth: strokeWidth) }
+  }
 
   init(
     strokeColor: UIColor?,
@@ -26,4 +34,10 @@ public class UserSettings {
     self.fillColor = fillColor
     self.strokeWidth = strokeWidth
   }
+}
+
+public protocol UserSettingsDelegate: AnyObject {
+  func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?)
+  func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?)
+  func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat)
 }

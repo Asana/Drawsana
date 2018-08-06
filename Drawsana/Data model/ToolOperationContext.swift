@@ -13,15 +13,18 @@ import CoreGraphics
  */
 public class ToolOperationContext {
   let drawing: Drawing
+  let operationStack: DrawingOperationStack
   let userSettings: UserSettings
   let toolSettings: ToolSettings
 
   init(
     drawing: Drawing,
+    operationStack: DrawingOperationStack,
     userSettings: UserSettings,
     toolSettings: ToolSettings)
   {
     self.drawing = drawing
+    self.operationStack = operationStack
     self.userSettings = userSettings
     self.toolSettings = toolSettings
   }

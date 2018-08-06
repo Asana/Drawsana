@@ -59,28 +59,28 @@ extension ShapeWithTwoPoints {
   }
 }
 
-public protocol AMShapeWithStandardState: AnyObject, ToolStateAppliable {
+public protocol ShapeWithStandardState: AnyObject, ToolStateAppliable {
   var strokeColor: UIColor? { get set }
   var fillColor: UIColor? { get set }
   var strokeWidth: CGFloat { get set }
 }
 
-extension AMShapeWithStandardState {
-  public func apply(state: UserSettings) {
-    strokeColor = state.strokeColor
-    fillColor = state.fillColor
-    strokeWidth = state.strokeWidth
+extension ShapeWithStandardState {
+  public func apply(userSettings: UserSettings) {
+    strokeColor = userSettings.strokeColor
+    fillColor = userSettings.fillColor
+    strokeWidth = userSettings.strokeWidth
   }
 }
 
-public protocol AMShapeWithStrokeState: AnyObject, ToolStateAppliable {
+public protocol ShapeWithStrokeState: AnyObject, ToolStateAppliable {
   var strokeColor: UIColor { get set }
   var strokeWidth: CGFloat { get set }
 }
 
-extension AMShapeWithStrokeState {
-  public func apply(state: UserSettings) {
-    strokeColor = state.strokeColor ?? .black
-    strokeWidth = state.strokeWidth
+extension ShapeWithStrokeState {
+  public func apply(userSettings: UserSettings) {
+    strokeColor = userSettings.strokeColor ?? .black
+    strokeWidth = userSettings.strokeWidth
   }
 }

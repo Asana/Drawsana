@@ -69,7 +69,10 @@ public class SelectionTool: DrawingTool {
       return
     }
     let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
-    selectedShape.transform = originalTransform.translated(by: delta)
+    context.operationStack.apply(operation: ChangeTransformOperation(
+      shape: selectedShape,
+      transform: originalTransform.translated(by: delta),
+      originalTransform: originalTransform))
     context.toolSettings.isPersistentBufferDirty = true
   }
 

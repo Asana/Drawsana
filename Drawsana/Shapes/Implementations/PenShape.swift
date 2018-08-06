@@ -19,7 +19,7 @@ public struct PenLineSegment {
   }
 }
 
-public class PenShape: Shape, AMShapeWithStrokeState {
+public class PenShape: Shape, ShapeWithStrokeState {
   public let type: String = "Pen"
 
   public var id: String = UUID().uuidString

@@ -9,7 +9,7 @@
 import CoreGraphics
 import UIKit
 
-public class RectShape: ShapeWithBoundingRect, ShapeWithTwoPoints, AMShapeWithStandardState, ShapeSelectable {
+public class RectShape: ShapeWithBoundingRect, ShapeWithTwoPoints, ShapeWithStandardState, ShapeSelectable {
   public let type: String = "Rectangle"
 
   public var id: String = UUID().uuidString

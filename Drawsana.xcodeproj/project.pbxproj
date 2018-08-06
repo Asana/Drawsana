@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		37362D5C21151684003E5ACA /* TextShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5B21151684003E5ACA /* TextShape.swift */; };
 		37362D5E2118D8A3003E5ACA /* ToolSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5D2118D8A3003E5ACA /* ToolSettings.swift */; };
+		37362D602118E46F003E5ACA /* DrawingOperationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */; };
+		37362D622118EE98003E5ACA /* DrawingOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D612118EE98003E5ACA /* DrawingOperations.swift */; };
 		3762296E2113A9E60034D0E3 /* DrawsanaUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */; };
 		376229722113AAD30034D0E3 /* LineShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229712113AAD30034D0E3 /* LineShape.swift */; };
 		376229742113AAF50034D0E3 /* ShapeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229732113AAF50034D0E3 /* ShapeTransform.swift */; };
@@ -72,6 +74,8 @@
 /* Begin PBXFileReference section */
 		37362D5B21151684003E5ACA /* TextShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShape.swift; sourceTree = "<group>"; };
 		37362D5D2118D8A3003E5ACA /* ToolSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolSettings.swift; sourceTree = "<group>"; };
+		37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingOperationStack.swift; sourceTree = "<group>"; };
+		37362D612118EE98003E5ACA /* DrawingOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingOperations.swift; sourceTree = "<group>"; };
 		3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawsanaUtilities.swift; sourceTree = "<group>"; };
 		376229712113AAD30034D0E3 /* LineShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineShape.swift; sourceTree = "<group>"; };
 		376229732113AAF50034D0E3 /* ShapeTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTransform.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		3762297B2113ABF20034D0E3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				37362D612118EE98003E5ACA /* DrawingOperations.swift */,
 				3777F2FE21068A78009A9AC5 /* DrawingTool.swift */,
 				3762297E2113AC7D0034D0E3 /* Implementations */,
 			);
@@ -196,9 +201,10 @@
 			isa = PBXGroup;
 			children = (
 				376229822113AD6E0034D0E3 /* Drawing.swift */,
+				37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */,
 				376229802113AD570034D0E3 /* ToolOperationContext.swift */,
-				376229862113ADD70034D0E3 /* UserSettings.swift */,
 				37362D5D2118D8A3003E5ACA /* ToolSettings.swift */,
+				376229862113ADD70034D0E3 /* UserSettings.swift */,
 			);
 			path = "Data model";
 			sourceTree = "<group>";
@@ -413,9 +419,11 @@
 				37885E2A210A9C69003A918F /* EllipseTool_LineTool_RectTool.swift in Sources */,
 				376229722113AAD30034D0E3 /* LineShape.swift in Sources */,
 				37885E2E210A9CDA003A918F /* SelectionTool.swift in Sources */,
+				37362D622118EE98003E5ACA /* DrawingOperations.swift in Sources */,
 				376229782113AB770034D0E3 /* EllipseShape.swift in Sources */,
 				376229762113AB6E0034D0E3 /* RectShape.swift in Sources */,
 				37EB4EF4210649FC00E10461 /* DrawsanaView.swift in Sources */,
+				37362D602118E46F003E5ACA /* DrawingOperationStack.swift in Sources */,
 				3777F2FF21068A78009A9AC5 /* DrawingTool.swift in Sources */,
 				3777F2FD21068A5C009A9AC5 /* Shape.swift in Sources */,
 				37885E2C210A9C95003A918F /* PenTool_EraserTool.swift in Sources */,
