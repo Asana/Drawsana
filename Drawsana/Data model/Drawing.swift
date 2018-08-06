@@ -8,6 +8,9 @@
 
 import CoreGraphics
 
+/**
+ Stores list of shapes and size of drawing.
+ */
 public class Drawing {
   weak var delegate: DrawingDelegate?
 

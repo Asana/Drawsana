@@ -10,10 +10,10 @@ import CoreGraphics
 
 /**
  Collection of user-settable properties for use by tools when creating new
- shapes
+ shapes.
  */
 public class UserSettings {
-  public weak var delegate: UserSettingsDelegate?
+  weak var delegate: UserSettingsDelegate?
 
   public var strokeColor: UIColor? {
     didSet { delegate?.userSettings(self, didChangeStrokeColor: strokeColor) }
@@ -36,7 +36,7 @@ public class UserSettings {
   }
 }
 
-public protocol UserSettingsDelegate: AnyObject {
+protocol UserSettingsDelegate: AnyObject {
   func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?)
   func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?)
   func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat)

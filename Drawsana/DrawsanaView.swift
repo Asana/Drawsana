@@ -8,12 +8,10 @@
 
 import UIKit
 
+// MARK: Delegate
+
 public protocol DrawsanaViewDelegate: AnyObject {
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool?)
-}
-
-public protocol DrawsanaViewShapeUpdating: AnyObject {
-  func shapeDidUpdate(shape: Shape)
 }
 
 public class DrawsanaView: UIView {
@@ -237,6 +235,8 @@ public class DrawsanaView: UIView {
   }
 }
 
+// MARK: Delegate implementations
+
 extension DrawsanaView: DrawsanaViewShapeUpdating {
   public func shapeDidUpdate(shape: Shape) {
     if shape === toolSettings.selectedShape {
@@ -312,4 +312,10 @@ extension DrawsanaView: UserSettingsDelegate {
   }
 
 
+}
+
+// MARK: Helper protocols
+
+public protocol DrawsanaViewShapeUpdating: AnyObject {
+  func shapeDidUpdate(shape: Shape)
 }

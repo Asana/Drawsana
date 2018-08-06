@@ -6,12 +6,11 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
+/**
+ Add a shape to the drawing. Undoing removes the shape.
+ */
 struct AddShapeOperation: DrawingOperation {
   let shape: Shape
-
-  func shouldAdd(to operationStack: DrawingOperationStack) -> Bool {
-    return true
-  }
 
   func apply(drawing: Drawing) {
     drawing.add(shape: shape)
@@ -22,6 +21,10 @@ struct AddShapeOperation: DrawingOperation {
   }
 }
 
+/**
+ Change the transform of a `ShapeWithTransform`. Undoing sets its transform
+ back to its original value.
+ */
 struct ChangeTransformOperation: DrawingOperation {
   let shape: ShapeWithTransform
   let transform: ShapeTransform
@@ -31,10 +34,6 @@ struct ChangeTransformOperation: DrawingOperation {
     self.shape = shape
     self.transform = transform
     self.originalTransform = originalTransform
-  }
-
-  func shouldAdd(to operationStack: DrawingOperationStack) -> Bool {
-    return true
   }
 
   func apply(drawing: Drawing) {
@@ -48,6 +47,16 @@ struct ChangeTransformOperation: DrawingOperation {
   }
 }
 
+/**
+ Edit the text of a `TextShape`. Undoing sets the text back to the original
+ value.
+
+ If this operation immediately follows an `AddShapeOperation` for the exact
+ same text shape, and `originalText` is empty, then this operation declines to
+ be added to the undo stack and instead causes the `AddShapeOperation` to simply
+ add the shape with the new text value. This means that we avoid having an
+ "add empty text shape" operation in the undo stack.
+ */
 struct EditTextOperation: DrawingOperation {
   let shape: TextShape
   let originalText: String

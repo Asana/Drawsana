@@ -8,7 +8,11 @@
 
 import CoreGraphics
 
+/**
+ Internal utility functions
+ */
 class DrawsanaUtilities {
+  /// Return a width which is smaller when velocity is greater
   class func modulatedWidth(width: CGFloat, velocity: CGPoint, previousVelocity: CGPoint, previousWidth: CGFloat) -> CGFloat {
     let velocityAdjustement: CGFloat = 600.0
     let speed = velocity.length / velocityAdjustement
@@ -21,6 +25,7 @@ class DrawsanaUtilities {
     return final
   }
 
+  /// Render an image using CoreGraphics
   class func renderImage(size: CGSize, _ code: (CGContext) -> Void) -> UIImage? {
     UIGraphicsBeginImageContextWithOptions(size, false, 0)
     guard let context = UIGraphicsGetCurrentContext() else {
@@ -33,6 +38,7 @@ class DrawsanaUtilities {
     return image
   }
 
+  /// Constrain a value to some min and max
   class func clamp<T: Comparable>(value: T, min: T, max: T) -> T {
     if (value < min) {
       return min

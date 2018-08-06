@@ -9,6 +9,8 @@
 import CoreGraphics
 import UIKit
 
+// TODO: move `textView` out of here into `TextTool`
+
 public class TextShape: Shape, ShapeSelectable {
   public var id: String = UUID().uuidString
   public let type = "Text"

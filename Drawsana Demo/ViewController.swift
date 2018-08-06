@@ -118,7 +118,8 @@ extension ViewController: TextToolDelegate {
   }
 
   func textToolDidTapAway(tappedPoint: CGPoint) {
-//    drawingView.set(tool: selectionTool)
+    toolIndex = tools.index(where: { ($0 as? SelectionTool) === self.selectionTool })!
+    drawingView.set(tool: tools[toolIndex])
   }
 }
 

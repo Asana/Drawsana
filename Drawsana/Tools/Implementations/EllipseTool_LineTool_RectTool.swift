@@ -14,7 +14,7 @@ import CoreGraphics
  Rect, line, and ellipse are all drawn by dragging from one point to another.
  */
 public class DrawingToolForShapeWithTwoPoints: DrawingTool {
-  public typealias ShapeType = Shape & ShapeWithTwoPoints & ToolStateAppliable
+  public typealias ShapeType = Shape & ShapeWithTwoPoints & UserSettingsApplying
 
   public var name: String { fatalError("Override me") }
 

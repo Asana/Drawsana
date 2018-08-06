@@ -10,7 +10,7 @@ import CoreGraphics
 
 extension CGPoint {
   var length: CGFloat {
-    return sqrt((self.x*self.x) + (self.y*self.y))
+    return sqrt((x * x) + (y * y))
   }
 }
 

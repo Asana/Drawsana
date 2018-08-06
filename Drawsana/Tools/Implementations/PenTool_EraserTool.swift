@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-public class PenTool: DrawingTool, ToolWithShapeInProgressRendering {
+public class PenTool: DrawingTool, DrawingToolWithShapeInProgressRendering {
   public typealias ShapeType = PenShape
 
   public var name: String { return "Pen" }

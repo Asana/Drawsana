@@ -9,13 +9,30 @@
 import CoreGraphics
 import UIKit
 
+/**
+ Base protocol which all shapes must implement.
+ */
 public protocol Shape: AnyObject {
+  /// Globally unique identifier for this shape. Meant to be used for equality
+  /// checks, especially for network-based updates.
   var id: String { get }
+
+  /// String value of this shape, for serialization and debugging
   var type: String { get }
+
+  /// Draw this shape to the given Core Graphics context. Transforms for drawing
+  /// position and scale are already applied.
   func render(in context: CGContext)
+
+  /// Return true iff the given point meaningfully intersects with the pixels
+  /// drawn by this shape. See `ShapeWithBoundingRect` for a shortcut.
   func hitTest(point: CGPoint) -> Bool
 }
 
+/**
+ Enhancement to `Shape` protocol that allows you to simply specify a
+ `boundingRect` property and have `hitTest` implemented automatically.
+ */
 public protocol ShapeWithBoundingRect: Shape {
   var boundingRect: CGRect { get }
 }
@@ -26,18 +43,69 @@ extension ShapeWithBoundingRect {
   }
 }
 
+/**
+ Enhancement to `Shape` protocol that has a `transform` property, meaning it can
+ be translated, rotated, and scaled relative to its original characteristics.
+ */
 public protocol ShapeWithTransform: Shape {
   var transform: ShapeTransform { get set }
 }
 
+/**
+ Enhancement to `Shape` protocol that enforces requirements necessary for a
+ shape to be used with the selection tool. This includes
+ `ShapeWithBoundingRect` to render the selection rect around the shape, and
+ `ShapeWithTransform` to allow the shape to be moved from its original
+ position
+ */
 public protocol ShapeSelectable: ShapeWithBoundingRect, ShapeWithTransform {
 }
+
 extension ShapeSelectable {
   public func hitTest(point: CGPoint) -> Bool {
     return boundingRect.applying(transform.affineTransform).contains(point)
   }
 }
 
+/**
+ Enhancement to `Shape` adding properties to match all `UserSettings`
+ properties. There is a convenience method `apply(userSettings:)` which updates
+ the shape to match the given values.
+ */
+public protocol ShapeWithStandardState: AnyObject, UserSettingsApplying {
+  var strokeColor: UIColor? { get set }
+  var fillColor: UIColor? { get set }
+  var strokeWidth: CGFloat { get set }
+}
+
+extension ShapeWithStandardState {
+  public func apply(userSettings: UserSettings) {
+    strokeColor = userSettings.strokeColor
+    fillColor = userSettings.fillColor
+    strokeWidth = userSettings.strokeWidth
+  }
+}
+
+/**
+ Like `ShapeWithStandardState`, but ignores `fillColor`.
+ */
+public protocol ShapeWithStrokeState: AnyObject, UserSettingsApplying {
+  var strokeColor: UIColor { get set }
+  var strokeWidth: CGFloat { get set }
+}
+
+extension ShapeWithStrokeState {
+  public func apply(userSettings: UserSettings) {
+    strokeColor = userSettings.strokeColor ?? .black
+    strokeWidth = userSettings.strokeWidth
+  }
+}
+
+/**
+ Special case of `Shape` where the shape is defined by exactly two points.
+ This case is used to share code between the line, ellipse, and rectangle shapes
+ and tools.
+ */
 public protocol ShapeWithTwoPoints {
   var a: CGPoint { get set }
   var b: CGPoint { get set }
@@ -56,31 +124,5 @@ extension ShapeWithTwoPoints {
 
   public var boundingRect: CGRect {
     return rect.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2)
-  }
-}
-
-public protocol ShapeWithStandardState: AnyObject, ToolStateAppliable {
-  var strokeColor: UIColor? { get set }
-  var fillColor: UIColor? { get set }
-  var strokeWidth: CGFloat { get set }
-}
-
-extension ShapeWithStandardState {
-  public func apply(userSettings: UserSettings) {
-    strokeColor = userSettings.strokeColor
-    fillColor = userSettings.fillColor
-    strokeWidth = userSettings.strokeWidth
-  }
-}
-
-public protocol ShapeWithStrokeState: AnyObject, ToolStateAppliable {
-  var strokeColor: UIColor { get set }
-  var strokeWidth: CGFloat { get set }
-}
-
-extension ShapeWithStrokeState {
-  public func apply(userSettings: UserSettings) {
-    strokeColor = userSettings.strokeColor ?? .black
-    strokeWidth = userSettings.strokeWidth
   }
 }
