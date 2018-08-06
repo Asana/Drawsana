@@ -86,7 +86,7 @@ public class DrawsanaView: UIView {
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
-    backgroundColor = .red
+    backgroundColor = .clear
 
     commonInit()
   }
@@ -100,6 +100,8 @@ public class DrawsanaView: UIView {
     toolSettings.delegate = self
     userSettings.delegate = self
     isUserInteractionEnabled = true
+    clipsToBounds = true
+
     layer.actions = [
       "contents": NSNull(),
     ]

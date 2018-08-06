@@ -22,6 +22,7 @@ class ViewController: UIViewController {
   }()
 
   let toolButton = UIButton(type: .custom)
+  let imageView = UIImageView(image: UIImage(named: "demo"))
   let undoButton = UIButton()
   let redoButton = UIButton()
 
@@ -48,6 +49,11 @@ class ViewController: UIViewController {
   override func loadView() {
     self.view = UIView()
 
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFit
+    imageView.backgroundColor = .gray
+    view.addSubview(imageView)
+
     toolButton.translatesAutoresizingMaskIntoConstraints = false
     toolButton.setTitle("No Tool", for: .normal)
     toolButton.addTarget(self, action: #selector(changeTool(_:)), for: .touchUpInside)
@@ -66,18 +72,21 @@ class ViewController: UIViewController {
 
     drawingView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(drawingView)
+
+    let imageAspectRatio = imageView.image!.size.width / imageView.image!.size.height
+
     NSLayoutConstraint.activate([
-      // drawingView constrain to left/top/right
-      drawingView.leftAnchor.constraint(equalTo: view.leftAnchor),
-      drawingView.rightAnchor.constraint(equalTo: view.rightAnchor),
-      drawingView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      // imageView constrain to left/top/right
+      imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
+      imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
+      imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 
       // toolButton constrain to center/bottom
       toolButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       toolButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-      // drawingView bottom -> toolButton.top
-      drawingView.bottomAnchor.constraint(equalTo: toolButton.topAnchor),
+      // imageView bottom -> toolButton.top
+      imageView.bottomAnchor.constraint(equalTo: toolButton.topAnchor),
 
       // undoButton constrain to bottom left
       undoButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 4),
@@ -86,6 +95,16 @@ class ViewController: UIViewController {
       // redoButton constrain next to undoButton
       redoButton.leftAnchor.constraint(equalTo: undoButton.rightAnchor, constant: 4),
       redoButton.centerYAnchor.constraint(equalTo: toolButton.centerYAnchor),
+
+      // drawingView is centered in imageView, shares image's aspect ratio,
+      // and doesn't expand past its frame
+      drawingView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+      drawingView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+      drawingView.widthAnchor.constraint(lessThanOrEqualTo: imageView.widthAnchor),
+      drawingView.heightAnchor.constraint(lessThanOrEqualTo: imageView.heightAnchor),
+      drawingView.widthAnchor.constraint(equalTo: drawingView.heightAnchor, multiplier: imageAspectRatio),
+      drawingView.widthAnchor.constraint(equalTo: imageView.widthAnchor).withPriority(.defaultLow),
+      drawingView.heightAnchor.constraint(equalTo: imageView.heightAnchor).withPriority(.defaultLow),
     ])
   }
 
@@ -161,5 +180,12 @@ extension ViewController: DrawingOperationStackDelegate {
 
   func drawingOperationStackDidApply(_ operationStack: DrawingOperationStack, operation: DrawingOperation) {
     applyViewState()
+  }
+}
+
+private extension NSLayoutConstraint {
+  func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
+    self.priority = priority
+    return self
   }
 }
