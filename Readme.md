@@ -11,7 +11,7 @@ open .docs/index.html
 
 pip install ghp-import
 make publish-docs
-open https://stevelandeyasana.github.com/Drawsana
+open https://stevelandeyasana.github.io/Drawsana
 ```
 
 ## To do
