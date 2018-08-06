@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DrawsanaView Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/DrawsanaView" class="dashAnchor"></a>
+    <a title="DrawsanaView Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Drawsana Docs</a> (44% documented)</p>
+        <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Drawsana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DrawsanaView Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../UI.html">UI</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DrawsanaView.html">DrawsanaView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewDelegate.html">DrawsanaViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewShapeUpdating.html">DrawsanaViewShapeUpdating</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Data model.html">Data model</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana7DrawingC">Drawing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperation.html">DrawingOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingOperationStack.html">DrawingOperationStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ToolSettings.html">ToolSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserSettings.html">UserSettings</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape building blocks.html">Shape building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Shape.html">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ShapeTransform.html">ShapeTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTransform.html">ShapeWithTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStrokeState.html">ShapeWithStrokeState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool building blocks.html">Tool building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingTool.html">DrawingTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingToolWithShapeInProgressRendering.html">DrawingToolWithShapeInProgressRendering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingToolForShapeWithTwoPoints.html">DrawingToolForShapeWithTwoPoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UserSettingsApplying.html">UserSettingsApplying</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape implementations.html">Shape implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseShape.html">EllipseShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineShape.html">LineShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenShape.html">PenShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Shape implementations.html#/s:8Drawsana14PenLineSegmentV">PenLineSegment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectShape.html">RectShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShape.html">TextShape</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool implementations.html">Tool implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseTool.html">EllipseTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraserTool.html">EraserTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineTool.html">LineTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenTool.html">PenTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectTool.html">RectTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SelectionTool.html">SelectionTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SelectionToolDelegate.html">SelectionToolDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextTool.html">TextTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TextToolDelegate.html">TextToolDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DrawsanaView</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DrawsanaView</span> <span class="p">:</span> <span class="kt">UIView</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Public%20API"></a>
+                <a name="//apple_ref/swift/Section/Public API" class="dashAnchor"></a>
+                <a href="#/Public%20API">
+                  <h3 class="section-name">Public API</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC8delegateAA0aB8Delegate_pSgXwvp"></a>
+                    <a name="//apple_ref/swift/Property/delegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC8delegateAA0aB8Delegate_pSgXwvp">delegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DrawsanaViewDelegate.html">DrawsanaViewDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC4toolAA11DrawingTool_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/tool" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC4toolAA11DrawingTool_pSgvp">tool</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Currently active tool</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">tool</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DrawingTool.html">DrawingTool</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L23">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC12userSettingsAA04UserD0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/userSettings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC12userSettingsAA04UserD0Cvp">userSettings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>You may set this object&rsquo;s properties and they will be forwarded to the
+active tool and applied to new shapes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">userSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/UserSettings.html">UserSettings</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC7drawingAA7DrawingCvp"></a>
+                    <a name="//apple_ref/swift/Property/drawing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC7drawingAA7DrawingCvp">drawing</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">drawing</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana7DrawingC">Drawing</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC14operationStackAA016DrawingOperationD0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/operationStack" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC14operationStackAA016DrawingOperationD0Cvp">operationStack</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Manages the undo stack. You may become this object&rsquo;s delegate
+(<code><a href="../Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a></code>) to be notified when undo/redo become
+enabled/disabled.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">operationStack</span><span class="p">:</span> <span class="kt"><a href="../Classes/DrawingOperationStack.html">DrawingOperationStack</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L36">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Views"></a>
+                <a name="//apple_ref/swift/Section/Views" class="dashAnchor"></a>
+                <a href="#/Views">
+                  <h3 class="section-name">Views</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC018selectionIndicatorB0So6UIViewCvp"></a>
+                    <a name="//apple_ref/swift/Property/selectionIndicatorView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC018selectionIndicatorB0So6UIViewCvp">selectionIndicatorView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">selectionIndicatorView</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC027interactiveOverlayContainerB0So6UIViewCvp"></a>
+                    <a name="//apple_ref/swift/Property/interactiveOverlayContainerView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC027interactiveOverlayContainerB0So6UIViewCvp">interactiveOverlayContainerView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">interactiveOverlayContainerView</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Init"></a>
+                <a name="//apple_ref/swift/Section/Init" class="dashAnchor"></a>
+                <a href="#/Init">
+                  <h3 class="section-name">Init</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Drawsana@objc(cs)DrawsanaView(im)initWithFrame:"></a>
+                    <a name="//apple_ref/swift/Method/init(frame:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Drawsana@objc(cs)DrawsanaView(im)initWithFrame:">init(frame:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L87-L92">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Drawsana@objc(cs)DrawsanaView(im)initWithCoder:"></a>
+                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Drawsana@objc(cs)DrawsanaView(im)initWithCoder:">init(coder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L94-L97">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Drawsana@objc(cs)DrawsanaView(im)layoutSubviews"></a>
+                    <a name="//apple_ref/swift/Method/layoutSubviews()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Drawsana@objc(cs)DrawsanaView(im)layoutSubviews">layoutSubviews()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">layoutSubviews</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L142-L145">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/API"></a>
+                <a name="//apple_ref/swift/Section/API" class="dashAnchor"></a>
+                <a href="#/API">
+                  <h3 class="section-name">API</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC3setyAA11DrawingTool_p4tool_AA5Shape_pSg5shapetF"></a>
+                    <a name="//apple_ref/swift/Method/set(tool:shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC3setyAA11DrawingTool_p4tool_AA5Shape_pSg5shapetF">set(tool:shape:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">tool</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DrawingTool.html">DrawingTool</a></span><span class="p">,</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L149-L157">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Delegate%20implementations"></a>
+                <a name="//apple_ref/swift/Section/Delegate implementations" class="dashAnchor"></a>
+                <a href="#/Delegate%20implementations">
+                  <h3 class="section-name">Delegate implementations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC14shapeDidUpdateyAA5Shape_p0C0_tF"></a>
+                    <a name="//apple_ref/swift/Method/shapeDidUpdate(shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC14shapeDidUpdateyAA5Shape_p0C0_tF">shapeDidUpdate(shape:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">shapeDidUpdate</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L251-L256">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Delegate%20implementations2"></a>
+                <a name="//apple_ref/swift/Section/Delegate implementations" class="dashAnchor"></a>
+                <a href="#/Delegate%20implementations2">
+                  <h3 class="section-name">Delegate implementations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC18drawingDidAddShapeyAA0F0_pF"></a>
+                    <a name="//apple_ref/swift/Method/drawingDidAddShape(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC18drawingDidAddShapeyAA0F0_pF">drawingDidAddShape(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">drawingDidAddShape</span><span class="p">(</span><span class="n">_</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L260-L266">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC21drawingDidUpdateShapeyAA0F0_pF"></a>
+                    <a name="//apple_ref/swift/Method/drawingDidUpdateShape(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC21drawingDidUpdateShapeyAA0F0_pF">drawingDidUpdateShape(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">drawingDidUpdateShape</span><span class="p">(</span><span class="n">_</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L268-L271">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC21drawingDidRemoveShapeyAA0F0_pF"></a>
+                    <a name="//apple_ref/swift/Method/drawingDidRemoveShape(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC21drawingDidRemoveShapeyAA0F0_pF">drawingDidRemoveShape(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">drawingDidRemoveShape</span><span class="p">(</span><span class="n">_</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L273-L279">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Delegate%20implementations3"></a>
+                <a name="//apple_ref/swift/Section/Delegate implementations" class="dashAnchor"></a>
+                <a href="#/Delegate%20implementations3">
+                  <h3 class="section-name">Delegate implementations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC12toolSettingsyAA04ToolD0C_AA15ShapeSelectable_pSg014didSetSelectedF0tF"></a>
+                    <a name="//apple_ref/swift/Method/toolSettings(_:didSetSelectedShape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC12toolSettingsyAA04ToolD0C_AA15ShapeSelectable_pSg014didSetSelectedF0tF">toolSettings(_:didSetSelectedShape:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toolSettings</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">toolSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/ToolSettings.html">ToolSettings</a></span><span class="p">,</span>
+  <span class="n">didSetSelectedShape</span> <span class="nv">selectedShape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a></span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L283-L289">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC12toolSettingsyAA04ToolD0C_So6UIViewCSg017didSetInteractiveB0AI8oldValuetF"></a>
+                    <a name="//apple_ref/swift/Method/toolSettings(_:didSetInteractiveView:oldValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC12toolSettingsyAA04ToolD0C_So6UIViewCSg017didSetInteractiveB0AI8oldValuetF">toolSettings(_:didSetInteractiveView:oldValue:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toolSettings</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">toolSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/ToolSettings.html">ToolSettings</a></span><span class="p">,</span>
+  <span class="n">didSetInteractiveView</span> <span class="nv">interactiveView</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span>
+  <span class="nv">oldValue</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L291-L301">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC12toolSettingsyAA04ToolD0C_Sb29didSetIsPersistentBufferDirtytF"></a>
+                    <a name="//apple_ref/swift/Method/toolSettings(_:didSetIsPersistentBufferDirty:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC12toolSettingsyAA04ToolD0C_Sb29didSetIsPersistentBufferDirtytF">toolSettings(_:didSetIsPersistentBufferDirty:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toolSettings</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">toolSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/ToolSettings.html">ToolSettings</a></span><span class="p">,</span>
+  <span class="n">didSetIsPersistentBufferDirty</span> <span class="nv">isPersistentBufferDirty</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L303-L308">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Delegate%20implementations4"></a>
+                <a name="//apple_ref/swift/Section/Delegate implementations" class="dashAnchor"></a>
+                <a href="#/Delegate%20implementations4">
+                  <h3 class="section-name">Delegate implementations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC12userSettingsyAA04UserD0C_So7UIColorCSg20didChangeStrokeColortF"></a>
+                    <a name="//apple_ref/swift/Method/userSettings(_:didChangeStrokeColor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC12userSettingsyAA04UserD0C_So7UIColorCSg20didChangeStrokeColortF">userSettings(_:didChangeStrokeColor:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">userSettings</span><span class="p">(</span><span class="n">_</span> <span class="nv">userSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/UserSettings.html">UserSettings</a></span><span class="p">,</span> <span class="n">didChangeStrokeColor</span> <span class="nv">strokeColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L312-L314">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC12userSettingsyAA04UserD0C_So7UIColorCSg18didChangeFillColortF"></a>
+                    <a name="//apple_ref/swift/Method/userSettings(_:didChangeFillColor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC12userSettingsyAA04UserD0C_So7UIColorCSg18didChangeFillColortF">userSettings(_:didChangeFillColor:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">userSettings</span><span class="p">(</span><span class="n">_</span> <span class="nv">userSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/UserSettings.html">UserSettings</a></span><span class="p">,</span> <span class="n">didChangeFillColor</span> <span class="nv">fillColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L316-L318">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A4ViewC12userSettingsyAA04UserD0C_12CoreGraphics7CGFloatV20didChangeStrokeWidthtF"></a>
+                    <a name="//apple_ref/swift/Method/userSettings(_:didChangeStrokeWidth:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A4ViewC12userSettingsyAA04UserD0C_12CoreGraphics7CGFloatV20didChangeStrokeWidthtF">userSettings(_:didChangeStrokeWidth:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">userSettings</span><span class="p">(</span><span class="n">_</span> <span class="nv">userSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/UserSettings.html">UserSettings</a></span><span class="p">,</span> <span class="n">didChangeStrokeWidth</span> <span class="nv">strokeWidth</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L320-L322">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>2018 <a class="link" href="https://asana.com" target="_blank" rel="external">Asana, Inc.</a></p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

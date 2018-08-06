@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DrawingTool Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/DrawingTool" class="dashAnchor"></a>
+    <a title="DrawingTool Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Drawsana Docs</a> (44% documented)</p>
+        <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Drawsana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DrawingTool Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../UI.html">UI</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DrawsanaView.html">DrawsanaView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewDelegate.html">DrawsanaViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewShapeUpdating.html">DrawsanaViewShapeUpdating</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Data model.html">Data model</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana7DrawingC">Drawing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperation.html">DrawingOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingOperationStack.html">DrawingOperationStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ToolSettings.html">ToolSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserSettings.html">UserSettings</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape building blocks.html">Shape building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Shape.html">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ShapeTransform.html">ShapeTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTransform.html">ShapeWithTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStrokeState.html">ShapeWithStrokeState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool building blocks.html">Tool building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingTool.html">DrawingTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingToolWithShapeInProgressRendering.html">DrawingToolWithShapeInProgressRendering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingToolForShapeWithTwoPoints.html">DrawingToolForShapeWithTwoPoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UserSettingsApplying.html">UserSettingsApplying</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape implementations.html">Shape implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseShape.html">EllipseShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineShape.html">LineShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenShape.html">PenShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Shape implementations.html#/s:8Drawsana14PenLineSegmentV">PenLineSegment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectShape.html">RectShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShape.html">TextShape</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool implementations.html">Tool implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseTool.html">EllipseTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraserTool.html">EraserTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineTool.html">LineTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenTool.html">PenTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectTool.html">RectTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SelectionTool.html">SelectionTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SelectionToolDelegate.html">SelectionToolDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextTool.html">TextTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TextToolDelegate.html">TextToolDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DrawingTool</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DrawingTool</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/UserSettingsApplying.html">UserSettingsApplying</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>All drawing tools must implement this protocol.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP13isProgressiveSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isProgressive" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP13isProgressiveSbvp">isProgressive</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If <code>true</code>, the shape-in-progress buffer is not cleared at all during
+drawing operations. So if you&rsquo;re implementing something like a pen tool,
+you only need to draw the tail of the line that hasn&rsquo;t yet been drawn,
+and avoid the cost of re-rendering the whole shape as it gets longer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isProgressive</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L28">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP4nameSSvp">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Arbitrary string identifier. Useful for the demo UI, and potentially
+associating icons with each tool.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L32">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP8activateyAA0A17ViewShapeUpdating_p12shapeUpdater_AA0C16OperationContextC7contextAA0F0_pSg0H0tF"></a>
+                    <a name="//apple_ref/swift/Method/activate(shapeUpdater:context:shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP8activateyAA0A17ViewShapeUpdating_p12shapeUpdater_AA0C16OperationContextC7contextAA0F0_pSg0H0tF">activate(shapeUpdater:context:shape:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The user has picked this tool in the UI. The default implementation does
+nothing.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">activate</span><span class="p">(</span><span class="nv">shapeUpdater</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DrawsanaViewShapeUpdating.html">DrawsanaViewShapeUpdating</a></span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">,</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>shapeUpdater</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object which you may inform of out-of-band shape updates.
+Normally, <code><a href="../Classes/DrawsanaView.html">DrawsanaView</a></code> only checks for changes during tool operations,
+but some tools (e.g. <code><a href="../Classes/TextTool.html">TextTool</a></code>) make changes based on arbitrary user
+input and need a way to update the selection rect and such.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>context</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>shape</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tools may be activate with <q>initial shapes.</q> One use case for this
+is the selection tool handling a double-tap on a text shape. The UI can
+choose to activate the text tool and immediately enter the edit state.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L48">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP10deactivateyAA0C16OperationContextC7context_tF"></a>
+                    <a name="//apple_ref/swift/Method/deactivate(context:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP10deactivateyAA0C16OperationContextC7context_tF">deactivate(context:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This tool has become deselected. The default implementaiton does nothing.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deactivate</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L51">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP9handleTapyAA0C16OperationContextC7context_SC7CGPointV5pointtF"></a>
+                    <a name="//apple_ref/swift/Method/handleTap(context:point:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP9handleTapyAA0C16OperationContextC7context_SC7CGPointV5pointtF">handleTap(context:point:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User tapped on the drawing</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">handleTap</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">,</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L54">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP15handleDragStartyAA0C16OperationContextC7context_SC7CGPointV5pointtF"></a>
+                    <a name="//apple_ref/swift/Method/handleDragStart(context:point:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP15handleDragStartyAA0C16OperationContextC7context_SC7CGPointV5pointtF">handleDragStart(context:point:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User has started to drag on the drawing</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">handleDragStart</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">,</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L57">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP18handleDragContinueyAA0C16OperationContextC7context_SC7CGPointV5pointAI8velocitytF"></a>
+                    <a name="//apple_ref/swift/Method/handleDragContinue(context:point:velocity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP18handleDragContinueyAA0C16OperationContextC7context_SC7CGPointV5pointAI8velocitytF">handleDragContinue(context:point:velocity:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User has continued to drag on the drawing</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">handleDragContinue</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">,</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">velocity</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L60">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP13handleDragEndyAA0C16OperationContextC7context_SC7CGPointV5pointtF"></a>
+                    <a name="//apple_ref/swift/Method/handleDragEnd(context:point:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP13handleDragEndyAA0C16OperationContextC7context_SC7CGPointV5pointtF">handleDragEnd(context:point:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User has stopped to drag on the drawing</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">handleDragEnd</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">,</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L63">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP16handleDragCancelyAA0C16OperationContextC7context_SC7CGPointV5pointtF"></a>
+                    <a name="//apple_ref/swift/Method/handleDragCancel(context:point:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP16handleDragCancelyAA0C16OperationContextC7context_SC7CGPointV5pointtF">handleDragCancel(context:point:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The drag gesture has canceled for some reason. The intended use case is
+for when the user places a second finger down, and this becomes a pinch
+instead of a drag.</p>
+
+<p>You probably want to clean up all in-progress updates and reset to a state
+as if the drag had never begun.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">handleDragCancel</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">,</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L71">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP5applyyAA12UserSettingsC04userF0_tF"></a>
+                    <a name="//apple_ref/swift/Method/apply(userSettings:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP5applyyAA12UserSettingsC04userF0_tF">apply(userSettings:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User settings have changed. Update any local state or the shape, if
+relevant. The default implementaiton does nothing.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">apply</span><span class="p">(</span><span class="nv">userSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/UserSettings.html">UserSettings</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L75">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana11DrawingToolP21renderShapeInProgressySo9CGContextC16transientContext_tF"></a>
+                    <a name="//apple_ref/swift/Method/renderShapeInProgress(transientContext:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana11DrawingToolP21renderShapeInProgressySo9CGContextC16transientContext_tF">renderShapeInProgress(transientContext:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>After each invocation of <code><a href="../Protocols/DrawingTool.html#/s:8Drawsana11DrawingToolP15handleDragStartyAA0C16OperationContextC7context_SC7CGPointV5pointtF">handleDragStart(context:point:)</a></code>,
+<code><a href="../Protocols/DrawingTool.html#/s:8Drawsana11DrawingToolP18handleDragContinueyAA0C16OperationContextC7context_SC7CGPointV5pointAI8velocitytF">handleDragContinue(context:point:velocity:)</a></code>, and
+<code><a href="../Protocols/DrawingTool.html#/s:8Drawsana11DrawingToolP13handleDragEndyAA0C16OperationContextC7context_SC7CGPointV5pointtF">handleDragEnd(context:point:)</a></code>, this method is called. If your tool is
+in the process of creating a shape but it isn&rsquo;t yet committed to the
+drawing, render it to this <code>CGContext</code>.</p>
+
+<p>If <code><a href="../Protocols/DrawingTool.html#/s:8Drawsana11DrawingToolP13isProgressiveSbvp">isProgressive</a></code> is <code>true</code>, you only need to render changes since the
+last call. Otherwise, you need to render the whole shape.</p>
+
+<p>The default implementaiton does nothing.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">renderShapeInProgress</span><span class="p">(</span><span class="nv">transientContext</span><span class="p">:</span> <span class="kt">CGContext</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/DrawingTool.swift#L87">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>2018 <a class="link" href="https://asana.com" target="_blank" rel="external">Asana, Inc.</a></p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shape Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Shape" class="dashAnchor"></a>
+    <a title="Shape Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Drawsana Docs</a> (44% documented)</p>
+        <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Drawsana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Shape Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../UI.html">UI</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DrawsanaView.html">DrawsanaView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewDelegate.html">DrawsanaViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewShapeUpdating.html">DrawsanaViewShapeUpdating</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Data model.html">Data model</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana7DrawingC">Drawing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperation.html">DrawingOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingOperationStack.html">DrawingOperationStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ToolSettings.html">ToolSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserSettings.html">UserSettings</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape building blocks.html">Shape building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Shape.html">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ShapeTransform.html">ShapeTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTransform.html">ShapeWithTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStrokeState.html">ShapeWithStrokeState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool building blocks.html">Tool building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingTool.html">DrawingTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingToolWithShapeInProgressRendering.html">DrawingToolWithShapeInProgressRendering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingToolForShapeWithTwoPoints.html">DrawingToolForShapeWithTwoPoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UserSettingsApplying.html">UserSettingsApplying</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape implementations.html">Shape implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseShape.html">EllipseShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineShape.html">LineShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenShape.html">PenShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Shape implementations.html#/s:8Drawsana14PenLineSegmentV">PenLineSegment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectShape.html">RectShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShape.html">TextShape</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool implementations.html">Tool implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseTool.html">EllipseTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraserTool.html">EraserTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineTool.html">LineTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenTool.html">PenTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectTool.html">RectTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SelectionTool.html">SelectionTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SelectionToolDelegate.html">SelectionToolDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextTool.html">TextTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TextToolDelegate.html">TextToolDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Shape</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Shape</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Base protocol which all shapes must implement.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana5ShapeP2idSSvp"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana5ShapeP2idSSvp">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Globally unique identifier for this shape. Meant to be used for equality
+checks, especially for network-based updates.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Shape.swift#L18">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana5ShapeP4typeSSvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana5ShapeP4typeSSvp">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>String value of this shape, for serialization and debugging</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Shape.swift#L21">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana5ShapeP6renderySo9CGContextC2in_tF"></a>
+                    <a name="//apple_ref/swift/Method/render(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana5ShapeP6renderySo9CGContextC2in_tF">render(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw this shape to the given Core Graphics context. Transforms for drawing
+position and scale are already applied.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">CGContext</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Shape.swift#L25">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana5ShapeP7hitTestSbSC7CGPointV5point_tF"></a>
+                    <a name="//apple_ref/swift/Method/hitTest(point:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana5ShapeP7hitTestSbSC7CGPointV5point_tF">hitTest(point:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return true iff the given point meaningfully intersects with the pixels
+drawn by this shape. See <code><a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></code> for a shortcut.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hitTest</span><span class="p">(</span><span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Shape.swift#L29">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>2018 <a class="link" href="https://asana.com" target="_blank" rel="external">Asana, Inc.</a></p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

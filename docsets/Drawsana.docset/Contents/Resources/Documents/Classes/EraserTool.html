@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EraserTool Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/EraserTool" class="dashAnchor"></a>
+    <a title="EraserTool Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Drawsana Docs</a> (44% documented)</p>
+        <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Drawsana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        EraserTool Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../UI.html">UI</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DrawsanaView.html">DrawsanaView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewDelegate.html">DrawsanaViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewShapeUpdating.html">DrawsanaViewShapeUpdating</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Data model.html">Data model</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana7DrawingC">Drawing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperation.html">DrawingOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingOperationStack.html">DrawingOperationStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ToolSettings.html">ToolSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserSettings.html">UserSettings</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape building blocks.html">Shape building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Shape.html">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ShapeTransform.html">ShapeTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTransform.html">ShapeWithTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStrokeState.html">ShapeWithStrokeState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool building blocks.html">Tool building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingTool.html">DrawingTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingToolWithShapeInProgressRendering.html">DrawingToolWithShapeInProgressRendering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingToolForShapeWithTwoPoints.html">DrawingToolForShapeWithTwoPoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UserSettingsApplying.html">UserSettingsApplying</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape implementations.html">Shape implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseShape.html">EllipseShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineShape.html">LineShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenShape.html">PenShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Shape implementations.html#/s:8Drawsana14PenLineSegmentV">PenLineSegment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectShape.html">RectShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShape.html">TextShape</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool implementations.html">Tool implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseTool.html">EllipseTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraserTool.html">EraserTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineTool.html">LineTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenTool.html">PenTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectTool.html">RectTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SelectionTool.html">SelectionTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SelectionToolDelegate.html">SelectionToolDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextTool.html">TextTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TextToolDelegate.html">TextToolDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>EraserTool</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EraserTool</span> <span class="p">:</span> <span class="kt"><a href="../Classes/PenTool.html">PenTool</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana10EraserToolC4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana10EraserToolC4nameSSvp">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/PenTool_EraserTool.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana10EraserToolCACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana10EraserToolCACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/PenTool_EraserTool.swift#L76-L80">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana10EraserToolC15handleDragStartyAA0C16OperationContextC7context_SC7CGPointV5pointtF"></a>
+                    <a name="//apple_ref/swift/Method/handleDragStart(context:point:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana10EraserToolC15handleDragStartyAA0C16OperationContextC7context_SC7CGPointV5pointtF">handleDragStart(context:point:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">handleDragStart</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a></span><span class="p">,</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/PenTool_EraserTool.swift#L82-L85">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>2018 <a class="link" href="https://asana.com" target="_blank" rel="external">Asana, Inc.</a></p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
