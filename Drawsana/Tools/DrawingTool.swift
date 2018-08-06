@@ -8,6 +8,11 @@
 
 import CoreGraphics
 
+/**
+ Any object which can apply the values in a `UserSettings` object to itself or
+ some other relevant object. This is part of the `DrawingTool` protocol, and
+ some shapes implement it as well.
+ */
 public protocol UserSettingsApplying {
   func apply(userSettings: UserSettings)
 }

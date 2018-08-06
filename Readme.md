@@ -1,5 +1,19 @@
 #  Drawsana
 
+[View demo](https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift)
+
+## Building docs
+
+```sh
+sudo gem install jazzy
+make docs
+open .docs/index.html
+
+pip install ghp-import
+make publish-docs
+open https://stevelandeyasana.github.com/Drawsana
+```
+
 ## To do
 
 * Use a real coordinate system, not whatever Core Graphics is using

@@ -11,6 +11,8 @@
 		37362D5E2118D8A3003E5ACA /* ToolSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5D2118D8A3003E5ACA /* ToolSettings.swift */; };
 		37362D602118E46F003E5ACA /* DrawingOperationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */; };
 		37362D622118EE98003E5ACA /* DrawingOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D612118EE98003E5ACA /* DrawingOperations.swift */; };
+		37362D6421190187003E5ACA /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 37362D6321190187003E5ACA /* Makefile */; };
+		37362D682119025F003E5ACA /* .jazzy.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 37362D672119025F003E5ACA /* .jazzy.yaml */; };
 		3762296E2113A9E60034D0E3 /* DrawsanaUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */; };
 		376229722113AAD30034D0E3 /* LineShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229712113AAD30034D0E3 /* LineShape.swift */; };
 		376229742113AAF50034D0E3 /* ShapeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229732113AAF50034D0E3 /* ShapeTransform.swift */; };
@@ -76,6 +78,8 @@
 		37362D5D2118D8A3003E5ACA /* ToolSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolSettings.swift; sourceTree = "<group>"; };
 		37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingOperationStack.swift; sourceTree = "<group>"; };
 		37362D612118EE98003E5ACA /* DrawingOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingOperations.swift; sourceTree = "<group>"; };
+		37362D6321190187003E5ACA /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		37362D672119025F003E5ACA /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .jazzy.yaml; sourceTree = "<group>"; };
 		3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawsanaUtilities.swift; sourceTree = "<group>"; };
 		376229712113AAD30034D0E3 /* LineShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineShape.swift; sourceTree = "<group>"; };
 		376229732113AAF50034D0E3 /* ShapeTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTransform.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 		37EB4ECF210649E100E10461 = {
 			isa = PBXGroup;
 			children = (
+				37362D672119025F003E5ACA /* .jazzy.yaml */,
+				37362D6321190187003E5ACA /* Makefile */,
 				376229892113AE0C0034D0E3 /* Readme.md */,
 				37EB4EDB210649E100E10461 /* Drawsana */,
 				37EB4EFB21064A5E00E10461 /* Drawsana Demo */,
@@ -381,6 +387,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37362D682119025F003E5ACA /* .jazzy.yaml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +429,7 @@
 				37362D622118EE98003E5ACA /* DrawingOperations.swift in Sources */,
 				376229782113AB770034D0E3 /* EllipseShape.swift in Sources */,
 				376229762113AB6E0034D0E3 /* RectShape.swift in Sources */,
+				37362D6421190187003E5ACA /* Makefile in Sources */,
 				37EB4EF4210649FC00E10461 /* DrawsanaView.swift in Sources */,
 				37362D602118E46F003E5ACA /* DrawingOperationStack.swift in Sources */,
 				3777F2FF21068A78009A9AC5 /* DrawingTool.swift in Sources */,

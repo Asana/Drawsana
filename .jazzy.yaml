@@ -1,0 +1,63 @@
+output: .docs
+sdk: ios
+author: Asana, Inc.
+author_url: https://asana.com
+module: Drawsana
+copyright: 2018 [Asana, Inc.](https://asana.com)
+readme: Readme.md
+github_url: https://github.com/stevelandeyasana/Drawsana
+github_file_prefix: https://github.com/stevelandeyasana/Drawsana/tree/master
+skip_undocumented: false
+
+xcodebuild_arguments: ["-project", "Drawsana.xcodeproj", "-target", "Drawsana"]
+
+custom_categories:
+- name: UI
+  children:
+  - DrawsanaView
+  - DrawsanaViewDelegate
+  - DrawsanaViewShapeUpdating
+- name: Data model
+  children:
+  - Drawing
+  - DrawingOperation
+  - DrawingOperationStack
+  - DrawingOperationStackDelegate
+  - ToolOperationContext
+  - ToolSettings
+  - UserSettings
+- name: Shape building blocks
+  children:
+  - Shape
+  - ShapeTransform
+  - ShapeWithBoundingRect
+  - ShapeWithTransform
+  - ShapeSelectable
+  - ShapeWithStandardState
+  - ShapeWithStrokeState
+  - ShapeWithTwoPoints
+- name: Tool building blocks
+  children:
+  - DrawingTool
+  - DrawingToolWithShapeInProgressRendering
+  - DrawingToolForShapeWithTwoPoints
+  - UserSettingsApplying
+- name: Shape implementations
+  children:
+  - EllipseShape
+  - LineShape
+  - PenShape
+  - PenLineSegment
+  - RectShape
+  - TextShape
+- name: Tool implementations
+  children:
+  - EllipseTool
+  - EraserTool
+  - LineTool
+  - PenTool
+  - RectTool
+  - SelectionTool
+  - SelectionToolDelegate
+  - TextTool
+  - TextToolDelegate

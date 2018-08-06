@@ -8,15 +8,14 @@
 
 import UIKit
 
-public protocol SelectionToolDelegate: AnyObject {
-  func selectionToolDidTapOnAlreadySelectedShape(_ shape: ShapeSelectable)
-}
-
 public class SelectionTool: DrawingTool {
   public let name = "Selection"
   
   public var isProgressive: Bool { return false }
 
+  /// You may set yourself as the delegate to be notified when special selection
+  /// events happen that you might want to react to. The core framework does
+  /// not use this delegate.
   public weak var delegate: SelectionToolDelegate?
 
   var originalTransform: ShapeTransform?
@@ -80,4 +79,14 @@ public class SelectionTool: DrawingTool {
     context.toolSettings.selectedShape?.transform = originalTransform ?? .identity
     context.toolSettings.isPersistentBufferDirty = true
   }
+}
+
+/**
+
+ */
+public protocol SelectionToolDelegate: AnyObject {
+  /// User tapped on a shape, but it was already selected. You might want to
+  /// take this opportuny to activate a tool that can edit that shape, if one
+  /// exists.
+  func selectionToolDidTapOnAlreadySelectedShape(_ shape: ShapeSelectable)
 }

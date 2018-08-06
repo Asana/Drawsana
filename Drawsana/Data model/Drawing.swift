@@ -48,7 +48,7 @@ public class Drawing {
   }
 }
 
-public protocol DrawingDelegate: AnyObject {
+protocol DrawingDelegate: AnyObject {
   func drawingDidAddShape(_ shape: Shape)
   func drawingDidUpdateShape(_ shape: Shape)
   func drawingDidRemoveShape(_ shape: Shape)

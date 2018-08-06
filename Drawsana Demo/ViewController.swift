@@ -9,13 +9,28 @@
 import UIKit
 import Drawsana
 
+/**
+ Bare-bones demonstration of the Drawsana API. Drawsana does not provide its
+ own UI, so this demo has a very simple one.
+ */
 class ViewController: UIViewController {
-  lazy var drawingView: DrawsanaView = { return DrawsanaView() }()
+  lazy var drawingView: DrawsanaView = {
+    let drawingView = DrawsanaView()
+    drawingView.delegate = self
+    drawingView.operationStack.delegate = self
+    return drawingView
+  }()
+
   let toolButton = UIButton(type: .custom)
   let undoButton = UIButton()
   let redoButton = UIButton()
 
+  /// Instance of `TextTool` for which we are the delegate, so we can respond
+  /// to relevant UI events
   lazy var textTool = { return TextTool(delegate: self) }()
+
+  /// Instance of `SelectionTool` for which we are the delegate, so we can
+  /// respond to relevant UI events
   lazy var selectionTool = { return SelectionTool(delegate: self) }()
 
   lazy var tools: [DrawingTool] = { return [
@@ -27,8 +42,9 @@ class ViewController: UIViewController {
     LineTool(),
     RectTool(),
   ] }()
-  var toolIndex = 2
+  var toolIndex = 0
 
+  // Just AutoLayout code here
   override func loadView() {
     self.view = UIView()
 
@@ -75,18 +91,20 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    drawingView.delegate = self
-    drawingView.operationStack.delegate = self
+
+    // Set initial tool to whatever `toolIndex` says
     drawingView.set(tool: tools[toolIndex])
     applyViewState()
   }
 
+  /// Cycle to the next tool in the list; wrap around to zeroth tool if at end
   @objc private func changeTool(_ sender: Any?) {
     toolIndex = (toolIndex + 1) % tools.count
     drawingView.set(tool: tools[toolIndex])
     applyViewState()
   }
 
+  /// Update button states to reflect undo stack and user settings
   private func applyViewState() {
     undoButton.isEnabled = drawingView.operationStack.canUndo
     redoButton.isEnabled = drawingView.operationStack.canRedo
@@ -99,12 +117,15 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: DrawsanaViewDelegate {
+  /// When tool changes, update the UI
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool?) {
     toolButton.setTitle(tool?.name, for: .normal)
   }
 }
 
 extension ViewController: SelectionToolDelegate {
+  /// When a shape is double-tapped by the selection tool, and it's text,
+  /// begin editing the text
   func selectionToolDidTapOnAlreadySelectedShape(_ shape: ShapeSelectable) {
     if shape as? TextShape != nil {
       drawingView.set(tool: textTool, shape: shape)
@@ -113,16 +134,22 @@ extension ViewController: SelectionToolDelegate {
 }
 
 extension ViewController: TextToolDelegate {
+  /// Don't modify text point. In reality you probably do want to modify it to
+  /// make sure it's not below the keyboard.
   func textToolPointForNewText(tappedPoint: CGPoint) -> CGPoint {
     return tappedPoint
   }
 
+  /// When user taps away from text, switch to the selection tool so they can
+  /// tap anything they want.
   func textToolDidTapAway(tappedPoint: CGPoint) {
     toolIndex = tools.index(where: { ($0 as? SelectionTool) === self.selectionTool })!
     drawingView.set(tool: tools[toolIndex])
   }
 }
 
+/// Implement `DrawingOperationStackDelegate` to keep the UI in sync with the
+/// operation stack
 extension ViewController: DrawingOperationStackDelegate {
   func drawingOperationStackDidUndo(_ operationStack: DrawingOperationStack, operation: DrawingOperation) {
     applyViewState()

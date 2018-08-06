@@ -9,26 +9,6 @@
 import CoreGraphics
 import UIKit
 
-/*
- Text tool behavior spec:
-
- # Activate tool without shape, then tap:
-
- Add text under finger, or at point determined by delegate
-
- # Activate tool with shape:
-
- Begin editing shape immediately
-
- # Tap on text
-
- */
-
-public protocol TextToolDelegate: AnyObject {
-  func textToolPointForNewText(tappedPoint: CGPoint) -> CGPoint
-  func textToolDidTapAway(tappedPoint: CGPoint)
-}
-
 public class TextTool: NSObject, DrawingTool {
   public let isProgressive = false
   public let name: String = "Text"
@@ -158,4 +138,16 @@ extension TextTool: UITextViewDelegate {
     shapeInProgress!.textView.frame = shapeInProgress!.computeFrame()
     shapeUpdater?.shapeDidUpdate(shape: shapeInProgress!)
   }
+}
+
+public protocol TextToolDelegate: AnyObject {
+  /// Given the point where the user tapped, return the point where a text
+  /// shape should be created. You might want to set it to a specific point, or
+  /// make sure it's above the keyboard.
+  func textToolPointForNewText(tappedPoint: CGPoint) -> CGPoint
+
+  /// User tapped away from the active text shape. If you give users access to
+  /// the selection tool, you might want to set it as the active tool at this
+  /// point.
+  func textToolDidTapAway(tappedPoint: CGPoint)
 }
