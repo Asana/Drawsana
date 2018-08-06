@@ -22,6 +22,8 @@ public class DrawingOperationStack {
   }
 
   public func apply(operation: DrawingOperation) {
+    guard operation.shouldAdd(to: self) else { return }
+
     undoStack.append(operation)
     redoStack = []
     operation.apply(drawing: drawing)
@@ -52,6 +54,7 @@ public protocol DrawingOperationStackDelegate: AnyObject {
 }
 
 public protocol DrawingOperation {
+  func shouldAdd(to operationStack: DrawingOperationStack) -> Bool
   func apply(drawing: Drawing)
   func revert(drawing: Drawing)
 }

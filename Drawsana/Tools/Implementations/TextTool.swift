@@ -29,7 +29,7 @@ public protocol TextToolDelegate: AnyObject {
   func textToolDidTapAway(tappedPoint: CGPoint)
 }
 
-public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
+public class TextTool: NSObject, DrawingTool {
   public let isProgressive = false
   public let name: String = "Text"
   public weak var delegate: TextToolDelegate?
@@ -38,12 +38,32 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
 
   var originalTransform: ShapeTransform?
   var startPoint: CGPoint?
+  var originalText = ""
 
   private weak var shapeUpdater: DrawsanaViewShapeUpdating?
 
   public init(delegate: TextToolDelegate? = nil) {
     self.delegate = delegate
     super.init()
+  }
+
+  /// If shape text has changed, notify operation stack so that undo works
+  /// properly
+  private func applyTextEditingOperation(context: ToolOperationContext) {
+    if let shape = shapeInProgress, originalText != shape.text {
+      context.operationStack.apply(operation: EditTextOperation(shape: shape, originalText: originalText, text: shape.text))
+      originalText = shape.text
+    }
+  }
+
+  private func beginEditing(shape: TextShape, context: ToolOperationContext) {
+    context.toolSettings.interactiveView = shape.textView
+    context.toolSettings.selectedShape = shape
+    shape.textView.frame = shape.computeFrame()
+    shape.textView.text = shape.text
+    shape.textView.delegate = self
+    shape.textView.becomeFirstResponder()
+    originalText = shape.text
   }
 
   public func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) {
@@ -57,6 +77,7 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
   public func deactivate(context: ToolOperationContext) {
     context.toolSettings.interactiveView?.resignFirstResponder()
     context.toolSettings.interactiveView = nil
+    applyTextEditingOperation(context: context)
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
@@ -64,7 +85,7 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
       if shapeInProgress.hitTest(point: point) {
         // TODO: forward tap to text view
       } else {
-        // TODO: save changes
+        applyTextEditingOperation(context: context)
         self.shapeInProgress = nil
         context.toolSettings.selectedShape = nil
         context.toolSettings.interactiveView?.resignFirstResponder()
@@ -81,17 +102,8 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
       self.shapeInProgress = newShape
       newShape.transform.translation = delegate?.textToolPointForNewText(tappedPoint: point) ?? point
       beginEditing(shape: newShape, context: context)
-      context.drawing.add(shape: newShape)
+      context.operationStack.apply(operation: AddShapeOperation(shape: newShape))
     }
-  }
-
-  private func beginEditing(shape: TextShape, context: ToolOperationContext) {
-    context.toolSettings.interactiveView = shape.textView
-    context.toolSettings.selectedShape = shape
-    shape.textView.frame = shape.computeFrame()
-    shape.textView.text = shape.text
-    shape.textView.delegate = self
-    shape.textView.becomeFirstResponder()
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
@@ -125,7 +137,10 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
       return
     }
     let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
-    selectedShape.transform = originalTransform.translated(by: delta)
+    context.operationStack.apply(operation: ChangeTransformOperation(
+      shape: selectedShape,
+      transform: originalTransform.translated(by: delta),
+      originalTransform: originalTransform))
     context.toolSettings.isPersistentBufferDirty = true
     shapeInProgress.textView.frame = shapeInProgress.computeFrame()
   }
@@ -135,7 +150,9 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
     context.toolSettings.isPersistentBufferDirty = true
     shapeInProgress!.textView.frame = shapeInProgress!.computeFrame()
   }
+}
 
+extension TextTool: UITextViewDelegate {
   public func textViewDidChange(_ textView: UITextView) {
     shapeInProgress!.text = textView.text ?? ""
     shapeInProgress!.textView.frame = shapeInProgress!.computeFrame()
