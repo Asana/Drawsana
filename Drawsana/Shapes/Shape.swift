@@ -66,7 +66,7 @@ public protocol AMShapeWithStandardState: AnyObject, ToolStateAppliable {
 }
 
 extension AMShapeWithStandardState {
-  public func apply(state: GlobalToolState) {
+  public func apply(state: UserSettings) {
     strokeColor = state.strokeColor
     fillColor = state.fillColor
     strokeWidth = state.strokeWidth
@@ -79,7 +79,7 @@ public protocol AMShapeWithStrokeState: AnyObject, ToolStateAppliable {
 }
 
 extension AMShapeWithStrokeState {
-  public func apply(state: GlobalToolState) {
+  public func apply(state: UserSettings) {
     strokeColor = state.strokeColor ?? .black
     strokeWidth = state.strokeWidth
   }

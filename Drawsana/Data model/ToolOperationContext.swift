@@ -8,21 +8,21 @@
 
 import CoreGraphics
 
+/**
+ Aggregate of objects that may be used by tools during operations
+ */
 public class ToolOperationContext {
   let drawing: Drawing
-  let toolState: GlobalToolState
-  var interactiveView: UIView?
-  var isPersistentBufferDirty: Bool
+  let userSettings: UserSettings
+  let toolSettings: ToolSettings
 
   init(
     drawing: Drawing,
-    toolState: GlobalToolState,
-    interactiveView: UIView?,
-    isPersistentBufferDirty: Bool = false)
+    userSettings: UserSettings,
+    toolSettings: ToolSettings)
   {
     self.drawing = drawing
-    self.toolState = toolState
-    self.interactiveView = interactiveView
-    self.isPersistentBufferDirty = isPersistentBufferDirty
+    self.userSettings = userSettings
+    self.toolSettings = toolSettings
   }
 }

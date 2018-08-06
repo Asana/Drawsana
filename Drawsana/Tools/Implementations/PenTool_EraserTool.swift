@@ -27,7 +27,7 @@ public class PenTool: DrawingTool, ToolWithShapeInProgressRendering {
     let shape = PenShape()
     shape.start = point
     shape.isFinished = false
-    shape.apply(state: context.toolState)
+    shape.apply(state: context.userSettings)
     context.drawing.add(shape: shape)
   }
 
@@ -35,7 +35,7 @@ public class PenTool: DrawingTool, ToolWithShapeInProgressRendering {
     lastVelocity = .zero
     shapeInProgress = PenShape()
     shapeInProgress?.start = point
-    shapeInProgress?.apply(state: context.toolState)
+    shapeInProgress?.apply(state: context.userSettings)
   }
 
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {

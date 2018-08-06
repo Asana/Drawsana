@@ -28,7 +28,7 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
     var shape = makeShape()
     shape.a = point
     shape.b = point
-    shape.apply(state: context.toolState)
+    shape.apply(state: context.userSettings)
     context.drawing.add(shape: shape)
   }
 
@@ -36,7 +36,7 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
     shapeInProgress = makeShape()
     shapeInProgress?.a = point
     shapeInProgress?.b = point
-    shapeInProgress?.apply(state: context.toolState)
+    shapeInProgress?.apply(state: context.userSettings)
   }
 
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
@@ -58,7 +58,7 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
   }
 
   public func activate(context: ToolOperationContext, shape: Shape?) {
-    context.toolState.selectedShape = nil
+    context.toolSettings.selectedShape = nil
   }
 }
 

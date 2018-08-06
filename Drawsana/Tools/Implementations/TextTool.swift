@@ -48,11 +48,15 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
 
   public func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) {
     self.shapeUpdater = shapeUpdater
+    if let shape = shape as? TextShape {
+      self.shapeInProgress = shape
+      beginEditing(shape: shape, context: context)
+    }
   }
 
   public func deactivate(context: ToolOperationContext) {
-    context.interactiveView?.resignFirstResponder()
-    context.interactiveView = nil
+    context.toolSettings.interactiveView?.resignFirstResponder()
+    context.toolSettings.interactiveView = nil
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
@@ -62,9 +66,9 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
       } else {
         // TODO: save changes
         self.shapeInProgress = nil
-        context.toolState.selectedShape = nil
-        context.interactiveView?.resignFirstResponder()
-        context.interactiveView = nil
+        context.toolSettings.selectedShape = nil
+        context.toolSettings.interactiveView?.resignFirstResponder()
+        context.toolSettings.interactiveView = nil
         shapeInProgress.updateCachedImage()
         delegate?.textToolDidTapAway(tappedPoint: point)
       }
@@ -82,8 +86,8 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
   }
 
   private func beginEditing(shape: TextShape, context: ToolOperationContext) {
-    context.interactiveView = shape.textView
-    context.toolState.selectedShape = shape
+    context.toolSettings.interactiveView = shape.textView
+    context.toolSettings.selectedShape = shape
     shape.textView.frame = shape.computeFrame()
     shape.textView.text = shape.text
     shape.textView.delegate = self
@@ -99,7 +103,7 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
     guard
       let originalTransform = originalTransform,
-      let selectedShape = context.toolState.selectedShape,
+      let selectedShape = context.toolSettings.selectedShape,
       let startPoint = startPoint,
       let shapeInProgress = shapeInProgress else
     {
@@ -107,14 +111,14 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
     }
     let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
     selectedShape.transform = originalTransform.translated(by: delta)
-    context.isPersistentBufferDirty = true
+    context.toolSettings.isPersistentBufferDirty = true
     shapeInProgress.textView.frame = shapeInProgress.computeFrame()
   }
 
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
     guard
       let originalTransform = originalTransform,
-      let selectedShape = context.toolState.selectedShape,
+      let selectedShape = context.toolSettings.selectedShape,
       let startPoint = startPoint,
       let shapeInProgress = shapeInProgress else
     {
@@ -122,13 +126,13 @@ public class TextTool: NSObject, DrawingTool, UITextViewDelegate {
     }
     let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
     selectedShape.transform = originalTransform.translated(by: delta)
-    context.isPersistentBufferDirty = true
+    context.toolSettings.isPersistentBufferDirty = true
     shapeInProgress.textView.frame = shapeInProgress.computeFrame()
   }
 
   public func handleDragCancel(context: ToolOperationContext, point: CGPoint) {
-    context.toolState.selectedShape?.transform = originalTransform ?? .identity
-    context.isPersistentBufferDirty = true
+    context.toolSettings.selectedShape?.transform = originalTransform ?? .identity
+    context.toolSettings.isPersistentBufferDirty = true
     shapeInProgress!.textView.frame = shapeInProgress!.computeFrame()
   }
 

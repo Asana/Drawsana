@@ -21,23 +21,14 @@ public class DrawsanaView: UIView {
 
   public weak var delegate: DrawsanaViewDelegate?
   public private(set) var tool: DrawingTool?
-  public var globalToolState: GlobalToolState {
+  public var userSettings: UserSettings {
     didSet {
-      globalToolState.delegate = self
-      tool?.apply(state: globalToolState)
+      tool?.apply(state: userSettings)
       applySelectionViewState()
     }
   }
+  public let toolSettings = ToolSettings(selectedShape: nil, interactiveView: nil, isPersistentBufferDirty: false)
   public lazy var drawing: Drawing = { return Drawing(size: bounds.size, delegate: self) }()
-  public var interactiveView: UIView? {
-    didSet {
-      guard oldValue !== interactiveView else { return }
-      oldValue?.removeFromSuperview()
-      if let interactiveView = interactiveView {
-        interactiveOverlayContainerView.addSubview(interactiveView)
-      }
-    }
-  }
 
   // MARK: Buffers
 
@@ -81,8 +72,7 @@ public class DrawsanaView: UIView {
   // MARK: Init
 
   public override init(frame: CGRect) {
-    globalToolState = GlobalToolState(
-      strokeColor: .blue, fillColor: nil, strokeWidth: 20, selectedShape: nil)
+    userSettings = UserSettings(strokeColor: .blue, fillColor: nil, strokeWidth: 20)
     super.init(frame: frame)
     backgroundColor = .red
 
@@ -90,14 +80,13 @@ public class DrawsanaView: UIView {
   }
 
   required public init?(coder aDecoder: NSCoder) {
-    globalToolState = GlobalToolState(
-      strokeColor: .blue, fillColor: nil, strokeWidth: 20, selectedShape: nil)
+    userSettings = UserSettings(strokeColor: .blue, fillColor: nil, strokeWidth: 20)
     super.init(coder: aDecoder)
     commonInit()
   }
 
   private func commonInit() {
-    globalToolState.delegate = self
+    toolSettings.delegate = self
     isUserInteractionEnabled = true
     layer.actions = [
       "contents": NSNull(),
@@ -153,7 +142,7 @@ public class DrawsanaView: UIView {
   // ARMK: Internal helpers
 
   private func makeToolOperationContext() -> ToolOperationContext {
-    return ToolOperationContext(drawing: self.drawing, toolState: self.globalToolState, interactiveView: interactiveView)
+    return ToolOperationContext(drawing: drawing, userSettings: userSettings, toolSettings: toolSettings)
   }
 
   // MARK: Gesture recognizers
@@ -205,10 +194,9 @@ public class DrawsanaView: UIView {
       assert(false, "State not handled")
     }
 
-    interactiveView = context.interactiveView
-
-    if context.isPersistentBufferDirty {
+    if context.toolSettings.isPersistentBufferDirty {
       redrawAbsolutelyEverything()
+      context.toolSettings.isPersistentBufferDirty = false
     }
     // This is cheap to do and annoying to signal, so just do it all the time
     applySelectionViewState()
@@ -217,7 +205,6 @@ public class DrawsanaView: UIView {
   @objc private func didTap(sender: UITapGestureRecognizer) {
     let context = makeToolOperationContext()
     tool?.handleTap(context: context, point: sender.location(in: self))
-    interactiveView = context.interactiveView
   }
 
   // MARK: Making stuff show up
@@ -227,7 +214,7 @@ public class DrawsanaView: UIView {
   }
 
   private func applySelectionViewState() {
-    guard let shape = globalToolState.selectedShape else {
+    guard let shape = toolSettings.selectedShape else {
       selectionIndicatorView.isHidden = true
       return
     }
@@ -251,7 +238,7 @@ public class DrawsanaView: UIView {
 
 extension DrawsanaView: DrawsanaViewShapeUpdating {
   public func shapeDidUpdate(shape: Shape) {
-    if shape === globalToolState.selectedShape {
+    if shape === toolSettings.selectedShape {
       applySelectionViewState()
     }
     redrawAbsolutelyEverything()
@@ -268,12 +255,31 @@ extension DrawsanaView: DrawingDelegate {
   }
 }
 
-extension DrawsanaView: GlobalToolStateDelegate {
-  public func toolState(
-    _ toolState: GlobalToolState,
+extension DrawsanaView: ToolSettingsDelegate {
+  public func toolSettings(
+    _ toolSettings: ToolSettings,
     didSetSelectedShape selectedShape: ShapeSelectable?)
   {
-    tool?.apply(state: globalToolState)
+    tool?.apply(state: userSettings)
     applySelectionViewState()
+  }
+
+  public func toolSettings(
+    _ toolSettings: ToolSettings,
+    didSetInteractiveView interactiveView: UIView?,
+    oldValue: UIView?)
+  {
+    guard oldValue !== interactiveView else { return }
+    oldValue?.removeFromSuperview()
+    if let interactiveView = interactiveView {
+      interactiveOverlayContainerView.addSubview(interactiveView)
+    }
+  }
+
+  public func toolSettings(
+    _ toolSettings: ToolSettings,
+    didSetIsPersistentBufferDirty isPersistentBufferDirty: Bool)
+  {
+    // no-op; handled during tool operation
   }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37362D5C21151684003E5ACA /* TextShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5B21151684003E5ACA /* TextShape.swift */; };
+		37362D5E2118D8A3003E5ACA /* ToolSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5D2118D8A3003E5ACA /* ToolSettings.swift */; };
 		3762296E2113A9E60034D0E3 /* DrawsanaUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */; };
 		376229722113AAD30034D0E3 /* LineShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229712113AAD30034D0E3 /* LineShape.swift */; };
 		376229742113AAF50034D0E3 /* ShapeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229732113AAF50034D0E3 /* ShapeTransform.swift */; };
@@ -17,7 +18,7 @@
 		3762297D2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762297C2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift */; };
 		376229812113AD570034D0E3 /* ToolOperationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229802113AD570034D0E3 /* ToolOperationContext.swift */; };
 		376229832113AD6E0034D0E3 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229822113AD6E0034D0E3 /* Drawing.swift */; };
-		376229872113ADD70034D0E3 /* GlobalToolState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229862113ADD70034D0E3 /* GlobalToolState.swift */; };
+		376229872113ADD70034D0E3 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229862113ADD70034D0E3 /* UserSettings.swift */; };
 		3762298B2113D7910034D0E3 /* TextTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762298A2113D7910034D0E3 /* TextTool.swift */; };
 		3777F2FD21068A5C009A9AC5 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777F2FC21068A5C009A9AC5 /* Shape.swift */; };
 		3777F2FF21068A78009A9AC5 /* DrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777F2FE21068A78009A9AC5 /* DrawingTool.swift */; };
@@ -70,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		37362D5B21151684003E5ACA /* TextShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShape.swift; sourceTree = "<group>"; };
+		37362D5D2118D8A3003E5ACA /* ToolSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolSettings.swift; sourceTree = "<group>"; };
 		3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawsanaUtilities.swift; sourceTree = "<group>"; };
 		376229712113AAD30034D0E3 /* LineShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineShape.swift; sourceTree = "<group>"; };
 		376229732113AAF50034D0E3 /* ShapeTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTransform.swift; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 		3762297C2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+DrawsanaExtensions.swift"; sourceTree = "<group>"; };
 		376229802113AD570034D0E3 /* ToolOperationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolOperationContext.swift; sourceTree = "<group>"; };
 		376229822113AD6E0034D0E3 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
-		376229862113ADD70034D0E3 /* GlobalToolState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalToolState.swift; sourceTree = "<group>"; };
+		376229862113ADD70034D0E3 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		376229892113AE0C0034D0E3 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		3762298A2113D7910034D0E3 /* TextTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTool.swift; sourceTree = "<group>"; };
 		3777F2FC21068A5C009A9AC5 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
@@ -194,8 +196,9 @@
 			isa = PBXGroup;
 			children = (
 				376229822113AD6E0034D0E3 /* Drawing.swift */,
-				376229862113ADD70034D0E3 /* GlobalToolState.swift */,
 				376229802113AD570034D0E3 /* ToolOperationContext.swift */,
+				376229862113ADD70034D0E3 /* UserSettings.swift */,
+				37362D5D2118D8A3003E5ACA /* ToolSettings.swift */,
 			);
 			path = "Data model";
 			sourceTree = "<group>";
@@ -399,7 +402,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				376229872113ADD70034D0E3 /* GlobalToolState.swift in Sources */,
+				37362D5E2118D8A3003E5ACA /* ToolSettings.swift in Sources */,
+				376229872113ADD70034D0E3 /* UserSettings.swift in Sources */,
 				3762297D2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift in Sources */,
 				3762296E2113A9E60034D0E3 /* DrawsanaUtilities.swift in Sources */,
 				3762297A2113AB7F0034D0E3 /* PenShape.swift in Sources */,
