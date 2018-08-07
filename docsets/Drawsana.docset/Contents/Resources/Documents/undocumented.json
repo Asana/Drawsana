@@ -149,7 +149,7 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 365,
+      "line": 367,
       "symbol": "DrawsanaViewShapeUpdating.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

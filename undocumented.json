@@ -121,119 +121,119 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 90,
+      "line": 94,
       "symbol": "DrawsanaView.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 97,
+      "line": 101,
       "symbol": "DrawsanaView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 147,
+      "line": 160,
       "symbol": "DrawsanaView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 283,
+      "line": 340,
       "symbol": "DrawsanaView.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 367,
+      "line": 424,
       "symbol": "DrawsanaViewShapeUpdating.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 12,
+      "line": 16,
       "symbol": "EllipseShape",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 16,
+      "line": 30,
       "symbol": "EllipseShape.a",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 17,
+      "line": 31,
       "symbol": "EllipseShape.b",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 18,
+      "line": 32,
       "symbol": "EllipseShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 19,
+      "line": 33,
       "symbol": "EllipseShape.fillColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 20,
+      "line": 34,
       "symbol": "EllipseShape.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 21,
+      "line": 35,
       "symbol": "EllipseShape.capStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 22,
+      "line": 36,
       "symbol": "EllipseShape.joinStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 23,
+      "line": 37,
       "symbol": "EllipseShape.dashPhase",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 24,
+      "line": 38,
       "symbol": "EllipseShape.dashLengths",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 25,
+      "line": 39,
       "symbol": "EllipseShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 27,
+      "line": 41,
       "symbol": "EllipseShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -247,70 +247,70 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 16,
+      "line": 26,
       "symbol": "LineShape.a",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 17,
+      "line": 27,
       "symbol": "LineShape.b",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 18,
+      "line": 28,
       "symbol": "LineShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 19,
+      "line": 29,
       "symbol": "LineShape.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 20,
+      "line": 30,
       "symbol": "LineShape.capStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 21,
+      "line": 31,
       "symbol": "LineShape.joinStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 22,
+      "line": 32,
       "symbol": "LineShape.dashPhase",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 23,
+      "line": 33,
       "symbol": "LineShape.dashLengths",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 24,
+      "line": 34,
       "symbol": "LineShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 26,
+      "line": 36,
       "symbol": "LineShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -331,63 +331,70 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 26,
+      "line": 30,
       "symbol": "PenShape.isFinished",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 27,
-      "symbol": "PenShape.strokeColor",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 28,
+      "line": 31,
       "symbol": "PenShape.start",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 29,
-      "symbol": "PenShape.strokeWidth",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 30,
-      "symbol": "PenShape.segments",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 31,
-      "symbol": "PenShape.isEraser",
+      "line": 32,
+      "symbol": "PenShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
       "line": 33,
+      "symbol": "PenShape.strokeWidth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
+      "line": 34,
+      "symbol": "PenShape.segments",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
+      "line": 35,
+      "symbol": "PenShape.isEraser",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
+      "line": 37,
       "symbol": "PenShape.isSelectable",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 38,
+      "line": 39,
+      "symbol": "PenShape.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
+      "line": 75,
       "symbol": "PenShape.add(segment:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 90,
+      "line": 127,
       "symbol": "PenShape.renderLatestSegment(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -401,77 +408,77 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 16,
+      "line": 26,
       "symbol": "RectShape.a",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 17,
+      "line": 27,
       "symbol": "RectShape.b",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 18,
+      "line": 28,
       "symbol": "RectShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 19,
+      "line": 29,
       "symbol": "RectShape.fillColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 20,
+      "line": 30,
       "symbol": "RectShape.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 21,
+      "line": 31,
       "symbol": "RectShape.capStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 22,
+      "line": 32,
       "symbol": "RectShape.joinStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 23,
+      "line": 33,
       "symbol": "RectShape.dashPhase",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 24,
+      "line": 34,
       "symbol": "RectShape.dashLengths",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 25,
+      "line": 35,
       "symbol": "RectShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 27,
+      "line": 37,
       "symbol": "RectShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -485,56 +492,70 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 18,
-      "symbol": "TextShape.boundingRect",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 24,
+      "line": 22,
       "symbol": "TextShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 25,
+      "line": 23,
+      "symbol": "TextShape.isBeingEdited",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
+      "line": 24,
       "symbol": "TextShape.text",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 26,
+      "line": 25,
       "symbol": "TextShape.fontName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 27,
+      "line": 26,
       "symbol": "TextShape.fontSize",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 33,
-      "symbol": "TextShape.textView",
+      "line": 27,
+      "symbol": "TextShape.fillColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 35,
+      "line": 31,
+      "symbol": "TextShape.boundingRect",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
+      "line": 37,
+      "symbol": "TextShape.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
+      "line": 67,
       "symbol": "TextShape.image",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 52,
+      "line": 88,
       "symbol": "TextShape.updateCachedImage()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -849,42 +870,56 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 12,
+      "line": 90,
       "symbol": "TextTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 15,
+      "line": 99,
       "symbol": "TextTool.delegate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 17,
+      "line": 101,
       "symbol": "TextTool.shapeInProgress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 25,
+      "line": 114,
       "symbol": "TextTool.init(delegate:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 136,
+      "line": 351,
       "symbol": "TextTool.textViewDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 143,
+      "line": 359,
+      "symbol": "TextTool.textViewDidBeginEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 363,
+      "symbol": "TextTool.textViewShouldEndEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 369,
       "symbol": "TextToolDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"

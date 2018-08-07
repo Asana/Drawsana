@@ -14,7 +14,7 @@
     <a title="Shape implementations  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Drawsana Docs</a> (47% documented)</p>
+        <p><a href="index.html">Drawsana Docs</a> (49% documented)</p>
         <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -201,12 +201,16 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EllipseShape</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EllipseShape</span><span class="p">:</span>
+  <span class="kt"><a href="Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/EllipseShape.swift#L12-L56">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/EllipseShape.swift#L16-L113">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -236,12 +240,16 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LineShape</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeWithStrokeState.html">ShapeWithStrokeState</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LineShape</span><span class="p">:</span>
+  <span class="kt"><a href="Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeWithStrokeState.html">ShapeWithStrokeState</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/LineShape.swift#L12-L46">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/LineShape.swift#L12-L97">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -276,7 +284,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/PenShape.swift#L22-L93">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/PenShape.swift#L22-L130">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -301,7 +309,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PenLineSegment</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PenLineSegment</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
                       </div>
@@ -336,12 +344,16 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RectShape</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RectShape</span><span class="p">:</span>
+  <span class="kt"><a href="Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a></span><span class="p">,</span>
+  <span class="kt"><a href="Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L12-L54">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L12-L107">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -376,7 +388,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/TextShape.swift#L14-L80">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/TextShape.swift#L14-L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -14,7 +14,7 @@
     <a title="RectShape Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Drawsana Docs</a> (47% documented)</p>
+        <p><a href="../index.html">Drawsana Docs</a> (49% documented)</p>
         <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -177,7 +177,11 @@
             <h1>RectShape</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RectShape</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RectShape</span><span class="p">:</span>
+  <span class="kt"><a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span>
+  <span class="kt"><a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a></span><span class="p">,</span>
+  <span class="kt"><a href="../Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a></span><span class="p">,</span>
+  <span class="kt"><a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a></span></code></pre>
 
                 </div>
               </div>
@@ -190,9 +194,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana5ShapeP4typeSSvp"></a>
-                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana5ShapeP4typeSSvp">type</a>
+                    <a name="/s:8Drawsana5ShapeP4typeSSvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana5ShapeP4typeSSvpZ">type</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,7 +210,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -570,7 +574,65 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L27-L29">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L37-L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s9DecodablePxs7Decoder_p4from_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s9DecodablePxs7Decoder_p4from_tKcfc">init(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L41-L61">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s9EncodableP6encodeys7Encoder_p2to_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s9EncodableP6encodeys7Encoder_p2to_tKF">encode(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L63-L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -599,7 +661,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L31-L53">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Implementations/RectShape.swift#L84-L106">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
