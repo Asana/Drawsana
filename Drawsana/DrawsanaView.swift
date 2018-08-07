@@ -135,9 +135,18 @@ public class DrawsanaView: UIView {
     selectionIndicatorView.translatesAutoresizingMaskIntoConstraints = true
     selectionIndicatorView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-    // TODO: allow config
-    selectionIndicatorView.layer.borderColor = UIColor.blue.cgColor
-    selectionIndicatorView.layer.borderWidth = 1
+    let selectionLayer = CAShapeLayer()
+    selectionLayer.strokeColor = UIColor.black.cgColor
+    selectionLayer.lineWidth = 2
+    selectionLayer.lineDashPattern = [4, 4]
+    selectionLayer.fillColor = nil
+    selectionLayer.frame = selectionIndicatorView.bounds
+    selectionLayer.path = UIBezierPath(rect: selectionIndicatorView.bounds).cgPath
+    selectionIndicatorView.layer.addSublayer(selectionLayer)
+    selectionIndicatorView.layer.shadowColor = UIColor.white.cgColor
+    selectionIndicatorView.layer.shadowOffset = .zero
+    selectionIndicatorView.layer.shadowRadius = 1
+    selectionIndicatorView.layer.shadowOpacity = 1
     selectionIndicatorView.isHidden = true
 
     addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:))))
@@ -263,6 +272,12 @@ public class DrawsanaView: UIView {
     selectionIndicatorView.frame = shape.boundingRect.insetBy(dx: -4, dy: -4)
     selectionIndicatorView.transform = selectionIndicatorView.transform.concatenating(shape.transform.affineTransform)
     selectionIndicatorView.isHidden = false
+
+    for layer in (selectionIndicatorView.layer.sublayers ?? []) {
+      guard let shapeLayer = layer as? CAShapeLayer else { continue }
+      shapeLayer.frame = selectionIndicatorView.bounds
+      shapeLayer.path = UIBezierPath(rect: selectionIndicatorView.bounds).cgPath
+    }
   }
 
   private func redrawAbsolutelyEverything() {
