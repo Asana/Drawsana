@@ -258,8 +258,12 @@ public class TextTool: NSObject, DrawingTool {
       selectedShape.transform = originalTransform.translated(by: delta)
     case .resizeAndRotate:
       selectedShape.transform = getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: selectedShape)
-    default:
-      break
+    case .none:
+      // The pan gesture is super finicky at the start, so add an affordance for
+      // dragging over the handle
+      if case .resizeAndRotate = textView.getPointArea(point: point) {
+        handleDragStart(context: context, point: point)
+      }
     }
     updateTextView()
   }
