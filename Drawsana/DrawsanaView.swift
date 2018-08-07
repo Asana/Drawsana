@@ -274,8 +274,8 @@ public class DrawsanaView: UIView {
       return
     }
     // TODO: allow inset config
-    selectionIndicatorView.frame = shape.boundingRect.insetBy(dx: -4, dy: -4)
-    selectionIndicatorView.transform = selectionIndicatorView.transform.concatenating(shape.transform.affineTransform)
+    selectionIndicatorView.frame = shape.boundingRect.insetBy(dx: -4, dy: -4).applying(shape.transform.affineTransform)
+//    selectionIndicatorView.transform = selectionIndicatorView.transform.concatenating(shape.transform.affineTransform)
     selectionIndicatorView.isHidden = false
 
     for layer in (selectionIndicatorView.layer.sublayers ?? []) {

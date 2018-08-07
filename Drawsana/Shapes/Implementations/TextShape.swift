@@ -30,10 +30,6 @@ public class TextShape: Shape, ShapeSelectable {
 
   public var boundingRect: CGRect = .zero
 
-  var insets: CGPoint {
-    return CGPoint(x: -8, y: -4)
-  }
-
   var font: UIFont {
     return UIFont(name: fontName, size: fontSize)!
   }

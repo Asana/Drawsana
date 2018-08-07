@@ -46,4 +46,22 @@ extension ShapeTransform {
       rotation: rotation,
       scale: scale)
   }
+
+  /// Return a copy of this transform with its scale multiplied by the given
+  /// amount
+  public func scaled(by amount: CGFloat) -> ShapeTransform {
+    return ShapeTransform(
+      translation: translation,
+      rotation: rotation,
+      scale: scale * amount)
+  }
+
+  /// Return a copy of this transform with its rotation changed by the given
+  /// amount
+  public func rotated(by radians: CGFloat) -> ShapeTransform {
+    return ShapeTransform(
+      translation: translation,
+      rotation: rotation + radians,
+      scale: scale)
+  }
 }

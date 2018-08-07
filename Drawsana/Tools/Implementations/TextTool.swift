@@ -24,6 +24,10 @@ private class TextShapeEditingView: UIView {
     self.textView = textView
     super.init(frame: .zero)
 
+    clipsToBounds = false
+    backgroundColor = .clear
+    layer.isOpaque = false
+
     textView.translatesAutoresizingMaskIntoConstraints = false
 
     deleteControlView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,13 +46,13 @@ private class TextShapeEditingView: UIView {
       textView.topAnchor.constraint(equalTo: topAnchor),
       textView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-      deleteControlView.widthAnchor.constraint(equalToConstant: 22),
-      deleteControlView.heightAnchor.constraint(equalToConstant: 22),
+      deleteControlView.widthAnchor.constraint(equalToConstant: 44),
+      deleteControlView.heightAnchor.constraint(equalToConstant: 44),
       deleteControlView.rightAnchor.constraint(equalTo: textView.leftAnchor),
       deleteControlView.bottomAnchor.constraint(equalTo: textView.topAnchor),
 
-      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 22),
-      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 22),
+      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 44),
+      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 44),
       resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor),
       resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor),
     ])
@@ -84,6 +88,12 @@ private class TextShapeEditingView: UIView {
 }
 
 public class TextTool: NSObject, DrawingTool {
+  private enum DragType {
+    case move
+    case resizeAndRotate
+    case none
+  }
+
   public let isProgressive = false
   public let name: String = "Text"
   public weak var delegate: TextToolDelegate?
@@ -93,6 +103,7 @@ public class TextTool: NSObject, DrawingTool {
   var originalTransform: ShapeTransform?
   var startPoint: CGPoint?
   var originalText = ""
+  private var dragType: DragType = .none  // updated by handleDragStart
 
   private var maxWidth: CGFloat = 320  // updated from drawing
   private var maxWidthDueToScreenOverrun: CGFloat? = nil
@@ -205,10 +216,20 @@ public class TextTool: NSObject, DrawingTool {
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
-    guard let shapeInProgress = shapeInProgress, shapeInProgress.hitTest(point: point) else { return }
-    originalTransform = shapeInProgress.transform
-    startPoint = point
-    maxWidthDueToScreenOverrun = nil
+    guard let shapeInProgress = shapeInProgress else { return }
+    if case .resizeAndRotate = textView.getPointArea(point: point) {
+      dragType = .resizeAndRotate
+      originalTransform = shapeInProgress.transform
+      startPoint = point
+      maxWidthDueToScreenOverrun = nil
+    } else if shapeInProgress.hitTest(point: point) {
+      dragType = .move
+      originalTransform = shapeInProgress.transform
+      startPoint = point
+      maxWidthDueToScreenOverrun = nil
+    } else {
+      dragType = .none
+    }
   }
 
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
@@ -219,9 +240,18 @@ public class TextTool: NSObject, DrawingTool {
     {
       return
     }
-    let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
-    selectedShape.transform = originalTransform.translated(by: delta)
-    context.toolSettings.isPersistentBufferDirty = true
+    switch dragType {
+    case .move:
+      let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
+      selectedShape.transform = originalTransform.translated(by: delta)
+    case .resizeAndRotate:
+      let originalDistance = CGPoint(x: startPoint.x - selectedShape.transform.translation.x, y: startPoint.y - selectedShape.transform.translation.y).length
+      let newDistance = CGPoint(x: point.x - selectedShape.transform.translation.x, y: point.y - selectedShape.transform.translation.y).length
+      let newScale = newDistance / originalDistance
+      selectedShape.transform = originalTransform.scaled(by: newScale)
+    default:
+      break
+    }
     updateTextView()
   }
 
@@ -233,11 +263,24 @@ public class TextTool: NSObject, DrawingTool {
     {
       return
     }
-    let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
-    context.operationStack.apply(operation: ChangeTransformOperation(
-      shape: selectedShape,
-      transform: originalTransform.translated(by: delta),
-      originalTransform: originalTransform))
+    switch dragType {
+    case .move:
+      let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
+      context.operationStack.apply(operation: ChangeTransformOperation(
+        shape: selectedShape,
+        transform: originalTransform.translated(by: delta),
+        originalTransform: originalTransform))
+    case .resizeAndRotate:
+      let originalDistance = CGPoint(x: startPoint.x - selectedShape.transform.translation.x, y: startPoint.y - selectedShape.transform.translation.y).length
+      let newDistance = CGPoint(x: point.x - selectedShape.transform.translation.x, y: point.y - selectedShape.transform.translation.y).length
+      let newScale = newDistance / originalDistance
+      context.operationStack.apply(operation: ChangeTransformOperation(
+        shape: selectedShape,
+        transform: originalTransform.scaled(by: newScale),
+        originalTransform: originalTransform))
+    case .none:
+      break
+    }
     context.toolSettings.isPersistentBufferDirty = true
     updateTextView()
   }

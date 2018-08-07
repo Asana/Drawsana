@@ -140,6 +140,7 @@ class ViewController: UIViewController {
       (try? data.write(to: savedImageURL)) != nil else
     {
       assert(false, "Can't create or save image")
+      return
     }
     let vc = QLPreviewController(nibName: nil, bundle: nil)
     vc.dataSource = self
