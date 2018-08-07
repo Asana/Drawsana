@@ -213,8 +213,6 @@ extension ViewController: TextToolDelegate {
       imageView.tintColor = .white
       controlView.addSubview(imageView)
     }
-
-//    rotateImageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
   }
 }
 
