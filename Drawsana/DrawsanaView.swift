@@ -78,9 +78,12 @@ public class DrawsanaView: UIView {
 
   private let drawingContentView = UIView()
 
+  /// View which is moved around to match the frame of the selected shape.
+  /// You may configure whatever properties you want to to make it look like
+  /// you want it to look.
   public let selectionIndicatorView = UIView()
 
-  public let interactiveOverlayContainerView = UIView()
+  private let interactiveOverlayContainerView = UIView()
 
   // MARK: Init
 
@@ -286,7 +289,7 @@ extension DrawsanaView: DrawsanaViewShapeUpdating {
 }
 
 extension DrawsanaView: DrawingDelegate {
-  public func drawingDidAddShape(_ shape: Shape) {
+  func drawingDidAddShape(_ shape: Shape) {
     persistentBuffer = DrawsanaUtilities.renderImage(size: drawing.size) {
       self.persistentBuffer?.draw(at: .zero)
       shape.render(in: $0)
@@ -294,12 +297,12 @@ extension DrawsanaView: DrawingDelegate {
     reapplyLayerContents()
   }
 
-  public func drawingDidUpdateShape(_ shape: Shape) {
+  func drawingDidUpdateShape(_ shape: Shape) {
     redrawAbsolutelyEverything()
     applySelectionViewState()
   }
 
-  public func drawingDidRemoveShape(_ shape: Shape) {
+  func drawingDidRemoveShape(_ shape: Shape) {
     redrawAbsolutelyEverything()
     if shape === toolSettings.selectedShape {
       toolSettings.selectedShape = nil
@@ -309,7 +312,7 @@ extension DrawsanaView: DrawingDelegate {
 }
 
 extension DrawsanaView: ToolSettingsDelegate {
-  public func toolSettings(
+  func toolSettings(
     _ toolSettings: ToolSettings,
     didSetSelectedShape selectedShape: ShapeSelectable?)
   {
@@ -317,7 +320,7 @@ extension DrawsanaView: ToolSettingsDelegate {
     applySelectionViewState()
   }
 
-  public func toolSettings(
+  func toolSettings(
     _ toolSettings: ToolSettings,
     didSetInteractiveView interactiveView: UIView?,
     oldValue: UIView?)
@@ -329,7 +332,7 @@ extension DrawsanaView: ToolSettingsDelegate {
     }
   }
 
-  public func toolSettings(
+  func toolSettings(
     _ toolSettings: ToolSettings,
     didSetIsPersistentBufferDirty isPersistentBufferDirty: Bool)
   {
@@ -338,25 +341,25 @@ extension DrawsanaView: ToolSettingsDelegate {
 }
 
 extension DrawsanaView: UserSettingsDelegate {
-  public func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?) {
+  func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?) {
     tool?.apply(userSettings: userSettings)
   }
 
-  public func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?) {
+  func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?) {
     tool?.apply(userSettings: userSettings)
   }
 
-  public func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat) {
+  func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat) {
     tool?.apply(userSettings: userSettings)
   }
-
-
 }
 
 /**
  Small protocol wrapper around `DrawsanaView` that exposes just the
- `shapeDidUpdate(shape:)` method, so tools can notify the drawing view that
- a shape has changed outside of a tool operation.
+ `DrawingView.shapeDidUpdate(shape:)` method, so tools can notify the drawing'
+ view that a shape has changed outside of a tool operation.
+
+ See `DrawingTool.activate(shapeUpdater:context:shape:)`
  */
 public protocol DrawsanaViewShapeUpdating: AnyObject {
   func shapeDidUpdate(shape: Shape)

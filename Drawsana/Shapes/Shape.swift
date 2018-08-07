@@ -87,7 +87,7 @@ extension ShapeWithStandardState {
 }
 
 /**
- Like `ShapeWithStandardState`, but ignores `fillColor`.
+ Like `ShapeWithStandardState`, but ignores `UserSettings.fillColor`.
  */
 public protocol ShapeWithStrokeState: AnyObject, UserSettingsApplying {
   var strokeColor: UIColor { get set }
