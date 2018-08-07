@@ -14,3 +14,10 @@ extension CGPoint {
   }
 }
 
+func +(_ a: CGPoint, _ b: CGPoint) -> CGPoint {
+  return CGPoint(x: a.x + b.x, y: a.y + b.y)
+}
+
+func -(_ a: CGPoint, _ b: CGPoint) -> CGPoint {
+  return CGPoint(x: a.x - b.x, y: a.y - b.y)
+}

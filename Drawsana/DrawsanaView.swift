@@ -85,6 +85,10 @@ public class DrawsanaView: UIView {
 
   private let interactiveOverlayContainerView = UIView()
 
+  // MARK: Other configuration
+
+  var selectionIndicatorInset = CGPoint(x: -4, y: -4)
+
   // MARK: Init
 
   public override init(frame: CGRect) {
@@ -273,9 +277,42 @@ public class DrawsanaView: UIView {
       selectionIndicatorView.isHidden = true
       return
     }
-    // TODO: allow inset config
-    selectionIndicatorView.frame = shape.boundingRect.insetBy(dx: -4, dy: -4).applying(shape.transform.affineTransform)
-//    selectionIndicatorView.transform = selectionIndicatorView.transform.concatenating(shape.transform.affineTransform)
+
+    // Warning: hand-wavy math ahead
+
+    // First, get the size and bounding rect position of the selected shape
+    var selectionBounds = shape.boundingRect.insetBy(dx: selectionIndicatorInset.x, dy: selectionIndicatorInset.y)
+    let offset = selectionBounds.origin
+
+    // Next, we're going to remove the position from the bounding rect so we
+    // can use it as UIView.bounds.
+    selectionBounds.origin = .zero
+    selectionIndicatorView.bounds = selectionBounds
+
+    /**
+     Now for the hand-wavy part. We're positioning a UIView using `transform`
+     and `bounds`, NOT `frame`! It is not valid to set both `transform` and
+     `frame` at the same time. (https://developer.apple.com/documentation/uikit/uiview/1622459-transform)
+
+     Unfortunately, this means that we're now positioning relative to the
+     parent layer's anchor point at (0.5, 0.5) in the middle of the view,
+     rather than the upper left of the view.
+
+     Shapes are positioned using BOTH `boundingRect` AND `transform`! So we need
+     to add `offset` from above with `shape.transform.translation` to arrive
+     at the right final translation.
+     */
+    selectionIndicatorView.transform = ShapeTransform(
+      translation: (
+        // figure out where the shape is in space
+        offset + shape.transform.translation +
+        // Account for the coordinate system being anchored in the middle
+        CGPoint(x: -bounds.size.width / 2, y: -bounds.size.height / 2) +
+        // We've just moved the CENTER of the selection view to the UPPER LEFT
+        // of the shape, so adjust by half the selection size:
+        CGPoint(x: selectionBounds.size.width / 2, y: selectionBounds.size.height / 2)),
+      rotation: shape.transform.rotation,
+      scale: shape.transform.scale).affineTransform
     selectionIndicatorView.isHidden = false
 
     for layer in (selectionIndicatorView.layer.sublayers ?? []) {

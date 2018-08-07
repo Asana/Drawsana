@@ -46,13 +46,13 @@ private class TextShapeEditingView: UIView {
       textView.topAnchor.constraint(equalTo: topAnchor),
       textView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-      deleteControlView.widthAnchor.constraint(equalToConstant: 44),
-      deleteControlView.heightAnchor.constraint(equalToConstant: 44),
+      deleteControlView.widthAnchor.constraint(equalToConstant: 36),
+      deleteControlView.heightAnchor.constraint(equalToConstant: 36),
       deleteControlView.rightAnchor.constraint(equalTo: textView.leftAnchor),
       deleteControlView.bottomAnchor.constraint(equalTo: textView.topAnchor),
 
-      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 44),
-      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 44),
+      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 36),
+      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 36),
       resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor),
       resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor),
     ])
@@ -232,6 +232,18 @@ public class TextTool: NSObject, DrawingTool {
     }
   }
 
+  private func getResizeAndRotateTransform(originalTransform: ShapeTransform, startPoint: CGPoint, point: CGPoint, selectedShape: ShapeSelectable) -> ShapeTransform {
+    let originalDelta = CGPoint(x: startPoint.x - selectedShape.transform.translation.x, y: startPoint.y - selectedShape.transform.translation.y)
+    let newDelta = CGPoint(x: point.x - selectedShape.transform.translation.x, y: point.y - selectedShape.transform.translation.y)
+    let originalDistance = originalDelta.length
+    let newDistance = newDelta.length
+    let originalAngle = atan2(originalDelta.y, originalDelta.x)
+    let newAngle = atan2(newDelta.y, newDelta.x)
+    let scaleChange = newDistance / originalDistance
+    let angleChange = newAngle - originalAngle
+    return originalTransform.scaled(by: scaleChange).rotated(by: angleChange)
+  }
+
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
     guard
       let originalTransform = originalTransform,
@@ -245,10 +257,7 @@ public class TextTool: NSObject, DrawingTool {
       let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
       selectedShape.transform = originalTransform.translated(by: delta)
     case .resizeAndRotate:
-      let originalDistance = CGPoint(x: startPoint.x - selectedShape.transform.translation.x, y: startPoint.y - selectedShape.transform.translation.y).length
-      let newDistance = CGPoint(x: point.x - selectedShape.transform.translation.x, y: point.y - selectedShape.transform.translation.y).length
-      let newScale = newDistance / originalDistance
-      selectedShape.transform = originalTransform.scaled(by: newScale)
+      selectedShape.transform = getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: selectedShape)
     default:
       break
     }
@@ -271,12 +280,9 @@ public class TextTool: NSObject, DrawingTool {
         transform: originalTransform.translated(by: delta),
         originalTransform: originalTransform))
     case .resizeAndRotate:
-      let originalDistance = CGPoint(x: startPoint.x - selectedShape.transform.translation.x, y: startPoint.y - selectedShape.transform.translation.y).length
-      let newDistance = CGPoint(x: point.x - selectedShape.transform.translation.x, y: point.y - selectedShape.transform.translation.y).length
-      let newScale = newDistance / originalDistance
       context.operationStack.apply(operation: ChangeTransformOperation(
         shape: selectedShape,
-        transform: originalTransform.scaled(by: newScale),
+        transform: getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: selectedShape),
         originalTransform: originalTransform))
     case .none:
       break
