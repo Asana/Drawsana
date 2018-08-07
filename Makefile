@@ -1,7 +1,7 @@
 .PHONY: docs publish-docs
 
 docs:
-	jazzy -c jazzy.yaml
+	jazzy
 
 
 publish-docs: docs
