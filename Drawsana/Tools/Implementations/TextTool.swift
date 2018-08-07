@@ -9,84 +9,6 @@
 import CoreGraphics
 import UIKit
 
-private class TextShapeEditingView: UIView {
-  let deleteControlView = UIView()
-  let resizeAndRotateControlView = UIView()
-  let textView: UITextView
-
-  enum PointArea {
-    case delete
-    case resizeAndRotate
-    case none
-  }
-
-  init(textView: UITextView) {
-    self.textView = textView
-    super.init(frame: .zero)
-
-    clipsToBounds = false
-    backgroundColor = .clear
-    layer.isOpaque = false
-
-    textView.translatesAutoresizingMaskIntoConstraints = false
-
-    deleteControlView.translatesAutoresizingMaskIntoConstraints = false
-    deleteControlView.backgroundColor = .red
-
-    resizeAndRotateControlView.translatesAutoresizingMaskIntoConstraints = false
-    resizeAndRotateControlView.backgroundColor = .white
-
-    addSubview(textView)
-    addSubview(deleteControlView)
-    addSubview(resizeAndRotateControlView)
-
-    NSLayoutConstraint.activate([
-      textView.leftAnchor.constraint(equalTo: leftAnchor),
-      textView.rightAnchor.constraint(equalTo: rightAnchor),
-      textView.topAnchor.constraint(equalTo: topAnchor),
-      textView.bottomAnchor.constraint(equalTo: bottomAnchor),
-
-      deleteControlView.widthAnchor.constraint(equalToConstant: 36),
-      deleteControlView.heightAnchor.constraint(equalToConstant: 36),
-      deleteControlView.rightAnchor.constraint(equalTo: textView.leftAnchor),
-      deleteControlView.bottomAnchor.constraint(equalTo: textView.topAnchor),
-
-      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 36),
-      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 36),
-      resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor),
-      resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor),
-    ])
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError()
-  }
-
-  override func sizeThatFits(_ size: CGSize) -> CGSize {
-    return textView.sizeThatFits(size)
-  }
-
-  @discardableResult
-  override func becomeFirstResponder() -> Bool {
-    return textView.becomeFirstResponder()
-  }
-
-  @discardableResult
-  override func resignFirstResponder() -> Bool {
-    return textView.resignFirstResponder()
-  }
-
-  func getPointArea(point: CGPoint) -> PointArea {
-    if deleteControlView.convert(deleteControlView.bounds, to: superview!).contains(point) {
-      return .delete
-    } else if resizeAndRotateControlView.convert(resizeAndRotateControlView.bounds, to: superview!).contains(point) {
-      return .resizeAndRotate
-    } else {
-      return .none
-    }
-  }
-}
-
 public class TextTool: NSObject, DrawingTool {
   private enum DragType {
     case move
@@ -109,7 +31,7 @@ public class TextTool: NSObject, DrawingTool {
   private var maxWidthDueToScreenOverrun: CGFloat? = nil
   private weak var shapeUpdater: DrawsanaViewShapeUpdating?
 
-  fileprivate lazy var textView: TextShapeEditingView = makeTextView()
+  public lazy var editingView: TextShapeEditingView = makeTextView()
 
   public init(delegate: TextToolDelegate? = nil) {
     self.delegate = delegate
@@ -122,13 +44,13 @@ public class TextTool: NSObject, DrawingTool {
   private func beginEditing(shape: TextShape, context: ToolOperationContext) {
     shape.isBeingEdited = true // stop rendering this shape while textView is open
     maxWidth = max(maxWidth, context.drawing.size.width)
-    context.toolSettings.interactiveView = textView
+    context.toolSettings.interactiveView = editingView
     shapeInProgress = shape
     updateShapeFrame()
     // set toolSettings.selectedShape after computing frame so initial selection
     // rect is accurate
     context.toolSettings.selectedShape = shape
-    textView.becomeFirstResponder()
+    editingView.becomeFirstResponder()
     originalText = shape.text
   }
 
@@ -148,7 +70,7 @@ public class TextTool: NSObject, DrawingTool {
 
   private func applyRemoveShapeOperation(context: ToolOperationContext) {
     guard let shape = shapeInProgress else { return }
-    textView.resignFirstResponder()
+    editingView.resignFirstResponder()
     shape.isBeingEdited = false
     context.operationStack.apply(operation: RemoveShapeOperation(shape: shape))
     shapeInProgress = nil
@@ -183,7 +105,7 @@ public class TextTool: NSObject, DrawingTool {
   }
 
   private func handleTapWhenShapeIsActive(context: ToolOperationContext, point: CGPoint, shape: TextShape) {
-    if case .delete = textView.getPointArea(point: point) {
+    if case .delete = editingView.getPointArea(point: point) {
       applyRemoveShapeOperation(context: context)
       delegate?.textToolDidTapAway(tappedPoint: point)
     } else if shape.hitTest(point: point) {
@@ -217,7 +139,7 @@ public class TextTool: NSObject, DrawingTool {
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
     guard let shapeInProgress = shapeInProgress else { return }
-    if case .resizeAndRotate = textView.getPointArea(point: point) {
+    if case .resizeAndRotate = editingView.getPointArea(point: point) {
       dragType = .resizeAndRotate
       originalTransform = shapeInProgress.transform
       startPoint = point
@@ -261,7 +183,7 @@ public class TextTool: NSObject, DrawingTool {
     case .none:
       // The pan gesture is super finicky at the start, so add an affordance for
       // dragging over the handle
-      if case .resizeAndRotate = textView.getPointArea(point: point) {
+      if case .resizeAndRotate = editingView.getPointArea(point: point) {
         handleDragStart(context: context, point: point)
       }
     }
@@ -312,23 +234,23 @@ public class TextTool: NSObject, DrawingTool {
 
   private func updateTextView() {
     guard let shape = shapeInProgress else { return }
-    textView.textView.text = shape.text
-    textView.textView.font = shape.font
-    textView.textView.textColor = shape.fillColor
-    textView.bounds = shape.boundingRect
-    textView.bounds.size.width += 3
-    textView.transform = CGAffineTransform(
+    editingView.textView.text = shape.text
+    editingView.textView.font = shape.font
+    editingView.textView.textColor = shape.fillColor
+    editingView.bounds = shape.boundingRect
+    editingView.bounds.size.width += 3
+    editingView.transform = CGAffineTransform(
       translationX: -shape.boundingRect.size.width / 2,
       y: -shape.boundingRect.size.height / 2
     ).concatenating(shape.transform.affineTransform)
 
-    textView.setNeedsLayout()
-    textView.layoutIfNeeded()
+    editingView.setNeedsLayout()
+    editingView.layoutIfNeeded()
   }
 
   func computeBounds() -> CGRect {
     updateTextView()
-    var textSize = textView.sizeThatFits(CGSize(width: min(maxWidth, maxWidthDueToScreenOverrun ?? .infinity), height: .infinity))
+    var textSize = editingView.sizeThatFits(CGSize(width: min(maxWidth, maxWidthDueToScreenOverrun ?? .infinity), height: .infinity))
     textSize.width = max(textSize.width, 44)
     return CGRect(origin: CGPoint(x: -textSize.width / 2, y: -textSize.height / 2), size: textSize)
   }
@@ -343,7 +265,9 @@ public class TextTool: NSObject, DrawingTool {
     textView.autocorrectionType = .no
     textView.backgroundColor = .clear
     textView.delegate = self
-    return TextShapeEditingView(textView: textView)
+    let editingView = TextShapeEditingView(textView: textView)
+    delegate?.textToolWillUseEditingView(editingView)
+    return editingView
   }
 }
 
@@ -376,4 +300,94 @@ public protocol TextToolDelegate: AnyObject {
   /// the selection tool, you might want to set it as the active tool at this
   /// point.
   func textToolDidTapAway(tappedPoint: CGPoint)
+
+  /// The text tool is about to present a text editing view. You may configure
+  /// it however you like.
+  func textToolWillUseEditingView(_ editingView: TextShapeEditingView)
+}
+
+// MARK: Interactive view class
+
+public class TextShapeEditingView: UIView {
+  /// Upper left 'delete' button for text. You may add any subviews you want,
+  /// set border & background color, etc.
+  public let deleteControlView = UIView()
+  /// Lower right 'rotate' button for text. You may add any subviews you want,
+  /// set border & background color, etc.
+  public let resizeAndRotateControlView = UIView()
+
+  /// The `UITextView` that the user interacts with during editing
+  public let textView: UITextView
+
+  enum PointArea {
+    case delete
+    case resizeAndRotate
+    case none
+  }
+
+  init(textView: UITextView) {
+    self.textView = textView
+    super.init(frame: .zero)
+
+    clipsToBounds = false
+    backgroundColor = .clear
+    layer.isOpaque = false
+
+    textView.translatesAutoresizingMaskIntoConstraints = false
+
+    deleteControlView.translatesAutoresizingMaskIntoConstraints = false
+    deleteControlView.backgroundColor = .red
+
+    resizeAndRotateControlView.translatesAutoresizingMaskIntoConstraints = false
+    resizeAndRotateControlView.backgroundColor = .white
+
+    addSubview(textView)
+    addSubview(deleteControlView)
+    addSubview(resizeAndRotateControlView)
+
+    NSLayoutConstraint.activate([
+      textView.leftAnchor.constraint(equalTo: leftAnchor),
+      textView.rightAnchor.constraint(equalTo: rightAnchor),
+      textView.topAnchor.constraint(equalTo: topAnchor),
+      textView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+      deleteControlView.widthAnchor.constraint(equalToConstant: 36),
+      deleteControlView.heightAnchor.constraint(equalToConstant: 36),
+      deleteControlView.rightAnchor.constraint(equalTo: textView.leftAnchor),
+      deleteControlView.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: -3),
+
+      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 36),
+      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 36),
+      resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
+      resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4),
+      ])
+  }
+
+  required public init?(coder aDecoder: NSCoder) {
+    fatalError()
+  }
+
+  override public func sizeThatFits(_ size: CGSize) -> CGSize {
+    return textView.sizeThatFits(size)
+  }
+
+  @discardableResult
+  override public func becomeFirstResponder() -> Bool {
+    return textView.becomeFirstResponder()
+  }
+
+  @discardableResult
+  override public func resignFirstResponder() -> Bool {
+    return textView.resignFirstResponder()
+  }
+
+  func getPointArea(point: CGPoint) -> PointArea {
+    if deleteControlView.convert(deleteControlView.bounds, to: superview!).contains(point) {
+      return .delete
+    } else if resizeAndRotateControlView.convert(resizeAndRotateControlView.bounds, to: superview!).contains(point) {
+      return .resizeAndRotate
+    } else {
+      return .none
+    }
+  }
 }

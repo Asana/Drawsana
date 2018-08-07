@@ -189,6 +189,33 @@ extension ViewController: TextToolDelegate {
     toolIndex = tools.index(where: { ($0 as? SelectionTool) === self.selectionTool })!
     drawingView.set(tool: tools[toolIndex])
   }
+
+  func textToolWillUseEditingView(_ editingView: TextShapeEditingView) {
+    for view in [editingView.deleteControlView, editingView.resizeAndRotateControlView] {
+      view.backgroundColor = .black
+      view.layer.cornerRadius = 6
+      view.layer.borderWidth = 1
+      view.layer.borderColor = UIColor.white.cgColor
+      view.layer.shadowColor = UIColor.black.cgColor
+      view.layer.shadowOffset = CGSize(width: 1, height: 1)
+      view.layer.shadowRadius = 3
+      view.layer.shadowOpacity = 0.5
+    }
+    let deleteImageView = UIImageView(image: UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate))
+    let rotateImageView = UIImageView(image: UIImage(named: "rotate")?.withRenderingMode(.alwaysTemplate))
+
+    for (controlView, imageView) in [(editingView.deleteControlView, deleteImageView), (editingView.resizeAndRotateControlView, rotateImageView)] {
+      controlView.frame = CGRect(origin: .zero, size: CGSize(width: 16, height: 16))
+      imageView.translatesAutoresizingMaskIntoConstraints = true
+      imageView.frame = controlView.bounds.insetBy(dx: 4, dy: 4)
+      imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      imageView.contentMode = .scaleAspectFit
+      imageView.tintColor = .white
+      controlView.addSubview(imageView)
+    }
+
+//    rotateImageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+  }
 }
 
 /// Implement `DrawingOperationStackDelegate` to keep the UI in sync with the
