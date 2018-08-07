@@ -86,27 +86,6 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": null,
-      "symbol": "DrawsanaView",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": null,
-      "symbol": "DrawsanaView",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": null,
-      "symbol": "DrawsanaView",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
       "line": 13,
       "symbol": "DrawsanaViewDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
@@ -142,112 +121,35 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 81,
-      "symbol": "DrawsanaView.selectionIndicatorView",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 83,
-      "symbol": "DrawsanaView.interactiveOverlayContainerView",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 87,
+      "line": 90,
       "symbol": "DrawsanaView.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 94,
+      "line": 97,
       "symbol": "DrawsanaView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 144,
+      "line": 147,
       "symbol": "DrawsanaView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 286,
+      "line": 283,
       "symbol": "DrawsanaView.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 295,
-      "symbol": "DrawsanaView.drawingDidAddShape(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 303,
-      "symbol": "DrawsanaView.drawingDidUpdateShape(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 308,
-      "symbol": "DrawsanaView.drawingDidRemoveShape(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 318,
-      "symbol": "DrawsanaView.toolSettings(_:didSetSelectedShape:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 326,
-      "symbol": "DrawsanaView.toolSettings(_:didSetInteractiveView:oldValue:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 338,
-      "symbol": "DrawsanaView.toolSettings(_:didSetIsPersistentBufferDirty:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 347,
-      "symbol": "DrawsanaView.userSettings(_:didChangeStrokeColor:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 351,
-      "symbol": "DrawsanaView.userSettings(_:didChangeFillColor:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 355,
-      "symbol": "DrawsanaView.userSettings(_:didChangeStrokeWidth:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/DrawsanaView.swift",
-      "line": 368,
+      "line": 365,
       "symbol": "DrawsanaViewShapeUpdating.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
