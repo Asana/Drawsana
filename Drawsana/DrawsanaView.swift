@@ -277,7 +277,7 @@ public class DrawsanaView: UIView {
   }
 }
 
-// MARK: Delegate implementations
+// MARK: DrawsanaViewShapeUpdating implementation
 
 extension DrawsanaView: DrawsanaViewShapeUpdating {
   public func shapeDidUpdate(shape: Shape) {
@@ -287,6 +287,8 @@ extension DrawsanaView: DrawsanaViewShapeUpdating {
     redrawAbsolutelyEverything()
   }
 }
+
+// MARK: Delegate implementations
 
 extension DrawsanaView: DrawingDelegate {
   func drawingDidAddShape(_ shape: Shape) {
