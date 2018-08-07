@@ -12,8 +12,20 @@ import UIKit
 // TODO: move `textView` out of here into `TextTool`
 
 public class TextShape: Shape, ShapeSelectable {
+  private enum CodingKeys: String, CodingKey {
+    case id, transform, text, fontName, fontSize, fillColor, type
+  }
+
+  public static let type = "Text"
+
   public var id: String = UUID().uuidString
-  public let type = "Text"
+  public var transform: ShapeTransform = .identity
+  public var text = "" { didSet { updateCachedImage() } }
+  public var fontName: String = "Helvetica Neue" { didSet { updateCachedImage() } }
+  public var fontSize: CGFloat = 24 { didSet { updateCachedImage() } }
+  public var fillColor: UIColor = .black { didSet { updateCachedImage() } }
+
+  private var cachedImage: UIImage?
 
   public var boundingRect: CGRect {
     return CGRect(
@@ -21,24 +33,48 @@ public class TextShape: Shape, ShapeSelectable {
       size: textView.frame.size)
   }
 
-  public var transform: ShapeTransform = .identity
-  public var text = "" { didSet { cachedImage = nil } }
-  public var fontName: String = "Helvetica Neue" { didSet { cachedImage = nil } }
-  public var fontSize: CGFloat = 24 { didSet { cachedImage = nil } }
-
   var font: UIFont {
     return UIFont(name: fontName, size: fontSize)!
   }
 
+  public init() {
+  }
+
+  public required init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+
+    let type = try values.decode(String.self, forKey: .type)
+    if type != TextShape.type {
+      throw DrawsanaDecodingError.wrongShapeTypeError
+    }
+
+    id = try values.decode(String.self, forKey: .id)
+    text = try values.decode(String.self, forKey: .text)
+    fontName = try values.decode(String.self, forKey: .fontName)
+    fontSize = try values.decode(CGFloat.self, forKey: .fontSize)
+    fillColor = UIColor(hexString: try values.decode(String.self, forKey: .fillColor))
+    transform = try values.decode(ShapeTransform.self, forKey: .transform)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(TextShape.type, forKey: .type)
+    try container.encode(id, forKey: .id)
+    try container.encode(text, forKey: .text)
+    try container.encode(fontName, forKey: .fontName)
+    try container.encode(fillColor.hexString, forKey: .fillColor)
+    try container.encode(fontSize, forKey: .fontSize)
+    try container.encode(transform, forKey: .transform)
+  }
+
   public lazy var textView: UITextView = makeTextView()
-  private var cachedImage: UIImage?
   public var image: UIImage {
     if let cachedImage = cachedImage { return cachedImage }
     let size = CGSize(width: textView.bounds.size.width * transform.scale, height: textView.bounds.size.height * transform.scale)
     let image = DrawsanaUtilities.renderImage(size: size) { _ in
       (self.text as NSString).draw(in: CGRect(origin: .zero, size: size).insetBy(dx: 5, dy: 0), withAttributes: [
         .font: self.font,
-//        .foregroundColor:
+        .foregroundColor: self.fillColor,
       ])
     }
     cachedImage = image

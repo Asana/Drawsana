@@ -9,7 +9,7 @@
 import CoreGraphics
 import UIKit
 
-public struct PenLineSegment {
+public struct PenLineSegment: Codable {
   var a: CGPoint
   var b: CGPoint
   var width: CGFloat
@@ -20,17 +20,54 @@ public struct PenLineSegment {
 }
 
 public class PenShape: Shape, ShapeWithStrokeState {
-  public let type: String = "Pen"
+  private enum CodingKeys: String, CodingKey {
+    case id, isFinished, strokeColor, start, strokeWidth, segments, isEraser, type
+  }
+
+  public static let type: String = "Pen"
 
   public var id: String = UUID().uuidString
   public var isFinished = true
-  public var strokeColor: UIColor = .black
   public var start: CGPoint = .zero
+  public var strokeColor: UIColor = .black
   public var strokeWidth: CGFloat = 10
   public var segments: [PenLineSegment] = []
   public var isEraser: Bool = false
 
   public var isSelectable: Bool { return false }
+
+  public init() {
+  }
+
+  public required init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+
+    let type = try values.decode(String.self, forKey: .type)
+    if type != PenShape.type {
+      throw DrawsanaDecodingError.wrongShapeTypeError
+    }
+
+    id = try values.decode(String.self, forKey: .id)
+    isFinished = try values.decode(Bool.self, forKey: .isFinished)
+    start = try values.decode(CGPoint.self, forKey: .start)
+    strokeColor = UIColor(hexString: try values.decode(String.self, forKey: .strokeColor))
+    strokeWidth = try values.decode(CGFloat.self, forKey: .strokeWidth)
+    segments = try values.decode([PenLineSegment].self, forKey: .segments)
+    isEraser = try values.decode(Bool.self, forKey: .isEraser)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(PenShape.type, forKey: .type)
+    try container.encode(id, forKey: .id)
+    try container.encode(isFinished, forKey: .isFinished)
+    try container.encode(start, forKey: .start)
+    try container.encode(strokeColor.hexString, forKey: .strokeColor)
+    try container.encode(strokeWidth, forKey: .strokeWidth)
+    try container.encode(segments, forKey: .segments)
+    try container.encode(isEraser, forKey: .isEraser)
+  }
+
   public func hitTest(point: CGPoint) -> Bool {
     return false
   }

@@ -12,13 +12,13 @@ import UIKit
 /**
  Base protocol which all shapes must implement.
  */
-public protocol Shape: AnyObject {
+public protocol Shape: AnyObject, Codable {
   /// Globally unique identifier for this shape. Meant to be used for equality
   /// checks, especially for network-based updates.
   var id: String { get }
 
   /// String value of this shape, for serialization and debugging
-  var type: String { get }
+  static var type: String { get }
 
   /// Draw this shape to the given Core Graphics context. Transforms for drawing
   /// position and scale are already applied.

@@ -9,8 +9,18 @@
 import CoreGraphics
 import UIKit
 
-public class LineShape: ShapeWithBoundingRect, ShapeWithTwoPoints, ShapeWithStrokeState, ShapeSelectable {
-  public let type: String = "Line"
+public class LineShape:
+  ShapeWithBoundingRect,
+  ShapeWithTwoPoints,
+  ShapeWithStrokeState,
+  ShapeSelectable
+{
+  private enum CodingKeys: String, CodingKey {
+    case id, a, b, strokeColor, strokeWidth, capStyle, joinStyle,
+    dashPhase, dashLengths, transform, type
+  }
+
+  public static let type: String = "Line"
 
   public var id: String = UUID().uuidString
   public var a: CGPoint = .zero
@@ -25,6 +35,47 @@ public class LineShape: ShapeWithBoundingRect, ShapeWithTwoPoints, ShapeWithStro
 
   public init() {
 
+  }
+
+  public required init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+
+    let type = try values.decode(String.self, forKey: .type)
+    if type != LineShape.type {
+      throw DrawsanaDecodingError.wrongShapeTypeError
+    }
+
+    id = try values.decode(String.self, forKey: .id)
+    a = try values.decode(CGPoint.self, forKey: .a)
+    b = try values.decode(CGPoint.self, forKey: .b)
+    strokeColor = UIColor(hexString: try values.decode(String.self, forKey: .strokeColor))
+    strokeWidth = try values.decode(CGFloat.self, forKey: .strokeWidth)
+    transform = try values.decode(ShapeTransform.self, forKey: .transform)
+
+    capStyle = CGLineCap(rawValue: try values.decodeIfPresent(Int32.self, forKey: .capStyle) ?? CGLineCap.round.rawValue)!
+    joinStyle = CGLineJoin(rawValue: try values.decodeIfPresent(Int32.self, forKey: .joinStyle) ?? CGLineJoin.round.rawValue)!
+    dashPhase = try values.decodeIfPresent(CGFloat.self, forKey: .dashPhase)
+    dashLengths = try values.decodeIfPresent([CGFloat].self, forKey: .dashLengths)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(LineShape.type, forKey: .type)
+    try container.encode(id, forKey: .id)
+    try container.encode(a, forKey: .a)
+    try container.encode(b, forKey: .b)
+    try container.encode(strokeColor.hexString, forKey: .strokeColor)
+    try container.encode(strokeWidth, forKey: .strokeWidth)
+    try container.encode(transform, forKey: .transform)
+
+    if capStyle != .round {
+      try container.encode(capStyle.rawValue, forKey: .capStyle)
+    }
+    if joinStyle != .round {
+      try container.encode(joinStyle.rawValue, forKey: .joinStyle)
+    }
+    try container.encodeIfPresent(dashPhase, forKey: .dashPhase)
+    try container.encodeIfPresent(dashLengths, forKey: .dashLengths)
   }
 
   public func render(in context: CGContext) {
