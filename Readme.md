@@ -1,5 +1,8 @@
 #  Drawsana
 
+Drawsana is a generalized framework for making freehand drawing views on iOS. You can
+let users scribble over images, add shapes and text, and even make your own tools.
+
 [View demo](https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift)
 
 ## Building docs
@@ -16,12 +19,6 @@ open https://stevelandeyasana.github.io/Drawsana
 
 ## To do
 
-* Use a real coordinate system, not whatever Core Graphics is using
 * Serialization (Codable)
 * Selection tool
   * Apply user styles if they change
-* Text tool
-  * Color controls (currently only draws black text)
-  * Scale gesture
-  * Deletion?
-  * Rotate gesture
