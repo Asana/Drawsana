@@ -20,36 +20,48 @@ public class TextTool: NSObject, DrawingTool {
   var startPoint: CGPoint?
   var originalText = ""
 
+  private var maxWidth: CGFloat = 320  // updated from drawing
+  private var maxWidthDueToScreenOverrun: CGFloat? = nil
   private weak var shapeUpdater: DrawsanaViewShapeUpdating?
+
+  public lazy var textView: UITextView = makeTextView()
 
   public init(delegate: TextToolDelegate? = nil) {
     self.delegate = delegate
     super.init()
+    updateTextView()
   }
 
   /// If shape text has changed, notify operation stack so that undo works
   /// properly
   private func applyTextEditingOperation(context: ToolOperationContext) {
-    if let shape = shapeInProgress, originalText != shape.text {
-      context.operationStack.apply(operation: EditTextOperation(shape: shape, originalText: originalText, text: shape.text))
-      originalText = shape.text
+    if let shape = shapeInProgress {
+      if originalText != shape.text {
+        context.operationStack.apply(operation: EditTextOperation(shape: shape, originalText: originalText, text: shape.text))
+        originalText = shape.text
+      }
+
+      shape.isBeingEdited = false
+      context.toolSettings.isPersistentBufferDirty = true
     }
   }
 
   private func beginEditing(shape: TextShape, context: ToolOperationContext) {
-    context.toolSettings.interactiveView = shape.textView
+    shape.isBeingEdited = true // stop rendering this shape while textView is open
+    maxWidth = max(maxWidth, context.drawing.size.width)
+    context.toolSettings.interactiveView = textView
+    shapeInProgress = shape
+    updateShapeFrame()
+    // set toolSettings.selectedShape after computing frame so initial selection
+    // rect is accurate
     context.toolSettings.selectedShape = shape
-    shape.textView.frame = shape.computeFrame()
-    shape.textView.text = shape.text
-    shape.textView.delegate = self
-    shape.textView.becomeFirstResponder()
+    textView.becomeFirstResponder()
     originalText = shape.text
   }
 
   public func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) {
     self.shapeUpdater = shapeUpdater
     if let shape = shape as? TextShape {
-      self.shapeInProgress = shape
       beginEditing(shape: shape, context: context)
     }
   }
@@ -61,6 +73,8 @@ public class TextTool: NSObject, DrawingTool {
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
+    maxWidthDueToScreenOverrun = nil
+
     if let shapeInProgress = self.shapeInProgress {
       if shapeInProgress.hitTest(point: point) {
         // TODO: forward tap to text view
@@ -75,13 +89,14 @@ public class TextTool: NSObject, DrawingTool {
       }
       return
     } else if let tappedShape = context.drawing.getShape(of: TextShape.self, at: point) {
-      self.shapeInProgress = tappedShape
       beginEditing(shape: tappedShape, context: context)
     } else {
       let newShape = TextShape()
+      newShape.fillColor = context.userSettings.strokeColor ?? .black
       self.shapeInProgress = newShape
       newShape.transform.translation = delegate?.textToolPointForNewText(tappedPoint: point) ?? point
       beginEditing(shape: newShape, context: context)
+      updateShapeFrame()
       context.operationStack.apply(operation: AddShapeOperation(shape: newShape))
     }
   }
@@ -90,29 +105,28 @@ public class TextTool: NSObject, DrawingTool {
     guard let shapeInProgress = shapeInProgress, shapeInProgress.hitTest(point: point) else { return }
     originalTransform = shapeInProgress.transform
     startPoint = point
+    maxWidthDueToScreenOverrun = nil
   }
 
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
     guard
       let originalTransform = originalTransform,
       let selectedShape = context.toolSettings.selectedShape,
-      let startPoint = startPoint,
-      let shapeInProgress = shapeInProgress else
+      let startPoint = startPoint else
     {
       return
     }
     let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
     selectedShape.transform = originalTransform.translated(by: delta)
     context.toolSettings.isPersistentBufferDirty = true
-    shapeInProgress.textView.frame = shapeInProgress.computeFrame()
+    updateTextView()
   }
 
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
     guard
       let originalTransform = originalTransform,
       let selectedShape = context.toolSettings.selectedShape,
-      let startPoint = startPoint,
-      let shapeInProgress = shapeInProgress else
+      let startPoint = startPoint else
     {
       return
     }
@@ -122,21 +136,74 @@ public class TextTool: NSObject, DrawingTool {
       transform: originalTransform.translated(by: delta),
       originalTransform: originalTransform))
     context.toolSettings.isPersistentBufferDirty = true
-    shapeInProgress.textView.frame = shapeInProgress.computeFrame()
+    updateTextView()
   }
 
   public func handleDragCancel(context: ToolOperationContext, point: CGPoint) {
     context.toolSettings.selectedShape?.transform = originalTransform ?? .identity
     context.toolSettings.isPersistentBufferDirty = true
-    shapeInProgress!.textView.frame = shapeInProgress!.computeFrame()
+    updateShapeFrame()
+  }
+
+  // MARK: Helpers
+
+  private func updateShapeFrame() {
+    guard let shape = shapeInProgress else { return }
+    shape.boundingRect = computeBounds()
+    shape.boundingRect.origin.x += 2
+    updateTextView()
+  }
+
+  private func updateTextView() {
+    guard let shape = shapeInProgress else { return }
+    textView.text = shape.text
+    textView.bounds = shape.boundingRect
+    textView.bounds.size.width += 3
+    textView.font = shape.font
+    textView.textColor = shape.fillColor
+    textView.transform = CGAffineTransform(
+      translationX: shape.boundingRect.size.width / 2,
+      y: shape.boundingRect.size.height / 2
+    ).concatenating(shape.transform.affineTransform)
+  }
+
+  func computeBounds() -> CGRect {
+    updateTextView()
+    var textSize = textView.sizeThatFits(CGSize(width: min(maxWidth, maxWidthDueToScreenOverrun ?? .infinity), height: .infinity))
+    textSize.width = max(textSize.width, 44)
+    return CGRect(origin: .zero, size: textSize)
+  }
+
+  private func makeTextView() -> UITextView {
+    let textView = UITextView()
+    textView.autoresizingMask = [.flexibleRightMargin, .flexibleBottomMargin]
+    textView.textContainerInset = .zero
+    textView.contentInset = .zero
+    textView.isScrollEnabled = false
+    textView.clipsToBounds = true
+    textView.autocorrectionType = .no
+    textView.backgroundColor = .clear
+    textView.delegate = self
+    return textView
   }
 }
 
 extension TextTool: UITextViewDelegate {
   public func textViewDidChange(_ textView: UITextView) {
-    shapeInProgress!.text = textView.text ?? ""
-    shapeInProgress!.textView.frame = shapeInProgress!.computeFrame()
-    shapeUpdater?.shapeDidUpdate(shape: shapeInProgress!)
+    guard let shape = shapeInProgress else { return }
+    maxWidthDueToScreenOverrun = maxWidth - (shape.boundingRect.origin.x + shape.transform.translation.x)
+    shape.text = textView.text ?? ""
+    updateShapeFrame()
+    shapeUpdater?.shapeDidUpdate(shape: shape)
+  }
+
+  public func textViewDidBeginEditing(_ textView: UITextView) {
+    shapeInProgress?.isBeingEdited = true
+  }
+
+  public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+    shapeInProgress?.isBeingEdited = false
+    return true
   }
 }
 

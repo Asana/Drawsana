@@ -20,6 +20,7 @@ public class TextShape: Shape, ShapeSelectable {
 
   public var id: String = UUID().uuidString
   public var transform: ShapeTransform = .identity
+  public var isBeingEdited: Bool = false
   public var text = "" { didSet { updateCachedImage() } }
   public var fontName: String = "Helvetica Neue" { didSet { updateCachedImage() } }
   public var fontSize: CGFloat = 24 { didSet { updateCachedImage() } }
@@ -27,10 +28,10 @@ public class TextShape: Shape, ShapeSelectable {
 
   private var cachedImage: UIImage?
 
-  public var boundingRect: CGRect {
-    return CGRect(
-      origin: CGPoint(x: -textView.frame.size.width / 2, y: -textView.frame.size.height / 2),
-      size: textView.frame.size)
+  public var boundingRect: CGRect = .zero
+
+  var insets: CGPoint {
+    return CGPoint(x: -8, y: -4)
   }
 
   var font: UIFont {
@@ -67,14 +68,15 @@ public class TextShape: Shape, ShapeSelectable {
     try container.encode(transform, forKey: .transform)
   }
 
-  public lazy var textView: UITextView = makeTextView()
   public var image: UIImage {
+    guard !isBeingEdited else { return UIImage() }
     if let cachedImage = cachedImage { return cachedImage }
-    let size = CGSize(width: textView.bounds.size.width * transform.scale, height: textView.bounds.size.height * transform.scale)
+    let size = CGSize(width: boundingRect.size.width * transform.scale, height: boundingRect.size.height * transform.scale)
     let image = DrawsanaUtilities.renderImage(size: size) { _ in
-      (self.text as NSString).draw(in: CGRect(origin: .zero, size: size).insetBy(dx: 5, dy: 0), withAttributes: [
+      (self.text as NSString).draw(in: CGRect(origin: CGPoint(x: 3, y: 0), size: self.boundingRect.size), withAttributes: [
         .font: self.font,
         .foregroundColor: self.fillColor,
+        .strokeColor: self.fillColor,
       ])
     }
     cachedImage = image
@@ -82,35 +84,12 @@ public class TextShape: Shape, ShapeSelectable {
   }
 
   public func render(in context: CGContext) {
-    image.draw(at: computeFrame().origin)
+    transform.begin(context: context)
+    image.draw(at: .zero)
+    transform.end(context: context)
   }
 
   public func updateCachedImage() {
     cachedImage = nil
-  }
-
-  func computeFrame() -> CGRect {
-    let center = CGPoint(x: transform.translation.x, y: transform.translation.y)
-    let textForMeasuring = text.isEmpty ? "__" : text
-    let textSize = (textForMeasuring as NSString).boundingRect(
-      with: CGSize(width: CGFloat.infinity, height: CGFloat.infinity),
-      options: [.usesLineFragmentOrigin], attributes: [.font: font], context: nil)
-    let scaledTextSize = CGSize(width: textSize.width * transform.scale, height: textSize.height * transform.scale)
-    return CGRect(
-      origin: CGPoint(x: center.x - scaledTextSize.width / 2, y: center.y - scaledTextSize.height / 2),
-      size: scaledTextSize).insetBy(dx: -8, dy: -4) // TODO: allow config
-  }
-
-  private func makeTextView() -> UITextView {
-    let textView = UITextView()
-    textView.autoresizingMask = [.flexibleRightMargin, .flexibleBottomMargin]
-    textView.frame = computeFrame()
-    textView.font = font
-    textView.textContainerInset = .zero
-    textView.isScrollEnabled = false
-    textView.clipsToBounds = true
-    textView.autocorrectionType = .no
-    textView.text = text
-    return textView
   }
 }

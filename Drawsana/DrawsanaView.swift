@@ -255,6 +255,11 @@ public class DrawsanaView: UIView {
 
   @objc private func didTap(sender: UITapGestureRecognizer) {
     tool?.handleTap(context: toolOperationContext, point: sender.location(in: self))
+    if toolSettings.isPersistentBufferDirty {
+      redrawAbsolutelyEverything()
+      toolSettings.isPersistentBufferDirty = false
+    }
+    applySelectionViewState()
   }
 
   // MARK: Making stuff show up
