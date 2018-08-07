@@ -69,7 +69,6 @@ public class TextShape: Shape, ShapeSelectable {
   }
 
   public var image: UIImage {
-    guard !isBeingEdited else { return UIImage() }
     if let cachedImage = cachedImage { return cachedImage }
     let size = CGSize(width: boundingRect.size.width * transform.scale, height: boundingRect.size.height * transform.scale)
     let image = DrawsanaUtilities.renderImage(size: size) { _ in
@@ -84,8 +83,9 @@ public class TextShape: Shape, ShapeSelectable {
   }
 
   public func render(in context: CGContext) {
+    if isBeingEdited { return }
     transform.begin(context: context)
-    image.draw(at: .zero)
+    image.draw(at: boundingRect.origin)
     transform.end(context: context)
   }
 

@@ -192,6 +192,7 @@ public class TextTool: NSObject, DrawingTool {
   private func handleTapWhenNoShapeIsActive(context: ToolOperationContext, point: CGPoint) {
     if let tappedShape = context.drawing.getShape(of: TextShape.self, at: point) {
       beginEditing(shape: tappedShape, context: context)
+      context.toolSettings.isPersistentBufferDirty = true
     } else {
       let newShape = TextShape()
       newShape.fillColor = context.userSettings.strokeColor ?? .black
@@ -264,8 +265,8 @@ public class TextTool: NSObject, DrawingTool {
     textView.bounds = shape.boundingRect
     textView.bounds.size.width += 3
     textView.transform = CGAffineTransform(
-      translationX: shape.boundingRect.size.width / 2,
-      y: shape.boundingRect.size.height / 2
+      translationX: -shape.boundingRect.size.width / 2,
+      y: -shape.boundingRect.size.height / 2
     ).concatenating(shape.transform.affineTransform)
 
     textView.setNeedsLayout()
@@ -276,7 +277,7 @@ public class TextTool: NSObject, DrawingTool {
     updateTextView()
     var textSize = textView.sizeThatFits(CGSize(width: min(maxWidth, maxWidthDueToScreenOverrun ?? .infinity), height: .infinity))
     textSize.width = max(textSize.width, 44)
-    return CGRect(origin: .zero, size: textSize)
+    return CGRect(origin: CGPoint(x: -textSize.width / 2, y: -textSize.height / 2), size: textSize)
   }
 
   private func makeTextView() -> TextShapeEditingView {
