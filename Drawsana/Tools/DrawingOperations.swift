@@ -22,6 +22,21 @@ struct AddShapeOperation: DrawingOperation {
 }
 
 /**
+ Remove a shape from the drawing. Undoing adds the shape back.
+ */
+struct RemoveShapeOperation: DrawingOperation {
+  let shape: Shape
+
+  func apply(drawing: Drawing) {
+    drawing.remove(shape: shape)
+  }
+
+  func revert(drawing: Drawing) {
+    drawing.add(shape: shape)
+  }
+}
+
+/**
  Change the transform of a `ShapeWithTransform`. Undoing sets its transform
  back to its original value.
  */

@@ -9,6 +9,80 @@
 import CoreGraphics
 import UIKit
 
+private class TextShapeEditingView: UIView {
+  let deleteControlView = UIView()
+  let resizeAndRotateControlView = UIView()
+  let textView: UITextView
+
+  enum PointArea {
+    case delete
+    case resizeAndRotate
+    case none
+  }
+
+  init(textView: UITextView) {
+    self.textView = textView
+    super.init(frame: .zero)
+
+    textView.translatesAutoresizingMaskIntoConstraints = false
+
+    deleteControlView.translatesAutoresizingMaskIntoConstraints = false
+    deleteControlView.backgroundColor = .red
+
+    resizeAndRotateControlView.translatesAutoresizingMaskIntoConstraints = false
+    resizeAndRotateControlView.backgroundColor = .white
+
+    addSubview(textView)
+    addSubview(deleteControlView)
+    addSubview(resizeAndRotateControlView)
+
+    NSLayoutConstraint.activate([
+      textView.leftAnchor.constraint(equalTo: leftAnchor),
+      textView.rightAnchor.constraint(equalTo: rightAnchor),
+      textView.topAnchor.constraint(equalTo: topAnchor),
+      textView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+      deleteControlView.widthAnchor.constraint(equalToConstant: 22),
+      deleteControlView.heightAnchor.constraint(equalToConstant: 22),
+      deleteControlView.rightAnchor.constraint(equalTo: textView.leftAnchor),
+      deleteControlView.bottomAnchor.constraint(equalTo: textView.topAnchor),
+
+      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 22),
+      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 22),
+      resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor),
+      resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor),
+    ])
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError()
+  }
+
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
+    return textView.sizeThatFits(size)
+  }
+
+  @discardableResult
+  override func becomeFirstResponder() -> Bool {
+    return textView.becomeFirstResponder()
+  }
+
+  @discardableResult
+  override func resignFirstResponder() -> Bool {
+    return textView.resignFirstResponder()
+  }
+
+  func getPointArea(point: CGPoint) -> PointArea {
+    if deleteControlView.convert(deleteControlView.bounds, to: superview!).contains(point) {
+      return .delete
+    } else if resizeAndRotateControlView.convert(resizeAndRotateControlView.bounds, to: superview!).contains(point) {
+      return .resizeAndRotate
+    } else {
+      return .none
+    }
+  }
+}
+
 public class TextTool: NSObject, DrawingTool {
   public let isProgressive = false
   public let name: String = "Text"
@@ -24,12 +98,27 @@ public class TextTool: NSObject, DrawingTool {
   private var maxWidthDueToScreenOverrun: CGFloat? = nil
   private weak var shapeUpdater: DrawsanaViewShapeUpdating?
 
-  public lazy var textView: UITextView = makeTextView()
+  fileprivate lazy var textView: TextShapeEditingView = makeTextView()
 
   public init(delegate: TextToolDelegate? = nil) {
     self.delegate = delegate
     super.init()
     updateTextView()
+  }
+
+  // MARK: Begin/end editing actions
+
+  private func beginEditing(shape: TextShape, context: ToolOperationContext) {
+    shape.isBeingEdited = true // stop rendering this shape while textView is open
+    maxWidth = max(maxWidth, context.drawing.size.width)
+    context.toolSettings.interactiveView = textView
+    shapeInProgress = shape
+    updateShapeFrame()
+    // set toolSettings.selectedShape after computing frame so initial selection
+    // rect is accurate
+    context.toolSettings.selectedShape = shape
+    textView.becomeFirstResponder()
+    originalText = shape.text
   }
 
   /// If shape text has changed, notify operation stack so that undo works
@@ -46,18 +135,18 @@ public class TextTool: NSObject, DrawingTool {
     }
   }
 
-  private func beginEditing(shape: TextShape, context: ToolOperationContext) {
-    shape.isBeingEdited = true // stop rendering this shape while textView is open
-    maxWidth = max(maxWidth, context.drawing.size.width)
-    context.toolSettings.interactiveView = textView
-    shapeInProgress = shape
-    updateShapeFrame()
-    // set toolSettings.selectedShape after computing frame so initial selection
-    // rect is accurate
-    context.toolSettings.selectedShape = shape
-    textView.becomeFirstResponder()
-    originalText = shape.text
+  private func applyRemoveShapeOperation(context: ToolOperationContext) {
+    guard let shape = shapeInProgress else { return }
+    textView.resignFirstResponder()
+    shape.isBeingEdited = false
+    context.operationStack.apply(operation: RemoveShapeOperation(shape: shape))
+    shapeInProgress = nil
+    context.toolSettings.selectedShape = nil
+    context.toolSettings.isPersistentBufferDirty = true
+    context.toolSettings.interactiveView = nil
   }
+
+  // MARK: Tool lifecycle
 
   public func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) {
     self.shapeUpdater = shapeUpdater
@@ -76,19 +165,32 @@ public class TextTool: NSObject, DrawingTool {
     maxWidthDueToScreenOverrun = nil
 
     if let shapeInProgress = self.shapeInProgress {
-      if shapeInProgress.hitTest(point: point) {
-        // TODO: forward tap to text view
-      } else {
-        applyTextEditingOperation(context: context)
-        self.shapeInProgress = nil
-        context.toolSettings.selectedShape = nil
-        context.toolSettings.interactiveView?.resignFirstResponder()
-        context.toolSettings.interactiveView = nil
-        shapeInProgress.updateCachedImage()
-        delegate?.textToolDidTapAway(tappedPoint: point)
-      }
-      return
-    } else if let tappedShape = context.drawing.getShape(of: TextShape.self, at: point) {
+      handleTapWhenShapeIsActive(context: context, point: point, shape: shapeInProgress)
+    } else {
+      handleTapWhenNoShapeIsActive(context: context, point: point)
+    }
+  }
+
+  private func handleTapWhenShapeIsActive(context: ToolOperationContext, point: CGPoint, shape: TextShape) {
+    if case .delete = textView.getPointArea(point: point) {
+      applyRemoveShapeOperation(context: context)
+      delegate?.textToolDidTapAway(tappedPoint: point)
+    } else if shape.hitTest(point: point) {
+      // TODO: forward tap to text view
+    } else {
+      applyTextEditingOperation(context: context)
+      self.shapeInProgress = nil
+      context.toolSettings.selectedShape = nil
+      context.toolSettings.interactiveView?.resignFirstResponder()
+      context.toolSettings.interactiveView = nil
+      shape.updateCachedImage()
+      delegate?.textToolDidTapAway(tappedPoint: point)
+    }
+    return
+  }
+
+  private func handleTapWhenNoShapeIsActive(context: ToolOperationContext, point: CGPoint) {
+    if let tappedShape = context.drawing.getShape(of: TextShape.self, at: point) {
       beginEditing(shape: tappedShape, context: context)
     } else {
       let newShape = TextShape()
@@ -156,15 +258,18 @@ public class TextTool: NSObject, DrawingTool {
 
   private func updateTextView() {
     guard let shape = shapeInProgress else { return }
-    textView.text = shape.text
+    textView.textView.text = shape.text
+    textView.textView.font = shape.font
+    textView.textView.textColor = shape.fillColor
     textView.bounds = shape.boundingRect
     textView.bounds.size.width += 3
-    textView.font = shape.font
-    textView.textColor = shape.fillColor
     textView.transform = CGAffineTransform(
       translationX: shape.boundingRect.size.width / 2,
       y: shape.boundingRect.size.height / 2
     ).concatenating(shape.transform.affineTransform)
+
+    textView.setNeedsLayout()
+    textView.layoutIfNeeded()
   }
 
   func computeBounds() -> CGRect {
@@ -174,7 +279,7 @@ public class TextTool: NSObject, DrawingTool {
     return CGRect(origin: .zero, size: textSize)
   }
 
-  private func makeTextView() -> UITextView {
+  private func makeTextView() -> TextShapeEditingView {
     let textView = UITextView()
     textView.autoresizingMask = [.flexibleRightMargin, .flexibleBottomMargin]
     textView.textContainerInset = .zero
@@ -184,7 +289,7 @@ public class TextTool: NSObject, DrawingTool {
     textView.autocorrectionType = .no
     textView.backgroundColor = .clear
     textView.delegate = self
-    return textView
+    return TextShapeEditingView(textView: textView)
   }
 }
 
