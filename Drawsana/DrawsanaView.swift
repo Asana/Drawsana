@@ -148,6 +148,8 @@ public class DrawsanaView: UIView {
 
   // MARK: API
 
+  /// Set the active tool to a new value. If you pass `shape`, it is passed on
+  /// to the tool's `DrawingTool.activate(context:shape:)` method.
   public func set(tool: DrawingTool, shape: Shape? = nil) {
     DispatchQueue.main.async {
       // TODO: why does this break everything if run in the same run loop? Maybe because autoreleasepool?
@@ -155,6 +157,37 @@ public class DrawsanaView: UIView {
       self.tool = tool
       tool.activate(shapeUpdater: self, context: self.toolOperationContext, shape: shape)
       self.delegate?.drawsanaView(self, didSwitchTo: tool)
+    }
+  }
+
+  /// Render the drawing on top of an image, using that image's size. Shapes are
+  /// re-scaled to match the resolution of the target without artifacts.
+  public func render(over image: UIImage?) -> UIImage? {
+    let size = image?.size ?? drawing.size
+    return DrawsanaUtilities.renderImage(size: size) { (context: CGContext) -> Void in
+      if let image = image {
+        image.draw(at: .zero)
+      }
+      context.saveGState()
+      context.scaleBy(x: size.width / self.drawing.size.width, y: size.height / self.drawing.size.height)
+      for shape in self.drawing.shapes {
+        shape.render(in: context)
+      }
+      context.restoreGState()
+    }
+  }
+
+  /// Render the drawing. If you pass a size, shapes are re-scaled to be full
+  /// resolution at that size.
+  public func render(size: CGSize? = nil) -> UIImage? {
+    let size = size ?? drawing.size
+    return DrawsanaUtilities.renderImage(size: size) { (context: CGContext) -> Void in
+      context.saveGState()
+      context.scaleBy(x: size.width / self.drawing.size.width, y: size.height / self.drawing.size.height)
+      for shape in self.drawing.shapes {
+        shape.render(in: context)
+      }
+      context.restoreGState()
     }
   }
 

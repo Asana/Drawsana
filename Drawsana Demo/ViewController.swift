@@ -8,6 +8,7 @@
 
 import UIKit
 import Drawsana
+import QuickLook
 
 /**
  Bare-bones demonstration of the Drawsana API. Drawsana does not provide its
@@ -25,6 +26,10 @@ class ViewController: UIViewController {
   let imageView = UIImageView(image: UIImage(named: "demo"))
   let undoButton = UIButton()
   let redoButton = UIButton()
+  let viewButton = UIButton()
+  lazy var toolbarStackView = {
+    return UIStackView(arrangedSubviews: [undoButton, redoButton, toolButton, viewButton])
+  }()
 
   /// Instance of `TextTool` for which we are the delegate, so we can respond
   /// to relevant UI events
@@ -49,26 +54,33 @@ class ViewController: UIViewController {
   override func loadView() {
     self.view = UIView()
 
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFit
-    imageView.backgroundColor = .gray
-    view.addSubview(imageView)
-
     toolButton.translatesAutoresizingMaskIntoConstraints = false
     toolButton.setTitle("No Tool", for: .normal)
     toolButton.addTarget(self, action: #selector(changeTool(_:)), for: .touchUpInside)
     toolButton.setContentHuggingPriority(.required, for: .vertical)
-    view.addSubview(toolButton)
 
     undoButton.translatesAutoresizingMaskIntoConstraints = false
     undoButton.setTitle("<", for: .normal)
     undoButton.addTarget(drawingView.operationStack, action: #selector(DrawingOperationStack.undo), for: .touchUpInside)
-    view.addSubview(undoButton)
 
     redoButton.translatesAutoresizingMaskIntoConstraints = false
     redoButton.setTitle(">", for: .normal)
     redoButton.addTarget(drawingView.operationStack, action: #selector(DrawingOperationStack.redo), for: .touchUpInside)
-    view.addSubview(redoButton)
+
+    viewButton.translatesAutoresizingMaskIntoConstraints = false
+    viewButton.setTitle("👁", for: .normal)
+    viewButton.addTarget(self, action: #selector(ViewController.viewImage(_:)), for: .touchUpInside)
+
+    toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
+    toolbarStackView.axis = .horizontal
+    toolbarStackView.distribution = .equalSpacing
+    toolbarStackView.alignment = .fill
+    view.addSubview(toolbarStackView)
+
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFit
+    imageView.backgroundColor = .gray
+    view.addSubview(imageView)
 
     drawingView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(drawingView)
@@ -81,20 +93,13 @@ class ViewController: UIViewController {
       imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
       imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 
-      // toolButton constrain to center/bottom
-      toolButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      toolButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      // toolbarStackView fill bottom
+      toolbarStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      toolbarStackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      toolbarStackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
 
-      // imageView bottom -> toolButton.top
-      imageView.bottomAnchor.constraint(equalTo: toolButton.topAnchor),
-
-      // undoButton constrain to bottom left
-      undoButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 4),
-      undoButton.centerYAnchor.constraint(equalTo: toolButton.centerYAnchor),
-
-      // redoButton constrain next to undoButton
-      redoButton.leftAnchor.constraint(equalTo: undoButton.rightAnchor, constant: 4),
-      redoButton.centerYAnchor.constraint(equalTo: toolButton.centerYAnchor),
+      // imageView bottom -> toolbarStackView.top
+      imageView.bottomAnchor.constraint(equalTo: toolbarStackView.topAnchor),
 
       // drawingView is centered in imageView, shares image's aspect ratio,
       // and doesn't expand past its frame
@@ -121,6 +126,24 @@ class ViewController: UIViewController {
     toolIndex = (toolIndex + 1) % tools.count
     drawingView.set(tool: tools[toolIndex])
     applyViewState()
+  }
+
+  var savedImageURL: URL {
+    return FileManager.default.temporaryDirectory.appendingPathComponent("drawsana_demo").appendingPathExtension("jpg")
+  }
+
+  /// Show rendered image in a separate view
+  @objc private func viewImage(_ sender: Any?) {
+    guard
+      let image = drawingView.render(over: imageView.image),
+      let data = UIImageJPEGRepresentation(image, 0.75),
+      (try? data.write(to: savedImageURL)) != nil else
+    {
+      assert(false, "Can't create or save image")
+    }
+    let vc = QLPreviewController(nibName: nil, bundle: nil)
+    vc.dataSource = self
+    present(vc, animated: true, completion: nil)
   }
 
   /// Update button states to reflect undo stack and user settings
@@ -180,6 +203,16 @@ extension ViewController: DrawingOperationStackDelegate {
 
   func drawingOperationStackDidApply(_ operationStack: DrawingOperationStack, operation: DrawingOperation) {
     applyViewState()
+  }
+}
+
+extension ViewController: QLPreviewControllerDataSource {
+  func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+    return 1
+  }
+
+  func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+    return savedImageURL as NSURL
   }
 }
 
