@@ -19,6 +19,8 @@ let users scribble over images, add shapes and text, and even make your own tool
 * Drawings are `Codable`, so you can save and load them
 * Extensible—make your own shapes and tools without forking the library
 
+![screenshot](screenshot.png)
+
 ## Installation
 
 Add `Asana/Drawsana` to your Cartfile and update your project like you would for any other
@@ -39,7 +41,7 @@ class MyViewController: UIViewController {
     drawsanaView.userSettings.strokeColor = .blue
     drawsanaView.userSettings.fillColor = .yellow
     drawsanaView.userSettings.fontSize = 24
-    drawsanaView.userSettings.fontName = "Marker Felt""
+    drawsanaView.userSettings.fontName = "Marker Felt"
   }
   
   func save() {

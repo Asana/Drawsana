@@ -166,7 +166,9 @@ class ViewController: UIViewController {
 
     // Set initial tool to whatever `toolIndex` says
     drawingView.set(tool: tools[toolIndex])
-    drawingView.userSettings.strokeWidth = 20
+    drawingView.userSettings.strokeColor = colors[strokeColorIndex]
+    drawingView.userSettings.fillColor = colors[fillColorIndex]
+    drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
     drawingView.userSettings.fontName = "Marker Felt"
     applyViewState()
   }

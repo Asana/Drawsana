@@ -79,6 +79,11 @@ public class EraserTool: PenTool {
     velocityBasedWidth = false
   }
 
+  public override func handleTap(context: ToolOperationContext, point: CGPoint) {
+    super.handleTap(context: context, point: point)
+    shapeInProgress?.isEraser = true
+  }
+
   public override func handleDragStart(context: ToolOperationContext, point: CGPoint) {
     super.handleDragStart(context: context, point: point)
     shapeInProgress?.isEraser = true

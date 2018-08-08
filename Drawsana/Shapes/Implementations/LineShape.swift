@@ -21,6 +21,7 @@ public class LineShape:
   }
 
   public enum ArrowStyle: String, Codable {
+    /// Plain old triangle
     case standard
   }
 

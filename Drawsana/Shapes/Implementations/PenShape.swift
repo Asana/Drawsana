@@ -81,6 +81,7 @@ public class PenShape: Shape, ShapeWithStrokeState {
     if isEraser {
       context.setBlendMode(.clear)
     }
+    let strokeColor = isEraser ? self.strokeColor : UIColor.black
 
     guard !segments.isEmpty else {
       if !isFinished {
