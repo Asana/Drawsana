@@ -3,6 +3,9 @@
 Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.
 
+Do you want to let your users mark up images? Are you writing a simple painting app?
+Drawsana might work for you!
+
 [Demo source code](https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift)
 
 [Docs](https://stevelandeyasana.github.io/Drawsana)

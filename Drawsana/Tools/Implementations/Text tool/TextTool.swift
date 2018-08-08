@@ -115,7 +115,7 @@ public class TextTool: NSObject, DrawingTool {
       applyRemoveShapeOperation(context: context)
       delegate?.textToolDidTapAway(tappedPoint: point)
     } else if shape.hitTest(point: point) {
-      // TODO: forward tap to text view
+      // No action needed. Text view automatically gets the tap too.
     } else {
       applyTextEditingOperation(context: context)
       self.selectedShape = nil
