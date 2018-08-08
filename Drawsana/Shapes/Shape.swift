@@ -11,6 +11,8 @@ import UIKit
 
 /**
  Base protocol which all shapes must implement.
+
+ Note: If you implement your own shapes, see `Drawing.shapeDecoder`!
  */
 public protocol Shape: AnyObject, Codable {
   /// Globally unique identifier for this shape. Meant to be used for equality

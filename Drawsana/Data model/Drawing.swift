@@ -8,14 +8,6 @@
 
 import CoreGraphics
 
-struct AnyEncodable: Encodable {
-  let base: Encodable
-
-  func encode(to encoder: Encoder) throws {
-    try base.encode(to: encoder)
-  }
-}
-
 /**
  Stores list of shapes and size of drawing.
  */
@@ -31,8 +23,23 @@ public class Drawing: Codable {
 
   weak var delegate: DrawingDelegate?
 
-  var size: CGSize
-  var shapes: [Shape] = []
+  public var size: CGSize
+  public private(set) var shapes: [Shape] = []
+
+  /**
+   You must set this property if you use any shapes other than the built-in ones
+   and you also want to use the `Codable` features of Drawsana. It's simple:
+
+   ```swift
+   drawingView.drawing.shapeDecoder = {
+     $0.tryDecoding(MyShape.self)  // repeat for each custom shape class
+   }
+   ```
+
+   This is needed because there is no way to use `Decodable` with a dynamic
+   list of types.
+   */
+  public var shapeDecoder: ((MultiDecoder<Shape>) -> Void)?
 
   init(size: CGSize, delegate: DrawingDelegate? = nil) {
     self.size = size
@@ -48,32 +55,25 @@ public class Drawing: Codable {
     shapes = []
     var shapeIter = try container.nestedUnkeyedContainer(forKey: .shapes)
     while !shapeIter.isAtEnd {
-      tryDecodingAllShapes(
-        &shapeIter,
-        completion: {
-          shapes.append(contentsOf: $0.compactMap({ $0 }))
-        })
+      let countBefore = shapes.count
+      shapes.append(contentsOf: tryDecodingAllShapes(&shapeIter))
+      if shapes.count == countBefore {
+        let typeContainer = try shapeIter.nestedContainer(keyedBy: ShapeTypeCodingKey.self)
+        let type = try typeContainer.decode(String.self, forKey: .type)
+        fatalError("Can't decode shape of type \(type)")
+      }
     }
   }
 
-  /**
-   If you've defined your own shape class, override this method. Call super(),
-   then do this:
-
-   ```swift
-   completion([
-     tryDecoding(&container, with: MyShape.self)
-   ])
-   ```
-   */
-  public func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer, completion: ([Shape?]) -> Void) {
-    completion([
-      tryDecoding(&container, with: EllipseShape.self),
-      tryDecoding(&container, with: LineShape.self),
-      tryDecoding(&container, with: PenShape.self),
-      tryDecoding(&container, with: RectShape.self),
-      tryDecoding(&container, with: TextShape.self),
-    ])
+  public func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer) -> [Shape] {
+    let multiDecoder = MultiDecoder<Shape>(container: &container)
+    multiDecoder.tryDecoding(EllipseShape.self)
+    multiDecoder.tryDecoding(LineShape.self)
+    multiDecoder.tryDecoding(PenShape.self)
+    multiDecoder.tryDecoding(RectShape.self)
+    multiDecoder.tryDecoding(TextShape.self)
+    shapeDecoder?(multiDecoder)
+    return multiDecoder.results
   }
 
   public func tryDecoding<T: Shape & Decodable>(_ container: inout UnkeyedDecodingContainer, with type: T.Type) -> T? {
@@ -122,4 +122,35 @@ protocol DrawingDelegate: AnyObject {
   func drawingDidAddShape(_ shape: Shape)
   func drawingDidUpdateShape(_ shape: Shape)
   func drawingDidRemoveShape(_ shape: Shape)
+}
+
+// MARK: Codable helpers
+
+/// Wrap any non-concrete `Encodable` type (like a `Shape`) in this class to
+/// magically make it work with `container.encode(foo, forKey: .foo)`.
+private struct AnyEncodable: Encodable {
+  let base: Encodable
+
+  func encode(to encoder: Encoder) throws {
+    try base.encode(to: encoder)
+  }
+}
+
+/// Simple pattern for trying to decode array elements as multiple types.
+public class MultiDecoder<ResultType> {
+  var container: UnkeyedDecodingContainer
+  var results = [ResultType]()
+
+  init(container: inout UnkeyedDecodingContainer) {
+    self.container = container
+  }
+
+  /// Adds the decoded result to `results` if decoding succeeds, otherwise does
+  /// nothing.
+  public func tryDecoding<T: Shape>(_ type: T.Type) {
+    do {
+      results.append(try container.decode(T.self) as! ResultType)
+    } catch {
+    }
+  }
 }
