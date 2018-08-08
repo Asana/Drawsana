@@ -373,6 +373,7 @@ extension DrawsanaView: DrawingDelegate {
   }
 
   func drawingDidUpdateShape(_ shape: Shape) {
+    redrawAbsolutelyEverything()
     applyToolSettingsChanges()
   }
 
