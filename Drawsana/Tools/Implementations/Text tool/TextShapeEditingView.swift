@@ -71,7 +71,7 @@ public class TextShapeEditingView: UIView {
 
       changeWidthControlView.widthAnchor.constraint(equalToConstant: 36),
       changeWidthControlView.heightAnchor.constraint(equalToConstant: 36),
-      changeWidthControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: -5),
+      changeWidthControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
       changeWidthControlView.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: -4),
       ])
   }

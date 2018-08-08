@@ -132,12 +132,6 @@ class ChangeWidthHandler: DragHandler {
   }
 
   override func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
-    originalWidth = shape.explicitWidth
-    originalBoundingRect = shape.boundingRect
-    shape.explicitWidth = shape.explicitWidth ?? shape.boundingRect.size.width
-  }
-
-  override func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
     guard let textTool = textTool else { return }
     let translatedBoundingRect = shape.boundingRect.applying(
       CGAffineTransform(translationX: shape.transform.translation.x,
@@ -146,6 +140,15 @@ class ChangeWidthHandler: DragHandler {
     let desiredWidthInScreenCoordinates = (distanceFromShapeCenter - textTool.editingView.changeWidthControlView.frame.size.width / 2) * 2
     shape.explicitWidth = desiredWidthInScreenCoordinates / shape.transform.scale
     textTool.updateShapeFrame()
+  }
+
+  override func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
+    context.operationStack.apply(operation: ChangeExplicitWidthOperation(
+      shape: shape,
+      originalWidth: originalWidth,
+      originalBoundingRect: originalBoundingRect,
+      newWidth: shape.explicitWidth,
+      newBoundingRect: shape.boundingRect))
   }
 
   override func handleDragCancel(context: ToolOperationContext, point: CGPoint) {
