@@ -87,6 +87,13 @@ public class EllipseShape:
 
   public func render(in context: CGContext) {
     transform.begin(context: context)
+
+    if let fillColor = fillColor {
+      context.setFillColor(fillColor.cgColor)
+      context.addEllipse(in: rect)
+      context.fillPath()
+    }
+
     context.setLineCap(capStyle)
     context.setLineJoin(joinStyle)
     context.setLineWidth(strokeWidth)
@@ -102,12 +109,7 @@ public class EllipseShape:
       context.addEllipse(in: rect)
       context.strokePath()
     }
-
-    if let fillColor = fillColor {
-      context.setFillColor(fillColor.cgColor)
-      context.addEllipse(in: rect)
-      context.fillPath()
-    }
+    
     transform.end(context: context)
   }
 }

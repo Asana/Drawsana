@@ -9,7 +9,7 @@
 import CoreGraphics
 import UIKit
 
-public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
+public class TextTool: NSObject, DrawingTool {
   /// MARK: Protocol requirements
 
   public let isProgressive = false
@@ -80,8 +80,10 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
 
   // MARK: Tool lifecycle
 
-  public func apply(userSettings: UserSettings) {
+  public func apply(context: ToolOperationContext, userSettings: UserSettings) {
     selectedShape?.apply(userSettings: userSettings)
+    updateTextView()
+    context.toolSettings.isPersistentBufferDirty = true
   }
 
   public func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) {

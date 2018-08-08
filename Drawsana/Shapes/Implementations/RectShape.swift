@@ -83,9 +83,17 @@ public class RectShape:
 
   public func render(in context: CGContext) {
     transform.begin(context: context)
+
+    if let fillColor = fillColor {
+      context.setFillColor(fillColor.cgColor)
+      context.addRect(rect)
+      context.fillPath()
+    }
+    
     context.setLineCap(capStyle)
     context.setLineJoin(joinStyle)
     context.setLineWidth(strokeWidth)
+
     if let strokeColor = strokeColor {
       context.setStrokeColor(strokeColor.cgColor)
       if let dashPhase = dashPhase, let dashLengths = dashLengths {
@@ -97,11 +105,6 @@ public class RectShape:
       context.strokePath()
     }
 
-    if let fillColor = fillColor {
-      context.setFillColor(fillColor.cgColor)
-      context.addRect(rect)
-      context.fillPath()
-    }
     transform.end(context: context)
   }
 }

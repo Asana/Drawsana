@@ -27,8 +27,11 @@ class ViewController: UIViewController {
   let undoButton = UIButton()
   let redoButton = UIButton()
   let viewButton = UIButton()
+  let strokeColorButton = UIButton()
+  let fillColorButton = UIButton()
+  let strokeButton = UIButton()
   lazy var toolbarStackView = {
-    return UIStackView(arrangedSubviews: [undoButton, redoButton, toolButton, viewButton])
+    return UIStackView(arrangedSubviews: [undoButton, redoButton, strokeColorButton, fillColorButton, toolButton, viewButton])
   }()
 
   /// Instance of `TextTool` for which we are the delegate, so we can respond
@@ -51,6 +54,14 @@ class ViewController: UIViewController {
   ] }()
   var toolIndex = 0
 
+  let colors: [UIColor?] = [
+    .blue,
+    .yellow,
+    nil
+  ]
+  var strokeColorIndex = 0
+  var fillColorIndex = 2
+
   // Just AutoLayout code here
   override func loadView() {
     self.view = UIView()
@@ -71,6 +82,16 @@ class ViewController: UIViewController {
     viewButton.translatesAutoresizingMaskIntoConstraints = false
     viewButton.setTitle("👁", for: .normal)
     viewButton.addTarget(self, action: #selector(ViewController.viewImage(_:)), for: .touchUpInside)
+
+    strokeColorButton.translatesAutoresizingMaskIntoConstraints = false
+    strokeColorButton.addTarget(self, action: #selector(ViewController.cycleStrokeColor(_:)), for: .touchUpInside)
+    strokeColorButton.layer.borderColor = UIColor.white.cgColor
+    strokeColorButton.layer.borderWidth = 0.5
+
+    fillColorButton.translatesAutoresizingMaskIntoConstraints = false
+    fillColorButton.addTarget(self, action: #selector(ViewController.cycleFillColor(_:)), for: .touchUpInside)
+    fillColorButton.layer.borderColor = UIColor.white.cgColor
+    fillColorButton.layer.borderWidth = 0.5
 
     toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
     toolbarStackView.axis = .horizontal
@@ -111,6 +132,12 @@ class ViewController: UIViewController {
       drawingView.widthAnchor.constraint(equalTo: drawingView.heightAnchor, multiplier: imageAspectRatio),
       drawingView.widthAnchor.constraint(equalTo: imageView.widthAnchor).withPriority(.defaultLow),
       drawingView.heightAnchor.constraint(equalTo: imageView.heightAnchor).withPriority(.defaultLow),
+
+      // Color buttons have constant size
+      strokeColorButton.widthAnchor.constraint(equalToConstant: 30),
+      strokeColorButton.heightAnchor.constraint(equalToConstant: 30),
+      fillColorButton.widthAnchor.constraint(equalToConstant: 30),
+      fillColorButton.heightAnchor.constraint(equalToConstant: 30),
     ])
   }
 
@@ -150,11 +177,28 @@ class ViewController: UIViewController {
     present(vc, animated: true, completion: nil)
   }
 
+  @objc private func cycleStrokeColor(_ sender: Any?) {
+    strokeColorIndex = (strokeColorIndex + 1) % colors.count
+    drawingView.userSettings.strokeColor = colors[strokeColorIndex]
+    applyViewState()
+  }
+
+  @objc private func cycleFillColor(_ sender: Any?) {
+    fillColorIndex = (fillColorIndex + 1) % colors.count
+    drawingView.userSettings.fillColor = colors[fillColorIndex]
+    applyViewState()
+  }
+
   /// Update button states to reflect undo stack and user settings
   private func applyViewState() {
     undoButton.isEnabled = drawingView.operationStack.canUndo
     redoButton.isEnabled = drawingView.operationStack.canRedo
     toolButton.setTitle(tools[toolIndex].name, for: .normal)
+    strokeColorButton.backgroundColor = colors[strokeColorIndex]
+    fillColorButton.backgroundColor = colors[fillColorIndex]
+
+    strokeColorButton.setTitle(colors[strokeColorIndex] == nil ? "x" : "", for: .normal)
+    fillColorButton.setTitle(colors[fillColorIndex] == nil ? "x" : "", for: .normal)
 
     for button in [undoButton, redoButton] {
       button.alpha = button.isEnabled ? 1 : 0.5
@@ -166,6 +210,7 @@ extension ViewController: DrawsanaViewDelegate {
   /// When tool changes, update the UI
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool?) {
     toolButton.setTitle(tool?.name, for: .normal)
+    applyViewState()
   }
 }
 

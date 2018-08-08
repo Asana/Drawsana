@@ -25,6 +25,17 @@ public class SelectionTool: DrawingTool {
     self.delegate = delegate
   }
 
+  public func deactivate(context: ToolOperationContext) {
+    context.toolSettings.selectedShape = nil
+  }
+
+  public func apply(context: ToolOperationContext, userSettings: UserSettings) {
+    if let compatibleShape = context.toolSettings.selectedShape as? UserSettingsApplying {
+      compatibleShape.apply(userSettings: userSettings)
+      context.toolSettings.isPersistentBufferDirty = true
+    }
+  }
+
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
     var newSelection: ShapeSelectable?
     for shape in context.drawing.shapes {

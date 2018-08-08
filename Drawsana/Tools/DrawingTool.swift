@@ -20,7 +20,7 @@ public protocol UserSettingsApplying {
 /**
  All drawing tools must implement this protocol.
  */
-public protocol DrawingTool: UserSettingsApplying {
+public protocol DrawingTool {
   /// If `true`, the shape-in-progress buffer is not cleared at all during
   /// drawing operations. So if you're implementing something like a pen tool,
   /// you only need to draw the tail of the line that hasn't yet been drawn,
@@ -72,7 +72,7 @@ public protocol DrawingTool: UserSettingsApplying {
 
   /// User settings have changed. Update any local state or the shape, if
   /// relevant. The default implementaiton does nothing.
-  func apply(userSettings: UserSettings)
+  func apply(context: ToolOperationContext, userSettings: UserSettings)
 
   /// After each invocation of `handleDragStart(context:point:)`,
   /// `handleDragContinue(context:point:velocity:)`, and
@@ -89,7 +89,7 @@ public protocol DrawingTool: UserSettingsApplying {
 public extension DrawingTool {
   func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) { }
   func deactivate(context: ToolOperationContext) { }
-  func apply(userSettings: UserSettings) { }
+  func apply(context: ToolOperationContext, userSettings: UserSettings) { }
   func renderShapeInProgress(transientContext: CGContext) { }
 }
 

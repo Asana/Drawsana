@@ -157,6 +157,16 @@
 			path = "Text tool";
 			sourceTree = "<group>";
 		};
+		37362D72211B853B003E5ACA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3762297C2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift */,
+				37362D6B211B6930003E5ACA /* CGRect+DrawsanaExtensions.swift */,
+				37362D69211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3762296F2113AA4C0034D0E3 /* Shapes */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,9 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */,
-				3762297C2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift */,
-				37362D6B211B6930003E5ACA /* CGRect+DrawsanaExtensions.swift */,
-				37362D69211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift */,
+				37362D72211B853B003E5ACA /* Extensions */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

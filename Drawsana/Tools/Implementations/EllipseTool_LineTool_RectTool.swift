@@ -64,6 +64,11 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
   public func activate(context: ToolOperationContext, shape: Shape?) {
     context.toolSettings.selectedShape = nil
   }
+
+  public func apply(context: ToolOperationContext, userSettings: UserSettings) {
+    shapeInProgress?.apply(userSettings: userSettings)
+    context.toolSettings.isPersistentBufferDirty = true
+  }
 }
 
 public class LineTool: DrawingToolForShapeWithTwoPoints {

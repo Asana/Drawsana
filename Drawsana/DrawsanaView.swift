@@ -254,24 +254,25 @@ public class DrawsanaView: UIView {
       assert(false, "State not handled")
     }
 
-    if toolSettings.isPersistentBufferDirty {
-      redrawAbsolutelyEverything()
-      toolSettings.isPersistentBufferDirty = false
-    }
-    // This is cheap to do and annoying to signal, so just do it all the time
-    applySelectionViewState()
+    applyToolSettingsChanges()
   }
 
   @objc private func didTap(sender: UITapGestureRecognizer) {
     tool?.handleTap(context: toolOperationContext, point: sender.location(in: self))
+    applyToolSettingsChanges()
+  }
+
+  // MARK: Making stuff show up
+
+  /// If a tool made changes to toolSettings to notify us that the buffer needs
+  /// to be redrawn or the selection has moved, act on those changes
+  private func applyToolSettingsChanges() {
     if toolSettings.isPersistentBufferDirty {
       redrawAbsolutelyEverything()
       toolSettings.isPersistentBufferDirty = false
     }
     applySelectionViewState()
   }
-
-  // MARK: Making stuff show up
 
   private func reapplyLayerContents() {
     self.drawingContentView.layer.contents = persistentBuffer?.cgImage
@@ -362,8 +363,7 @@ extension DrawsanaView: DrawingDelegate {
   }
 
   func drawingDidUpdateShape(_ shape: Shape) {
-    redrawAbsolutelyEverything()
-    applySelectionViewState()
+    applyToolSettingsChanges()
   }
 
   func drawingDidRemoveShape(_ shape: Shape) {
@@ -380,7 +380,6 @@ extension DrawsanaView: ToolSettingsDelegate {
     _ toolSettings: ToolSettings,
     didSetSelectedShape selectedShape: ShapeSelectable?)
   {
-    tool?.apply(userSettings: userSettings)
     applySelectionViewState()
   }
 
@@ -406,23 +405,28 @@ extension DrawsanaView: ToolSettingsDelegate {
 
 extension DrawsanaView: UserSettingsDelegate {
   func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?) {
-    tool?.apply(userSettings: userSettings)
+    tool?.apply(context: toolOperationContext, userSettings: userSettings)
+    applyToolSettingsChanges()
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?) {
-    tool?.apply(userSettings: userSettings)
+    tool?.apply(context: toolOperationContext, userSettings: userSettings)
+    applyToolSettingsChanges()
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat) {
-    tool?.apply(userSettings: userSettings)
+    tool?.apply(context: toolOperationContext, userSettings: userSettings)
+    applyToolSettingsChanges()
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeFontName fontName: String) {
-    tool?.apply(userSettings: userSettings)
+    tool?.apply(context: toolOperationContext, userSettings: userSettings)
+    applyToolSettingsChanges()
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeFontSize fontSize: CGFloat) {
-    tool?.apply(userSettings: userSettings)
+    tool?.apply(context: toolOperationContext, userSettings: userSettings)
+    applyToolSettingsChanges()
   }
 }
 
