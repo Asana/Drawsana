@@ -870,58 +870,100 @@
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 90,
+      "line": 12,
       "symbol": "TextTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 99,
+      "line": 21,
       "symbol": "TextTool.delegate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 101,
+      "line": 23,
       "symbol": "TextTool.shapeInProgress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 114,
+      "line": 34,
+      "symbol": "TextTool.editingView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 36,
       "symbol": "TextTool.init(delegate:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 351,
+      "line": 275,
       "symbol": "TextTool.textViewDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 359,
+      "line": 283,
       "symbol": "TextTool.textViewDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 363,
+      "line": 287,
       "symbol": "TextTool.textViewShouldEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
-      "line": 369,
+      "line": 293,
       "symbol": "TextToolDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 311,
+      "symbol": "TextShapeEditingView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 366,
+      "symbol": "TextShapeEditingView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 370,
+      "symbol": "TextShapeEditingView.sizeThatFits(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 375,
+      "symbol": "TextShapeEditingView.becomeFirstResponder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/AMDrawingView/Drawsana/Tools/Implementations/TextTool.swift",
+      "line": 380,
+      "symbol": "TextShapeEditingView.resignFirstResponder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],
