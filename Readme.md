@@ -19,7 +19,7 @@ let users scribble over images, add shapes and text, and even make your own tool
 * Drawings are `Codable`, so you can save and load them
 * Extensible—make your own shapes and tools without forking the library
 
-![screenshot](screenshot.png)
+![screenshot](https://raw.githubusercontent.com/stevelandeyasana/Drawsana/master/screenshot.png)
 
 ## Installation
 
