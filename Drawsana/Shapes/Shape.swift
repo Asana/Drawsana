@@ -27,8 +27,6 @@ public protocol Shape: AnyObject, Codable {
   /// Return true iff the given point meaningfully intersects with the pixels
   /// drawn by this shape. See `ShapeWithBoundingRect` for a shortcut.
   func hitTest(point: CGPoint) -> Bool
-
-  func encodeSelf() throws -> Data
 }
 
 /**

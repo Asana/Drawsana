@@ -17,6 +17,9 @@ public class TextTool: NSObject, DrawingTool {
 
   // MARK: Public properties
 
+  /// You may set yourself as the delegate to be notified when special selection
+  /// events happen that you might want to react to. The core framework does
+  /// not use this delegate.
   public weak var delegate: TextToolDelegate?
 
   // MARK: Internal state

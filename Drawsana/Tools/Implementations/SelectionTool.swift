@@ -92,9 +92,6 @@ public class SelectionTool: DrawingTool {
   }
 }
 
-/**
-
- */
 public protocol SelectionToolDelegate: AnyObject {
   /// User tapped on a shape, but it was already selected. You might want to
   /// take this opportuny to activate a tool that can edit that shape, if one

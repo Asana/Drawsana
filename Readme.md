@@ -9,19 +9,20 @@ let users scribble over images, add shapes and text, and even make your own tool
 
 ## Features
 
-### Tools
-
-* Pen with line smoothing
-* Eraser
-* Ellipse, rect, line, arrow
-* Selection
-* Text
-
-### More
-
-* Drawings are `Codable`, so you can save and load them
-* Write your own tools and shapes without forking the library
+* Built-in tools
+  * Pen with line smoothing
+  * Eraser
+  * Ellipse, rect, line, arrow
+  * Selection
+  * Text
 * Undo/redo
+* Drawings are `Codable`, so you can save and load them
+* Extensible—make your own shapes and tools without forking the library
+
+## Installation
+
+Add `Asana/Drawsana` to your Cartfile and update your project like you would for any other
+Carthage framework, or clone the source code and add the project to your workspace.
 
 ## Building docs
 

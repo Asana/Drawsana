@@ -68,10 +68,6 @@ public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
     try container.encode(transform, forKey: .transform)
   }
 
-  public func encodeSelf() throws -> Data {
-    return try JSONEncoder().encode(self)
-  }
-
   public func render(in context: CGContext) {
     if isBeingEdited { return }
     transform.begin(context: context)

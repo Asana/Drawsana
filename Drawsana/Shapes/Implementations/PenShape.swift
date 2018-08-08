@@ -68,10 +68,6 @@ public class PenShape: Shape, ShapeWithStrokeState {
     try container.encode(isEraser, forKey: .isEraser)
   }
 
-  public func encodeSelf() throws -> Data {
-    return try JSONEncoder().encode(self)
-  }
-
   public func hitTest(point: CGPoint) -> Bool {
     return false
   }

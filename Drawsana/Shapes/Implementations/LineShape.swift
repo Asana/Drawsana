@@ -87,10 +87,6 @@ public class LineShape:
     try container.encodeIfPresent(dashLengths, forKey: .dashLengths)
   }
 
-  public func encodeSelf() throws -> Data {
-    return try JSONEncoder().encode(self)
-  }
-
   public func render(in context: CGContext) {
     transform.begin(context: context)
     context.setLineCap(capStyle)
