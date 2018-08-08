@@ -9,6 +9,10 @@
 import CoreGraphics
 
 extension CGPoint {
+  init(angle: CGFloat, radius: CGFloat) {
+    self.init(x: cos(angle) * radius, y: sin(angle) * radius)
+  }
+
   var length: CGFloat {
     return sqrt((x * x) + (y * y))
   }

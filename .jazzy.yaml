@@ -52,6 +52,7 @@ custom_categories:
   - TextShape
 - name: Tool implementations
   children:
+  - ArrowTool
   - EllipseTool
   - EraserTool
   - LineTool

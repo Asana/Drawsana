@@ -71,6 +71,16 @@ public class LineTool: DrawingToolForShapeWithTwoPoints {
   public override var name: String { return "Line" }
 }
 
+/// Identical to `LineTool`, but draws an arrow at the end
+public class ArrowTool: DrawingToolForShapeWithTwoPoints {
+  public override func makeShape() -> ShapeType {
+    let shape = LineShape()
+    shape.arrowStyle = .standard
+    return shape
+  }
+  public override var name: String { return "Arrow" }
+}
+
 public class RectTool: DrawingToolForShapeWithTwoPoints {
   public override func makeShape() -> ShapeType { return RectShape() }
   public override var name: String { return "Rectangle" }

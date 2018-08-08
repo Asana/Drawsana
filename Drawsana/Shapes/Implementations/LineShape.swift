@@ -17,7 +17,11 @@ public class LineShape:
 {
   private enum CodingKeys: String, CodingKey {
     case id, a, b, strokeColor, strokeWidth, capStyle, joinStyle,
-    dashPhase, dashLengths, transform, type
+    dashPhase, dashLengths, transform, type, arrowStyle
+  }
+
+  public enum ArrowStyle: String, Codable {
+    case standard
   }
 
   public static let type: String = "Line"
@@ -31,10 +35,10 @@ public class LineShape:
   public var joinStyle: CGLineJoin = .round
   public var dashPhase: CGFloat?
   public var dashLengths: [CGFloat]?
+  public var arrowStyle: ArrowStyle?
   public var transform: ShapeTransform = .identity
 
   public init() {
-
   }
 
   public required init(from decoder: Decoder) throws {
@@ -50,6 +54,7 @@ public class LineShape:
     b = try values.decode(CGPoint.self, forKey: .b)
     strokeColor = UIColor(hexString: try values.decode(String.self, forKey: .strokeColor))
     strokeWidth = try values.decode(CGFloat.self, forKey: .strokeWidth)
+    arrowStyle = try values.decodeIfPresent(ArrowStyle.self, forKey: .arrowStyle)
     transform = try values.decode(ShapeTransform.self, forKey: .transform)
 
     capStyle = CGLineCap(rawValue: try values.decodeIfPresent(Int32.self, forKey: .capStyle) ?? CGLineCap.round.rawValue)!
@@ -66,6 +71,7 @@ public class LineShape:
     try container.encode(b, forKey: .b)
     try container.encode(strokeColor.hexString, forKey: .strokeColor)
     try container.encode(strokeWidth, forKey: .strokeWidth)
+    try container.encodeIfPresent(arrowStyle, forKey: .arrowStyle)
     try container.encode(transform, forKey: .transform)
 
     if capStyle != .round {
@@ -92,6 +98,30 @@ public class LineShape:
     context.move(to: a)
     context.addLine(to: b)
     context.strokePath()
+
+    if case .some(.standard) = arrowStyle {
+      renderArrow(in: context)
+    }
     transform.end(context: context)
+  }
+
+  private func renderArrow(in context: CGContext) {
+    let angle = atan2(b.y - a.y, b.x - a.x)
+    let arcAmount: CGFloat = CGFloat.pi / 4
+    let radius = strokeWidth * 4
+
+    // Nudge arrow out past end of line a little so it doesn't let the line below show through when it's thick
+    let arrowOffset = CGPoint(angle: angle, radius: strokeWidth * 2)
+
+    let startPoint = b + arrowOffset
+    let point1 = b + CGPoint(angle: angle + arcAmount / 2 + CGFloat.pi, radius: radius) + arrowOffset
+    let point2 = b + CGPoint(angle: angle - arcAmount / 2 + CGFloat.pi, radius: radius) + arrowOffset
+
+    context.setLineWidth(0)
+    context.setFillColor(strokeColor.cgColor)
+    context.move(to: startPoint)
+    context.addLine(to: point1)
+    context.addLine(to: point2)
+    context.fillPath()
   }
 }

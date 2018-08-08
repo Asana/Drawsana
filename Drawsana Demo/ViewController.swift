@@ -40,6 +40,7 @@ class ViewController: UIViewController {
   lazy var selectionTool = { return SelectionTool(delegate: self) }()
 
   lazy var tools: [DrawingTool] = { return [
+    ArrowTool(),
     textTool,
     selectionTool,
     EllipseTool(),
@@ -118,6 +119,7 @@ class ViewController: UIViewController {
 
     // Set initial tool to whatever `toolIndex` says
     drawingView.set(tool: tools[toolIndex])
+    drawingView.userSettings.strokeWidth = 20
     applyViewState()
   }
 
