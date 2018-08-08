@@ -13,7 +13,7 @@
     <a title="Drawsana  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Drawsana Docs</a> (49% documented)</p>
+        <p><a href="index.html">Drawsana Docs</a> (48% documented)</p>
         <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -45,7 +45,7 @@
             <a href="Data model.html">Data model</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Data model.html#/s:8Drawsana7DrawingC">Drawing</a>
+                <a href="Classes/Drawing.html">Drawing</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/DrawingOperation.html">DrawingOperation</a>
@@ -123,6 +123,9 @@
                 <a href="Classes/LineShape.html">LineShape</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/LineShape/ArrowStyle.html">– ArrowStyle</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/PenShape.html">PenShape</a>
               </li>
               <li class="nav-group-task">
@@ -139,6 +142,9 @@
           <li class="nav-group-name">
             <a href="Tool implementations.html">Tool implementations</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ArrowTool.html">ArrowTool</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Classes/EllipseTool.html">EllipseTool</a>
               </li>
@@ -187,7 +193,24 @@
 <p>Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.</p>
 
-<p><a href="https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift">View demo</a></p>
+<p><a href="https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift">Demo source code</a></p>
+<h2 id='features' class='heading'>Features</h2>
+<h3 id='tools' class='heading'>Tools</h3>
+
+<ul>
+<li>Pen with line smoothing</li>
+<li>Eraser</li>
+<li>Ellipse, rect, line, arrow</li>
+<li>Selection</li>
+<li>Text</li>
+</ul>
+<h3 id='more' class='heading'>More</h3>
+
+<ul>
+<li>Drawings are <code>Codable</code>, so you can save and load them</li>
+<li>Write your own tools and shapes without forking the library</li>
+<li>Undo/redo</li>
+</ul>
 <h2 id='building-docs' class='heading'>Building docs</h2>
 <pre class="highlight shell"><code>sudo gem install jazzy
 make docs
@@ -197,17 +220,6 @@ pip install ghp-import
 make publish-docs
 open https://stevelandeyasana.github.io/Drawsana
 </code></pre>
-<h2 id='to-do' class='heading'>To do</h2>
-
-<ul>
-<li>Arrows</li>
-<li>Serialization (Codable)</li>
-<li>Selection tool
-
-<ul>
-<li>Apply user styles if they change</li>
-</ul></li>
-</ul>
 
           </section>
         </section>

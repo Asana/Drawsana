@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TextShapeEditingView Class Reference</title>
+    <title>Drawing Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/TextShapeEditingView" class="dashAnchor"></a>
-    <a title="TextShapeEditingView Class Reference"></a>
+    <a name="//apple_ref/swift/Class/Drawing" class="dashAnchor"></a>
+    <a title="Drawing Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Drawsana Docs</a> (48% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Drawsana Reference</a>
         <img id="carat" src="../img/carat.png" />
-        TextShapeEditingView Class Reference
+        Drawing Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -188,25 +188,32 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>TextShapeEditingView</h1>
+            <h1>Drawing</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TextShapeEditingView</span> <span class="p">:</span> <span class="kt">UIView</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Drawing</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Stores list of shapes and size of drawing.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Codable"></a>
+                <a name="//apple_ref/swift/Section/Codable" class="dashAnchor"></a>
+                <a href="#/Codable">
+                  <h3 class="section-name">Codable</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana20TextShapeEditingViewC013deleteControlE0So6UIViewCvp"></a>
-                    <a name="//apple_ref/swift/Property/deleteControlView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana20TextShapeEditingViewC013deleteControlE0So6UIViewCvp">deleteControlView</a>
+                    <a name="/s:s9DecodablePxs7Decoder_p4from_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s9DecodablePxs7Decoder_p4from_tKcfc">init(from:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -214,20 +221,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Upper left &lsquo;delete&rsquo; button for text. You may add any subviews you want,
-set border &amp; background color, etc.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">deleteControlView</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L14">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L44-L57">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -235,9 +240,9 @@ set border &amp; background color, etc.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana20TextShapeEditingViewC022resizeAndRotateControlE0So6UIViewCvp"></a>
-                    <a name="//apple_ref/swift/Property/resizeAndRotateControlView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana20TextShapeEditingViewC022resizeAndRotateControlE0So6UIViewCvp">resizeAndRotateControlView</a>
+                    <a name="/s:8Drawsana7DrawingC20tryDecodingAllShapesys07UnkeyedD9Container_pz_ySayAA5Shape_pSgGc10completiontF"></a>
+                    <a name="//apple_ref/swift/Method/tryDecodingAllShapes(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC20tryDecodingAllShapesys07UnkeyedD9Container_pz_ySayAA5Shape_pSgGc10completiontF">tryDecodingAllShapes(_:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -245,20 +250,24 @@ set border &amp; background color, etc.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Lower right &lsquo;rotate&rsquo; button for text. You may add any subviews you want,
-set border &amp; background color, etc.</p>
+                        <p>If you&rsquo;ve defined your own shape class, override this method. Call super(),
+then do this:</p>
+<pre class="highlight swift"><code><span class="nf">completion</span><span class="p">([</span>
+  <span class="nf">tryDecoding</span><span class="p">(</span><span class="o">&amp;</span><span class="n">container</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="kt">MyShape</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="p">])</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">resizeAndRotateControlView</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tryDecodingAllShapes</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">UnkeyedDecodingContainer</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">([</span><span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">?])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L17">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L69-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -266,70 +275,9 @@ set border &amp; background color, etc.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana20TextShapeEditingViewC018changeWidthControlE0So6UIViewCvp"></a>
-                    <a name="//apple_ref/swift/Property/changeWidthControlView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana20TextShapeEditingViewC018changeWidthControlE0So6UIViewCvp">changeWidthControlView</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Right side handle to change width of text. You may add any subviews you
-want, set border &amp; background color, etc.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">changeWidthControlView</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L20">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8Drawsana20TextShapeEditingViewC04textE0So06UITextE0Cvp"></a>
-                    <a name="//apple_ref/swift/Property/textView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana20TextShapeEditingViewC04textE0So06UITextE0Cvp">textView</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>UITextView</code> that the user interacts with during editing</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">textView</span><span class="p">:</span> <span class="kt">UITextView</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L23">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)initWithCoder:"></a>
-                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)initWithCoder:">init(coder:)</a>
+                    <a name="/s:8Drawsana7DrawingC11tryDecodingxSgs07UnkeyedD9Container_pz_xm4withtAA5ShapeRzlF"></a>
+                    <a name="//apple_ref/swift/Method/tryDecoding(_:with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC11tryDecodingxSgs07UnkeyedD9Container_pz_xm4withtAA5ShapeRzlF">tryDecoding(_:with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -344,12 +292,12 @@ want, set border &amp; background color, etc.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">tryDecoding</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">UnkeyedDecodingContainer</span><span class="p">,</span> <span class="n">with</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L79-L81">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L79-L85">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -357,9 +305,49 @@ want, set border &amp; background color, etc.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)sizeThatFits:"></a>
-                    <a name="//apple_ref/swift/Method/sizeThatFits(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)sizeThatFits:">sizeThatFits(_:)</a>
+                    <a name="/s:s9EncodableP6encodeys7Encoder_p2to_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s9EncodableP6encodeys7Encoder_p2to_tKF">encode(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L87-L91">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Operations"></a>
+                <a name="//apple_ref/swift/Section/Operations" class="dashAnchor"></a>
+                <a href="#/Operations">
+                  <h3 class="section-name">Operations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana7DrawingC3addyAA5Shape_p5shape_tF"></a>
+                    <a name="//apple_ref/swift/Method/add(shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC3addyAA5Shape_p5shape_tF">add(shape:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -374,12 +362,12 @@ want, set border &amp; background color, etc.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">sizeThatFits</span><span class="p">(</span><span class="n">_</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L83-L85">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L95-L98">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -387,9 +375,9 @@ want, set border &amp; background color, etc.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)becomeFirstResponder"></a>
-                    <a name="//apple_ref/swift/Method/becomeFirstResponder()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)becomeFirstResponder">becomeFirstResponder()</a>
+                    <a name="/s:8Drawsana7DrawingC6updateyAA5Shape_p5shape_tF"></a>
+                    <a name="//apple_ref/swift/Method/update(shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC6updateyAA5Shape_p5shape_tF">update(shape:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -404,13 +392,12 @@ want, set border &amp; background color, etc.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">becomeFirstResponder</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L88-L90">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L100-L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -418,9 +405,9 @@ want, set border &amp; background color, etc.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)resignFirstResponder"></a>
-                    <a name="//apple_ref/swift/Method/resignFirstResponder()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Drawsana@objc(cs)TextShapeEditingView(im)resignFirstResponder">resignFirstResponder()</a>
+                    <a name="/s:8Drawsana7DrawingC6removeyAA5Shape_p5shape_tF"></a>
+                    <a name="//apple_ref/swift/Method/remove(shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC6removeyAA5Shape_p5shape_tF">remove(shape:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -435,13 +422,72 @@ want, set border &amp; background color, etc.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">resignFirstResponder</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift#L93-L95">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L104-L107">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana7DrawingC8getShapeAA0D0_pSgSC7CGPointV2at_SbAaE_pcSg6filtertF"></a>
+                    <a name="//apple_ref/swift/Method/getShape(at:filter:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC8getShapeAA0D0_pSgSC7CGPointV2at_SbAaE_pcSg6filtertF">getShape(at:filter:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getShape</span><span class="p">(</span><span class="n">at</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">filter</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L109-L111">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana7DrawingC8getShapexSgxm2of_SC7CGPointV2atSbAA0D0_pcSg6filtertAaJRzlF"></a>
+                    <a name="//apple_ref/swift/Method/getShape(of:at:filter:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC8getShapexSgxm2of_SC7CGPointV2atSbAA0D0_pcSg6filtertAaJRzlF">getShape(of:at:filter:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">getShape</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">at</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">filter</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L113-L118">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

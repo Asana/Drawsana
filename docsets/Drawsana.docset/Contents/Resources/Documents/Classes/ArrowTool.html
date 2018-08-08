@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TextToolDelegate Protocol Reference</title>
+    <title>ArrowTool Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/TextToolDelegate" class="dashAnchor"></a>
-    <a title="TextToolDelegate Protocol Reference"></a>
+    <a name="//apple_ref/swift/Class/ArrowTool" class="dashAnchor"></a>
+    <a title="ArrowTool Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Drawsana Docs</a> (48% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Drawsana Reference</a>
         <img id="carat" src="../img/carat.png" />
-        TextToolDelegate Protocol Reference
+        ArrowTool Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -188,14 +188,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>TextToolDelegate</h1>
+            <h1>ArrowTool</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">TextToolDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ArrowTool</span> <span class="p">:</span> <span class="kt"><a href="../Classes/DrawingToolForShapeWithTwoPoints.html">DrawingToolForShapeWithTwoPoints</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Identical to <code><a href="../Classes/LineTool.html">LineTool</a></code>, but draws an arrow at the end</p>
 
           </section>
           <section class="section task-group-section">
@@ -204,9 +204,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana16TextToolDelegateP04textc11PointForNewB0SC7CGPointVAF06tappedF0_tF"></a>
-                    <a name="//apple_ref/swift/Method/textToolPointForNewText(tappedPoint:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textc11PointForNewB0SC7CGPointVAF06tappedF0_tF">textToolPointForNewText(tappedPoint:)</a>
+                    <a name="/s:8Drawsana9ArrowToolC9makeShapeAA0E0_AA0E13WithTwoPointsAA20UserSettingsApplyingpyF"></a>
+                    <a name="//apple_ref/swift/Method/makeShape()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana9ArrowToolC9makeShapeAA0E0_AA0E13WithTwoPointsAA20UserSettingsApplyingpyF">makeShape()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -214,21 +214,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Given the point where the user tapped, return the point where a text
-shape should be created. You might want to set it to a specific point, or
-make sure it&rsquo;s above the keyboard.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">textToolPointForNewText</span><span class="p">(</span><span class="nv">tappedPoint</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGPoint</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">makeShape</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ShapeType</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L290">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift#L81-L85">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -236,9 +234,9 @@ make sure it&rsquo;s above the keyboard.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana16TextToolDelegateP04textC10DidTapAwayySC7CGPointV11tappedPoint_tF"></a>
-                    <a name="//apple_ref/swift/Method/textToolDidTapAway(tappedPoint:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC10DidTapAwayySC7CGPointV11tappedPoint_tF">textToolDidTapAway(tappedPoint:)</a>
+                    <a name="/s:8Drawsana9ArrowToolC4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana9ArrowToolC4nameSSvp">name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -246,52 +244,19 @@ make sure it&rsquo;s above the keyboard.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>User tapped away from the active text shape. If you give users access to
-the selection tool, you might want to set it as the active tool at this
-point.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">textToolDidTapAway</span><span class="p">(</span><span class="nv">tappedPoint</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L295">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8Drawsana16TextToolDelegateP04textC18WillUseEditingViewyAA0b5ShapehI0CF"></a>
-                    <a name="//apple_ref/swift/Method/textToolWillUseEditingView(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC18WillUseEditingViewyAA0b5ShapehI0CF">textToolWillUseEditingView(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The text tool is about to present a text editing view. You may configure
-it however you like.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">textToolWillUseEditingView</span><span class="p">(</span><span class="n">_</span> <span class="nv">editingView</span><span class="p">:</span> <span class="kt"><a href="../Classes/TextShapeEditingView.html">TextShapeEditingView</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L299">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
