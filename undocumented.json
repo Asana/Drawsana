@@ -23,42 +23,42 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 79,
+      "line": 80,
       "symbol": "Drawing.tryDecoding(_:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 95,
+      "line": 96,
       "symbol": "Drawing.add(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 100,
+      "line": 101,
       "symbol": "Drawing.update(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 104,
+      "line": 105,
       "symbol": "Drawing.remove(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 109,
+      "line": 110,
       "symbol": "Drawing.getShape(at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 113,
+      "line": 114,
       "symbol": "Drawing.getShape(of:at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
