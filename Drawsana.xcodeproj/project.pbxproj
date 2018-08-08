@@ -14,6 +14,8 @@
 		37362D682119025F003E5ACA /* .jazzy.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 37362D672119025F003E5ACA /* .jazzy.yaml */; };
 		37362D6A211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D69211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift */; };
 		37362D6C211B6930003E5ACA /* CGRect+DrawsanaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D6B211B6930003E5ACA /* CGRect+DrawsanaExtensions.swift */; };
+		37362D6F211B7314003E5ACA /* DragHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D6E211B7314003E5ACA /* DragHandler.swift */; };
+		37362D71211B7386003E5ACA /* TextShapeEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D70211B7386003E5ACA /* TextShapeEditingView.swift */; };
 		3762296E2113A9E60034D0E3 /* DrawsanaUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */; };
 		376229722113AAD30034D0E3 /* LineShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229712113AAD30034D0E3 /* LineShape.swift */; };
 		376229742113AAF50034D0E3 /* ShapeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376229732113AAF50034D0E3 /* ShapeTransform.swift */; };
@@ -83,6 +85,8 @@
 		37362D672119025F003E5ACA /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .jazzy.yaml; sourceTree = "<group>"; };
 		37362D69211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+DrawsanaExtensions.swift"; sourceTree = "<group>"; };
 		37362D6B211B6930003E5ACA /* CGRect+DrawsanaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+DrawsanaExtensions.swift"; sourceTree = "<group>"; };
+		37362D6E211B7314003E5ACA /* DragHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragHandler.swift; sourceTree = "<group>"; };
+		37362D70211B7386003E5ACA /* TextShapeEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShapeEditingView.swift; sourceTree = "<group>"; };
 		3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawsanaUtilities.swift; sourceTree = "<group>"; };
 		376229712113AAD30034D0E3 /* LineShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineShape.swift; sourceTree = "<group>"; };
 		376229732113AAF50034D0E3 /* ShapeTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTransform.swift; sourceTree = "<group>"; };
@@ -143,6 +147,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37362D6D211B7305003E5ACA /* Text tool */ = {
+			isa = PBXGroup;
+			children = (
+				3762298A2113D7910034D0E3 /* TextTool.swift */,
+				37362D6E211B7314003E5ACA /* DragHandler.swift */,
+				37362D70211B7386003E5ACA /* TextShapeEditingView.swift */,
+			);
+			path = "Text tool";
+			sourceTree = "<group>";
+		};
 		3762296F2113AA4C0034D0E3 /* Shapes */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +195,7 @@
 				37885E29210A9C69003A918F /* EllipseTool_LineTool_RectTool.swift */,
 				37885E2B210A9C95003A918F /* PenTool_EraserTool.swift */,
 				37885E2D210A9CDA003A918F /* SelectionTool.swift */,
-				3762298A2113D7910034D0E3 /* TextTool.swift */,
+				37362D6D211B7305003E5ACA /* Text tool */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -436,6 +450,7 @@
 				37362D6A211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift in Sources */,
 				376229782113AB770034D0E3 /* EllipseShape.swift in Sources */,
 				376229762113AB6E0034D0E3 /* RectShape.swift in Sources */,
+				37362D6F211B7314003E5ACA /* DragHandler.swift in Sources */,
 				37EB4EF4210649FC00E10461 /* DrawsanaView.swift in Sources */,
 				37362D602118E46F003E5ACA /* DrawingOperationStack.swift in Sources */,
 				3777F2FF21068A78009A9AC5 /* DrawingTool.swift in Sources */,
@@ -443,6 +458,7 @@
 				37885E2C210A9C95003A918F /* PenTool_EraserTool.swift in Sources */,
 				37362D5C21151684003E5ACA /* TextShape.swift in Sources */,
 				376229832113AD6E0034D0E3 /* Drawing.swift in Sources */,
+				37362D71211B7386003E5ACA /* TextShapeEditingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

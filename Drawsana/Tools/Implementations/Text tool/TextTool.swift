@@ -10,19 +10,6 @@ import CoreGraphics
 import UIKit
 
 public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
-  /// When the user drags over the drawing view, this tool uses one of four
-  /// behaviors, determined when the gesture starts.
-  private enum DragType {
-    /// Change the shape's transform.translation
-    case move
-    /// Change the shape's transform.{scale|rotation}
-    case resizeAndRotate
-    /// Change the text's explicit width
-    case changeWidth
-    /// Do nothing during this drag
-    case none
-  }
-
   /// MARK: Protocol requirements
 
   public let isProgressive = false
@@ -34,16 +21,15 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
 
   // MARK: Internal state
 
+  /// The text tool has 3 different behaviors on drag depending on where your
+  /// touch starts. See `DragHandler.swift` for their implementations.
+  private var dragHandler: DragHandler?
   private var selectedShape: TextShape?
-  private var originalTransform: ShapeTransform?
-  private var startPoint: CGPoint?
   private var originalText = ""
-  private var originalWidth: CGFloat?
-  private var originalBoundingRect: CGRect = .zero
-  private var dragType: DragType = .none  // updated by handleDragStart
-  private var maxWidth: CGFloat = 320  // updated from drawing
+  private var maxWidth: CGFloat = 320  // updated from drawing.size
   private weak var shapeUpdater: DrawsanaViewShapeUpdating?
-  private lazy var editingView: TextShapeEditingView = makeTextView()
+  // internal for use by DragHandler subclasses
+  internal lazy var editingView: TextShapeEditingView = makeTextView()
 
   public init(delegate: TextToolDelegate? = nil) {
     self.delegate = delegate
@@ -152,60 +138,23 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
-    guard let shapeInProgress = selectedShape else { return }
-    originalTransform = shapeInProgress.transform
-    startPoint = point
+    guard let shape = selectedShape else { return }
     if case .resizeAndRotate = editingView.getPointArea(point: point) {
-      dragType = .resizeAndRotate
+      dragHandler = ResizeAndRotateHandler(shape: shape, textTool: self)
     } else if case .changeWidth = editingView.getPointArea(point: point) {
-      dragType = .changeWidth
-      originalWidth = shapeInProgress.explicitWidth
-      originalBoundingRect = shapeInProgress.boundingRect
-      shapeInProgress.explicitWidth = shapeInProgress.explicitWidth ?? shapeInProgress.boundingRect.size.width
-    } else if shapeInProgress.hitTest(point: point) {
-      dragType = .move
+      dragHandler = ChangeWidthHandler(shape: shape, textTool: self)
+    } else if shape.hitTest(point: point) {
+      dragHandler = MoveHandler(shape: shape, textTool: self)
     } else {
-      dragType = .none
+      dragHandler = nil
     }
-  }
-
-  private func getResizeAndRotateTransform(originalTransform: ShapeTransform, startPoint: CGPoint, point: CGPoint, selectedShape: ShapeSelectable) -> ShapeTransform {
-    let originalDelta = CGPoint(x: startPoint.x - selectedShape.transform.translation.x, y: startPoint.y - selectedShape.transform.translation.y)
-    let newDelta = CGPoint(x: point.x - selectedShape.transform.translation.x, y: point.y - selectedShape.transform.translation.y)
-    let originalDistance = originalDelta.length
-    let newDistance = newDelta.length
-    let originalAngle = atan2(originalDelta.y, originalDelta.x)
-    let newAngle = atan2(newDelta.y, newDelta.x)
-    let scaleChange = newDistance / originalDistance
-    let angleChange = newAngle - originalAngle
-    return originalTransform.scaled(by: scaleChange).rotated(by: angleChange)
+    dragHandler?.handleDragStart(context: context, point: point)
   }
 
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
-    guard
-      let originalTransform = originalTransform,
-      let shape = selectedShape,
-      let startPoint = startPoint else
-    {
-      return
-    }
-    switch dragType {
-    case .move:
-      let delta = point - startPoint
-      shape.transform = originalTransform.translated(by: delta)
-      updateTextView()
-    case .resizeAndRotate:
-      shape.transform = getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: shape)
-      updateTextView()
-    case .changeWidth:
-      let translatedBoundingRect = shape.boundingRect.applying(
-        CGAffineTransform(translationX: shape.transform.translation.x,
-                          y: shape.transform.translation.y))
-      let distanceFromShapeCenter = (point - translatedBoundingRect.middle).length
-      let desiredWidthInScreenCoordinates = (distanceFromShapeCenter - editingView.changeWidthControlView.frame.size.width / 2) * 2
-      shape.explicitWidth = desiredWidthInScreenCoordinates / shape.transform.scale
-      updateShapeFrame()
-    case .none:
+    if let dragHandler = dragHandler {
+      dragHandler.handleDragContinue(context: context, point: point, velocity: velocity)
+    } else {
       // The pan gesture is super finicky at the start, so add an affordance for
       // dragging over a handle
       switch editingView.getPointArea(point: point) {
@@ -217,57 +166,31 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   }
 
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
-    guard
-      let originalTransform = originalTransform,
-      let shape = selectedShape,
-      let startPoint = startPoint else
-    {
-      return
-    }
-    switch dragType {
-    case .move:
-      let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
-      context.operationStack.apply(operation: ChangeTransformOperation(
-        shape: shape,
-        transform: originalTransform.translated(by: delta),
-        originalTransform: originalTransform))
-    case .resizeAndRotate:
-      context.operationStack.apply(operation: ChangeTransformOperation(
-        shape: shape,
-        transform: getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: shape),
-        originalTransform: originalTransform))
-    case .changeWidth:
-      shape.explicitWidth = (point - shape.boundingRect.middle).length * 2
-      updateTextView()
-      context.operationStack.apply(operation: ChangeExplicitWidthOperation(
-        shape: shape,
-        originalWidth: originalWidth,
-        originalBoundingRect: originalBoundingRect,
-        newWidth: shape.explicitWidth,
-        newBoundingRect: shape.boundingRect))
-    case .none:
-      break
+    if let dragHandler = dragHandler {
+      dragHandler.handleDragEnd(context: context, point: point)
+      self.dragHandler = nil
     }
     context.toolSettings.isPersistentBufferDirty = true
     updateTextView()
   }
 
   public func handleDragCancel(context: ToolOperationContext, point: CGPoint) {
-    context.toolSettings.selectedShape?.transform = originalTransform ?? .identity
-    context.toolSettings.isPersistentBufferDirty = true
-    updateShapeFrame()
+    if let dragHandler = dragHandler {
+      dragHandler.handleDragCancel(context: context, point: point)
+      self.dragHandler = nil
+    }
   }
 
   // MARK: Helpers
 
-  private func updateShapeFrame() {
+  func updateShapeFrame() {
     guard let shape = selectedShape else { return }
     shape.boundingRect = computeBounds()
     shape.boundingRect.origin.x += 2
     updateTextView()
   }
 
-  private func updateTextView() {
+  func updateTextView() {
     guard let shape = selectedShape else { return }
     editingView.textView.text = shape.text
     editingView.textView.font = shape.font
@@ -372,105 +295,4 @@ public protocol TextToolDelegate: AnyObject {
   /// The text tool is about to present a text editing view. You may configure
   /// it however you like.
   func textToolWillUseEditingView(_ editingView: TextShapeEditingView)
-}
-
-// MARK: Interactive view class
-
-public class TextShapeEditingView: UIView {
-  /// Upper left 'delete' button for text. You may add any subviews you want,
-  /// set border & background color, etc.
-  public let deleteControlView = UIView()
-  /// Lower right 'rotate' button for text. You may add any subviews you want,
-  /// set border & background color, etc.
-  public let resizeAndRotateControlView = UIView()
-  /// Right side handle to change width of text. You may add any subviews you
-  /// want, set border & background color, etc.
-  public let changeWidthControlView = UIView()
-
-  /// The `UITextView` that the user interacts with during editing
-  public let textView: UITextView
-
-  enum PointArea {
-    case delete
-    case resizeAndRotate
-    case changeWidth
-    case none
-  }
-
-  init(textView: UITextView) {
-    self.textView = textView
-    super.init(frame: .zero)
-
-    clipsToBounds = false
-    backgroundColor = .clear
-    layer.isOpaque = false
-
-    textView.translatesAutoresizingMaskIntoConstraints = false
-
-    deleteControlView.translatesAutoresizingMaskIntoConstraints = false
-    deleteControlView.backgroundColor = .red
-
-    resizeAndRotateControlView.translatesAutoresizingMaskIntoConstraints = false
-    resizeAndRotateControlView.backgroundColor = .white
-
-    changeWidthControlView.translatesAutoresizingMaskIntoConstraints = false
-    changeWidthControlView.backgroundColor = .yellow
-
-    addSubview(textView)
-    addSubview(deleteControlView)
-    addSubview(resizeAndRotateControlView)
-    addSubview(changeWidthControlView)
-
-    NSLayoutConstraint.activate([
-      textView.leftAnchor.constraint(equalTo: leftAnchor),
-      textView.rightAnchor.constraint(equalTo: rightAnchor),
-      textView.topAnchor.constraint(equalTo: topAnchor),
-      textView.bottomAnchor.constraint(equalTo: bottomAnchor),
-
-      deleteControlView.widthAnchor.constraint(equalToConstant: 36),
-      deleteControlView.heightAnchor.constraint(equalToConstant: 36),
-      deleteControlView.rightAnchor.constraint(equalTo: textView.leftAnchor),
-      deleteControlView.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: -3),
-
-      resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: 36),
-      resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 36),
-      resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
-      resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4),
-
-      changeWidthControlView.widthAnchor.constraint(equalToConstant: 24),
-      changeWidthControlView.heightAnchor.constraint(equalToConstant: 24),
-      changeWidthControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
-      changeWidthControlView.centerYAnchor.constraint(equalTo: textView.centerYAnchor),
-    ])
-  }
-
-  required public init?(coder aDecoder: NSCoder) {
-    fatalError()
-  }
-
-  override public func sizeThatFits(_ size: CGSize) -> CGSize {
-    return textView.sizeThatFits(size)
-  }
-
-  @discardableResult
-  override public func becomeFirstResponder() -> Bool {
-    return textView.becomeFirstResponder()
-  }
-
-  @discardableResult
-  override public func resignFirstResponder() -> Bool {
-    return textView.resignFirstResponder()
-  }
-
-  func getPointArea(point: CGPoint) -> PointArea {
-    if deleteControlView.convert(deleteControlView.bounds, to: superview!).contains(point) {
-      return .delete
-    } else if resizeAndRotateControlView.convert(resizeAndRotateControlView.bounds, to: superview!).contains(point) {
-      return .resizeAndRotate
-    } else if changeWidthControlView.convert(changeWidthControlView.bounds, to: superview!).contains(point) {
-      return .changeWidth
-    } else {
-      return .none
-    }
-  }
 }
