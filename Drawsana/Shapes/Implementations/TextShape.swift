@@ -11,7 +11,7 @@ import UIKit
 
 public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
   private enum CodingKeys: String, CodingKey {
-    case id, transform, text, fontName, fontSize, fillColor, type
+    case id, transform, text, fontName, fontSize, fillColor, type, explicitWidth
   }
 
   public static let type = "Text"
@@ -24,6 +24,7 @@ public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
   public var fontName: String = "Helvetica Neue"
   public var fontSize: CGFloat = 24
   public var fillColor: UIColor = .black
+  public var explicitWidth: CGFloat?
 
   /// Set to true if this text is being shown in some other way, i.e. in a
   /// `UITextView` that the user is editing.
@@ -51,6 +52,7 @@ public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
     fontName = try values.decode(String.self, forKey: .fontName)
     fontSize = try values.decode(CGFloat.self, forKey: .fontSize)
     fillColor = UIColor(hexString: try values.decode(String.self, forKey: .fillColor))
+    explicitWidth = try values.decodeIfPresent(CGFloat.self, forKey: .explicitWidth)
     transform = try values.decode(ShapeTransform.self, forKey: .transform)
   }
 
@@ -62,6 +64,7 @@ public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
     try container.encode(fontName, forKey: .fontName)
     try container.encode(fillColor.hexString, forKey: .fillColor)
     try container.encode(fontSize, forKey: .fontSize)
+    try container.encodeIfPresent(explicitWidth, forKey: .explicitWidth)
     try container.encode(transform, forKey: .transform)
   }
 

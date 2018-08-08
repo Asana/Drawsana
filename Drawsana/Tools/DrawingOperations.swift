@@ -112,3 +112,41 @@ struct EditTextOperation: DrawingOperation {
     drawing.update(shape: shape)
   }
 }
+
+/**
+ Change the user-specified width of a text shape
+ */
+struct ChangeExplicitWidthOperation: DrawingOperation {
+  let shape: TextShape
+  let originalWidth: CGFloat?
+  let originalBoundingRect: CGRect
+  let newWidth: CGFloat?
+  let newBoundingRect: CGRect
+
+  init(
+    shape: TextShape,
+    originalWidth: CGFloat?,
+    originalBoundingRect: CGRect,
+    newWidth: CGFloat?,
+    newBoundingRect: CGRect)
+  {
+    self.shape = shape
+    self.originalWidth = originalWidth
+    self.originalBoundingRect = originalBoundingRect
+    self.newWidth = newWidth
+    self.newBoundingRect = newBoundingRect
+  }
+
+  func apply(drawing: Drawing) {
+    shape.explicitWidth = newWidth
+    shape.boundingRect = newBoundingRect
+    drawing.update(shape: shape)
+  }
+
+  func revert(drawing: Drawing) {
+    shape.explicitWidth = originalWidth
+    shape.boundingRect = originalBoundingRect
+    drawing.update(shape: shape)
+  }
+}
+

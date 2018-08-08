@@ -9,33 +9,41 @@
 import CoreGraphics
 import UIKit
 
-public class TextTool: NSObject, DrawingTool {
-  /// When the user drags over the drawing view, this tool uses one of three
+public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
+  /// When the user drags over the drawing view, this tool uses one of four
   /// behaviors, determined when the gesture starts.
   private enum DragType {
     /// Change the shape's transform.translation
     case move
     /// Change the shape's transform.{scale|rotation}
     case resizeAndRotate
+    /// Change the text's explicit width
+    case changeWidth
+    /// Do nothing during this drag
     case none
   }
 
+  /// MARK: Protocol requirements
+
   public let isProgressive = false
   public let name: String = "Text"
+
+  // MARK: Public properties
+
   public weak var delegate: TextToolDelegate?
 
-  public var shapeInProgress: TextShape?
+  // MARK: Internal state
 
-  var originalTransform: ShapeTransform?
-  var startPoint: CGPoint?
-  var originalText = ""
+  private var shapeInProgress: TextShape?
+  private var originalTransform: ShapeTransform?
+  private var startPoint: CGPoint?
+  private var originalText = ""
+  private var originalWidth: CGFloat?
+  private var originalBoundingRect: CGRect = .zero
   private var dragType: DragType = .none  // updated by handleDragStart
-
   private var maxWidth: CGFloat = 320  // updated from drawing
-  private var maxWidthDueToScreenOverrun: CGFloat? = nil
   private weak var shapeUpdater: DrawsanaViewShapeUpdating?
-
-  public lazy var editingView: TextShapeEditingView = makeTextView()
+  private lazy var editingView: TextShapeEditingView = makeTextView()
 
   public init(delegate: TextToolDelegate? = nil) {
     self.delegate = delegate
@@ -100,8 +108,6 @@ public class TextTool: NSObject, DrawingTool {
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
-    maxWidthDueToScreenOverrun = nil
-
     if let shapeInProgress = self.shapeInProgress {
       handleTapWhenShapeIsActive(context: context, point: point, shape: shapeInProgress)
     } else {
@@ -143,16 +149,17 @@ public class TextTool: NSObject, DrawingTool {
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
     guard let shapeInProgress = shapeInProgress else { return }
+    originalTransform = shapeInProgress.transform
+    startPoint = point
     if case .resizeAndRotate = editingView.getPointArea(point: point) {
       dragType = .resizeAndRotate
-      originalTransform = shapeInProgress.transform
-      startPoint = point
-      maxWidthDueToScreenOverrun = nil
+    } else if case .changeWidth = editingView.getPointArea(point: point) {
+      dragType = .changeWidth
+      originalWidth = shapeInProgress.explicitWidth
+      originalBoundingRect = shapeInProgress.boundingRect
+      shapeInProgress.explicitWidth = shapeInProgress.explicitWidth ?? shapeInProgress.boundingRect.size.width
     } else if shapeInProgress.hitTest(point: point) {
       dragType = .move
-      originalTransform = shapeInProgress.transform
-      startPoint = point
-      maxWidthDueToScreenOverrun = nil
     } else {
       dragType = .none
     }
@@ -173,31 +180,42 @@ public class TextTool: NSObject, DrawingTool {
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
     guard
       let originalTransform = originalTransform,
-      let selectedShape = context.toolSettings.selectedShape,
+      let shape = shapeInProgress,
       let startPoint = startPoint else
     {
       return
     }
     switch dragType {
     case .move:
-      let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
-      selectedShape.transform = originalTransform.translated(by: delta)
+      let delta = point - startPoint
+      shape.transform = originalTransform.translated(by: delta)
+      updateTextView()
     case .resizeAndRotate:
-      selectedShape.transform = getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: selectedShape)
+      shape.transform = getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: shape)
+      updateTextView()
+    case .changeWidth:
+      let translatedBoundingRect = shape.boundingRect.applying(
+        CGAffineTransform(translationX: shape.transform.translation.x,
+                          y: shape.transform.translation.y))
+      let distanceFromShapeCenter = (point - translatedBoundingRect.middle).length
+      let desiredWidthInScreenCoordinates = (distanceFromShapeCenter - editingView.changeWidthControlView.frame.size.width / 2) * 2
+      shape.explicitWidth = desiredWidthInScreenCoordinates / shape.transform.scale
+      updateShapeFrame()
     case .none:
       // The pan gesture is super finicky at the start, so add an affordance for
-      // dragging over the handle
-      if case .resizeAndRotate = editingView.getPointArea(point: point) {
+      // dragging over a handle
+      switch editingView.getPointArea(point: point) {
+      case .resizeAndRotate, .changeWidth:
         handleDragStart(context: context, point: point)
+      default: break
       }
     }
-    updateTextView()
   }
 
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
     guard
       let originalTransform = originalTransform,
-      let selectedShape = context.toolSettings.selectedShape,
+      let shape = shapeInProgress,
       let startPoint = startPoint else
     {
       return
@@ -206,14 +224,23 @@ public class TextTool: NSObject, DrawingTool {
     case .move:
       let delta = CGPoint(x: point.x - startPoint.x, y: point.y - startPoint.y)
       context.operationStack.apply(operation: ChangeTransformOperation(
-        shape: selectedShape,
+        shape: shape,
         transform: originalTransform.translated(by: delta),
         originalTransform: originalTransform))
     case .resizeAndRotate:
       context.operationStack.apply(operation: ChangeTransformOperation(
-        shape: selectedShape,
-        transform: getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: selectedShape),
+        shape: shape,
+        transform: getResizeAndRotateTransform(originalTransform: originalTransform, startPoint: startPoint, point: point, selectedShape: shape),
         originalTransform: originalTransform))
+    case .changeWidth:
+      shape.explicitWidth = (point - shape.boundingRect.middle).length * 2
+      updateTextView()
+      context.operationStack.apply(operation: ChangeExplicitWidthOperation(
+        shape: shape,
+        originalWidth: originalWidth,
+        originalBoundingRect: originalBoundingRect,
+        newWidth: shape.explicitWidth,
+        newBoundingRect: shape.boundingRect))
     case .none:
       break
     }
@@ -253,10 +280,44 @@ public class TextTool: NSObject, DrawingTool {
   }
 
   func computeBounds() -> CGRect {
+    guard let shape = shapeInProgress else { return .zero }
     updateTextView()
-    var textSize = editingView.sizeThatFits(CGSize(width: min(maxWidth, maxWidthDueToScreenOverrun ?? .infinity), height: .infinity))
+
+    // Compute rect naively
+    var textSize = editingView.sizeThatFits(CGSize(width: shape.explicitWidth ?? maxWidth, height: .infinity))
+    if let explicitWidth = shape.explicitWidth {
+      textSize.width = explicitWidth
+    }
     textSize.width = max(textSize.width, 44)
-    return CGRect(origin: CGPoint(x: -textSize.width / 2, y: -textSize.height / 2), size: textSize)
+    let origin = CGPoint(x: -textSize.width / 2, y: -textSize.height / 2)
+    var rect = CGRect(origin: origin, size: textSize)
+
+    // If user has explicitly dragged the text width handle, respect their
+    // decision and don't try to automatically adjust width
+    if shape.explicitWidth != nil {
+      return rect
+    }
+
+    // Compute rect final position (ignore scale and rotation as a shortcut)
+    var transformedRect = rect.applying(CGAffineTransform(translationX: shape.transform.translation.x, y: shape.transform.translation.y))
+
+    // Move rect to the right if it's too far left
+    if transformedRect.origin.x < 0 {
+      rect.size.width += transformedRect.origin.x
+      rect.origin.x -= transformedRect.origin.x
+    }
+
+    // Shrink rect if it's too far right
+    transformedRect = rect.applying(CGAffineTransform(translationX: shape.transform.translation.x, y: shape.transform.translation.y))
+    let widthOverrun = transformedRect.origin.x + transformedRect.size.width - maxWidth
+    if widthOverrun > 0 {
+      rect.size.width -= widthOverrun
+    }
+
+    var finalSize = editingView.sizeThatFits(CGSize(width: rect.size.width, height: .infinity))
+    finalSize.width = max(finalSize.width, 44)
+    let finalOrigin = CGPoint(x: -finalSize.width / 2, y: -finalSize.height / 2)
+    return CGRect(origin: finalOrigin, size: finalSize)
   }
 
   private func makeTextView() -> TextShapeEditingView {
@@ -278,7 +339,6 @@ public class TextTool: NSObject, DrawingTool {
 extension TextTool: UITextViewDelegate {
   public func textViewDidChange(_ textView: UITextView) {
     guard let shape = shapeInProgress else { return }
-    maxWidthDueToScreenOverrun = maxWidth - (shape.boundingRect.origin.x + shape.transform.translation.x)
     shape.text = textView.text ?? ""
     updateShapeFrame()
     shapeUpdater?.shapeDidUpdate(shape: shape)
@@ -319,6 +379,9 @@ public class TextShapeEditingView: UIView {
   /// Lower right 'rotate' button for text. You may add any subviews you want,
   /// set border & background color, etc.
   public let resizeAndRotateControlView = UIView()
+  /// Right side handle to change width of text. You may add any subviews you
+  /// want, set border & background color, etc.
+  public let changeWidthControlView = UIView()
 
   /// The `UITextView` that the user interacts with during editing
   public let textView: UITextView
@@ -326,6 +389,7 @@ public class TextShapeEditingView: UIView {
   enum PointArea {
     case delete
     case resizeAndRotate
+    case changeWidth
     case none
   }
 
@@ -345,9 +409,13 @@ public class TextShapeEditingView: UIView {
     resizeAndRotateControlView.translatesAutoresizingMaskIntoConstraints = false
     resizeAndRotateControlView.backgroundColor = .white
 
+    changeWidthControlView.translatesAutoresizingMaskIntoConstraints = false
+    changeWidthControlView.backgroundColor = .yellow
+
     addSubview(textView)
     addSubview(deleteControlView)
     addSubview(resizeAndRotateControlView)
+    addSubview(changeWidthControlView)
 
     NSLayoutConstraint.activate([
       textView.leftAnchor.constraint(equalTo: leftAnchor),
@@ -364,7 +432,12 @@ public class TextShapeEditingView: UIView {
       resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: 36),
       resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
       resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4),
-      ])
+
+      changeWidthControlView.widthAnchor.constraint(equalToConstant: 24),
+      changeWidthControlView.heightAnchor.constraint(equalToConstant: 24),
+      changeWidthControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
+      changeWidthControlView.centerYAnchor.constraint(equalTo: textView.centerYAnchor),
+    ])
   }
 
   required public init?(coder aDecoder: NSCoder) {
@@ -390,6 +463,8 @@ public class TextShapeEditingView: UIView {
       return .delete
     } else if resizeAndRotateControlView.convert(resizeAndRotateControlView.bounds, to: superview!).contains(point) {
       return .resizeAndRotate
+    } else if changeWidthControlView.convert(changeWidthControlView.bounds, to: superview!).contains(point) {
+      return .changeWidth
     } else {
       return .none
     }

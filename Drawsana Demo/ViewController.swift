@@ -40,13 +40,13 @@ class ViewController: UIViewController {
   lazy var selectionTool = { return SelectionTool(delegate: self) }()
 
   lazy var tools: [DrawingTool] = { return [
-    ArrowTool(),
     textTool,
     selectionTool,
     EllipseTool(),
     PenTool(),
     EraserTool(),
     LineTool(),
+    ArrowTool(),
     RectTool(),
   ] }()
   var toolIndex = 0
