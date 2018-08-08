@@ -26,12 +26,20 @@ class ViewController: UIViewController {
   let imageView = UIImageView(image: UIImage(named: "demo"))
   let undoButton = UIButton()
   let redoButton = UIButton()
-  let viewButton = UIButton()
+  let viewFinalImageButton = UIButton()
   let strokeColorButton = UIButton()
   let fillColorButton = UIButton()
-  let strokeButton = UIButton()
+  let strokeWidthButton = UIButton()
   lazy var toolbarStackView = {
-    return UIStackView(arrangedSubviews: [undoButton, redoButton, strokeColorButton, fillColorButton, toolButton, viewButton])
+    return UIStackView(arrangedSubviews: [
+      undoButton,
+      redoButton,
+      strokeColorButton,
+      fillColorButton,
+      strokeWidthButton,
+      toolButton,
+      viewFinalImageButton,
+    ])
   }()
 
   /// Instance of `TextTool` for which we are the delegate, so we can respond
@@ -62,6 +70,13 @@ class ViewController: UIViewController {
   var strokeColorIndex = 0
   var fillColorIndex = 2
 
+  let strokeWidths: [CGFloat] = [
+    5,
+    10,
+    20,
+  ]
+  var strokeWidthIndex = 0
+
   // Just AutoLayout code here
   override func loadView() {
     self.view = UIView()
@@ -79,9 +94,9 @@ class ViewController: UIViewController {
     redoButton.setTitle(">", for: .normal)
     redoButton.addTarget(drawingView.operationStack, action: #selector(DrawingOperationStack.redo), for: .touchUpInside)
 
-    viewButton.translatesAutoresizingMaskIntoConstraints = false
-    viewButton.setTitle("👁", for: .normal)
-    viewButton.addTarget(self, action: #selector(ViewController.viewImage(_:)), for: .touchUpInside)
+    viewFinalImageButton.translatesAutoresizingMaskIntoConstraints = false
+    viewFinalImageButton.setTitle("👁", for: .normal)
+    viewFinalImageButton.addTarget(self, action: #selector(ViewController.viewImage(_:)), for: .touchUpInside)
 
     strokeColorButton.translatesAutoresizingMaskIntoConstraints = false
     strokeColorButton.addTarget(self, action: #selector(ViewController.cycleStrokeColor(_:)), for: .touchUpInside)
@@ -92,6 +107,11 @@ class ViewController: UIViewController {
     fillColorButton.addTarget(self, action: #selector(ViewController.cycleFillColor(_:)), for: .touchUpInside)
     fillColorButton.layer.borderColor = UIColor.white.cgColor
     fillColorButton.layer.borderWidth = 0.5
+
+    strokeWidthButton.translatesAutoresizingMaskIntoConstraints = false
+    strokeWidthButton.addTarget(self, action: #selector(ViewController.cycleStrokeWidth(_:)), for: .touchUpInside)
+    strokeWidthButton.layer.borderColor = UIColor.white.cgColor
+    strokeWidthButton.layer.borderWidth = 0.5
 
     toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
     toolbarStackView.axis = .horizontal
@@ -189,6 +209,12 @@ class ViewController: UIViewController {
     applyViewState()
   }
 
+  @objc private func cycleStrokeWidth(_ sender: Any?) {
+    strokeWidthIndex = (strokeWidthIndex + 1) % strokeWidths.count
+    drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
+    applyViewState()
+  }
+
   /// Update button states to reflect undo stack and user settings
   private func applyViewState() {
     undoButton.isEnabled = drawingView.operationStack.canUndo
@@ -199,6 +225,7 @@ class ViewController: UIViewController {
 
     strokeColorButton.setTitle(colors[strokeColorIndex] == nil ? "x" : "", for: .normal)
     fillColorButton.setTitle(colors[fillColorIndex] == nil ? "x" : "", for: .normal)
+    strokeWidthButton.setTitle("\(Int(strokeWidths[strokeWidthIndex]))", for: .normal)
 
     for button in [undoButton, redoButton] {
       button.alpha = button.isEnabled ? 1 : 0.5
