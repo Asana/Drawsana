@@ -56,7 +56,7 @@ public class EllipseShape:
     strokeColor = UIColor(hexString: try values.decode(String.self, forKey: .strokeColor))
     fillColor = UIColor(hexString: try values.decode(String.self, forKey: .fillColor))
     strokeWidth = try values.decode(CGFloat.self, forKey: .strokeWidth)
-    transform = try values.decode(ShapeTransform.self, forKey: .transform)
+    transform = try values.decodeIfPresent(ShapeTransform.self, forKey: .transform) ?? .identity
 
     capStyle = CGLineCap(rawValue: try values.decodeIfPresent(Int32.self, forKey: .capStyle) ?? CGLineCap.round.rawValue)!
     joinStyle = CGLineJoin(rawValue: try values.decodeIfPresent(Int32.self, forKey: .joinStyle) ?? CGLineJoin.round.rawValue)!
@@ -73,7 +73,10 @@ public class EllipseShape:
     try container.encode(strokeColor?.hexString, forKey: .strokeColor)
     try container.encode(fillColor?.hexString, forKey: .fillColor)
     try container.encode(strokeWidth, forKey: .strokeWidth)
-    try container.encode(transform, forKey: .transform)
+
+    if !transform.isIdentity {
+      try container.encode(transform, forKey: .transform)
+    }
     
     if capStyle != .round {
       try container.encode(capStyle.rawValue, forKey: .capStyle)
@@ -83,6 +86,10 @@ public class EllipseShape:
     }
     try container.encodeIfPresent(dashPhase, forKey: .dashPhase)
     try container.encodeIfPresent(dashLengths, forKey: .dashLengths)
+  }
+
+  public func encodeSelf() throws -> Data {
+    return try JSONEncoder().encode(self)
   }
 
   public func render(in context: CGContext) {

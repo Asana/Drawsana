@@ -16,9 +16,3 @@ pip install ghp-import
 make publish-docs
 open https://stevelandeyasana.github.io/Drawsana
 ```
-
-## To do
-
-* Serialization (Codable)
-* Selection tool
-  * Apply user styles if they change

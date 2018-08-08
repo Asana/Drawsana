@@ -33,7 +33,9 @@ public class DrawsanaView: UIView {
 
   private let toolSettings = ToolSettings(selectedShape: nil, interactiveView: nil, isPersistentBufferDirty: false)
 
-  public lazy var drawing: Drawing = { return Drawing(size: bounds.size, delegate: self) }()
+  public var drawing: Drawing = Drawing(size: CGSize(width: 320, height: 320)) {
+    didSet { drawing.delegate = self }
+  }
 
   /// Manages the undo stack. You may become this object's delegate
   /// (`DrawingOperationStackDelegate`) to be notified when undo/redo become
@@ -109,6 +111,7 @@ public class DrawsanaView: UIView {
   }
 
   private func commonInit() {
+    drawing.delegate = self
     toolSettings.delegate = self
     userSettings.delegate = self
     isUserInteractionEnabled = true

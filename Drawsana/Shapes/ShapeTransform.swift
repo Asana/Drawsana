@@ -21,6 +21,11 @@ public struct ShapeTransform: Codable {
 }
 
 extension ShapeTransform {
+  /// Returns `true` iff this shape has zero translation, zero rotation, and 1 scale
+  public var isIdentity: Bool {
+    return translation.x == 0 && translation.y == 0 && rotation == 0 && scale == 1
+  }
+
   /// Representation of this transform as a `CGAffineTransform`
   public var affineTransform: CGAffineTransform {
     return CGAffineTransform(translationX: translation.x, y: translation.y).rotated(by: rotation).scaledBy(x: scale, y: scale)

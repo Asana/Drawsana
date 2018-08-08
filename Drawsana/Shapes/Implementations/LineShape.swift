@@ -55,7 +55,7 @@ public class LineShape:
     strokeColor = UIColor(hexString: try values.decode(String.self, forKey: .strokeColor))
     strokeWidth = try values.decode(CGFloat.self, forKey: .strokeWidth)
     arrowStyle = try values.decodeIfPresent(ArrowStyle.self, forKey: .arrowStyle)
-    transform = try values.decode(ShapeTransform.self, forKey: .transform)
+    transform = try values.decodeIfPresent(ShapeTransform.self, forKey: .transform) ?? .identity
 
     capStyle = CGLineCap(rawValue: try values.decodeIfPresent(Int32.self, forKey: .capStyle) ?? CGLineCap.round.rawValue)!
     joinStyle = CGLineJoin(rawValue: try values.decodeIfPresent(Int32.self, forKey: .joinStyle) ?? CGLineJoin.round.rawValue)!
@@ -72,7 +72,10 @@ public class LineShape:
     try container.encode(strokeColor.hexString, forKey: .strokeColor)
     try container.encode(strokeWidth, forKey: .strokeWidth)
     try container.encodeIfPresent(arrowStyle, forKey: .arrowStyle)
-    try container.encode(transform, forKey: .transform)
+
+    if !transform.isIdentity {
+      try container.encode(transform, forKey: .transform)
+    }
 
     if capStyle != .round {
       try container.encode(capStyle.rawValue, forKey: .capStyle)
@@ -82,6 +85,10 @@ public class LineShape:
     }
     try container.encodeIfPresent(dashPhase, forKey: .dashPhase)
     try container.encodeIfPresent(dashLengths, forKey: .dashLengths)
+  }
+
+  public func encodeSelf() throws -> Data {
+    return try JSONEncoder().encode(self)
   }
 
   public func render(in context: CGContext) {

@@ -96,7 +96,7 @@ class ViewController: UIViewController {
 
     viewFinalImageButton.translatesAutoresizingMaskIntoConstraints = false
     viewFinalImageButton.setTitle("👁", for: .normal)
-    viewFinalImageButton.addTarget(self, action: #selector(ViewController.viewImage(_:)), for: .touchUpInside)
+    viewFinalImageButton.addTarget(self, action: #selector(ViewController.viewFinalImage(_:)), for: .touchUpInside)
 
     strokeColorButton.translatesAutoresizingMaskIntoConstraints = false
     strokeColorButton.addTarget(self, action: #selector(ViewController.cycleStrokeColor(_:)), for: .touchUpInside)
@@ -183,7 +183,12 @@ class ViewController: UIViewController {
   }
 
   /// Show rendered image in a separate view
-  @objc private func viewImage(_ sender: Any?) {
+  @objc private func viewFinalImage(_ sender: Any?) {
+    // Dump JSON to console just to demonstrate
+    let jsonEncoder = JSONEncoder()
+    jsonEncoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+    print(String(data: try! jsonEncoder.encode(drawingView.drawing), encoding: .utf8)!)
+
     guard
       let image = drawingView.render(over: imageView.image),
       let data = UIImageJPEGRepresentation(image, 0.75),

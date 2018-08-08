@@ -8,10 +8,27 @@
 
 import CoreGraphics
 
+struct AnyEncodable: Encodable {
+  let base: Encodable
+
+  func encode(to encoder: Encoder) throws {
+    try base.encode(to: encoder)
+  }
+}
+
 /**
  Stores list of shapes and size of drawing.
  */
-public class Drawing {
+public class Drawing: Codable {
+  private enum CodingKeys: String, CodingKey {
+    case size
+    case shapes
+  }
+
+  private enum ShapeTypeCodingKey: String, CodingKey {
+    case type
+  }
+
   weak var delegate: DrawingDelegate?
 
   var size: CGSize
@@ -22,25 +39,78 @@ public class Drawing {
     self.delegate = delegate
   }
 
-  func add(shape: Shape) {
+  // MARK: Codable
+
+  public required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    size = try container.decode(CGSize.self, forKey: .size)
+
+    shapes = []
+    var shapeIter = try container.nestedUnkeyedContainer(forKey: .shapes)
+    while !shapeIter.isAtEnd {
+      tryDecodingAllShapes(
+        &shapeIter,
+        completion: {
+          shapes.append(contentsOf: $0.compactMap({ $0 }))
+        })
+    }
+  }
+
+  /**
+   If you've defined your own shape class, override this method. Call super(),
+   then do this:
+
+   ```swift
+   completion([
+     tryDecoding(&container, with: MyShape.self)
+   ])
+   ```
+   */
+  public func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer, completion: ([Shape?]) -> Void) {
+    completion([
+      tryDecoding(&container, with: EllipseShape.self),
+      tryDecoding(&container, with: LineShape.self),
+      tryDecoding(&container, with: PenShape.self),
+      tryDecoding(&container, with: RectShape.self),
+      tryDecoding(&container, with: TextShape.self),
+    ])
+  }
+
+  public func tryDecoding<T: Shape & Decodable>(_ container: inout UnkeyedDecodingContainer, with type: T.Type) -> T? {
+    do {
+      return try container.decode(T.self)
+    } catch {
+      return nil
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(size, forKey: .size)
+    try container.encode(shapes.map({ AnyEncodable(base: $0) }), forKey: .shapes)
+  }
+
+  // MARK: Operations
+
+  public func add(shape: Shape) {
     shapes.append(shape)
     delegate?.drawingDidAddShape(shape)
   }
 
-  func update(shape: Shape) {
+  public func update(shape: Shape) {
     delegate?.drawingDidUpdateShape(shape)
   }
 
-  func remove(shape: Shape) {
+  public func remove(shape: Shape) {
     shapes = shapes.filter({ $0 !== shape })
     delegate?.drawingDidRemoveShape(shape)
   }
 
-  func getShape(at point: CGPoint, filter: ((Shape) -> Bool)? = nil) -> Shape? {
+  public func getShape(at point: CGPoint, filter: ((Shape) -> Bool)? = nil) -> Shape? {
     return shapes.filter({ $0.hitTest(point: point) && filter?($0) != false }).first
   }
 
-  func getShape<T: Shape>(of type: T.Type, at point: CGPoint, filter: ((Shape) -> Bool)? = nil) -> T? {
+  public func getShape<T: Shape>(of type: T.Type, at point: CGPoint, filter: ((Shape) -> Bool)? = nil) -> T? {
     return shapes
       .compactMap({ $0 as? T })
       .filter({ $0.hitTest(point: point) })
