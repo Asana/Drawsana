@@ -34,7 +34,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
 
   // MARK: Internal state
 
-  private var shapeInProgress: TextShape?
+  private var selectedShape: TextShape?
   private var originalTransform: ShapeTransform?
   private var startPoint: CGPoint?
   private var originalText = ""
@@ -58,7 +58,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
     maxWidth = max(maxWidth, context.drawing.size.width)
     context.toolSettings.interactiveView = editingView
     shapeUpdater?.shapeDidUpdate(shape: shape)
-    shapeInProgress = shape
+    selectedShape = shape
     updateShapeFrame()
     // set toolSettings.selectedShape after computing frame so initial selection
     // rect is accurate
@@ -70,7 +70,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   /// If shape text has changed, notify operation stack so that undo works
   /// properly
   private func applyTextEditingOperation(context: ToolOperationContext) {
-    if let shape = shapeInProgress {
+    if let shape = selectedShape {
       if originalText != shape.text {
         context.operationStack.apply(operation: EditTextOperation(shape: shape, originalText: originalText, text: shape.text))
         originalText = shape.text
@@ -82,17 +82,21 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   }
 
   private func applyRemoveShapeOperation(context: ToolOperationContext) {
-    guard let shape = shapeInProgress else { return }
+    guard let shape = selectedShape else { return }
     editingView.resignFirstResponder()
     shape.isBeingEdited = false
     context.operationStack.apply(operation: RemoveShapeOperation(shape: shape))
-    shapeInProgress = nil
+    selectedShape = nil
     context.toolSettings.selectedShape = nil
     context.toolSettings.isPersistentBufferDirty = true
     context.toolSettings.interactiveView = nil
   }
 
   // MARK: Tool lifecycle
+
+  public func apply(userSettings: UserSettings) {
+    selectedShape?.apply(userSettings: userSettings)
+  }
 
   public func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) {
     self.shapeUpdater = shapeUpdater
@@ -108,7 +112,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
-    if let shapeInProgress = self.shapeInProgress {
+    if let shapeInProgress = self.selectedShape {
       handleTapWhenShapeIsActive(context: context, point: point, shape: shapeInProgress)
     } else {
       handleTapWhenNoShapeIsActive(context: context, point: point)
@@ -123,7 +127,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
       // TODO: forward tap to text view
     } else {
       applyTextEditingOperation(context: context)
-      self.shapeInProgress = nil
+      self.selectedShape = nil
       context.toolSettings.selectedShape = nil
       context.toolSettings.interactiveView?.resignFirstResponder()
       context.toolSettings.interactiveView = nil
@@ -139,7 +143,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
     } else {
       let newShape = TextShape()
       newShape.apply(userSettings: context.userSettings)
-      self.shapeInProgress = newShape
+      self.selectedShape = newShape
       newShape.transform.translation = delegate?.textToolPointForNewText(tappedPoint: point) ?? point
       beginEditing(shape: newShape, context: context)
       updateShapeFrame()
@@ -148,7 +152,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
-    guard let shapeInProgress = shapeInProgress else { return }
+    guard let shapeInProgress = selectedShape else { return }
     originalTransform = shapeInProgress.transform
     startPoint = point
     if case .resizeAndRotate = editingView.getPointArea(point: point) {
@@ -180,7 +184,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
     guard
       let originalTransform = originalTransform,
-      let shape = shapeInProgress,
+      let shape = selectedShape,
       let startPoint = startPoint else
     {
       return
@@ -215,7 +219,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
     guard
       let originalTransform = originalTransform,
-      let shape = shapeInProgress,
+      let shape = selectedShape,
       let startPoint = startPoint else
     {
       return
@@ -257,14 +261,14 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   // MARK: Helpers
 
   private func updateShapeFrame() {
-    guard let shape = shapeInProgress else { return }
+    guard let shape = selectedShape else { return }
     shape.boundingRect = computeBounds()
     shape.boundingRect.origin.x += 2
     updateTextView()
   }
 
   private func updateTextView() {
-    guard let shape = shapeInProgress else { return }
+    guard let shape = selectedShape else { return }
     editingView.textView.text = shape.text
     editingView.textView.font = shape.font
     editingView.textView.textColor = shape.fillColor
@@ -280,7 +284,7 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
   }
 
   func computeBounds() -> CGRect {
-    guard let shape = shapeInProgress else { return .zero }
+    guard let shape = selectedShape else { return .zero }
     updateTextView()
 
     // Compute rect naively
@@ -338,18 +342,18 @@ public class TextTool: NSObject, DrawingTool, UserSettingsApplying {
 
 extension TextTool: UITextViewDelegate {
   public func textViewDidChange(_ textView: UITextView) {
-    guard let shape = shapeInProgress else { return }
+    guard let shape = selectedShape else { return }
     shape.text = textView.text ?? ""
     updateShapeFrame()
     shapeUpdater?.shapeDidUpdate(shape: shape)
   }
 
   public func textViewDidBeginEditing(_ textView: UITextView) {
-    shapeInProgress?.isBeingEdited = true
+    selectedShape?.isBeingEdited = true
   }
 
   public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-    shapeInProgress?.isBeingEdited = false
+    selectedShape?.isBeingEdited = false
     return true
   }
 }
