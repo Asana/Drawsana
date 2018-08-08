@@ -69,10 +69,10 @@ public class TextShapeEditingView: UIView {
       resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
       resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4),
 
-      changeWidthControlView.widthAnchor.constraint(equalToConstant: 24),
-      changeWidthControlView.heightAnchor.constraint(equalToConstant: 24),
-      changeWidthControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5),
-      changeWidthControlView.centerYAnchor.constraint(equalTo: textView.centerYAnchor),
+      changeWidthControlView.widthAnchor.constraint(equalToConstant: 36),
+      changeWidthControlView.heightAnchor.constraint(equalToConstant: 36),
+      changeWidthControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: -5),
+      changeWidthControlView.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: -4),
       ])
   }
 
@@ -95,11 +95,12 @@ public class TextShapeEditingView: UIView {
   }
 
   func getPointArea(point: CGPoint) -> PointArea {
-    if deleteControlView.convert(deleteControlView.bounds, to: superview!).contains(point) {
+    guard let superview = superview else { return .none }
+    if deleteControlView.convert(deleteControlView.bounds, to: superview).contains(point) {
       return .delete
-    } else if resizeAndRotateControlView.convert(resizeAndRotateControlView.bounds, to: superview!).contains(point) {
+    } else if resizeAndRotateControlView.convert(resizeAndRotateControlView.bounds, to: superview).contains(point) {
       return .resizeAndRotate
-    } else if changeWidthControlView.convert(changeWidthControlView.bounds, to: superview!).contains(point) {
+    } else if changeWidthControlView.convert(changeWidthControlView.bounds, to: superview).contains(point) {
       return .changeWidth
     } else {
       return .none

@@ -73,6 +73,7 @@ public class Drawing: Codable {
     multiDecoder.tryDecoding(RectShape.self)
     multiDecoder.tryDecoding(TextShape.self)
     shapeDecoder?(multiDecoder)
+    container = multiDecoder.container
     return multiDecoder.results
   }
 

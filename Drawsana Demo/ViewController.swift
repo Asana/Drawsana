@@ -187,7 +187,12 @@ class ViewController: UIViewController {
     // Dump JSON to console just to demonstrate
     let jsonEncoder = JSONEncoder()
     jsonEncoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-    print(String(data: try! jsonEncoder.encode(drawingView.drawing), encoding: .utf8)!)
+    let jsonData = try! jsonEncoder.encode(drawingView.drawing)
+    print(String(data: jsonData, encoding: .utf8)!)
+
+    // Decode as a sanity check in lieu of unit tests
+    let jsonDecoder = JSONDecoder()
+    let _ = try! jsonDecoder.decode(Drawing.self, from: jsonData)
 
     guard
       let image = drawingView.render(over: imageView.image),

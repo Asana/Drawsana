@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3706B15A211B972A00D41622 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3706B159211B972A00D41622 /* LICENSE */; };
+		3706B15C211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706B15B211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift */; };
 		37362D5C21151684003E5ACA /* TextShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5B21151684003E5ACA /* TextShape.swift */; };
 		37362D5E2118D8A3003E5ACA /* ToolSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5D2118D8A3003E5ACA /* ToolSettings.swift */; };
 		37362D602118E46F003E5ACA /* DrawingOperationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */; };
@@ -79,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		3706B159211B972A00D41622 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3706B15B211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+DrawsanaExtensions.swift"; sourceTree = "<group>"; };
 		37362D5B21151684003E5ACA /* TextShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShape.swift; sourceTree = "<group>"; };
 		37362D5D2118D8A3003E5ACA /* ToolSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolSettings.swift; sourceTree = "<group>"; };
 		37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingOperationStack.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				3762297C2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift */,
 				37362D6B211B6930003E5ACA /* CGRect+DrawsanaExtensions.swift */,
+				3706B15B211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift */,
 				37362D69211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift */,
 			);
 			path = Extensions;
@@ -456,6 +459,7 @@
 				3762298B2113D7910034D0E3 /* TextTool.swift in Sources */,
 				376229742113AAF50034D0E3 /* ShapeTransform.swift in Sources */,
 				37885E2A210A9C69003A918F /* EllipseTool_LineTool_RectTool.swift in Sources */,
+				3706B15C211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift in Sources */,
 				376229722113AAD30034D0E3 /* LineShape.swift in Sources */,
 				37885E2E210A9CDA003A918F /* SelectionTool.swift in Sources */,
 				37362D622118EE98003E5ACA /* DrawingOperations.swift in Sources */,

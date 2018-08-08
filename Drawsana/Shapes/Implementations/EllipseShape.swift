@@ -53,8 +53,10 @@ public class EllipseShape:
     id = try values.decode(String.self, forKey: .id)
     a = try values.decode(CGPoint.self, forKey: .a)
     b = try values.decode(CGPoint.self, forKey: .b)
-    strokeColor = UIColor(hexString: try values.decode(String.self, forKey: .strokeColor))
-    fillColor = UIColor(hexString: try values.decode(String.self, forKey: .fillColor))
+    
+    strokeColor = try values.decodeColorIfPresent(forKey: .strokeColor)
+    fillColor = try values.decodeColorIfPresent(forKey: .fillColor)
+
     strokeWidth = try values.decode(CGFloat.self, forKey: .strokeWidth)
     transform = try values.decodeIfPresent(ShapeTransform.self, forKey: .transform) ?? .identity
 
