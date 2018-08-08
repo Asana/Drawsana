@@ -14,7 +14,7 @@
     <a title="Drawing Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Drawsana Docs</a> (48% documented)</p>
+        <p><a href="../index.html">Drawsana Docs</a> (49% documented)</p>
         <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -179,6 +179,9 @@
             <a href="../Other Classes.html">Other Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/MultiDecoder.html">MultiDecoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/TextShapeEditingView.html">TextShapeEditingView</a>
               </li>
             </ul>
@@ -199,6 +202,108 @@
 
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana7DrawingC4sizeSC6CGSizeVvp"></a>
+                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC4sizeSC6CGSizeVvp">size</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana7DrawingC6shapesSayAA5Shape_pGvp"></a>
+                    <a name="//apple_ref/swift/Property/shapes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC6shapesSayAA5Shape_pGvp">shapes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">shapes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana7DrawingC12shapeDecoderyAA05MultiD0CyAA5Shape_pGcSgvp"></a>
+                    <a name="//apple_ref/swift/Property/shapeDecoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC12shapeDecoderyAA05MultiD0CyAA5Shape_pGcSgvp">shapeDecoder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>You must set this property if you use any shapes other than the built-in ones
+and you also want to use the <code>Codable</code> features of Drawsana. It&rsquo;s simple:</p>
+<pre class="highlight swift"><code><span class="n">drawingView</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">shapeDecoder</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nv">$0</span><span class="o">.</span><span class="nf">tryDecoding</span><span class="p">(</span><span class="kt">MyShape</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>  <span class="c1">// repeat for each custom shape class</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>This is needed because there is no way to use <code>Decodable</code> with a dynamic
+list of types.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shapeDecoder</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Classes/MultiDecoder.html">MultiDecoder</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Codable"></a>
@@ -232,7 +337,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L44-L57">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L51-L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -240,9 +345,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana7DrawingC20tryDecodingAllShapesys07UnkeyedD9Container_pz_ySayAA5Shape_pSgGc10completiontF"></a>
-                    <a name="//apple_ref/swift/Method/tryDecodingAllShapes(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana7DrawingC20tryDecodingAllShapesys07UnkeyedD9Container_pz_ySayAA5Shape_pSgGc10completiontF">tryDecodingAllShapes(_:completion:)</a>
+                    <a name="/s:8Drawsana7DrawingC20tryDecodingAllShapesSayAA5Shape_pGs07UnkeyedD9Container_pzF"></a>
+                    <a name="//apple_ref/swift/Method/tryDecodingAllShapes(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana7DrawingC20tryDecodingAllShapesSayAA5Shape_pGs07UnkeyedD9Container_pzF">tryDecodingAllShapes(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -250,24 +355,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>If you&rsquo;ve defined your own shape class, override this method. Call super(),
-then do this:</p>
-<pre class="highlight swift"><code><span class="nf">completion</span><span class="p">([</span>
-  <span class="nf">tryDecoding</span><span class="p">(</span><span class="o">&amp;</span><span class="n">container</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="kt">MyShape</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
-<span class="p">])</span>
-</code></pre>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tryDecodingAllShapes</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">UnkeyedDecodingContainer</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">([</span><span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">?])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tryDecodingAllShapes</span><span class="p">(</span><span class="n">_</span> <span class="nv">container</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">UnkeyedDecodingContainer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L69-L77">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L68-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

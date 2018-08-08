@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ShapeSelectable Protocol Reference</title>
+    <title>MultiDecoder Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/ShapeSelectable" class="dashAnchor"></a>
-    <a title="ShapeSelectable Protocol Reference"></a>
+    <a name="//apple_ref/swift/Class/MultiDecoder" class="dashAnchor"></a>
+    <a title="MultiDecoder Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Drawsana Docs</a> (49% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Drawsana Reference</a>
         <img id="carat" src="../img/carat.png" />
-        ShapeSelectable Protocol Reference
+        MultiDecoder Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -191,18 +191,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ShapeSelectable</h1>
+            <h1>MultiDecoder</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ShapeSelectable</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/ShapeWithTransform.html">ShapeWithTransform</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MultiDecoder</span><span class="o">&lt;</span><span class="kt">ResultType</span><span class="o">&gt;</span></code></pre>
 
                 </div>
               </div>
-            <p>Enhancement to <code><a href="../Protocols/Shape.html">Shape</a></code> protocol that enforces requirements necessary for a
-shape to be used with the selection tool. This includes
-<code><a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a></code> to render the selection rect around the shape, and
-<code><a href="../Protocols/ShapeWithTransform.html">ShapeWithTransform</a></code> to allow the shape to be moved from its original
-position</p>
+            <p>Simple pattern for trying to decode array elements as multiple types.</p>
 
           </section>
           <section class="section task-group-section">
@@ -211,31 +207,30 @@ position</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana5ShapeP7hitTestSbSC7CGPointV5point_tF"></a>
-                    <a name="//apple_ref/swift/Method/hitTest(point:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana5ShapeP7hitTestSbSC7CGPointV5point_tF">hitTest(point:)</a>
+                    <a name="/s:8Drawsana12MultiDecoderC11tryDecodingyqd__mAA5ShapeRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/tryDecoding(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana12MultiDecoderC11tryDecodingyqd__mAA5ShapeRd__lF">tryDecoding(_:)</a>
                     </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Adds the decoded result to <code>results</code> if decoding succeeds, otherwise does
+nothing.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hitTest</span><span class="p">(</span><span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">tryDecoding</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Shape.swift#L67-L69">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L150-L155">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

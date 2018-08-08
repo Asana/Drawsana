@@ -13,7 +13,7 @@
     <a title="Drawsana  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Drawsana Docs</a> (48% documented)</p>
+        <p><a href="index.html">Drawsana Docs</a> (49% documented)</p>
         <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -178,6 +178,9 @@
             <a href="Other Classes.html">Other Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/MultiDecoder.html">MultiDecoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/TextShapeEditingView.html">TextShapeEditingView</a>
               </li>
             </ul>
@@ -194,8 +197,12 @@
 let users scribble over images, add shapes and text, and even make your own tools.</p>
 
 <p><a href="https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift">Demo source code</a></p>
+
+<p><a href="https://stevelandeyasana.github.io/Drawsana">Docs</a></p>
 <h2 id='features' class='heading'>Features</h2>
-<h3 id='tools' class='heading'>Tools</h3>
+
+<ul>
+<li>Built-in tools
 
 <ul>
 <li>Pen with line smoothing</li>
@@ -203,14 +210,15 @@ let users scribble over images, add shapes and text, and even make your own tool
 <li>Ellipse, rect, line, arrow</li>
 <li>Selection</li>
 <li>Text</li>
-</ul>
-<h3 id='more' class='heading'>More</h3>
-
-<ul>
-<li>Drawings are <code>Codable</code>, so you can save and load them</li>
-<li>Write your own tools and shapes without forking the library</li>
+</ul></li>
 <li>Undo/redo</li>
+<li>Drawings are <code>Codable</code>, so you can save and load them</li>
+<li>Extensible—make your own shapes and tools without forking the library</li>
 </ul>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>Add <code>Asana/Drawsana</code> to your Cartfile and update your project like you would for any other
+Carthage framework, or clone the source code and add the project to your workspace.</p>
 <h2 id='building-docs' class='heading'>Building docs</h2>
 <pre class="highlight shell"><code>sudo gem install jazzy
 make docs
