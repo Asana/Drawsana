@@ -62,3 +62,4 @@ custom_categories:
   - SelectionToolDelegate
   - TextTool
   - TextToolDelegate
+  - TextShapeEditingView
