@@ -13,7 +13,7 @@
     <a title="Drawsana  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Drawsana Docs</a> (49% documented)</p>
+        <p><a href="index.html">Drawsana Docs</a> (50% documented)</p>
         <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -219,6 +219,47 @@ let users scribble over images, add shapes and text, and even make your own tool
 
 <p>Add <code>Asana/Drawsana</code> to your Cartfile and update your project like you would for any other
 Carthage framework, or clone the source code and add the project to your workspace.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Drawsana</span>
+
+<span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">drawsanaView</span> <span class="o">=</span> <span class="kt">DrawsanaView</span><span class="p">()</span>
+
+  <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="cm">/* ... */</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">tool</span> <span class="o">=</span> <span class="kt">PenTool</span><span class="p">()</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeWidth</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">blue</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fillColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">yellow</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="mi">24</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fontName</span> <span class="o">=</span> <span class="s">"Marker Felt""
+  }
+
+  func save() {
+    let jsonEncoder = JSONEncoder()
+    jsonEncoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+    let jsonData = try! jsonEncoder.encode(drawingView.drawing)
+    // store jsonData somewhere
+  }
+
+  func load() {
+    let data = // load data from somewhere
+    let jsonDecoder = JSONDecoder()
+    let drawing = try! jsonDecoder.decode(Drawing.self, from: jsonData)
+    drawsanaView.drawing = drawing
+  }
+
+  func showFinalImage() {
+    imageView.image = drawsanaView.render() 
+  }
+}
+</span></code></pre>
+<h2 id='background-images' class='heading'>Background images</h2>
+
+<p>Drawsana does not currently have a way to automatically show an image under your drawing.
+We recommend that, like in the example class, you add a <code>UIImageView</code> underneath your
+<code><a href="Classes/DrawsanaView.html">DrawsanaView</a></code> and make sure your <code><a href="Classes/DrawsanaView.html">DrawsanaView</a></code>&lsquo;s frame matches the image frame. When
+it&rsquo;s time to get the final image, use <code>DrawsanaView.render(over: myImage)</code>.</p>
 <h2 id='building-docs' class='heading'>Building docs</h2>
 <pre class="highlight shell"><code>sudo gem install jazzy
 make docs

@@ -156,20 +156,6 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": null,
-      "symbol": "DrawsanaView",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 13,
-      "symbol": "DrawsanaViewDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
       "line": 14,
       "symbol": "DrawsanaViewDelegate.drawsanaView(_:didSwitchTo:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
@@ -177,56 +163,49 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 17,
-      "symbol": "DrawsanaView",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 20,
+      "line": 23,
       "symbol": "DrawsanaView.delegate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 36,
+      "line": 39,
       "symbol": "DrawsanaView.drawing",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 101,
+      "line": 108,
       "symbol": "DrawsanaView.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 108,
+      "line": 115,
       "symbol": "DrawsanaView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 168,
+      "line": 175,
       "symbol": "DrawsanaView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 349,
+      "line": 356,
       "symbol": "DrawsanaView.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 444,
+      "line": 451,
       "symbol": "DrawsanaViewShapeUpdating.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
