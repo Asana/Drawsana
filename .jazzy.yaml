@@ -8,6 +8,7 @@ readme: Readme.md
 github_url: https://github.com/stevelandeyasana/Drawsana
 github_file_prefix: https://github.com/stevelandeyasana/Drawsana/tree/master
 skip_undocumented: false
+undocumented_text: ""
 
 xcodebuild_arguments: ["-project", "Drawsana.xcodeproj", "-target", "Drawsana"]
 

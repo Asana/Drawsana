@@ -8,12 +8,15 @@
 
 import UIKit
 
-// MARK: Delegate
-
+/// Set yourself as the `DrawsanaView`'s delegate to be notified when the active
+/// tool changes.
 public protocol DrawsanaViewDelegate: AnyObject {
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool?)
 }
 
+/**
+ Add this view to your view hierarchy to get going with Drawsana!
+ */
 public class DrawsanaView: UIView {
   // MARK: Public API
 
@@ -34,7 +37,11 @@ public class DrawsanaView: UIView {
   private let toolSettings = ToolSettings(selectedShape: nil, interactiveView: nil, isPersistentBufferDirty: false)
 
   public var drawing: Drawing = Drawing(size: CGSize(width: 320, height: 320)) {
-    didSet { drawing.delegate = self }
+    didSet {
+      drawing.delegate = self
+      drawing.size = bounds.size
+      redrawAbsolutelyEverything()
+    }
   }
 
   /// Manages the undo stack. You may become this object's delegate
@@ -196,7 +203,7 @@ public class DrawsanaView: UIView {
   }
 
   /// Render the drawing. If you pass a size, shapes are re-scaled to be full
-  /// resolution at that size.
+  /// resolution at that size, otherwise the view size is used.
   public func render(size: CGSize? = nil) -> UIImage? {
     let size = size ?? drawing.size
     return DrawsanaUtilities.renderImage(size: size) { (context: CGContext) -> Void in
@@ -435,7 +442,7 @@ extension DrawsanaView: UserSettingsDelegate {
 
 /**
  Small protocol wrapper around `DrawsanaView` that exposes just the
- `DrawingView.shapeDidUpdate(shape:)` method, so tools can notify the drawing'
+ `DrawingView.shapeDidUpdate(shape:)` method, so tools can notify the drawing
  view that a shape has changed outside of a tool operation.
 
  See `DrawingTool.activate(shapeUpdater:context:shape:)`
