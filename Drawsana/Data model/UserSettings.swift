@@ -24,15 +24,25 @@ public class UserSettings {
   public var strokeWidth: CGFloat {
     didSet { delegate?.userSettings(self, didChangeStrokeWidth: strokeWidth) }
   }
+  public var fontName: String {
+    didSet { delegate?.userSettings(self, didChangeFontName: fontName) }
+  }
+  public var fontSize: CGFloat {
+    didSet { delegate?.userSettings(self, didChangeFontSize: fontSize) }
+  }
 
   init(
     strokeColor: UIColor?,
     fillColor: UIColor?,
-    strokeWidth: CGFloat)
+    strokeWidth: CGFloat,
+    fontName: String,
+    fontSize: CGFloat)
   {
     self.strokeColor = strokeColor
     self.fillColor = fillColor
     self.strokeWidth = strokeWidth
+    self.fontName = fontName
+    self.fontSize = fontSize
   }
 }
 
@@ -40,4 +50,6 @@ protocol UserSettingsDelegate: AnyObject {
   func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?)
   func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?)
   func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat)
+  func userSettings(_ userSettings: UserSettings, didChangeFontName fontName: String)
+  func userSettings(_ userSettings: UserSettings, didChangeFontSize fontSize: CGFloat)
 }

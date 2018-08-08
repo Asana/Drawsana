@@ -24,7 +24,12 @@ public class DrawsanaView: UIView {
 
   /// You may set this object's properties and they will be forwarded to the
   /// active tool and applied to new shapes.
-  public let userSettings = UserSettings(strokeColor: .blue, fillColor: nil, strokeWidth: 20)
+  public let userSettings = UserSettings(
+    strokeColor: .blue,
+    fillColor: nil,
+    strokeWidth: 20,
+    fontName: "Helvetica Neue",
+    fontSize: 24)
 
   private let toolSettings = ToolSettings(selectedShape: nil, interactiveView: nil, isPersistentBufferDirty: false)
 
@@ -409,6 +414,14 @@ extension DrawsanaView: UserSettingsDelegate {
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat) {
+    tool?.apply(userSettings: userSettings)
+  }
+
+  func userSettings(_ userSettings: UserSettings, didChangeFontName fontName: String) {
+    tool?.apply(userSettings: userSettings)
+  }
+
+  func userSettings(_ userSettings: UserSettings, didChangeFontSize fontSize: CGFloat) {
     tool?.apply(userSettings: userSettings)
   }
 }

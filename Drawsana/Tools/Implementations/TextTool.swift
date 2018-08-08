@@ -10,8 +10,12 @@ import CoreGraphics
 import UIKit
 
 public class TextTool: NSObject, DrawingTool {
+  /// When the user drags over the drawing view, this tool uses one of three
+  /// behaviors, determined when the gesture starts.
   private enum DragType {
+    /// Change the shape's transform.translation
     case move
+    /// Change the shape's transform.{scale|rotation}
     case resizeAndRotate
     case none
   }
@@ -45,6 +49,7 @@ public class TextTool: NSObject, DrawingTool {
     shape.isBeingEdited = true // stop rendering this shape while textView is open
     maxWidth = max(maxWidth, context.drawing.size.width)
     context.toolSettings.interactiveView = editingView
+    shapeUpdater?.shapeDidUpdate(shape: shape)
     shapeInProgress = shape
     updateShapeFrame()
     // set toolSettings.selectedShape after computing frame so initial selection
@@ -116,7 +121,6 @@ public class TextTool: NSObject, DrawingTool {
       context.toolSettings.selectedShape = nil
       context.toolSettings.interactiveView?.resignFirstResponder()
       context.toolSettings.interactiveView = nil
-      shape.updateCachedImage()
       delegate?.textToolDidTapAway(tappedPoint: point)
     }
     return
@@ -128,7 +132,7 @@ public class TextTool: NSObject, DrawingTool {
       context.toolSettings.isPersistentBufferDirty = true
     } else {
       let newShape = TextShape()
-      newShape.fillColor = context.userSettings.strokeColor ?? .black
+      newShape.apply(userSettings: context.userSettings)
       self.shapeInProgress = newShape
       newShape.transform.translation = delegate?.textToolPointForNewText(tappedPoint: point) ?? point
       beginEditing(shape: newShape, context: context)

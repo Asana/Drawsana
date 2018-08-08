@@ -9,9 +9,7 @@
 import CoreGraphics
 import UIKit
 
-// TODO: move `textView` out of here into `TextTool`
-
-public class TextShape: Shape, ShapeSelectable {
+public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
   private enum CodingKeys: String, CodingKey {
     case id, transform, text, fontName, fontSize, fillColor, type
   }
@@ -19,14 +17,17 @@ public class TextShape: Shape, ShapeSelectable {
   public static let type = "Text"
 
   public var id: String = UUID().uuidString
+  /// This shape is positioned entirely with `TextShape.transform.translate`,
+  /// rather than storing an explicit position.
   public var transform: ShapeTransform = .identity
-  public var isBeingEdited: Bool = false
-  public var text = "" { didSet { updateCachedImage() } }
-  public var fontName: String = "Helvetica Neue" { didSet { updateCachedImage() } }
-  public var fontSize: CGFloat = 24 { didSet { updateCachedImage() } }
-  public var fillColor: UIColor = .black { didSet { updateCachedImage() } }
+  public var text = ""
+  public var fontName: String = "Helvetica Neue"
+  public var fontSize: CGFloat = 24
+  public var fillColor: UIColor = .black
 
-  private var cachedImage: UIImage?
+  /// Set to true if this text is being shown in some other way, i.e. in a
+  /// `UITextView` that the user is editing.
+  public var isBeingEdited: Bool = false
 
   public var boundingRect: CGRect = .zero
 
@@ -64,28 +65,22 @@ public class TextShape: Shape, ShapeSelectable {
     try container.encode(transform, forKey: .transform)
   }
 
-  public var image: UIImage {
-    if let cachedImage = cachedImage { return cachedImage }
-    let size = CGSize(width: boundingRect.size.width * transform.scale, height: boundingRect.size.height * transform.scale)
-    let image = DrawsanaUtilities.renderImage(size: size) { _ in
-      (self.text as NSString).draw(in: CGRect(origin: CGPoint(x: 3, y: 0), size: self.boundingRect.size), withAttributes: [
+  public func render(in context: CGContext) {
+    if isBeingEdited { return }
+    transform.begin(context: context)
+    (self.text as NSString).draw(
+      in: CGRect(origin: CGPoint(x: 3, y: 0) + boundingRect.origin, size: self.boundingRect.size),
+      withAttributes: [
         .font: self.font,
         .foregroundColor: self.fillColor,
         .strokeColor: self.fillColor,
       ])
-    }
-    cachedImage = image
-    return image!
-  }
-
-  public func render(in context: CGContext) {
-    if isBeingEdited { return }
-    transform.begin(context: context)
-    image.draw(at: boundingRect.origin)
     transform.end(context: context)
   }
 
-  public func updateCachedImage() {
-    cachedImage = nil
+  public func apply(userSettings: UserSettings) {
+    fillColor = userSettings.strokeColor ?? .black
+    fontName = userSettings.fontName
+    fontSize = userSettings.fontSize
   }
 }
