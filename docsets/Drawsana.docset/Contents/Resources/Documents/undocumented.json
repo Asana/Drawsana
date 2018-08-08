@@ -205,7 +205,7 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 451,
+      "line": 452,
       "symbol": "DrawsanaViewShapeUpdating.shapeDidUpdate(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -310,84 +310,77 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 24,
-      "symbol": "LineShape.ArrowStyle.standard",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 30,
+      "line": 31,
       "symbol": "LineShape.a",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 31,
+      "line": 32,
       "symbol": "LineShape.b",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 32,
+      "line": 33,
       "symbol": "LineShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 33,
+      "line": 34,
       "symbol": "LineShape.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 34,
+      "line": 35,
       "symbol": "LineShape.capStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 35,
+      "line": 36,
       "symbol": "LineShape.joinStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 36,
+      "line": 37,
       "symbol": "LineShape.dashPhase",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 37,
+      "line": 38,
       "symbol": "LineShape.dashLengths",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 38,
+      "line": 39,
       "symbol": "LineShape.arrowStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 39,
+      "line": 40,
       "symbol": "LineShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 41,
+      "line": 42,
       "symbol": "LineShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -471,7 +464,7 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 127,
+      "line": 128,
       "symbol": "PenShape.renderLatestSegment(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -913,6 +906,13 @@
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
       "line": 82,
+      "symbol": "EraserTool.handleTap(context:point:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
+      "line": 87,
       "symbol": "EraserTool.handleDragStart(context:point:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
