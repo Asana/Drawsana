@@ -41,6 +41,10 @@ public class Drawing: Codable {
    */
   public var shapeDecoder: ((MultiDecoder<Shape>) -> Void)?
 
+  public init(size: CGSize) {
+    self.size = size
+  }
+
   init(size: CGSize, delegate: DrawingDelegate? = nil) {
     self.size = size
     self.delegate = delegate
