@@ -11,7 +11,7 @@ import UIKit
 /// Set yourself as the `DrawsanaView`'s delegate to be notified when the active
 /// tool changes.
 public protocol DrawsanaViewDelegate: AnyObject {
-  func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool?)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool)
 }
 
 /**
@@ -34,7 +34,10 @@ public class DrawsanaView: UIView {
     fontName: "Helvetica Neue",
     fontSize: 24)
 
-  private let toolSettings = ToolSettings(selectedShape: nil, interactiveView: nil, isPersistentBufferDirty: false)
+  private let toolSettings = ToolSettings(
+    selectedShape: nil,
+    interactiveView: nil,
+    isPersistentBufferDirty: false)
 
   public var drawing: Drawing = Drawing(size: CGSize(width: 320, height: 320)) {
     didSet {
@@ -47,15 +50,19 @@ public class DrawsanaView: UIView {
   /// Manages the undo stack. You may become this object's delegate
   /// (`DrawingOperationStackDelegate`) to be notified when undo/redo become
   /// enabled/disabled.
-  public lazy var operationStack: DrawingOperationStack = { return DrawingOperationStack(drawing: drawing) }()
+  public lazy var operationStack: DrawingOperationStack = {
+    return DrawingOperationStack(drawing: drawing)
+  }()
 
-  var toolOperationContext: ToolOperationContext {
+  private var toolOperationContext: ToolOperationContext {
     return ToolOperationContext(
       drawing: drawing,
       operationStack: operationStack,
       userSettings: userSettings,
       toolSettings: toolSettings)
   }
+
+  public var selectionIndicatorInset = CGPoint(x: -4, y: -4)
 
   // MARK: Buffers
 
@@ -78,7 +85,7 @@ public class DrawsanaView: UIView {
   private var transientBuffer: UIImage?
 
   /**
-   During tool operations, this bufffer contains a rendering of the shape in
+   During tool operations, this buffer contains a rendering of the shape in
    progress, over top of the latest contents of `transientBuffer`.
 
    If the active tool is "progressive," this buffer is always copied back onto
@@ -99,16 +106,10 @@ public class DrawsanaView: UIView {
 
   private let interactiveOverlayContainerView = UIView()
 
-  // MARK: Other configuration
-
-  var selectionIndicatorInset = CGPoint(x: -4, y: -4)
-
   // MARK: Init
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
-    backgroundColor = .clear
-
     commonInit()
   }
 
@@ -118,6 +119,7 @@ public class DrawsanaView: UIView {
   }
 
   private func commonInit() {
+    backgroundColor = .clear
     drawing.delegate = self
     toolSettings.delegate = self
     userSettings.delegate = self
@@ -152,6 +154,9 @@ public class DrawsanaView: UIView {
     ])
 
     selectionIndicatorView.translatesAutoresizingMaskIntoConstraints = true
+    // This autoresizing mask makes selection indincator positionign work
+    // correctly. It's not clear why, though, since we're explicitly positioning
+    // and transforming the view outside of AutoLayout.
     selectionIndicatorView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
     let selectionLayer = CAShapeLayer()
@@ -187,6 +192,7 @@ public class DrawsanaView: UIView {
       self.tool?.deactivate(context: self.toolOperationContext)
       self.tool = tool
       tool.activate(shapeUpdater: self, context: self.toolOperationContext, shape: shape)
+      self.applyToolSettingsChanges()
       self.delegate?.drawsanaView(self, didSwitchTo: tool)
     }
   }
@@ -208,7 +214,9 @@ public class DrawsanaView: UIView {
     let size = size ?? drawing.size
     return DrawsanaUtilities.renderImage(size: size) { (context: CGContext) -> Void in
       context.saveGState()
-      context.scaleBy(x: size.width / self.drawing.size.width, y: size.height / self.drawing.size.height)
+      context.scaleBy(
+        x: size.width / self.drawing.size.width,
+        y: size.height / self.drawing.size.height)
       for shape in self.drawing.shapes {
         shape.render(in: context)
       }
@@ -234,10 +242,6 @@ public class DrawsanaView: UIView {
       }
     }
 
-    let clearUncommittedShapeBuffers: () -> Void = {
-      self.reapplyLayerContents()
-    }
-
     let point = sender.location(in: self)
     switch sender.state {
     case .began:
@@ -256,10 +260,10 @@ public class DrawsanaView: UIView {
       updateUncommittedShapeBuffers()
     case .ended:
       tool?.handleDragEnd(context: toolOperationContext, point: point)
-      clearUncommittedShapeBuffers()
+      reapplyLayerContents()
     case .failed:
       tool?.handleDragCancel(context: toolOperationContext, point: point)
-      clearUncommittedShapeBuffers()
+      reapplyLayerContents()
     default:
       assert(false, "State not handled")
     }
@@ -297,7 +301,9 @@ public class DrawsanaView: UIView {
     // Warning: hand-wavy math ahead
 
     // First, get the size and bounding rect position of the selected shape
-    var selectionBounds = shape.boundingRect.insetBy(dx: selectionIndicatorInset.x, dy: selectionIndicatorInset.y)
+    var selectionBounds = shape.boundingRect.insetBy(
+      dx: selectionIndicatorInset.x,
+      dy: selectionIndicatorInset.y)
     let offset = selectionBounds.origin
 
     // Next, we're going to remove the position from the bounding rect so we
@@ -353,7 +359,7 @@ public class DrawsanaView: UIView {
 // MARK: DrawsanaViewShapeUpdating implementation
 
 extension DrawsanaView: DrawsanaViewShapeUpdating {
-  public func shapeDidUpdate(shape: Shape) {
+  public func rerenderAllShapesInefficiently(shape: Shape) {
     if shape === toolSettings.selectedShape {
       applySelectionViewState()
     }
@@ -449,5 +455,5 @@ extension DrawsanaView: UserSettingsDelegate {
  See `DrawingTool.activate(shapeUpdater:context:shape:)`
  */
 public protocol DrawsanaViewShapeUpdating: AnyObject {
-  func shapeDidUpdate(shape: Shape)
+  func rerenderAllShapesInefficiently(shape: Shape)
 }

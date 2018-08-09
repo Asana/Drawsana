@@ -247,8 +247,8 @@ class ViewController: UIViewController {
 
 extension ViewController: DrawsanaViewDelegate {
   /// When tool changes, update the UI
-  func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool?) {
-    toolButton.setTitle(tool?.name, for: .normal)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool) {
+    toolIndex = tools.index(where: { $0.name == tool.name })!
     applyViewState()
   }
 }

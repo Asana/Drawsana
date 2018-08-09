@@ -37,18 +37,19 @@ public class SelectionTool: DrawingTool {
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
-    var newSelection: ShapeSelectable?
-    for shape in context.drawing.shapes {
-      if shape.hitTest(point: point), let castShape = shape as? ShapeSelectable {
-        if castShape === context.toolSettings.selectedShape {
-          delegate?.selectionToolDidTapOnAlreadySelectedShape(castShape)
-        } else {
-          newSelection = castShape
-        }
-        break
+    if let selectedShape = context.toolSettings.selectedShape, selectedShape.hitTest(point: point) == true {
+      delegate?.selectionToolDidTapOnAlreadySelectedShape(selectedShape)
+      if delegate == nil {
+        // Default behavior: deselect the shape
+        context.toolSettings.selectedShape = nil
       }
+      return
     }
-    context.toolSettings.selectedShape = newSelection
+
+    context.toolSettings.selectedShape = context.drawing.shapes
+      .compactMap({ $0 as? ShapeSelectable })
+      .filter({ $0.hitTest(point: point) })
+      .last
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {

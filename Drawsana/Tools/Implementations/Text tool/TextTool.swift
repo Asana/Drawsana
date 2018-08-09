@@ -46,7 +46,7 @@ public class TextTool: NSObject, DrawingTool {
     shape.isBeingEdited = true // stop rendering this shape while textView is open
     maxWidth = max(maxWidth, context.drawing.size.width)
     context.toolSettings.interactiveView = editingView
-    shapeUpdater?.shapeDidUpdate(shape: shape)
+    shapeUpdater?.rerenderAllShapesInefficiently(shape: shape)
     selectedShape = shape
     updateShapeFrame()
     // set toolSettings.selectedShape after computing frame so initial selection
@@ -99,7 +99,9 @@ public class TextTool: NSObject, DrawingTool {
   public func deactivate(context: ToolOperationContext) {
     context.toolSettings.interactiveView?.resignFirstResponder()
     context.toolSettings.interactiveView = nil
+    context.toolSettings.selectedShape = nil
     applyTextEditingOperation(context: context)
+    selectedShape = nil
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
@@ -118,7 +120,7 @@ public class TextTool: NSObject, DrawingTool {
       // No action needed. Text view automatically gets the tap too.
     } else {
       applyTextEditingOperation(context: context)
-      self.selectedShape = nil
+      selectedShape = nil
       context.toolSettings.selectedShape = nil
       context.toolSettings.interactiveView?.resignFirstResponder()
       context.toolSettings.interactiveView = nil
@@ -273,7 +275,7 @@ extension TextTool: UITextViewDelegate {
     guard let shape = selectedShape else { return }
     shape.text = textView.text ?? ""
     updateShapeFrame()
-    shapeUpdater?.shapeDidUpdate(shape: shape)
+    shapeUpdater?.rerenderAllShapesInefficiently(shape: shape)
   }
 
   public func textViewDidBeginEditing(_ textView: UITextView) {

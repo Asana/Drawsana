@@ -28,7 +28,9 @@ extension ShapeTransform {
 
   /// Representation of this transform as a `CGAffineTransform`
   public var affineTransform: CGAffineTransform {
-    return CGAffineTransform(translationX: translation.x, y: translation.y).rotated(by: rotation).scaledBy(x: scale, y: scale)
+    return CGAffineTransform(translationX: translation.x, y: translation.y)
+      .rotated(by: rotation)
+      .scaledBy(x: scale, y: scale)
   }
 
   /// Apply this transform in Core Graphics

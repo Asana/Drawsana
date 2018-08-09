@@ -18,10 +18,12 @@ public class DrawingOperationStack {
   public var canUndo: Bool { return !undoStack.isEmpty }
   public var canRedo: Bool { return !redoStack.isEmpty }
 
-  var undoStack = [DrawingOperation]()
+  /// You may inspect the raw values in the undo stack in order to do
+  /// fancy-pants things like coalesce operations together.
+  public private(set) var undoStack = [DrawingOperation]()
   var redoStack = [DrawingOperation]()
 
-  let drawing: Drawing
+  private let drawing: Drawing
 
   init(drawing: Drawing) {
     self.drawing = drawing

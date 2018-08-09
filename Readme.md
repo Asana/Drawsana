@@ -39,7 +39,7 @@ class MyViewController: UIViewController {
   
   func viewDidLoad() {
     /* ... */
-    drawsanaView.tool = PenTool()
+    drawsanaView.set(tool: PenTool())
     drawsanaView.userSettings.strokeWidth = 5
     drawsanaView.userSettings.strokeColor = .blue
     drawsanaView.userSettings.fillColor = .yellow
