@@ -141,6 +141,34 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/ToolOperationContext.swift",
+      "line": 15,
+      "symbol": "ToolOperationContext.drawing",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/ToolOperationContext.swift",
+      "line": 16,
+      "symbol": "ToolOperationContext.operationStack",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/ToolOperationContext.swift",
+      "line": 17,
+      "symbol": "ToolOperationContext.userSettings",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/ToolOperationContext.swift",
+      "line": 18,
+      "symbol": "ToolOperationContext.toolSettings",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/UserSettings.swift",
       "line": 18,
       "symbol": "UserSettings.strokeColor",
@@ -1003,21 +1031,21 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 299,
+      "line": 304,
       "symbol": "TextTool.textViewDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 307,
+      "line": 312,
       "symbol": "TextTool.textViewDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 311,
+      "line": 316,
       "symbol": "TextTool.textViewShouldEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
