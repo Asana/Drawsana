@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Drawsana  Reference</title>
+    <title>Other Enumerations  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,7 +10,8 @@
     
   </head>
   <body>
-    <a title="Drawsana  Reference"></a>
+    <a name="//apple_ref/swift/Section/Other Enumerations" class="dashAnchor"></a>
+    <a title="Other Enumerations  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">Drawsana Docs</a> (50% documented)</p>
@@ -21,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="index.html">Drawsana Reference</a>
         <img id="carat" src="img/carat.png" />
-        Drawsana  Reference
+        Other Enumerations  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -195,91 +196,45 @@
       <article class="main-content">
         <section>
           <section class="section">
-            
-            <h1 id='drawsana' class='heading'>Drawsana</h1>
+            <h1>Other Enumerations</h1>
+            <p>The following enumerations are available globally.</p>
 
-<p>Drawsana is a generalized framework for making freehand drawing views on iOS. You can
-let users scribble over images, add shapes and text, and even make your own tools.</p>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana0A13DecodingErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/DrawsanaDecodingError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A13DecodingErrorO">DrawsanaDecodingError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Enums/DrawsanaDecodingError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DrawsanaDecodingError</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
 
-<p>Do you want to let your users mark up images? Are you writing a simple painting app?
-Drawsana might work for you!</p>
-
-<p><a href="https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift">Demo source code</a></p>
-
-<p><a href="https://stevelandeyasana.github.io/Drawsana">Docs</a></p>
-<h2 id='features' class='heading'>Features</h2>
-
-<ul>
-<li>Built-in tools
-
-<ul>
-<li>Pen with line smoothing</li>
-<li>Eraser</li>
-<li>Ellipse, rect, line, arrow</li>
-<li>Selection</li>
-<li>Text</li>
-</ul></li>
-<li>Undo/redo</li>
-<li>Drawings are <code>Codable</code>, so you can save and load them</li>
-<li>Extensible—make your own shapes and tools without forking the library</li>
-</ul>
-
-<p><img src="https://raw.githubusercontent.com/stevelandeyasana/Drawsana/master/screenshot.png" alt="screenshot"></p>
-<h2 id='installation' class='heading'>Installation</h2>
-
-<p>Add <code>Asana/Drawsana</code> to your Cartfile and update your project like you would for any other
-Carthage framework, or clone the source code and add the project to your workspace.</p>
-<h2 id='usage' class='heading'>Usage</h2>
-<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Drawsana</span>
-
-<span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
-  <span class="k">let</span> <span class="nv">drawsanaView</span> <span class="o">=</span> <span class="kt">DrawsanaView</span><span class="p">()</span>
-
-  <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
-    <span class="cm">/* ... */</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">tool</span><span class="p">:</span> <span class="kt">PenTool</span><span class="p">())</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeWidth</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">blue</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fillColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">yellow</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="mi">24</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fontName</span> <span class="o">=</span> <span class="s">"Marker Felt"</span>
-  <span class="p">}</span>
-
-  <span class="kd">func</span> <span class="nf">save</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">let</span> <span class="nv">jsonEncoder</span> <span class="o">=</span> <span class="kt">JSONEncoder</span><span class="p">()</span>
-    <span class="n">jsonEncoder</span><span class="o">.</span><span class="n">outputFormatting</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">prettyPrinted</span><span class="p">,</span> <span class="o">.</span><span class="n">sortedKeys</span><span class="p">]</span>
-    <span class="k">let</span> <span class="nv">jsonData</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">jsonEncoder</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">drawingView</span><span class="o">.</span><span class="n">drawing</span><span class="p">)</span>
-    <span class="c1">// store jsonData somewhere</span>
-  <span class="p">}</span>
-
-  <span class="kd">func</span> <span class="nf">load</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="c1">// load data from somewhere</span>
-    <span class="k">let</span> <span class="nv">jsonDecoder</span> <span class="o">=</span> <span class="kt">JSONDecoder</span><span class="p">()</span>
-    <span class="k">let</span> <span class="nv">drawing</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">jsonDecoder</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Drawing</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">jsonData</span><span class="p">)</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">drawing</span> <span class="o">=</span> <span class="n">drawing</span>
-  <span class="p">}</span>
-
-  <span class="kd">func</span> <span class="nf">showFinalImage</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">imageView</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">drawsanaView</span><span class="o">.</span><span class="nf">render</span><span class="p">()</span> 
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h2 id='background-images' class='heading'>Background images</h2>
-
-<p>Drawsana does not currently have a way to automatically show an image under your drawing.
-We recommend that, like in the example class, you add a <code>UIImageView</code> underneath your
-<code><a href="Classes/DrawsanaView.html">DrawsanaView</a></code> and make sure your <code><a href="Classes/DrawsanaView.html">DrawsanaView</a></code>&lsquo;s frame matches the image frame. When
-it&rsquo;s time to get the final image, use <code>DrawsanaView.render(over: myImage)</code>.</p>
-<h2 id='building-docs' class='heading'>Building docs</h2>
-<pre class="highlight shell"><code>sudo gem install jazzy
-make docs
-open .docs/index.html
-
-pip install ghp-import
-make publish-docs
-open https://stevelandeyasana.github.io/Drawsana
-</code></pre>
-
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L132-L134">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">

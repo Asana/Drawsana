@@ -71,6 +71,20 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
+      "line": 132,
+      "symbol": "DrawsanaDecodingError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
+      "line": 133,
+      "symbol": "DrawsanaDecodingError.wrongShapeTypeError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/DrawingOperationStack.swift",
       "line": 18,
       "symbol": "DrawingOperationStack.canUndo",
@@ -177,6 +191,13 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 37,
+      "symbol": "DrawsanaView.toolSettings",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
       "line": 42,
       "symbol": "DrawsanaView.drawing",
       "symbol_kind": "source.lang.swift.decl.var.instance",
@@ -226,84 +247,84 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 16,
+      "line": 12,
       "symbol": "EllipseShape",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 30,
+      "line": 25,
       "symbol": "EllipseShape.a",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 31,
+      "line": 26,
       "symbol": "EllipseShape.b",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 32,
+      "line": 27,
       "symbol": "EllipseShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 33,
+      "line": 28,
       "symbol": "EllipseShape.fillColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 34,
+      "line": 29,
       "symbol": "EllipseShape.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 35,
+      "line": 30,
       "symbol": "EllipseShape.capStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 36,
+      "line": 31,
       "symbol": "EllipseShape.joinStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 37,
+      "line": 32,
       "symbol": "EllipseShape.dashPhase",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 38,
+      "line": 33,
       "symbol": "EllipseShape.dashLengths",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 39,
+      "line": 34,
       "symbol": "EllipseShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/EllipseShape.swift",
-      "line": 41,
+      "line": 36,
       "symbol": "EllipseShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -317,84 +338,84 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 23,
+      "line": 22,
       "symbol": "LineShape.ArrowStyle",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 31,
+      "line": 30,
       "symbol": "LineShape.a",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 32,
+      "line": 31,
       "symbol": "LineShape.b",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 33,
+      "line": 32,
       "symbol": "LineShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 34,
+      "line": 33,
       "symbol": "LineShape.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 35,
+      "line": 34,
       "symbol": "LineShape.capStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 36,
+      "line": 35,
       "symbol": "LineShape.joinStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 37,
+      "line": 36,
       "symbol": "LineShape.dashPhase",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 38,
+      "line": 37,
       "symbol": "LineShape.dashLengths",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 39,
+      "line": 38,
       "symbol": "LineShape.arrowStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 40,
+      "line": 39,
       "symbol": "LineShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/LineShape.swift",
-      "line": 42,
+      "line": 41,
       "symbol": "LineShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -458,27 +479,20 @@
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/PenShape.swift",
       "line": 37,
-      "symbol": "PenShape.isSelectable",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 39,
       "symbol": "PenShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 75,
+      "line": 73,
       "symbol": "PenShape.add(segment:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 127,
+      "line": 125,
       "symbol": "PenShape.renderLatestSegment(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -492,77 +506,77 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 26,
+      "line": 25,
       "symbol": "RectShape.a",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 27,
+      "line": 26,
       "symbol": "RectShape.b",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 28,
+      "line": 27,
       "symbol": "RectShape.strokeColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 29,
+      "line": 28,
       "symbol": "RectShape.fillColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 30,
+      "line": 29,
       "symbol": "RectShape.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 31,
+      "line": 30,
       "symbol": "RectShape.capStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 32,
+      "line": 31,
       "symbol": "RectShape.joinStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 33,
+      "line": 32,
       "symbol": "RectShape.dashPhase",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 34,
+      "line": 33,
       "symbol": "RectShape.dashLengths",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 35,
+      "line": 34,
       "symbol": "RectShape.transform",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/RectShape.swift",
-      "line": 37,
+      "line": 36,
       "symbol": "RectShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -604,28 +618,21 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 27,
-      "symbol": "TextShape.explicitWidth",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 33,
+      "line": 35,
       "symbol": "TextShape.boundingRect",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 39,
+      "line": 41,
       "symbol": "TextShape.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/TextShape.swift",
-      "line": 84,
+      "line": 85,
       "symbol": "TextShape.apply(userSettings:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -729,136 +736,115 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/DrawingTool.swift",
-      "line": 17,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Shape.swift",
+      "line": 138,
       "symbol": "UserSettingsApplying.apply(userSettings:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/DrawingTool.swift",
-      "line": 102,
-      "symbol": "DrawingToolWithShapeInProgressRendering.ShapeType",
-      "symbol_kind": "source.lang.swift.decl.associatedtype",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/DrawingTool.swift",
-      "line": 103,
-      "symbol": "DrawingToolWithShapeInProgressRendering.shapeInProgress",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/DrawingTool.swift",
-      "line": 106,
-      "symbol": "DrawingToolWithShapeInProgressRendering.renderShapeInProgress(transientContext:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 17,
-      "symbol": "DrawingToolForShapeWithTwoPoints.ShapeType",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 21,
-      "symbol": "DrawingToolForShapeWithTwoPoints.shapeInProgress",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 29,
-      "symbol": "DrawingToolForShapeWithTwoPoints.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 64,
-      "symbol": "DrawingToolForShapeWithTwoPoints.activate(context:shape:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 74,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 11,
       "symbol": "LineTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 75,
-      "symbol": "LineTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 76,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 12,
       "symbol": "LineTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 81,
-      "symbol": "ArrowTool.makeShape()",
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 13,
+      "symbol": "LineTool.makeShape()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 86,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 16,
+      "symbol": "ArrowTool",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 17,
       "symbol": "ArrowTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 89,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 18,
+      "symbol": "ArrowTool.makeShape()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 25,
       "symbol": "RectTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 90,
-      "symbol": "RectTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 91,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 26,
       "symbol": "RectTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 94,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 27,
+      "symbol": "RectTool.makeShape()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 30,
       "symbol": "EllipseTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 95,
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 31,
+      "symbol": "EllipseTool.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
+      "line": 32,
       "symbol": "EllipseTool.makeShape()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/EllipseTool_LineTool_RectTool.swift",
-      "line": 96,
-      "symbol": "EllipseTool.name",
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/DrawingToolForShapeWithTwoPoints.swift",
+      "line": 16,
+      "symbol": "DrawingToolForShapeWithTwoPoints.ShapeType",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/DrawingToolForShapeWithTwoPoints.swift",
+      "line": 20,
+      "symbol": "DrawingToolForShapeWithTwoPoints.shapeInProgress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/DrawingToolForShapeWithTwoPoints.swift",
+      "line": 24,
+      "symbol": "DrawingToolForShapeWithTwoPoints.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -919,14 +905,14 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 82,
+      "line": 81,
       "symbol": "EraserTool.handleTap(context:point:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 87,
+      "line": 86,
       "symbol": "EraserTool.handleDragStart(context:point:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -934,22 +920,22 @@
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/SelectionTool.swift",
       "line": 11,
+      "symbol": "SelectionToolDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/SelectionTool.swift",
+      "line": 18,
       "symbol": "SelectionTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/SelectionTool.swift",
-      "line": 24,
+      "line": 31,
       "symbol": "SelectionTool.init(delegate:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/SelectionTool.swift",
-      "line": 96,
-      "symbol": "SelectionToolDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
@@ -997,43 +983,43 @@
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
       "line": 12,
+      "symbol": "TextToolDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
+      "line": 28,
       "symbol": "TextTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 37,
+      "line": 53,
       "symbol": "TextTool.init(delegate:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 274,
+      "line": 299,
       "symbol": "TextTool.textViewDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 281,
+      "line": 307,
       "symbol": "TextTool.textViewDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 285,
+      "line": 311,
       "symbol": "TextTool.textViewShouldEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 291,
-      "symbol": "TextToolDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     }
   ],

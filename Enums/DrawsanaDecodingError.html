@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ShapeWithTransform Protocol Reference</title>
+    <title>DrawsanaDecodingError Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/ShapeWithTransform" class="dashAnchor"></a>
-    <a title="ShapeWithTransform Protocol Reference"></a>
+    <a name="//apple_ref/swift/Enum/DrawsanaDecodingError" class="dashAnchor"></a>
+    <a title="DrawsanaDecodingError Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Drawsana Docs</a> (50% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Drawsana Reference</a>
         <img id="carat" src="../img/carat.png" />
-        ShapeWithTransform Protocol Reference
+        DrawsanaDecodingError Enumeration Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -196,16 +196,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ShapeWithTransform</h1>
+            <h1>DrawsanaDecodingError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ShapeWithTransform</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DrawsanaDecodingError</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                 </div>
               </div>
-            <p>Enhancement to <code><a href="../Protocols/Shape.html">Shape</a></code> protocol that has a <code>transform</code> property, meaning it can
-be translated, rotated, and scaled relative to its original characteristics.</p>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -213,9 +211,9 @@ be translated, rotated, and scaled relative to its original characteristics.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana18ShapeWithTransformP9transformAA0bD0Vvp"></a>
-                    <a name="//apple_ref/swift/Property/transform" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana18ShapeWithTransformP9transformAA0bD0Vvp">transform</a>
+                    <a name="/s:8Drawsana0A13DecodingErrorO014wrongShapeTypeC0A2CmF"></a>
+                    <a name="//apple_ref/swift/Element/wrongShapeTypeError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana0A13DecodingErrorO014wrongShapeTypeC0A2CmF">wrongShapeTypeError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,12 +227,12 @@ be translated, rotated, and scaled relative to its original characteristics.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">transform</span><span class="p">:</span> <span class="kt"><a href="../Structs/ShapeTransform.html">ShapeTransform</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">wrongShapeTypeError</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Shapes/Shape.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/Drawing.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
