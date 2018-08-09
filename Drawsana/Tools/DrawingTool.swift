@@ -9,15 +9,6 @@
 import CoreGraphics
 
 /**
- Any object which can apply the values in a `UserSettings` object to itself or
- some other relevant object. This is part of the `DrawingTool` protocol, and
- some shapes implement it as well.
- */
-public protocol UserSettingsApplying {
-  func apply(userSettings: UserSettings)
-}
-
-/**
  All drawing tools must implement this protocol.
  */
 public protocol DrawingTool {
@@ -86,25 +77,11 @@ public protocol DrawingTool {
   /// The default implementaiton does nothing.
   func renderShapeInProgress(transientContext: CGContext)
 }
+// TODO: Should we put these in a base class instead? Do they prevent subclass
+// method overrides from being used in practice?
 public extension DrawingTool {
   func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) { }
   func deactivate(context: ToolOperationContext) { }
   func apply(context: ToolOperationContext, userSettings: UserSettings) { }
   func renderShapeInProgress(transientContext: CGContext) { }
 }
-
-// MARK: Convenience protocol: automatically render shapeInProgress
-
-/// Enhancement to `DrawingTool` that automatically implements
-/// `renderShapeInProgress(transientContext:)` if a `shapeInProgress` property
-/// is defined.
-public protocol DrawingToolWithShapeInProgressRendering {
-  associatedtype ShapeType: Shape
-  var shapeInProgress: ShapeType? { get }
-}
-extension DrawingToolWithShapeInProgressRendering {
-  public func renderShapeInProgress(transientContext: CGContext) {
-    shapeInProgress?.render(in: transientContext)
-  }
-}
-

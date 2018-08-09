@@ -34,8 +34,6 @@ public class PenShape: Shape, ShapeWithStrokeState {
   public var segments: [PenLineSegment] = []
   public var isEraser: Bool = false
 
-  public var isSelectable: Bool { return false }
-
   public init() {
   }
 
@@ -83,7 +81,7 @@ public class PenShape: Shape, ShapeWithStrokeState {
     }
 
     guard !segments.isEmpty else {
-      if !isFinished {
+      if isFinished {
         // Draw a dot
         context.setFillColor(strokeColor.cgColor)
         context.addArc(center: start, radius: strokeWidth / 2, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)

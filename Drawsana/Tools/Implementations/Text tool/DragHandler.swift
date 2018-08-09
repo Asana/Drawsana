@@ -85,8 +85,8 @@ class ResizeAndRotateHandler: DragHandler {
   }
 
   private func getResizeAndRotateTransform(point: CGPoint) -> ShapeTransform {
-    let originalDelta = CGPoint(x: startPoint.x - shape.transform.translation.x, y: startPoint.y - shape.transform.translation.y)
-    let newDelta = CGPoint(x: point.x - shape.transform.translation.x, y: point.y - shape.transform.translation.y)
+    let originalDelta = startPoint - shape.transform.translation
+    let newDelta = point - shape.transform.translation
     let originalDistance = originalDelta.length
     let newDistance = newDelta.length
     let originalAngle = atan2(originalDelta.y, originalDelta.x)
@@ -137,7 +137,8 @@ class ChangeWidthHandler: DragHandler {
       CGAffineTransform(translationX: shape.transform.translation.x,
                         y: shape.transform.translation.y))
     let distanceFromShapeCenter = (point - translatedBoundingRect.middle).length
-    let desiredWidthInScreenCoordinates = (distanceFromShapeCenter - textTool.editingView.changeWidthControlView.frame.size.width / 2) * 2
+    let desiredWidthInScreenCoordinates = (
+      distanceFromShapeCenter - textTool.editingView.changeWidthControlView.frame.size.width / 2) * 2
     shape.explicitWidth = desiredWidthInScreenCoordinates / shape.transform.scale
     textTool.updateShapeFrame()
   }

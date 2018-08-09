@@ -34,7 +34,7 @@ public class DrawsanaView: UIView {
     fontName: "Helvetica Neue",
     fontSize: 24)
 
-  private let toolSettings = ToolSettings(
+  public let toolSettings = ToolSettings(
     selectedShape: nil,
     interactiveView: nil,
     isPersistentBufferDirty: false)

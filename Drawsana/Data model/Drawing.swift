@@ -129,6 +129,10 @@ protocol DrawingDelegate: AnyObject {
   func drawingDidRemoveShape(_ shape: Shape)
 }
 
+public enum DrawsanaDecodingError: Error {
+  case wrongShapeTypeError
+}
+
 // MARK: Codable helpers
 
 /// Wrap any non-concrete `Encodable` type (like a `Shape`) in this class to

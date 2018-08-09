@@ -9,6 +9,22 @@
 import CoreGraphics
 import UIKit
 
+public protocol TextToolDelegate: AnyObject {
+  /// Given the point where the user tapped, return the point where a text
+  /// shape should be created. You might want to set it to a specific point, or
+  /// make sure it's above the keyboard.
+  func textToolPointForNewText(tappedPoint: CGPoint) -> CGPoint
+
+  /// User tapped away from the active text shape. If you give users access to
+  /// the selection tool, you might want to set it as the active tool at this
+  /// point.
+  func textToolDidTapAway(tappedPoint: CGPoint)
+
+  /// The text tool is about to present a text editing view. You may configure
+  /// it however you like.
+  func textToolWillUseEditingView(_ editingView: TextShapeEditingView)
+}
+
 public class TextTool: NSObject, DrawingTool {
   /// MARK: Protocol requirements
 
@@ -35,59 +51,11 @@ public class TextTool: NSObject, DrawingTool {
   internal lazy var editingView: TextShapeEditingView = makeTextView()
 
   public init(delegate: TextToolDelegate? = nil) {
-    self.delegate = delegate
     super.init()
-    updateTextView()
-  }
-
-  // MARK: Begin/end editing actions
-
-  private func beginEditing(shape: TextShape, context: ToolOperationContext) {
-    shape.isBeingEdited = true // stop rendering this shape while textView is open
-    maxWidth = max(maxWidth, context.drawing.size.width)
-    context.toolSettings.interactiveView = editingView
-    shapeUpdater?.rerenderAllShapesInefficiently(shape: shape)
-    selectedShape = shape
-    updateShapeFrame()
-    // set toolSettings.selectedShape after computing frame so initial selection
-    // rect is accurate
-    context.toolSettings.selectedShape = shape
-    editingView.becomeFirstResponder()
-    originalText = shape.text
-  }
-
-  /// If shape text has changed, notify operation stack so that undo works
-  /// properly
-  private func applyTextEditingOperation(context: ToolOperationContext) {
-    if let shape = selectedShape {
-      if originalText != shape.text {
-        context.operationStack.apply(operation: EditTextOperation(shape: shape, originalText: originalText, text: shape.text))
-        originalText = shape.text
-      }
-
-      shape.isBeingEdited = false
-      context.toolSettings.isPersistentBufferDirty = true
-    }
-  }
-
-  private func applyRemoveShapeOperation(context: ToolOperationContext) {
-    guard let shape = selectedShape else { return }
-    editingView.resignFirstResponder()
-    shape.isBeingEdited = false
-    context.operationStack.apply(operation: RemoveShapeOperation(shape: shape))
-    selectedShape = nil
-    context.toolSettings.selectedShape = nil
-    context.toolSettings.isPersistentBufferDirty = true
-    context.toolSettings.interactiveView = nil
+    self.delegate = delegate
   }
 
   // MARK: Tool lifecycle
-
-  public func apply(context: ToolOperationContext, userSettings: UserSettings) {
-    selectedShape?.apply(userSettings: userSettings)
-    updateTextView()
-    context.toolSettings.isPersistentBufferDirty = true
-  }
 
   public func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?) {
     self.shapeUpdater = shapeUpdater
@@ -100,7 +68,7 @@ public class TextTool: NSObject, DrawingTool {
     context.toolSettings.interactiveView?.resignFirstResponder()
     context.toolSettings.interactiveView = nil
     context.toolSettings.selectedShape = nil
-    applyTextEditingOperation(context: context)
+    finishEditing(context: context)
     selectedShape = nil
   }
 
@@ -117,13 +85,11 @@ public class TextTool: NSObject, DrawingTool {
       applyRemoveShapeOperation(context: context)
       delegate?.textToolDidTapAway(tappedPoint: point)
     } else if shape.hitTest(point: point) {
-      // No action needed. Text view automatically gets the tap too.
+      // TODO: Forward tap to editingView.textView somehow, or manually set
+      // the cursor point
     } else {
-      applyTextEditingOperation(context: context)
+      finishEditing(context: context)
       selectedShape = nil
-      context.toolSettings.selectedShape = nil
-      context.toolSettings.interactiveView?.resignFirstResponder()
-      context.toolSettings.interactiveView = nil
       delegate?.textToolDidTapAway(tappedPoint: point)
     }
     return
@@ -139,7 +105,6 @@ public class TextTool: NSObject, DrawingTool {
       self.selectedShape = newShape
       newShape.transform.translation = delegate?.textToolPointForNewText(tappedPoint: point) ?? point
       beginEditing(shape: newShape, context: context)
-      updateShapeFrame()
       context.operationStack.apply(operation: AddShapeOperation(shape: newShape))
     }
   }
@@ -188,11 +153,67 @@ public class TextTool: NSObject, DrawingTool {
     }
   }
 
-  // MARK: Helpers
+  public func apply(context: ToolOperationContext, userSettings: UserSettings) {
+    selectedShape?.apply(userSettings: userSettings)
+    updateTextView()
+    context.toolSettings.isPersistentBufferDirty = true
+  }
+
+  // MARK: Helpers: begin/end editing actions
+
+  private func beginEditing(shape: TextShape, context: ToolOperationContext) {
+    // Remember values
+    originalText = shape.text
+    maxWidth = max(maxWidth, context.drawing.size.width)
+
+    // Configure and re-render shape for editing
+    shape.isBeingEdited = true // stop rendering this shape while textView is open
+    shapeUpdater?.rerenderAllShapesInefficiently(shape: shape)
+
+    // Set selection in an order that guarantees the *initial* selection rect
+    // is correct
+    selectedShape = shape
+    updateShapeFrame()
+    context.toolSettings.selectedShape = shape
+
+    // Prepare interactive editing view
+    context.toolSettings.interactiveView = editingView
+    editingView.becomeFirstResponder()
+  }
+
+  /// If shape text has changed, notify operation stack so that undo works
+  /// properly
+  private func finishEditing(context: ToolOperationContext) {
+    guard let shape = selectedShape else { return }
+    if originalText != shape.text {
+      context.operationStack.apply(operation: EditTextOperation(
+        shape: shape,
+        originalText: originalText,
+        text: shape.text))
+      originalText = shape.text
+    }
+
+    shape.isBeingEdited = false
+    context.toolSettings.isPersistentBufferDirty = true
+  }
+
+  private func applyRemoveShapeOperation(context: ToolOperationContext) {
+    guard let shape = selectedShape else { return }
+    editingView.resignFirstResponder()
+    shape.isBeingEdited = false
+    context.operationStack.apply(operation: RemoveShapeOperation(shape: shape))
+    selectedShape = nil
+    context.toolSettings.selectedShape = nil
+    context.toolSettings.isPersistentBufferDirty = true
+    context.toolSettings.interactiveView = nil
+  }
+
+  // MARK: Other helpers
 
   func updateShapeFrame() {
     guard let shape = selectedShape else { return }
     shape.boundingRect = computeBounds()
+    // Shape jumps a little after editing unless we add this fudge factor
     shape.boundingRect.origin.x += 2
     updateTextView()
   }
@@ -203,6 +224,7 @@ public class TextTool: NSObject, DrawingTool {
     editingView.textView.font = shape.font
     editingView.textView.textColor = shape.fillColor
     editingView.bounds = shape.boundingRect
+    // Fudge factor to make shape and text view line up exactly
     editingView.bounds.size.width += 3
     editingView.transform = CGAffineTransform(
       translationX: -shape.boundingRect.size.width / 2,
@@ -234,6 +256,9 @@ public class TextTool: NSObject, DrawingTool {
 
     // Compute rect final position (ignore scale and rotation as a shortcut)
     var transformedRect = rect.applying(CGAffineTransform(translationX: shape.transform.translation.x, y: shape.transform.translation.y))
+
+    // TODO: These calculations are ultimately inaccurate and need to be
+    //       revisited.
 
     // Move rect to the right if it's too far left
     if transformedRect.origin.x < 0 {
@@ -275,6 +300,7 @@ extension TextTool: UITextViewDelegate {
     guard let shape = selectedShape else { return }
     shape.text = textView.text ?? ""
     updateShapeFrame()
+    // TODO: Only update selection rect here instead of rerendering everything
     shapeUpdater?.rerenderAllShapesInefficiently(shape: shape)
   }
 
@@ -286,20 +312,4 @@ extension TextTool: UITextViewDelegate {
     selectedShape?.isBeingEdited = false
     return true
   }
-}
-
-public protocol TextToolDelegate: AnyObject {
-  /// Given the point where the user tapped, return the point where a text
-  /// shape should be created. You might want to set it to a specific point, or
-  /// make sure it's above the keyboard.
-  func textToolPointForNewText(tappedPoint: CGPoint) -> CGPoint
-
-  /// User tapped away from the active text shape. If you give users access to
-  /// the selection tool, you might want to set it as the active tool at this
-  /// point.
-  func textToolDidTapAway(tappedPoint: CGPoint)
-
-  /// The text tool is about to present a text editing view. You may configure
-  /// it however you like.
-  func textToolWillUseEditingView(_ editingView: TextShapeEditingView)
 }

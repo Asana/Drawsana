@@ -8,6 +8,13 @@
 
 import UIKit
 
+public protocol SelectionToolDelegate: AnyObject {
+  /// User tapped on a shape, but it was already selected. You might want to
+  /// take this opportuny to activate a tool that can edit that shape, if one
+  /// exists.
+  func selectionToolDidTapOnAlreadySelectedShape(_ shape: ShapeSelectable)
+}
+
 public class SelectionTool: DrawingTool {
   public let name = "Selection"
   
@@ -18,8 +25,8 @@ public class SelectionTool: DrawingTool {
   /// not use this delegate.
   public weak var delegate: SelectionToolDelegate?
 
-  var originalTransform: ShapeTransform?
-  var startPoint: CGPoint?
+  private var originalTransform: ShapeTransform?
+  private var startPoint: CGPoint?
 
   public init(delegate: SelectionToolDelegate? = nil) {
     self.delegate = delegate
@@ -38,8 +45,9 @@ public class SelectionTool: DrawingTool {
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
     if let selectedShape = context.toolSettings.selectedShape, selectedShape.hitTest(point: point) == true {
-      delegate?.selectionToolDidTapOnAlreadySelectedShape(selectedShape)
-      if delegate == nil {
+      if let delegate = delegate {
+        delegate.selectionToolDidTapOnAlreadySelectedShape(selectedShape)
+      } else {
         // Default behavior: deselect the shape
         context.toolSettings.selectedShape = nil
       }
@@ -91,11 +99,4 @@ public class SelectionTool: DrawingTool {
     context.toolSettings.selectedShape?.transform = originalTransform ?? .identity
     context.toolSettings.isPersistentBufferDirty = true
   }
-}
-
-public protocol SelectionToolDelegate: AnyObject {
-  /// User tapped on a shape, but it was already selected. You might want to
-  /// take this opportuny to activate a tool that can edit that shape, if one
-  /// exists.
-  func selectionToolDidTapOnAlreadySelectedShape(_ shape: ShapeSelectable)
 }

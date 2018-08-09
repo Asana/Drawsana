@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-public class PenTool: DrawingTool, DrawingToolWithShapeInProgressRendering {
+public class PenTool: DrawingTool {
   public typealias ShapeType = PenShape
 
   public var name: String { return "Pen" }
@@ -26,7 +26,7 @@ public class PenTool: DrawingTool, DrawingToolWithShapeInProgressRendering {
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
     let shape = PenShape()
     shape.start = point
-    shape.isFinished = false
+    shape.isFinished = true
     shape.apply(userSettings: context.userSettings)
     context.operationStack.apply(operation: AddShapeOperation(shape: shape))
   }
@@ -74,7 +74,6 @@ public class PenTool: DrawingTool, DrawingToolWithShapeInProgressRendering {
 public class EraserTool: PenTool {
   public override var name: String { return "Eraser" }
   public override init() {
-
     super.init()
     velocityBasedWidth = false
   }

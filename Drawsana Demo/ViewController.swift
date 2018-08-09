@@ -259,6 +259,8 @@ extension ViewController: SelectionToolDelegate {
   func selectionToolDidTapOnAlreadySelectedShape(_ shape: ShapeSelectable) {
     if shape as? TextShape != nil {
       drawingView.set(tool: textTool, shape: shape)
+    } else {
+      drawingView.toolSettings.selectedShape = nil
     }
   }
 }

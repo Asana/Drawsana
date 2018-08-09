@@ -10,7 +10,6 @@ import CoreGraphics
 import UIKit
 
 public class LineShape:
-  ShapeWithBoundingRect,
   ShapeWithTwoPoints,
   ShapeWithStrokeState,
   ShapeSelectable

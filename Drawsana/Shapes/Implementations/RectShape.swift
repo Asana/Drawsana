@@ -10,7 +10,6 @@ import CoreGraphics
 import UIKit
 
 public class RectShape:
-  ShapeWithBoundingRect,
   ShapeWithTwoPoints,
   ShapeWithStandardState,
   ShapeSelectable

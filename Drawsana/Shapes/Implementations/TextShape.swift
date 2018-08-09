@@ -24,6 +24,8 @@ public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
   public var fontName: String = "Helvetica Neue"
   public var fontSize: CGFloat = 24
   public var fillColor: UIColor = .black
+  /// If user drags the text box to an exact width, we need to respect it instead
+  /// of automatically sizing the text box to fit the text.
   public var explicitWidth: CGFloat?
 
   /// Set to true if this text is being shown in some other way, i.e. in a
@@ -72,11 +74,10 @@ public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
     if isBeingEdited { return }
     transform.begin(context: context)
     (self.text as NSString).draw(
-      in: CGRect(origin: CGPoint(x: 3, y: 0) + boundingRect.origin, size: self.boundingRect.size),
+      in: CGRect(origin: boundingRect.origin, size: self.boundingRect.size),
       withAttributes: [
         .font: self.font,
         .foregroundColor: self.fillColor,
-        .strokeColor: self.fillColor,
       ])
     transform.end(context: context)
   }

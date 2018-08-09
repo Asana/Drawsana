@@ -37,12 +37,11 @@ custom_categories:
   - ShapeWithStandardState
   - ShapeWithStrokeState
   - ShapeWithTwoPoints
+  - UserSettingsApplying
 - name: Tool building blocks
   children:
   - DrawingTool
-  - DrawingToolWithShapeInProgressRendering
   - DrawingToolForShapeWithTwoPoints
-  - UserSettingsApplying
 - name: Shape implementations
   children:
   - EllipseShape

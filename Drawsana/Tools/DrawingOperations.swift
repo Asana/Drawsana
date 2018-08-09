@@ -90,7 +90,8 @@ struct EditTextOperation: DrawingOperation {
   func shouldAdd(to operationStack: DrawingOperationStack) -> Bool {
     if originalText.isEmpty,
       let addShapeOp = operationStack.undoStack.last as? AddShapeOperation,
-      addShapeOp.shape === shape {
+      addShapeOp.shape === shape
+    {
       // It's pointless to let the user undo to an empty text shape. By setting
       // the shape text immediately and then declining to be added to the stack,
       // the add-shape operation ends up adding/removing the shape with the

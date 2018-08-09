@@ -9,12 +9,7 @@
 import CoreGraphics
 import UIKit
 
-enum DrawsanaDecodingError: Error {
-  case wrongShapeTypeError
-}
-
 public class EllipseShape:
-  ShapeWithBoundingRect,
   ShapeWithTwoPoints,
   ShapeWithStandardState,
   ShapeSelectable
