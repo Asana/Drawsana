@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DrawsanaViewDelegate Protocol Reference</title>
+    <title>ToolOperationContext Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/DrawsanaViewDelegate" class="dashAnchor"></a>
-    <a title="DrawsanaViewDelegate Protocol Reference"></a>
+    <a name="//apple_ref/swift/Struct/ToolOperationContext" class="dashAnchor"></a>
+    <a title="ToolOperationContext Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Drawsana Docs</a> (50% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Drawsana Reference</a>
         <img id="carat" src="../img/carat.png" />
-        DrawsanaViewDelegate Protocol Reference
+        ToolOperationContext Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -196,15 +196,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>DrawsanaViewDelegate</h1>
+            <h1>ToolOperationContext</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DrawsanaViewDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ToolOperationContext</span></code></pre>
 
                 </div>
               </div>
-            <p>Set yourself as the <code><a href="../Classes/DrawsanaView.html">DrawsanaView</a></code>&lsquo;s delegate to be notified when the active
-tool changes.</p>
+            <p>Aggregate of objects that may be used by tools during operations</p>
 
           </section>
           <section class="section task-group-section">
@@ -213,9 +212,9 @@ tool changes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8Drawsana0A12ViewDelegateP08drawsanaB0yAA0aB0C_AA11DrawingTool_p11didSwitchTotF"></a>
-                    <a name="//apple_ref/swift/Method/drawsanaView(_:didSwitchTo:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana0A12ViewDelegateP08drawsanaB0yAA0aB0C_AA11DrawingTool_p11didSwitchTotF">drawsanaView(_:didSwitchTo:)</a>
+                    <a name="/s:8Drawsana20ToolOperationContextV7drawingAA7DrawingCvp"></a>
+                    <a name="//apple_ref/swift/Property/drawing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana20ToolOperationContextV7drawingAA7DrawingCvp">drawing</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,12 +228,99 @@ tool changes.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">drawsanaView</span><span class="p">(</span><span class="n">_</span> <span class="nv">drawsanaView</span><span class="p">:</span> <span class="kt"><a href="../Classes/DrawsanaView.html">DrawsanaView</a></span><span class="p">,</span> <span class="n">didSwitchTo</span> <span class="nv">tool</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DrawingTool.html">DrawingTool</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">drawing</span><span class="p">:</span> <span class="kt"><a href="../Classes/Drawing.html">Drawing</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/DrawsanaView.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/ToolOperationContext.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana20ToolOperationContextV14operationStackAA07DrawingcF0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/operationStack" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana20ToolOperationContextV14operationStackAA07DrawingcF0Cvp">operationStack</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">operationStack</span><span class="p">:</span> <span class="kt"><a href="../Classes/DrawingOperationStack.html">DrawingOperationStack</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/ToolOperationContext.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana20ToolOperationContextV12userSettingsAA04UserF0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/userSettings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana20ToolOperationContextV12userSettingsAA04UserF0Cvp">userSettings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">userSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/UserSettings.html">UserSettings</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/ToolOperationContext.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana20ToolOperationContextV12toolSettingsAA0bF0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/toolSettings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana20ToolOperationContextV12toolSettingsAA0bF0Cvp">toolSettings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">toolSettings</span><span class="p">:</span> <span class="kt"><a href="../Classes/ToolSettings.html">ToolSettings</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/ToolOperationContext.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

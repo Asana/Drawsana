@@ -58,7 +58,7 @@
                 <a href="../Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Data model.html#/s:8Drawsana20ToolOperationContextV">ToolOperationContext</a>
+                <a href="../Structs/ToolOperationContext.html">ToolOperationContext</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ToolSettings.html">ToolSettings</a>
@@ -238,6 +238,72 @@ this.)</p>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/ToolSettings.swift#L21-L25">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana12ToolSettingsC15interactiveViewSo6UIViewCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/interactiveView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana12ToolSettingsC15interactiveViewSo6UIViewCSgvp">interactiveView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This view, if non-nil, is added to the view hierarchy above the drawing
+so that the user may interact with it. The tool is responsible for
+setting its frame.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">interactiveView</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/ToolSettings.swift#L30-L34">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana12ToolSettingsC23isPersistentBufferDirtySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isPersistentBufferDirty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana12ToolSettingsC23isPersistentBufferDirtySbvp">isPersistentBufferDirty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set this to <code>true</code> if you have modified a shape that is already added
+to the drawing. <code>DrawingView</code> checks it each frame during tool operations
+and regenerates its buffer accordingly.</p>
+
+<p>WARNING: Redrawing the buffer is slow!</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isPersistentBufferDirty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Data model/ToolSettings.swift#L41-L45">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
