@@ -13,7 +13,7 @@
     <a title="Drawsana  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Drawsana Docs</a> (51% documented)</p>
+        <p><a href="index.html">Drawsana Docs</a> (50% documented)</p>
         <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -57,7 +57,7 @@
                 <a href="Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Data model.html#/s:8Drawsana20ToolOperationContextC">ToolOperationContext</a>
+                <a href="Data model.html#/s:8Drawsana20ToolOperationContextV">ToolOperationContext</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ToolSettings.html">ToolSettings</a>
@@ -196,6 +196,9 @@
 <p>Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.</p>
 
+<p>Do you want to let your users mark up images? Are you writing a simple painting app?
+Drawsana might work for you!</p>
+
 <p><a href="https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift">Demo source code</a></p>
 
 <p><a href="https://stevelandeyasana.github.io/Drawsana">Docs</a></p>
@@ -229,7 +232,7 @@ Carthage framework, or clone the source code and add the project to your workspa
 
   <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="cm">/* ... */</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="n">tool</span> <span class="o">=</span> <span class="kt">PenTool</span><span class="p">()</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">tool</span><span class="p">:</span> <span class="kt">PenTool</span><span class="p">())</span>
     <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeWidth</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">blue</span>
     <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fillColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">yellow</span>

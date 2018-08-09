@@ -16,49 +16,56 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 68,
+      "line": 44,
+      "symbol": "Drawing.init(size:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
+      "line": 72,
       "symbol": "Drawing.tryDecodingAllShapes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 80,
+      "line": 84,
       "symbol": "Drawing.tryDecoding(_:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 96,
+      "line": 100,
       "symbol": "Drawing.add(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 101,
+      "line": 105,
       "symbol": "Drawing.update(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 105,
+      "line": 109,
       "symbol": "Drawing.remove(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 110,
+      "line": 114,
       "symbol": "Drawing.getShape(at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 114,
+      "line": 118,
       "symbol": "Drawing.getShape(of:at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -79,42 +86,42 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/DrawingOperationStack.swift",
-      "line": 59,
+      "line": 61,
       "symbol": "DrawingOperationStackDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/DrawingOperationStack.swift",
-      "line": 60,
+      "line": 62,
       "symbol": "DrawingOperationStackDelegate.drawingOperationStackDidUndo(_:operation:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/DrawingOperationStack.swift",
-      "line": 61,
+      "line": 63,
       "symbol": "DrawingOperationStackDelegate.drawingOperationStackDidRedo(_:operation:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/DrawingOperationStack.swift",
-      "line": 62,
+      "line": 64,
       "symbol": "DrawingOperationStackDelegate.drawingOperationStackDidApply(_:operation:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/DrawingOperationStack.swift",
-      "line": 78,
+      "line": 80,
       "symbol": "DrawingOperation.apply(drawing:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/DrawingOperationStack.swift",
-      "line": 79,
+      "line": 81,
       "symbol": "DrawingOperation.revert(drawing:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -170,43 +177,50 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 39,
+      "line": 42,
       "symbol": "DrawsanaView.drawing",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 108,
+      "line": 65,
+      "symbol": "DrawsanaView.selectionIndicatorInset",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 111,
       "symbol": "DrawsanaView.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 115,
+      "line": 116,
       "symbol": "DrawsanaView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 175,
+      "line": 180,
       "symbol": "DrawsanaView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 356,
-      "symbol": "DrawsanaView.shapeDidUpdate(shape:)",
+      "line": 362,
+      "symbol": "DrawsanaView.rerenderAllShapesInefficiently(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 452,
-      "symbol": "DrawsanaViewShapeUpdating.shapeDidUpdate(shape:)",
+      "line": 458,
+      "symbol": "DrawsanaViewShapeUpdating.rerenderAllShapesInefficiently(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -464,7 +478,7 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 128,
+      "line": 127,
       "symbol": "PenShape.renderLatestSegment(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -933,7 +947,7 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/SelectionTool.swift",
-      "line": 95,
+      "line": 96,
       "symbol": "SelectionToolDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
@@ -996,28 +1010,28 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 272,
+      "line": 274,
       "symbol": "TextTool.textViewDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 279,
+      "line": 281,
       "symbol": "TextTool.textViewDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 283,
+      "line": 285,
       "symbol": "TextTool.textViewShouldEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 289,
+      "line": 291,
       "symbol": "TextToolDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
