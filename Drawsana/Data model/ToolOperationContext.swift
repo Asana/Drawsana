@@ -12,8 +12,8 @@ import CoreGraphics
  Aggregate of objects that may be used by tools during operations
  */
 public struct ToolOperationContext {
-  let drawing: Drawing
-  let operationStack: DrawingOperationStack
-  let userSettings: UserSettings
-  let toolSettings: ToolSettings
+  public let drawing: Drawing
+  public let operationStack: DrawingOperationStack
+  public let userSettings: UserSettings
+  public let toolSettings: ToolSettings
 }

@@ -27,7 +27,7 @@ public class ToolSettings {
   /// This view, if non-nil, is added to the view hierarchy above the drawing
   /// so that the user may interact with it. The tool is responsible for
   /// setting its frame.
-  var interactiveView: UIView? {
+  public var interactiveView: UIView? {
     didSet {
       delegate?.toolSettings(self, didSetInteractiveView: interactiveView, oldValue: oldValue)
     }
@@ -38,7 +38,7 @@ public class ToolSettings {
   /// and regenerates its buffer accordingly.
   ///
   /// WARNING: Redrawing the buffer is slow!
-  var isPersistentBufferDirty: Bool {
+  public var isPersistentBufferDirty: Bool {
     didSet {
       delegate?.toolSettings(self, didSetIsPersistentBufferDirty: isPersistentBufferDirty)
     }
