@@ -120,7 +120,11 @@ public class TextTool: NSObject, DrawingTool {
     } else {
       dragHandler = nil
     }
-    dragHandler?.handleDragStart(context: context, point: point)
+
+    if let dragHandler = dragHandler {
+      applyEditTextOperationIfTextHasChanged(context: context)
+      dragHandler.handleDragStart(context: context, point: point)
+    }
   }
 
   public func handleDragContinue(context: ToolOperationContext, point: CGPoint, velocity: CGPoint) {
@@ -184,17 +188,18 @@ public class TextTool: NSObject, DrawingTool {
   /// If shape text has changed, notify operation stack so that undo works
   /// properly
   private func finishEditing(context: ToolOperationContext) {
-    guard let shape = selectedShape else { return }
-    if originalText != shape.text {
-      context.operationStack.apply(operation: EditTextOperation(
-        shape: shape,
-        originalText: originalText,
-        text: shape.text))
-      originalText = shape.text
-    }
-
-    shape.isBeingEdited = false
+    applyEditTextOperationIfTextHasChanged(context: context)
+    selectedShape?.isBeingEdited = false
     context.toolSettings.isPersistentBufferDirty = true
+  }
+
+  private func applyEditTextOperationIfTextHasChanged(context: ToolOperationContext) {
+    guard let shape = selectedShape, originalText != shape.text else { return }
+    context.operationStack.apply(operation: EditTextOperation(
+      shape: shape,
+      originalText: originalText,
+      text: shape.text))
+    originalText = shape.text
   }
 
   private func applyRemoveShapeOperation(context: ToolOperationContext) {
