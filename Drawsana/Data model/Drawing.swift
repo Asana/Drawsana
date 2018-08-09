@@ -69,7 +69,7 @@ public class Drawing: Codable {
     }
   }
 
-  public func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer) -> [Shape] {
+  private func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer) -> [Shape] {
     let multiDecoder = MultiDecoder<Shape>(container: &container)
     multiDecoder.tryDecoding(EllipseShape.self)
     multiDecoder.tryDecoding(LineShape.self)
@@ -79,14 +79,6 @@ public class Drawing: Codable {
     shapeDecoder?(multiDecoder)
     container = multiDecoder.container
     return multiDecoder.results
-  }
-
-  public func tryDecoding<T: Shape & Decodable>(_ container: inout UnkeyedDecodingContainer, with type: T.Type) -> T? {
-    do {
-      return try container.decode(T.self)
-    } catch {
-      return nil
-    }
   }
 
   public func encode(to encoder: Encoder) throws {
