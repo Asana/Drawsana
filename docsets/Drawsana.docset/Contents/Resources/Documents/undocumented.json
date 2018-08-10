@@ -23,63 +23,49 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 72,
-      "symbol": "Drawing.tryDecodingAllShapes(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 84,
-      "symbol": "Drawing.tryDecoding(_:with:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 100,
+      "line": 92,
       "symbol": "Drawing.add(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 105,
+      "line": 97,
       "symbol": "Drawing.update(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 109,
+      "line": 101,
       "symbol": "Drawing.remove(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 114,
+      "line": 106,
       "symbol": "Drawing.getShape(at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 118,
+      "line": 110,
       "symbol": "Drawing.getShape(of:at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 132,
+      "line": 124,
       "symbol": "DrawsanaDecodingError",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 133,
+      "line": 125,
       "symbol": "DrawsanaDecodingError.wrongShapeTypeError",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
