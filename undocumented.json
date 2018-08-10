@@ -758,13 +758,6 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 13,
-      "symbol": "LineTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
       "line": 16,
       "symbol": "ArrowTool",
       "symbol_kind": "source.lang.swift.decl.class",
@@ -775,13 +768,6 @@
       "line": 17,
       "symbol": "ArrowTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 18,
-      "symbol": "ArrowTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -800,13 +786,6 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 27,
-      "symbol": "RectTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
       "line": 30,
       "symbol": "EllipseTool",
       "symbol_kind": "source.lang.swift.decl.class",
@@ -817,13 +796,6 @@
       "line": 31,
       "symbol": "EllipseTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 32,
-      "symbol": "EllipseTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
