@@ -48,8 +48,8 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
   }
 
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
-    shapeInProgress?.b = point
-    context.operationStack.apply(operation: AddShapeOperation(shape: shapeInProgress!))
+    guard var shape = shapeInProgress else { return }
+    context.operationStack.apply(operation: AddShapeOperation(shape: shape))
     shapeInProgress = nil
   }
 

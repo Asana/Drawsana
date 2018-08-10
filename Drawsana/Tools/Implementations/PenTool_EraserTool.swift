@@ -57,9 +57,10 @@ public class PenTool: DrawingTool {
   }
 
   public func handleDragEnd(context: ToolOperationContext, point: CGPoint) {
-    shapeInProgress?.isFinished = true
-    context.operationStack.apply(operation: AddShapeOperation(shape: shapeInProgress!))
-    shapeInProgress = nil
+    guard let shapeInProgress = shapeInProgress else { return }
+    shapeInProgress.isFinished = true
+    context.operationStack.apply(operation: AddShapeOperation(shape: shapeInProgress))
+    self.shapeInProgress = nil
   }
 
   public func handleDragCancel(context: ToolOperationContext, point: CGPoint) {
