@@ -359,11 +359,9 @@ public class DrawsanaView: UIView {
 // MARK: DrawsanaViewShapeUpdating implementation
 
 extension DrawsanaView: DrawsanaViewShapeUpdating {
-  public func rerenderAllShapesInefficiently(shape: Shape) {
-    if shape === toolSettings.selectedShape {
-      applySelectionViewState()
-    }
+  public func rerenderAllShapesInefficiently() {
     redrawAbsolutelyEverything()
+    applySelectionViewState()
   }
 }
 
@@ -449,11 +447,11 @@ extension DrawsanaView: UserSettingsDelegate {
 
 /**
  Small protocol wrapper around `DrawsanaView` that exposes just the
- `DrawingView.shapeDidUpdate(shape:)` method, so tools can notify the drawing
- view that a shape has changed outside of a tool operation.
+ `DrawingView.rerenderAllShapesInefficiently()` method, so tools can notify the
+ drawing view that a shape has changed outside of a tool operation.
 
  See `DrawingTool.activate(shapeUpdater:context:shape:)`
  */
 public protocol DrawsanaViewShapeUpdating: AnyObject {
-  func rerenderAllShapesInefficiently(shape: Shape)
+  func rerenderAllShapesInefficiently()
 }

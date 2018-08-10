@@ -37,8 +37,8 @@ public class SelectionTool: DrawingTool {
   }
 
   public func apply(context: ToolOperationContext, userSettings: UserSettings) {
-    if let compatibleShape = context.toolSettings.selectedShape as? UserSettingsApplying {
-      compatibleShape.apply(userSettings: userSettings)
+    if let shape = context.toolSettings.selectedShape {
+      shape.apply(userSettings: userSettings)
       context.toolSettings.isPersistentBufferDirty = true
     }
   }

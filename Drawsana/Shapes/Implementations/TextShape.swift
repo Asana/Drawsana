@@ -9,7 +9,7 @@
 import CoreGraphics
 import UIKit
 
-public class TextShape: Shape, ShapeSelectable, UserSettingsApplying {
+public class TextShape: Shape, ShapeSelectable {
   private enum CodingKeys: String, CodingKey {
     case id, transform, text, fontName, fontSize, fillColor, type, explicitWidth
   }

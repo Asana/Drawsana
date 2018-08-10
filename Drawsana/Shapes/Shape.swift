@@ -29,6 +29,10 @@ public protocol Shape: AnyObject, Codable {
   /// Return true iff the given point meaningfully intersects with the pixels
   /// drawn by this shape. See `ShapeWithBoundingRect` for a shortcut.
   func hitTest(point: CGPoint) -> Bool
+
+  /// Apply any relevant values in `userSettings` (colors, sizes, fonts...) to
+  /// this shape
+  func apply(userSettings: UserSettings)
 }
 
 /**
@@ -74,7 +78,7 @@ extension ShapeSelectable {
  properties. There is a convenience method `apply(userSettings:)` which updates
  the shape to match the given values.
  */
-public protocol ShapeWithStandardState: AnyObject, UserSettingsApplying {
+public protocol ShapeWithStandardState: AnyObject {
   var strokeColor: UIColor? { get set }
   var fillColor: UIColor? { get set }
   var strokeWidth: CGFloat { get set }
@@ -91,7 +95,7 @@ extension ShapeWithStandardState {
 /**
  Like `ShapeWithStandardState`, but ignores `UserSettings.fillColor`.
  */
-public protocol ShapeWithStrokeState: AnyObject, UserSettingsApplying {
+public protocol ShapeWithStrokeState: AnyObject {
   var strokeColor: UIColor { get set }
   var strokeWidth: CGFloat { get set }
 }
@@ -127,13 +131,4 @@ extension ShapeWithTwoPoints {
   public var boundingRect: CGRect {
     return rect.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2)
   }
-}
-
-/**
- Any object which can apply the values in a `UserSettings` object to itself or
- some other relevant object. This is part of the `DrawingTool` protocol, and
- some shapes implement it as well.
- */
-public protocol UserSettingsApplying {
-  func apply(userSettings: UserSettings)
 }

@@ -172,7 +172,7 @@ public class TextTool: NSObject, DrawingTool {
 
     // Configure and re-render shape for editing
     shape.isBeingEdited = true // stop rendering this shape while textView is open
-    shapeUpdater?.rerenderAllShapesInefficiently(shape: shape)
+    shapeUpdater?.rerenderAllShapesInefficiently()
 
     // Set selection in an order that guarantees the *initial* selection rect
     // is correct
@@ -306,7 +306,7 @@ extension TextTool: UITextViewDelegate {
     shape.text = textView.text ?? ""
     updateShapeFrame()
     // TODO: Only update selection rect here instead of rerendering everything
-    shapeUpdater?.rerenderAllShapesInefficiently(shape: shape)
+    shapeUpdater?.rerenderAllShapesInefficiently()
   }
 
   public func textViewDidBeginEditing(_ textView: UITextView) {

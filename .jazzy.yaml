@@ -37,7 +37,6 @@ custom_categories:
   - ShapeWithStandardState
   - ShapeWithStrokeState
   - ShapeWithTwoPoints
-  - UserSettingsApplying
 - name: Tool building blocks
   children:
   - DrawingTool

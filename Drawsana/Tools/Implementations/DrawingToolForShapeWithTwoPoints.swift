@@ -13,7 +13,7 @@ import CoreGraphics
  one point to another
  */
 public class DrawingToolForShapeWithTwoPoints: DrawingTool {
-  public typealias ShapeType = Shape & ShapeWithTwoPoints & UserSettingsApplying
+  public typealias ShapeType = Shape & ShapeWithTwoPoints
 
   public var name: String { fatalError("Override me") }
 
@@ -23,7 +23,8 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
 
   public init() { }
 
-  func makeShape() -> ShapeType {
+  /// Override this method to return a shape ready to be drawn to the screen.
+  public func makeShape() -> ShapeType {
     fatalError("Override me")
   }
 

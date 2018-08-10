@@ -38,7 +38,7 @@ public protocol DrawingTool {
    */
   func activate(shapeUpdater: DrawsanaViewShapeUpdating, context: ToolOperationContext, shape: Shape?)
 
-  /// This tool has become deselected. The default implementaiton does nothing.
+  /// This tool has become deselected. The default implementation does nothing.
   func deactivate(context: ToolOperationContext)
 
   /// User tapped on the drawing
@@ -62,7 +62,7 @@ public protocol DrawingTool {
   func handleDragCancel(context: ToolOperationContext, point: CGPoint)
 
   /// User settings have changed. Update any local state or the shape, if
-  /// relevant. The default implementaiton does nothing.
+  /// relevant. The default implementation does nothing.
   func apply(context: ToolOperationContext, userSettings: UserSettings)
 
   /// After each invocation of `handleDragStart(context:point:)`,
@@ -74,7 +74,7 @@ public protocol DrawingTool {
   /// If `isProgressive` is `true`, you only need to render changes since the
   /// last call. Otherwise, you need to render the whole shape.
   ///
-  /// The default implementaiton does nothing.
+  /// The default implementation does nothing.
   func renderShapeInProgress(transientContext: CGContext)
 }
 // TODO: Should we put these in a base class instead? Do they prevent subclass
