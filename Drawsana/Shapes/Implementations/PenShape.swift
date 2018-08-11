@@ -101,19 +101,29 @@ public class PenShape: Shape, ShapeWithStrokeState {
     if onlyLast, segments.count > 1 {
       lastSegment = segments[segments.count - 2]
     }
+    var lastWidth = segments[0].width
+    var hasStroked = false // make sure we finally stroke the path
     for segment in (onlyLast ? [segments.last!] : segments) {
+      hasStroked = false
       context.setLineWidth(segment.width)
+      let needsStroke = segment.width != lastWidth
       if let previousMid = lastSegment?.midPoint {
         let currentMid = segment.midPoint
         context.move(to: previousMid)
         context.addQuadCurve(to: currentMid, control: segment.a)
-        context.strokePath()
       } else {
         context.move(to: segment.a)
         context.addLine(to: segment.b)
-        context.strokePath()
       }
+      if needsStroke {
+        context.strokePath()
+        hasStroked = true
+      }
+      lastWidth = segment.width
       lastSegment = segment
+    }
+    if !hasStroked {
+      context.strokePath()
     }
     context.restoreGState()
   }
