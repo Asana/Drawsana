@@ -160,6 +160,10 @@ public class TextTool: NSObject, DrawingTool {
   public func apply(context: ToolOperationContext, userSettings: UserSettings) {
     selectedShape?.apply(userSettings: userSettings)
     updateTextView()
+    if context.toolSettings.selectedShape == nil {
+      selectedShape = nil
+      context.toolSettings.interactiveView = nil
+    }
     context.toolSettings.isPersistentBufferDirty = true
   }
 
@@ -190,6 +194,7 @@ public class TextTool: NSObject, DrawingTool {
   private func finishEditing(context: ToolOperationContext) {
     applyEditTextOperationIfTextHasChanged(context: context)
     selectedShape?.isBeingEdited = false
+    context.toolSettings.interactiveView = nil
     context.toolSettings.isPersistentBufferDirty = true
   }
 

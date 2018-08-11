@@ -12,6 +12,8 @@ import UIKit
 /// tool changes.
 public protocol DrawsanaViewDelegate: AnyObject {
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didStartDragWith tool: DrawingTool)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didEndDragWith tool: DrawingTool)
 }
 
 /**
@@ -187,6 +189,9 @@ public class DrawsanaView: UIView {
   /// Set the active tool to a new value. If you pass `shape`, it is passed on
   /// to the tool's `DrawingTool.activate(context:shape:)` method.
   public func set(tool: DrawingTool, shape: Shape? = nil) {
+    if let oldTool = self.tool, tool === oldTool {
+      return
+    }
     DispatchQueue.main.async {
       // TODO: why does this break everything if run in the same run loop? Maybe because autoreleasepool?
       self.tool?.deactivate(context: self.toolOperationContext)
@@ -231,6 +236,8 @@ public class DrawsanaView: UIView {
   }
 
   private func _didPan(sender: UIPanGestureRecognizer) {
+    guard let tool = tool else { return }
+
     let updateUncommittedShapeBuffers: () -> Void = {
       self.transientBufferWithShapeInProgress = DrawsanaUtilities.renderImage(size: self.drawing.size) {
         self.transientBuffer?.draw(at: .zero)
@@ -253,16 +260,18 @@ public class DrawsanaView: UIView {
       } else {
         transientBuffer = nil
       }
-      tool?.handleDragStart(context: toolOperationContext, point: point)
+      tool.handleDragStart(context: toolOperationContext, point: point)
+      delegate?.drawsanaView(self, didStartDragWith: tool)
       updateUncommittedShapeBuffers()
     case .changed:
-      tool?.handleDragContinue(context: toolOperationContext, point: point, velocity: sender.velocity(in: self))
+      tool.handleDragContinue(context: toolOperationContext, point: point, velocity: sender.velocity(in: self))
       updateUncommittedShapeBuffers()
     case .ended:
-      tool?.handleDragEnd(context: toolOperationContext, point: point)
+      tool.handleDragEnd(context: toolOperationContext, point: point)
+      delegate?.drawsanaView(self, didEndDragWith: tool)
       reapplyLayerContents()
     case .failed:
-      tool?.handleDragCancel(context: toolOperationContext, point: point)
+      tool.handleDragCancel(context: toolOperationContext, point: point)
       reapplyLayerContents()
     default:
       assert(false, "State not handled")
@@ -396,6 +405,8 @@ extension DrawsanaView: ToolSettingsDelegate {
     didSetSelectedShape selectedShape: ShapeSelectable?)
   {
     applySelectionViewState()
+    // DrawingView's delegate might set this, so notify the tool if it happens
+    tool?.apply(context: toolOperationContext, userSettings: userSettings)
   }
 
   func toolSettings(

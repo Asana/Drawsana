@@ -251,6 +251,12 @@ extension ViewController: DrawsanaViewDelegate {
     toolIndex = tools.index(where: { $0.name == tool.name })!
     applyViewState()
   }
+
+  func drawsanaView(_ drawsanaView: DrawsanaView, didStartDragWith tool: DrawingTool) {
+  }
+
+  func drawsanaView(_ drawsanaView: DrawsanaView, didEndDragWith tool: DrawingTool) {
+  }
 }
 
 extension ViewController: SelectionToolDelegate {

@@ -11,7 +11,7 @@ import CoreGraphics
 /**
  All drawing tools must implement this protocol.
  */
-public protocol DrawingTool {
+public protocol DrawingTool: AnyObject {
   /// If `true`, the shape-in-progress buffer is not cleared at all during
   /// drawing operations. So if you're implementing something like a pen tool,
   /// you only need to draw the tail of the line that hasn't yet been drawn,
