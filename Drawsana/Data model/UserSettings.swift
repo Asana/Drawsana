@@ -16,19 +16,34 @@ public class UserSettings {
   weak var delegate: UserSettingsDelegate?
 
   public var strokeColor: UIColor? {
-    didSet { delegate?.userSettings(self, didChangeStrokeColor: strokeColor) }
+    didSet {
+      guard strokeColor != oldValue else { return }
+      delegate?.userSettings(self, didChangeStrokeColor: strokeColor)
+    }
   }
   public var fillColor: UIColor? {
-    didSet { delegate?.userSettings(self, didChangeFillColor: fillColor) }
+    didSet {
+      guard fillColor != oldValue else { return }
+      delegate?.userSettings(self, didChangeFillColor: fillColor)
+    }
   }
   public var strokeWidth: CGFloat {
-    didSet { delegate?.userSettings(self, didChangeStrokeWidth: strokeWidth) }
+    didSet {
+      guard strokeWidth != oldValue else { return }
+      delegate?.userSettings(self, didChangeStrokeWidth: strokeWidth)
+    }
   }
   public var fontName: String {
-    didSet { delegate?.userSettings(self, didChangeFontName: fontName) }
+    didSet {
+      guard fontName != oldValue else { return }
+      delegate?.userSettings(self, didChangeFontName: fontName)
+    }
   }
   public var fontSize: CGFloat {
-    didSet { delegate?.userSettings(self, didChangeFontSize: fontSize) }
+    didSet {
+      guard fontSize != oldValue else { return }
+      delegate?.userSettings(self, didChangeFontSize: fontSize)
+    }
   }
 
   init(
