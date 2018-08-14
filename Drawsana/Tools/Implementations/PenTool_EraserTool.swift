@@ -89,6 +89,7 @@ public class PenTool: DrawingTool {
 
 public class EraserTool: PenTool {
   public override var name: String { return "Eraser" }
+  public override var isProgressive: Bool { return true }
   public override init() {
     super.init()
     velocityBasedWidth = false
@@ -102,5 +103,9 @@ public class EraserTool: PenTool {
   public override func handleDragStart(context: ToolOperationContext, point: CGPoint) {
     super.handleDragStart(context: context, point: point)
     shapeInProgress?.isEraser = true
+  }
+
+  public override func renderShapeInProgress(transientContext: CGContext) {
+    shapeInProgress?.renderLatestSegment(in: transientContext)
   }
 }
