@@ -103,25 +103,37 @@ public class PenShape: Shape, ShapeWithStrokeState {
     }
     var lastWidth = segments[0].width
     var hasStroked = false // make sure we finally stroke the path
-    for segment in (onlyLast ? [segments.last!] : segments) {
+    for (i, segment) in (onlyLast ? [segments.last!] : segments).enumerated() {
       hasStroked = false
-      context.setLineWidth(segment.width)
       let needsStroke = segment.width != lastWidth
+      context.setLineWidth(segment.width)
       if let previousMid = lastSegment?.midPoint {
         let currentMid = segment.midPoint
         context.move(to: previousMid)
         context.addQuadCurve(to: currentMid, control: segment.a)
-      } else {
+        // Usually we only draw up to the mid point of the segment, but if the
+        // shape is done and this is the last segment, go ahead and draw a line
+        // to the end
+        if i == segments.count - 1 && isFinished {
+          context.addLine(to: segment.b)
+        }
+      } else if segments.count == 1 {
         context.move(to: segment.a)
         context.addLine(to: segment.b)
+      } else {
+        context.move(to: segment.a)
+        context.addLine(to: segment.midPoint)
       }
+
       if needsStroke {
         context.strokePath()
         hasStroked = true
       }
+
       lastWidth = segment.width
       lastSegment = segment
     }
+
     if !hasStroked {
       context.strokePath()
     }

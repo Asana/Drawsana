@@ -175,8 +175,8 @@ public class DrawsanaView: UIView {
     selectionIndicatorView.layer.shadowOpacity = 1
     selectionIndicatorView.isHidden = true
 
-    addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:))))
-    addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(sender:))))
+    let panGR = ImmediatePanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
+    addGestureRecognizer(panGR)
   }
 
   public override func layoutSubviews() {
@@ -231,11 +231,11 @@ public class DrawsanaView: UIView {
 
   // MARK: Gesture recognizers
 
-  @objc private func didPan(sender: UIPanGestureRecognizer) {
+  @objc private func didPan(sender: ImmediatePanGestureRecognizer) {
     autoreleasepool { _didPan(sender: sender) }
   }
 
-  private func _didPan(sender: UIPanGestureRecognizer) {
+  private func _didPan(sender: ImmediatePanGestureRecognizer) {
     guard let tool = tool else { return }
 
     let updateUncommittedShapeBuffers: () -> Void = {
@@ -264,11 +264,16 @@ public class DrawsanaView: UIView {
       delegate?.drawsanaView(self, didStartDragWith: tool)
       updateUncommittedShapeBuffers()
     case .changed:
-      tool.handleDragContinue(context: toolOperationContext, point: point, velocity: sender.velocity(in: self))
+      tool.handleDragContinue(context: toolOperationContext, point: point, velocity: sender.velocity ?? .zero)
       updateUncommittedShapeBuffers()
     case .ended:
-      tool.handleDragEnd(context: toolOperationContext, point: point)
-      delegate?.drawsanaView(self, didEndDragWith: tool)
+      if sender.hasExceededTapThreshold {
+        tool.handleDragEnd(context: toolOperationContext, point: point)
+        delegate?.drawsanaView(self, didEndDragWith: tool)
+      } else {
+        tool.handleDragCancel(context: toolOperationContext, point: point)
+        tool.handleTap(context: toolOperationContext, point: point)
+      }
       reapplyLayerContents()
     case .failed:
       tool.handleDragCancel(context: toolOperationContext, point: point)
@@ -277,11 +282,6 @@ public class DrawsanaView: UIView {
       assert(false, "State not handled")
     }
 
-    applyToolSettingsChanges()
-  }
-
-  @objc private func didTap(sender: UITapGestureRecognizer) {
-    tool?.handleTap(context: toolOperationContext, point: sender.location(in: self))
     applyToolSettingsChanges()
   }
 

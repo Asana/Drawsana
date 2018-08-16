@@ -55,7 +55,9 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
   }
 
   public func handleDragCancel(context: ToolOperationContext, point: CGPoint) {
-    shapeInProgress = nil
+    // No such thing as a cancel for this tool. If this was recognized as a tap,
+    // just end the shape normally.
+    handleDragEnd(context: context, point: point)
   }
 
   public func renderShapeInProgress(transientContext: CGContext) {

@@ -14,7 +14,7 @@ public class PenTool: DrawingTool {
   public var name: String { return "Pen" }
   public var shapeInProgress: PenShape?
   public var isProgressive: Bool { return false }
-  public var velocityBasedWidth: Bool = true
+  public var velocityBasedWidth: Bool = false
 
   private var lastVelocity: CGPoint = .zero
   // The shape is rendered to a buffer so that if the color is transparent,
@@ -42,6 +42,7 @@ public class PenTool: DrawingTool {
     let shape = PenShape()
     shapeInProgress = shape
     shape.start = point
+    shape.isFinished = false
     shape.apply(userSettings: context.userSettings)
     shape.strokeColor = shape.strokeColor.withAlphaComponent(1)
   }
@@ -60,7 +61,9 @@ public class PenTool: DrawingTool {
     } else {
       segmentWidth = shape.strokeWidth
     }
-    shape.add(segment: PenLineSegment(a: lastPoint, b: point, width: segmentWidth))
+    if lastPoint != point {
+      shape.add(segment: PenLineSegment(a: lastPoint, b: point, width: segmentWidth))
+    }
     lastVelocity = velocity
   }
 
@@ -74,8 +77,9 @@ public class PenTool: DrawingTool {
   }
 
   public func handleDragCancel(context: ToolOperationContext, point: CGPoint) {
-    shapeInProgress = nil
-    shapeInProgressBuffer = nil
+    // No such thing as a cancel for this tool. If this was recognized as a tap,
+    // just end the shape normally.
+    handleDragEnd(context: context, point: point)
   }
 
   public func renderShapeInProgress(transientContext: CGContext) {

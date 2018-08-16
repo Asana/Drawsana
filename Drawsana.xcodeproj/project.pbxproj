@@ -10,6 +10,7 @@
 		3706B15A211B972A00D41622 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3706B159211B972A00D41622 /* LICENSE */; };
 		3706B15C211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706B15B211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift */; };
 		3706B15E211CF29500D41622 /* DrawingToolForShapeWithTwoPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706B15D211CF29500D41622 /* DrawingToolForShapeWithTwoPoints.swift */; };
+		371BE7D02123643100861596 /* ImmediatePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BE7CF2123643100861596 /* ImmediatePanGestureRecognizer.swift */; };
 		37362D5C21151684003E5ACA /* TextShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5B21151684003E5ACA /* TextShape.swift */; };
 		37362D5E2118D8A3003E5ACA /* ToolSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5D2118D8A3003E5ACA /* ToolSettings.swift */; };
 		37362D602118E46F003E5ACA /* DrawingOperationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */; };
@@ -83,6 +84,7 @@
 		3706B159211B972A00D41622 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3706B15B211BA07F00D41622 /* KeyedDecodingContainer+DrawsanaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+DrawsanaExtensions.swift"; sourceTree = "<group>"; };
 		3706B15D211CF29500D41622 /* DrawingToolForShapeWithTwoPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingToolForShapeWithTwoPoints.swift; sourceTree = "<group>"; };
+		371BE7CF2123643100861596 /* ImmediatePanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediatePanGestureRecognizer.swift; sourceTree = "<group>"; };
 		37362D5B21151684003E5ACA /* TextShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShape.swift; sourceTree = "<group>"; };
 		37362D5D2118D8A3003E5ACA /* ToolSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolSettings.swift; sourceTree = "<group>"; };
 		37362D5F2118E46F003E5ACA /* DrawingOperationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingOperationStack.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				3762296D2113A9E60034D0E3 /* DrawsanaUtilities.swift */,
+				371BE7CF2123643100861596 /* ImmediatePanGestureRecognizer.swift */,
 				37362D72211B853B003E5ACA /* Extensions */,
 			);
 			path = Helpers;
@@ -477,6 +480,7 @@
 				3777F2FD21068A5C009A9AC5 /* Shape.swift in Sources */,
 				37885E2C210A9C95003A918F /* PenTool_EraserTool.swift in Sources */,
 				37362D5C21151684003E5ACA /* TextShape.swift in Sources */,
+				371BE7D02123643100861596 /* ImmediatePanGestureRecognizer.swift in Sources */,
 				376229832113AD6E0034D0E3 /* Drawing.swift in Sources */,
 				37362D71211B7386003E5ACA /* TextShapeEditingView.swift in Sources */,
 			);
