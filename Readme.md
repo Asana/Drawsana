@@ -22,7 +22,7 @@ Drawsana might work for you!
 * Drawings are `Codable`, so you can save and load them
 * Extensible—make your own shapes and tools without forking the library
 
-![screenshot](https://raw.githubusercontent.com/stevelandeyasana/Drawsana/master/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/stevelandeyasana/Drawsana/master/demo.gif)
 
 ## Installation
 
