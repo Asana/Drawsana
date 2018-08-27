@@ -9,6 +9,6 @@ publish-docs: docs
 		--no-jekyll \
 		--push \
 		--force \
-		--remote origin \
+		--remote upstream \
 		--branch gh-pages
 

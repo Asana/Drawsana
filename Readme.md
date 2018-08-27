@@ -6,9 +6,9 @@ let users scribble over images, add shapes and text, and even make your own tool
 Do you want to let your users mark up images? Are you writing a simple painting app?
 Drawsana might work for you!
 
-[Demo source code](https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift)
+[Demo source code](https://github.com/Asana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift)
 
-[Docs](https://stevelandeyasana.github.io/Drawsana)
+[Docs](https://asana.github.io/Drawsana)
 
 ## Features
 
@@ -22,7 +22,7 @@ Drawsana might work for you!
 * Drawings are `Codable`, so you can save and load them
 * Extensible—make your own shapes and tools without forking the library
 
-![screenshot](https://raw.githubusercontent.com/stevelandeyasana/Drawsana/master/demo.gif)
+![screenshot](https://raw.githubusercontent.com/asana.gif)
 
 ## Installation
 
@@ -83,5 +83,5 @@ open .docs/index.html
 
 pip install ghp-import
 make publish-docs
-open https://stevelandeyasana.github.io/Drawsana
+open https://asana.github.io/Drawsana
 ```
