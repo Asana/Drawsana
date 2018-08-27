@@ -80,7 +80,6 @@ class ViewController: UIViewController {
     ArrowTool(),
     RectTool(),
   ] }()
-  var toolIndex = 0
 
   let strokeWidths: [CGFloat] = [
     5,
@@ -95,7 +94,7 @@ class ViewController: UIViewController {
 
     toolButton.translatesAutoresizingMaskIntoConstraints = false
     toolButton.setTitle("No Tool", for: .normal)
-    toolButton.addTarget(self, action: #selector(changeTool(_:)), for: .touchUpInside)
+    toolButton.addTarget(self, action: #selector(openToolMenu(_:)), for: .touchUpInside)
     toolButton.setContentHuggingPriority(.required, for: .vertical)
 
     undoButton.translatesAutoresizingMaskIntoConstraints = false
@@ -178,18 +177,11 @@ class ViewController: UIViewController {
     navigationItem.rightBarButtonItem = viewFinalImageButton
 
     // Set initial tool to whatever `toolIndex` says
-    drawingView.set(tool: tools[toolIndex])
+    drawingView.set(tool: tools[0])
     drawingView.userSettings.strokeColor = Constants.colors.first!
     drawingView.userSettings.fillColor = Constants.colors.last!
     drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
     drawingView.userSettings.fontName = "Marker Felt"
-    applyViewState()
-  }
-
-  /// Cycle to the next tool in the list; wrap around to zeroth tool if at end
-  @objc private func changeTool(_ sender: Any?) {
-    toolIndex = (toolIndex + 1) % tools.count
-    drawingView.set(tool: tools[toolIndex])
     applyViewState()
   }
 
@@ -222,22 +214,30 @@ class ViewController: UIViewController {
     present(vc, animated: true, completion: nil)
   }
 
+  private func presentPopover(_ viewController: UIViewController, sourceView: UIView) {
+    viewController.modalPresentationStyle = .popover
+    viewController.popoverPresentationController!.sourceView = sourceView
+    viewController.popoverPresentationController!.sourceRect = sourceView.bounds
+    viewController.popoverPresentationController!.delegate = self
+    present(viewController, animated: true, completion: nil)
+  }
+
   @objc private func openStrokeColorMenu(_ sender: UIView) {
-    let vc = ColorPickerViewController(identifier: "stroke", colors: Constants.colors, delegate: self)
-    vc.modalPresentationStyle = .popover
-    vc.popoverPresentationController!.sourceView = sender
-    vc.popoverPresentationController!.sourceRect = sender.bounds
-    vc.popoverPresentationController!.delegate = self
-    present(vc, animated: true, completion: nil)
+    presentPopover(
+      ColorPickerViewController(identifier: "stroke", colors: Constants.colors, delegate: self),
+      sourceView: sender)
   }
 
   @objc private func openFillColorMenu(_ sender: UIView) {
-    let vc = ColorPickerViewController(identifier: "fill", colors: Constants.colors, delegate: self)
-    vc.modalPresentationStyle = .popover
-    vc.popoverPresentationController!.sourceView = sender
-    vc.popoverPresentationController!.sourceRect = sender.bounds
-    vc.popoverPresentationController!.delegate = self
-    present(vc, animated: true, completion: nil)
+    presentPopover(
+      ColorPickerViewController(identifier: "fill", colors: Constants.colors, delegate: self),
+      sourceView: sender)
+  }
+
+  @objc private func openToolMenu(_ sender: UIView) {
+    presentPopover(
+      ToolPickerViewController(tools: tools, delegate: self),
+      sourceView: sender)
   }
 
   @objc private func setStrokeColor(_ color: UIColor?) {
@@ -247,6 +247,11 @@ class ViewController: UIViewController {
 
   @objc private func setFillColor(_ color: UIColor?) {
     drawingView.userSettings.fillColor = color
+    applyViewState()
+  }
+
+  private func setTool(tool: DrawingTool) {
+    drawingView.set(tool: tool)
     applyViewState()
   }
 
@@ -260,7 +265,7 @@ class ViewController: UIViewController {
   private func applyViewState() {
     undoButton.isEnabled = drawingView.operationStack.canUndo
     redoButton.isEnabled = drawingView.operationStack.canRedo
-    toolButton.setTitle(tools[toolIndex].name, for: .normal)
+    toolButton.setTitle(drawingView.tool?.name ?? "", for: .normal)
     strokeColorButton.backgroundColor = drawingView.userSettings.strokeColor
     fillColorButton.backgroundColor = drawingView.userSettings.fillColor
 
@@ -285,6 +290,13 @@ extension ViewController: ColorPickerViewControllerDelegate {
   }
 }
 
+extension ViewController: ToolPickerViewControllerDelegate {
+  func toolPickerViewControllerDidPick(tool: DrawingTool) {
+    setTool(tool: tool)
+    dismiss(animated: true, completion: nil)
+  }
+}
+
 extension ViewController: UIPopoverPresentationControllerDelegate {
   func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
     return .none
@@ -294,7 +306,6 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
 extension ViewController: DrawsanaViewDelegate {
   /// When tool changes, update the UI
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool) {
-    toolIndex = tools.index(where: { $0.name == tool.name })!
     applyViewState()
   }
 
@@ -327,8 +338,7 @@ extension ViewController: TextToolDelegate {
   /// When user taps away from text, switch to the selection tool so they can
   /// tap anything they want.
   func textToolDidTapAway(tappedPoint: CGPoint) {
-    toolIndex = tools.index(where: { ($0 as? SelectionTool) === self.selectionTool })!
-    drawingView.set(tool: tools[toolIndex])
+    drawingView.set(tool: self.selectionTool)
   }
 
   func textToolWillUseEditingView(_ editingView: TextShapeEditingView) {
