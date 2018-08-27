@@ -182,7 +182,7 @@ class ViewController: UIViewController {
     drawingView.userSettings.fillColor = Constants.colors.last!
     drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
     drawingView.userSettings.fontName = "Marker Felt"
-    applyViewState()
+    applyUndoViewState()
   }
 
   var savedImageURL: URL {
@@ -240,38 +240,15 @@ class ViewController: UIViewController {
       sourceView: sender)
   }
 
-  @objc private func setStrokeColor(_ color: UIColor?) {
-    drawingView.userSettings.strokeColor = color
-    applyViewState()
-  }
-
-  @objc private func setFillColor(_ color: UIColor?) {
-    drawingView.userSettings.fillColor = color
-    applyViewState()
-  }
-
-  private func setTool(tool: DrawingTool) {
-    drawingView.set(tool: tool)
-    applyViewState()
-  }
-
   @objc private func cycleStrokeWidth(_ sender: Any?) {
     strokeWidthIndex = (strokeWidthIndex + 1) % strokeWidths.count
     drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
-    applyViewState()
   }
 
-  /// Update button states to reflect undo stack and user settings
-  private func applyViewState() {
+  /// Update button states to reflect undo stack
+  private func applyUndoViewState() {
     undoButton.isEnabled = drawingView.operationStack.canUndo
     redoButton.isEnabled = drawingView.operationStack.canRedo
-    toolButton.setTitle(drawingView.tool?.name ?? "", for: .normal)
-    strokeColorButton.backgroundColor = drawingView.userSettings.strokeColor
-    fillColorButton.backgroundColor = drawingView.userSettings.fillColor
-
-    strokeColorButton.setTitle(drawingView.userSettings.strokeColor == nil ? "x" : "", for: .normal)
-    fillColorButton.setTitle(drawingView.userSettings.fillColor == nil ? "x" : "", for: .normal)
-    strokeWidthButton.setTitle("\(Int(strokeWidths[strokeWidthIndex]))", for: .normal)
 
     for button in [undoButton, redoButton] {
       button.alpha = button.isEnabled ? 1 : 0.5
@@ -282,8 +259,10 @@ class ViewController: UIViewController {
 extension ViewController: ColorPickerViewControllerDelegate {
   func colorPickerViewControllerDidPick(colorIndex: Int, color: UIColor?, identifier: String) {
     switch identifier {
-    case "stroke": setStrokeColor(color)
-    case "fill": setFillColor(color)
+    case "stroke":
+      drawingView.userSettings.strokeColor = color
+    case "fill":
+      drawingView.userSettings.fillColor = color
     default: break;
     }
     dismiss(animated: true, completion: nil)
@@ -292,7 +271,7 @@ extension ViewController: ColorPickerViewControllerDelegate {
 
 extension ViewController: ToolPickerViewControllerDelegate {
   func toolPickerViewControllerDidPick(tool: DrawingTool) {
-    setTool(tool: tool)
+    drawingView.set(tool: tool)
     dismiss(animated: true, completion: nil)
   }
 }
@@ -306,7 +285,28 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
 extension ViewController: DrawsanaViewDelegate {
   /// When tool changes, update the UI
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool) {
-    applyViewState()
+    toolButton.setTitle(drawingView.tool?.name ?? "", for: .normal)
+  }
+
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeStrokeColor strokeColor: UIColor?) {
+    strokeColorButton.backgroundColor = drawingView.userSettings.strokeColor
+    strokeColorButton.setTitle(drawingView.userSettings.strokeColor == nil ? "x" : "", for: .normal)
+  }
+
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeFillColor fillColor: UIColor?) {
+    fillColorButton.backgroundColor = drawingView.userSettings.fillColor
+    fillColorButton.setTitle(drawingView.userSettings.fillColor == nil ? "x" : "", for: .normal)
+  }
+
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeStrokeWidth strokeWidth: CGFloat) {
+    strokeWidthIndex = strokeWidths.index(of: drawingView.userSettings.strokeWidth) ?? 0
+    strokeWidthButton.setTitle("\(Int(strokeWidths[strokeWidthIndex]))", for: .normal)
+  }
+
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeFontName fontName: String) {
+  }
+
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeFontSize fontSize: CGFloat) {
   }
 
   func drawsanaView(_ drawsanaView: DrawsanaView, didStartDragWith tool: DrawingTool) {
@@ -371,15 +371,15 @@ extension ViewController: TextToolDelegate {
 /// operation stack
 extension ViewController: DrawingOperationStackDelegate {
   func drawingOperationStackDidUndo(_ operationStack: DrawingOperationStack, operation: DrawingOperation) {
-    applyViewState()
+    applyUndoViewState()
   }
 
   func drawingOperationStackDidRedo(_ operationStack: DrawingOperationStack, operation: DrawingOperation) {
-    applyViewState()
+    applyUndoViewState()
   }
 
   func drawingOperationStackDidApply(_ operationStack: DrawingOperationStack, operation: DrawingOperation) {
-    applyViewState()
+    applyUndoViewState()
   }
 }
 
