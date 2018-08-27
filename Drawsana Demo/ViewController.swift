@@ -15,6 +15,22 @@ import QuickLook
  own UI, so this demo has a very simple one.
  */
 class ViewController: UIViewController {
+  struct Constants {
+    static let colors: [UIColor?] = [
+      .black,
+      .white,
+      .red,
+      .orange,
+      .yellow,
+      .green,
+      .blue,
+      .purple,
+      .brown,
+      .gray,
+      nil
+    ]
+  }
+
   lazy var drawingView: DrawsanaView = {
     let drawingView = DrawsanaView()
     drawingView.delegate = self
@@ -22,11 +38,16 @@ class ViewController: UIViewController {
     return drawingView
   }()
 
+  lazy var viewFinalImageButton = { return UIBarButtonItem(
+    title: "View",
+    style: .plain,
+    target: self,
+    action: #selector(ViewController.viewFinalImage(_:)))
+  }()
   let toolButton = UIButton(type: .custom)
   let imageView = UIImageView(image: UIImage(named: "demo"))
   let undoButton = UIButton()
   let redoButton = UIButton()
-  let viewFinalImageButton = UIButton()
   let strokeColorButton = UIButton()
   let fillColorButton = UIButton()
   let strokeWidthButton = UIButton()
@@ -38,7 +59,6 @@ class ViewController: UIViewController {
       fillColorButton,
       strokeWidthButton,
       toolButton,
-      viewFinalImageButton,
     ])
   }()
 
@@ -62,14 +82,6 @@ class ViewController: UIViewController {
   ] }()
   var toolIndex = 0
 
-  let colors: [UIColor?] = [
-    .blue,
-    .yellow,
-    nil
-  ]
-  var strokeColorIndex = 0
-  var fillColorIndex = 2
-
   let strokeWidths: [CGFloat] = [
     5,
     10,
@@ -87,24 +99,20 @@ class ViewController: UIViewController {
     toolButton.setContentHuggingPriority(.required, for: .vertical)
 
     undoButton.translatesAutoresizingMaskIntoConstraints = false
-    undoButton.setTitle("<", for: .normal)
+    undoButton.setTitle("←", for: .normal)
     undoButton.addTarget(drawingView.operationStack, action: #selector(DrawingOperationStack.undo), for: .touchUpInside)
 
     redoButton.translatesAutoresizingMaskIntoConstraints = false
-    redoButton.setTitle(">", for: .normal)
+    redoButton.setTitle("→", for: .normal)
     redoButton.addTarget(drawingView.operationStack, action: #selector(DrawingOperationStack.redo), for: .touchUpInside)
 
-    viewFinalImageButton.translatesAutoresizingMaskIntoConstraints = false
-    viewFinalImageButton.setTitle("👁", for: .normal)
-    viewFinalImageButton.addTarget(self, action: #selector(ViewController.viewFinalImage(_:)), for: .touchUpInside)
-
     strokeColorButton.translatesAutoresizingMaskIntoConstraints = false
-    strokeColorButton.addTarget(self, action: #selector(ViewController.cycleStrokeColor(_:)), for: .touchUpInside)
+    strokeColorButton.addTarget(self, action: #selector(ViewController.openStrokeColorMenu(_:)), for: .touchUpInside)
     strokeColorButton.layer.borderColor = UIColor.white.cgColor
     strokeColorButton.layer.borderWidth = 0.5
 
     fillColorButton.translatesAutoresizingMaskIntoConstraints = false
-    fillColorButton.addTarget(self, action: #selector(ViewController.cycleFillColor(_:)), for: .touchUpInside)
+    fillColorButton.addTarget(self, action: #selector(ViewController.openFillColorMenu(_:)), for: .touchUpInside)
     fillColorButton.layer.borderColor = UIColor.white.cgColor
     fillColorButton.layer.borderWidth = 0.5
 
@@ -137,8 +145,11 @@ class ViewController: UIViewController {
 
       // toolbarStackView fill bottom
       toolbarStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      toolbarStackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-      toolbarStackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+      toolbarStackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
+      toolbarStackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+
+      // tool button constant width
+      toolButton.widthAnchor.constraint(equalToConstant: 90),
 
       // imageView bottom -> toolbarStackView.top
       imageView.bottomAnchor.constraint(equalTo: toolbarStackView.topAnchor),
@@ -164,10 +175,12 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    navigationItem.rightBarButtonItem = viewFinalImageButton
+
     // Set initial tool to whatever `toolIndex` says
     drawingView.set(tool: tools[toolIndex])
-    drawingView.userSettings.strokeColor = colors[strokeColorIndex]
-    drawingView.userSettings.fillColor = colors[fillColorIndex]
+    drawingView.userSettings.strokeColor = Constants.colors.first!
+    drawingView.userSettings.fillColor = Constants.colors.last!
     drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
     drawingView.userSettings.fontName = "Marker Felt"
     applyViewState()
@@ -209,15 +222,31 @@ class ViewController: UIViewController {
     present(vc, animated: true, completion: nil)
   }
 
-  @objc private func cycleStrokeColor(_ sender: Any?) {
-    strokeColorIndex = (strokeColorIndex + 1) % colors.count
-    drawingView.userSettings.strokeColor = colors[strokeColorIndex]
+  @objc private func openStrokeColorMenu(_ sender: UIView) {
+    let vc = ColorPickerViewController(identifier: "stroke", colors: Constants.colors, delegate: self)
+    vc.modalPresentationStyle = .popover
+    vc.popoverPresentationController!.sourceView = sender
+    vc.popoverPresentationController!.sourceRect = sender.bounds
+    vc.popoverPresentationController!.delegate = self
+    present(vc, animated: true, completion: nil)
+  }
+
+  @objc private func openFillColorMenu(_ sender: UIView) {
+    let vc = ColorPickerViewController(identifier: "fill", colors: Constants.colors, delegate: self)
+    vc.modalPresentationStyle = .popover
+    vc.popoverPresentationController!.sourceView = sender
+    vc.popoverPresentationController!.sourceRect = sender.bounds
+    vc.popoverPresentationController!.delegate = self
+    present(vc, animated: true, completion: nil)
+  }
+
+  @objc private func setStrokeColor(_ color: UIColor?) {
+    drawingView.userSettings.strokeColor = color
     applyViewState()
   }
 
-  @objc private func cycleFillColor(_ sender: Any?) {
-    fillColorIndex = (fillColorIndex + 1) % colors.count
-    drawingView.userSettings.fillColor = colors[fillColorIndex]
+  @objc private func setFillColor(_ color: UIColor?) {
+    drawingView.userSettings.fillColor = color
     applyViewState()
   }
 
@@ -232,16 +261,33 @@ class ViewController: UIViewController {
     undoButton.isEnabled = drawingView.operationStack.canUndo
     redoButton.isEnabled = drawingView.operationStack.canRedo
     toolButton.setTitle(tools[toolIndex].name, for: .normal)
-    strokeColorButton.backgroundColor = colors[strokeColorIndex]
-    fillColorButton.backgroundColor = colors[fillColorIndex]
+    strokeColorButton.backgroundColor = drawingView.userSettings.strokeColor
+    fillColorButton.backgroundColor = drawingView.userSettings.fillColor
 
-    strokeColorButton.setTitle(colors[strokeColorIndex] == nil ? "x" : "", for: .normal)
-    fillColorButton.setTitle(colors[fillColorIndex] == nil ? "x" : "", for: .normal)
+    strokeColorButton.setTitle(drawingView.userSettings.strokeColor == nil ? "x" : "", for: .normal)
+    fillColorButton.setTitle(drawingView.userSettings.fillColor == nil ? "x" : "", for: .normal)
     strokeWidthButton.setTitle("\(Int(strokeWidths[strokeWidthIndex]))", for: .normal)
 
     for button in [undoButton, redoButton] {
       button.alpha = button.isEnabled ? 1 : 0.5
     }
+  }
+}
+
+extension ViewController: ColorPickerViewControllerDelegate {
+  func colorPickerViewControllerDidPick(colorIndex: Int, color: UIColor?, identifier: String) {
+    switch identifier {
+    case "stroke": setStrokeColor(color)
+    case "fill": setFillColor(color)
+    default: break;
+    }
+    dismiss(animated: true, completion: nil)
+  }
+}
+
+extension ViewController: UIPopoverPresentationControllerDelegate {
+  func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+    return .none
   }
 }
 
