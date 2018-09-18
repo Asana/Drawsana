@@ -8,6 +8,8 @@
 
 import UIKit
 
+public let DRAWSANA_VERSION = "1.0"
+
 /// Set yourself as the `DrawsanaView`'s delegate to be notified when the active
 /// tool changes.
 public protocol DrawsanaViewDelegate: AnyObject {
