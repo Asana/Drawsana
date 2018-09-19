@@ -36,10 +36,11 @@ import Drawsana
 
 class MyViewController: UIViewController {
   let drawsanaView = DrawsanaView()
+  let penTool = PenTool()
   
   func viewDidLoad() {
     /* ... */
-    drawsanaView.set(tool: PenTool())
+    drawsanaView.set(tool: penTool)
     drawsanaView.userSettings.strokeWidth = 5
     drawsanaView.userSettings.strokeColor = .blue
     drawsanaView.userSettings.fillColor = .yellow

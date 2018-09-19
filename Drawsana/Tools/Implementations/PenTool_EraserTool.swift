@@ -27,11 +27,6 @@ public class PenTool: DrawingTool {
   public init() { }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
-    let shape = PenShape()
-    shape.start = point
-    shape.isFinished = true
-    shape.apply(userSettings: context.userSettings)
-    context.operationStack.apply(operation: AddShapeOperation(shape: shape))
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
