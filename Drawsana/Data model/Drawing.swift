@@ -53,15 +53,34 @@ public class Drawing: Codable {
   // MARK: Codable
 
   public required init(from decoder: Decoder) throws {
+    // This initializer is pretty complex because it has to decode a
+    // heterogeneous array of shapes.
     let container = try decoder.container(keyedBy: CodingKeys.self)
+
+    // Size is straightforward:
     size = try container.decode(CGSize.self, forKey: .size)
 
+    // For shapes, create an iterator for the container and make the destination
+    // array (self.shapes) initially empty
     shapes = []
     var shapeIter = try container.nestedUnkeyedContainer(forKey: .shapes)
+
     while !shapeIter.isAtEnd {
+      // Keep track of count so we can see whether we're unable to decode
+      // a shape
       let countBefore = shapes.count
+
+      // Try to decode every single kind of shape using this iterator.
+      // Note: this might decode more than one shape, if they happen to occur
+      // in the order used in `tryDecodingAllShapes(_:)`.
       shapes.append(contentsOf: tryDecodingAllShapes(&shapeIter))
+
+      // Decoding failed, so bail out with a helpful error message. We choose
+      // to crash here for now, but a custom error enum might be a good idea
+      // in the future.
       if shapes.count == countBefore {
+        // Use a special CodingKeys enum that only cares about the `type`, so
+        // we can report exactly what kind of thing can't be parsed
         let typeContainer = try shapeIter.nestedContainer(keyedBy: ShapeTypeCodingKey.self)
         let type = try typeContainer.decode(String.self, forKey: .type)
         fatalError("Can't decode shape of type \(type)")
@@ -84,6 +103,10 @@ public class Drawing: Codable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(size, forKey: .size)
+    // The Swift compiler can't figure out how to encode a heterogeneous array
+    // of shapes, so we use this type system trick to turn a confusing "Shape"
+    // into a non-confusing "Encodable", and for some reason the Swift compiler
+    // accepts this and behaves correctly.
     try container.encode(shapes.map({ AnyEncodable(base: $0) }), forKey: .shapes)
   }
 

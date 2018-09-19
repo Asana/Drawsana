@@ -87,7 +87,7 @@ public class PenTool: DrawingTool {
       self.shapeInProgressBuffer?.draw(at: .zero)
       self.shapeInProgress?.renderLatestSegment(in: $0)
     }
-    shapeInProgressBuffer?.draw(at: .zero, blendMode: .overlay, alpha: alpha)
+    shapeInProgressBuffer?.draw(at: .zero, blendMode: .normal, alpha: alpha)
   }
 }
 

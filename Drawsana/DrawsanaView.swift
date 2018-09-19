@@ -8,12 +8,19 @@
 
 import UIKit
 
+public let DRAWSANA_VERSION = "1.0"
+
 /// Set yourself as the `DrawsanaView`'s delegate to be notified when the active
 /// tool changes.
 public protocol DrawsanaViewDelegate: AnyObject {
   func drawsanaView(_ drawsanaView: DrawsanaView, didSwitchTo tool: DrawingTool)
   func drawsanaView(_ drawsanaView: DrawsanaView, didStartDragWith tool: DrawingTool)
   func drawsanaView(_ drawsanaView: DrawsanaView, didEndDragWith tool: DrawingTool)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeStrokeColor strokeColor: UIColor?)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeFillColor fillColor: UIColor?)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeStrokeWidth strokeWidth: CGFloat)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeFontName fontName: String)
+  func drawsanaView(_ drawsanaView: DrawsanaView, didChangeFontSize fontSize: CGFloat)
 }
 
 /**
@@ -31,7 +38,7 @@ public class DrawsanaView: UIView {
   /// active tool and applied to new shapes.
   public let userSettings = UserSettings(
     strokeColor: .blue,
-    fillColor: nil,
+    fillColor: .yellow,
     strokeWidth: 20,
     fontName: "Helvetica Neue",
     fontSize: 24)
@@ -433,26 +440,31 @@ extension DrawsanaView: UserSettingsDelegate {
   func userSettings(_ userSettings: UserSettings, didChangeStrokeColor strokeColor: UIColor?) {
     tool?.apply(context: toolOperationContext, userSettings: userSettings)
     applyToolSettingsChanges()
+    delegate?.drawsanaView(self, didChangeStrokeColor: strokeColor)
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeFillColor fillColor: UIColor?) {
     tool?.apply(context: toolOperationContext, userSettings: userSettings)
     applyToolSettingsChanges()
+    delegate?.drawsanaView(self, didChangeFillColor: fillColor)
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeStrokeWidth strokeWidth: CGFloat) {
     tool?.apply(context: toolOperationContext, userSettings: userSettings)
     applyToolSettingsChanges()
+    delegate?.drawsanaView(self, didChangeStrokeWidth: strokeWidth)
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeFontName fontName: String) {
     tool?.apply(context: toolOperationContext, userSettings: userSettings)
     applyToolSettingsChanges()
+    delegate?.drawsanaView(self, didChangeFontName: fontName)
   }
 
   func userSettings(_ userSettings: UserSettings, didChangeFontSize fontSize: CGFloat) {
     tool?.apply(context: toolOperationContext, userSettings: userSettings)
     applyToolSettingsChanges()
+    delegate?.drawsanaView(self, didChangeFontSize: fontSize)
   }
 }
 

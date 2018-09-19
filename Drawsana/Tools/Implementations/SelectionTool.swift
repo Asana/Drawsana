@@ -40,6 +40,8 @@ public class SelectionTool: DrawingTool {
    */
   private var isDraggingShape = false
 
+  private var isUpdatingSelection = false
+
   public init(delegate: SelectionToolDelegate? = nil) {
     self.delegate = delegate
   }
@@ -50,8 +52,19 @@ public class SelectionTool: DrawingTool {
 
   public func apply(context: ToolOperationContext, userSettings: UserSettings) {
     if let shape = context.toolSettings.selectedShape {
-      shape.apply(userSettings: userSettings)
-      context.toolSettings.isPersistentBufferDirty = true
+      if isUpdatingSelection {
+        if let shapeWithStandardState = shape as? ShapeWithStandardState {
+          context.userSettings.fillColor = shapeWithStandardState.fillColor
+          context.userSettings.strokeColor = shapeWithStandardState.strokeColor
+          context.userSettings.strokeWidth = shapeWithStandardState.strokeWidth
+        } else if let shapeWithStrokeState = shape as? ShapeWithStrokeState {
+          context.userSettings.strokeColor = shapeWithStrokeState.strokeColor
+          context.userSettings.strokeWidth = shapeWithStrokeState.strokeWidth
+        }
+      } else {
+        shape.apply(userSettings: userSettings)
+        context.toolSettings.isPersistentBufferDirty = true
+      }
     }
   }
 
@@ -66,10 +79,10 @@ public class SelectionTool: DrawingTool {
       return
     }
 
-    context.toolSettings.selectedShape = context.drawing.shapes
+    updateSelection(context: context, context.drawing.shapes
       .compactMap({ $0 as? ShapeSelectable })
       .filter({ $0.hitTest(point: point) })
-      .last
+      .last)
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
@@ -120,5 +133,14 @@ public class SelectionTool: DrawingTool {
     guard isDraggingShape else { return }
     context.toolSettings.selectedShape?.transform = originalTransform ?? .identity
     context.toolSettings.isPersistentBufferDirty = true
+  }
+
+  /// Update selection on context.toolSettings, but make sure that when apply()
+  /// is called as a part of that change, we don't immediately change the
+  /// properties of the newly selected shape.
+  private func updateSelection(context: ToolOperationContext, _ newSelectedShape: ShapeSelectable?) {
+    isUpdatingSelection = true
+    context.toolSettings.selectedShape = newSelectedShape
+    isUpdatingSelection = false
   }
 }
