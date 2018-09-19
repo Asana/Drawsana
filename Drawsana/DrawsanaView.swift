@@ -361,11 +361,9 @@ public class DrawsanaView: UIView {
   }
 
   private func redrawAbsolutelyEverything() {
-    autoreleasepool {
-      self.persistentBuffer = DrawsanaUtilities.renderImage(size: drawing.size) {
-        for shape in self.drawing.shapes {
-          shape.render(in: $0)
-        }
+    persistentBuffer = DrawsanaUtilities.renderImage(size: drawing.size) {
+      for shape in self.drawing.shapes {
+        shape.render(in: $0)
       }
     }
     reapplyLayerContents()

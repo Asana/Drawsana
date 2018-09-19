@@ -29,11 +29,6 @@ public class DrawingToolForShapeWithTwoPoints: DrawingTool {
   }
 
   public func handleTap(context: ToolOperationContext, point: CGPoint) {
-    var shape = makeShape()
-    shape.a = point
-    shape.b = point
-    shape.apply(userSettings: context.userSettings)
-    context.operationStack.apply(operation: AddShapeOperation(shape: shape))
   }
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
