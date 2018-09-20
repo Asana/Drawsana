@@ -342,6 +342,7 @@ extension ViewController: TextToolDelegate {
   }
 
   func textToolWillUseEditingView(_ editingView: TextShapeEditingView) {
+    editingView.addStandardControls()
     for view in [editingView.deleteControlView, editingView.resizeAndRotateControlView] {
       view.backgroundColor = .black
       view.layer.cornerRadius = 6

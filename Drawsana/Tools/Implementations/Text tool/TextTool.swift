@@ -21,7 +21,9 @@ public protocol TextToolDelegate: AnyObject {
   func textToolDidTapAway(tappedPoint: CGPoint)
 
   /// The text tool is about to present a text editing view. You may configure
-  /// it however you like.
+  /// it however you like. If you're just starting out, you probably want to
+  /// call `editingView.addStandardControls()` to add the delete button and the
+  /// two resize handles.
   func textToolWillUseEditingView(_ editingView: TextShapeEditingView)
 }
 
@@ -81,7 +83,7 @@ public class TextTool: NSObject, DrawingTool {
   }
 
   private func handleTapWhenShapeIsActive(context: ToolOperationContext, point: CGPoint, shape: TextShape) {
-    if case .delete = editingView.getPointArea(point: point) {
+    if let dragActionType = editingView.getDragActionType(point: point), case .delete = dragActionType {
       applyRemoveShapeOperation(context: context)
       delegate?.textToolDidTapAway(tappedPoint: point)
     } else if shape.hitTest(point: point) {
@@ -111,9 +113,9 @@ public class TextTool: NSObject, DrawingTool {
 
   public func handleDragStart(context: ToolOperationContext, point: CGPoint) {
     guard let shape = selectedShape else { return }
-    if case .resizeAndRotate = editingView.getPointArea(point: point) {
+    if let dragActionType = editingView.getDragActionType(point: point), case .resizeAndRotate = dragActionType {
       dragHandler = ResizeAndRotateHandler(shape: shape, textTool: self)
-    } else if case .changeWidth = editingView.getPointArea(point: point) {
+    } else if let dragActionType = editingView.getDragActionType(point: point), case .changeWidth = dragActionType {
       dragHandler = ChangeWidthHandler(shape: shape, textTool: self)
     } else if shape.hitTest(point: point) {
       dragHandler = MoveHandler(shape: shape, textTool: self)
@@ -133,8 +135,8 @@ public class TextTool: NSObject, DrawingTool {
     } else {
       // The pan gesture is super finicky at the start, so add an affordance for
       // dragging over a handle
-      switch editingView.getPointArea(point: point) {
-      case .resizeAndRotate, .changeWidth:
+      switch editingView.getDragActionType(point: point) {
+      case .some(.resizeAndRotate), .some(.changeWidth):
         handleDragStart(context: context, point: point)
       default: break
       }
@@ -300,7 +302,11 @@ public class TextTool: NSObject, DrawingTool {
     textView.backgroundColor = .clear
     textView.delegate = self
     let editingView = TextShapeEditingView(textView: textView)
-    delegate?.textToolWillUseEditingView(editingView)
+    if let delegate = delegate {
+      delegate.textToolWillUseEditingView(editingView)
+    } else {
+      editingView.addStandardControls()
+    }
     return editingView
   }
 }
