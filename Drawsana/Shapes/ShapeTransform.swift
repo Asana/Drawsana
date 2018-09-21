@@ -13,11 +13,11 @@ import CoreGraphics
  rotate, scale) that can be applied to `ShapeWithTransform`.
  */
 public struct ShapeTransform: Codable {
-  var translation: CGPoint
-  var rotation: CGFloat
-  var scale: CGFloat
+  public var translation: CGPoint
+  public var rotation: CGFloat
+  public var scale: CGFloat
 
-  static let identity = ShapeTransform(translation: .zero, rotation: 0, scale: 1)
+  public static let identity = ShapeTransform(translation: .zero, rotation: 0, scale: 1)
 }
 
 extension ShapeTransform {
