@@ -92,3 +92,17 @@ pip install ghp-import
 make publish-docs
 open https://asana.github.io/Drawsana
 ```
+
+## Changelog
+
+### 0.9.1 (in development)
+
+* `DrawsanaView.selectionIndicatorViewShapeLayer` is exposed, allowing you to more
+  easily customize the appearance of the selection indicator
+* Changes to `DrawsanaView.selectionIndicatorView`'s style are animated in fewer
+  cases, which more closely matches user intent
+* Improved text tool use in the demo app
+
+### 0.9.0
+
+Initial release
