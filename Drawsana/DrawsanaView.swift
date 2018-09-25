@@ -43,6 +43,7 @@ public class DrawsanaView: UIView {
     fontName: "Helvetica Neue",
     fontSize: 24)
 
+  /// Values used by tools to manage state.
   public let toolSettings = ToolSettings(
     selectedShape: nil,
     interactiveView: nil,
@@ -71,6 +72,7 @@ public class DrawsanaView: UIView {
       toolSettings: toolSettings)
   }
 
+  /// Configurable inset for the selection indicator
   public var selectionIndicatorInset = CGPoint(x: -4, y: -4)
 
   // MARK: Buffers
@@ -112,6 +114,13 @@ public class DrawsanaView: UIView {
   /// You may configure whatever properties you want to to make it look like
   /// you want it to look.
   public let selectionIndicatorView = UIView()
+
+  /// Layer that backs `DrawsanaView.selectionIndicatorView`. You may set this
+  /// layer's properties to change its visual apparance. Its `path` and `frame`
+  /// properties are managed by `DrawsanaView`.
+  public var selectionIndicatorViewShapeLayer: CAShapeLayer {
+    return selectionIndicatorView.layer.sublayers!.compactMap({ $0 as? CAShapeLayer }).first!
+  }
 
   private let interactiveOverlayContainerView = UIView()
 
@@ -356,11 +365,8 @@ public class DrawsanaView: UIView {
       scale: shape.transform.scale).affineTransform
     selectionIndicatorView.isHidden = false
 
-    for layer in (selectionIndicatorView.layer.sublayers ?? []) {
-      guard let shapeLayer = layer as? CAShapeLayer else { continue }
-      shapeLayer.frame = selectionIndicatorView.bounds
-      shapeLayer.path = UIBezierPath(rect: selectionIndicatorView.bounds).cgPath
-    }
+    selectionIndicatorViewShapeLayer.frame = selectionIndicatorView.bounds
+    selectionIndicatorViewShapeLayer.path = UIBezierPath(rect: selectionIndicatorView.bounds).cgPath
   }
 
   private func redrawAbsolutelyEverything() {
@@ -376,6 +382,7 @@ public class DrawsanaView: UIView {
 // MARK: DrawsanaViewShapeUpdating implementation
 
 extension DrawsanaView: DrawsanaViewShapeUpdating {
+  /// Rerender all shapes from scratch. Very expensive for drawings with many shapes.
   public func rerenderAllShapesInefficiently() {
     redrawAbsolutelyEverything()
     applySelectionViewState()
