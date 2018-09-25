@@ -136,6 +136,11 @@ class ChangeWidthHandler: DragHandler {
     let translatedBoundingRect = shape.boundingRect.applying(
       CGAffineTransform(translationX: shape.transform.translation.x,
                         y: shape.transform.translation.y))
+    // TODO: The math here isn't quite right. Instead of using the distance from
+    // the center of the shape, we should use only the distance to the center of
+    // the text on the X axis in the text's coordinate space. This isn't too
+    // hard to do with some working knowledge of linear algebra and trigonometry,
+    // but it didn't make the cut for initial release.
     let distanceFromShapeCenter = (point - translatedBoundingRect.middle).length
     let desiredWidthInScreenCoordinates = (
       distanceFromShapeCenter - textTool.editingView.changeWidthControlView.frame.size.width / 2) * 2
