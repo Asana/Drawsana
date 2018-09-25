@@ -13,8 +13,8 @@
     <a title="Drawsana  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Drawsana Docs</a> (52% documented)</p>
-        <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p><a href="index.html">Drawsana Docs</a> (50% documented)</p>
+        <p class="header-right"><a href="https://github.com/Asana/Drawsana"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -169,6 +169,12 @@
               <li class="nav-group-task">
                 <a href="Classes/TextShapeEditingView.html">TextShapeEditingView</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/TextShapeEditingView/DragActionType.html">– DragActionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/TextShapeEditingView/Control.html">– Control</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -176,6 +182,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/MultiDecoder.html">MultiDecoder</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Other Global Variables.html">Other Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Other Global Variables.html#/s:8Drawsana16DRAWSANA_VERSIONSSvp">DRAWSANA_VERSION</a>
               </li>
             </ul>
           </li>
@@ -193,7 +207,7 @@
         <section>
           <section class="section">
             
-            <h1 id='drawsana' class='heading'>Drawsana</h1>
+            <h1 id='drawsana-0-9-0' class='heading'>Drawsana 0.9.0</h1>
 
 <p>Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.</p>
@@ -201,9 +215,11 @@ let users scribble over images, add shapes and text, and even make your own tool
 <p>Do you want to let your users mark up images? Are you writing a simple painting app?
 Drawsana might work for you!</p>
 
-<p><a href="https://github.com/stevelandeyasana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift">Demo source code</a></p>
+<p><a href="https://github.com/Asana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift">Demo source code</a></p>
 
-<p><a href="https://stevelandeyasana.github.io/Drawsana">Docs</a></p>
+<p><a href="https://asana.github.io/Drawsana">Docs</a></p>
+
+<p><em>Like what you see? <a href="https://asana.com/jobs/apply/874145/software-engineerios">Come work with us!</a></em></p>
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
@@ -221,20 +237,23 @@ Drawsana might work for you!</p>
 <li>Extensible—make your own shapes and tools without forking the library</li>
 </ul>
 
-<p><img src="https://raw.githubusercontent.com/stevelandeyasana/Drawsana/master/screenshot.png" alt="screenshot"></p>
+<p><img src="https://raw.githubusercontent.com/asana/Drawsana/master/demo.gif" alt="screenshot"></p>
 <h2 id='installation' class='heading'>Installation</h2>
 
 <p>Add <code>Asana/Drawsana</code> to your Cartfile and update your project like you would for any other
 Carthage framework, or clone the source code and add the project to your workspace.</p>
+<pre class="highlight plaintext"><code>github "Asana/Drawsana" == 0.9.0
+</code></pre>
 <h2 id='usage' class='heading'>Usage</h2>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Drawsana</span>
 
 <span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
   <span class="k">let</span> <span class="nv">drawsanaView</span> <span class="o">=</span> <span class="kt">DrawsanaView</span><span class="p">()</span>
+  <span class="k">let</span> <span class="nv">penTool</span> <span class="o">=</span> <span class="kt">PenTool</span><span class="p">()</span>
 
   <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="cm">/* ... */</span>
-    <span class="n">drawsanaView</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">tool</span><span class="p">:</span> <span class="kt">PenTool</span><span class="p">())</span>
+    <span class="n">drawsanaView</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">tool</span><span class="p">:</span> <span class="n">penTool</span><span class="p">)</span>
     <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeWidth</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">blue</span>
     <span class="n">drawsanaView</span><span class="o">.</span><span class="n">userSettings</span><span class="o">.</span><span class="n">fillColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">yellow</span>
@@ -274,8 +293,21 @@ open .docs/index.html
 
 pip install ghp-import
 make publish-docs
-open https://stevelandeyasana.github.io/Drawsana
+open https://asana.github.io/Drawsana
 </code></pre>
+<h2 id='changelog' class='heading'>Changelog</h2>
+<h3 id='0-9-1-in-development' class='heading'>0.9.1 (in development)</h3>
+
+<ul>
+<li><code><a href="Classes/DrawsanaView.html#/s:8Drawsana0A4ViewC018selectionIndicatorB10ShapeLayerSo07CAShapeF0Cvp">DrawsanaView.selectionIndicatorViewShapeLayer</a></code> is exposed, allowing you to more
+easily customize the appearance of the selection indicator</li>
+<li>Changes to <code><a href="Classes/DrawsanaView.html#/s:8Drawsana0A4ViewC018selectionIndicatorB0So6UIViewCvp">DrawsanaView.selectionIndicatorView</a></code>&rsquo;s style are animated in fewer
+cases, which more closely matches user intent</li>
+<li>Improved text tool use in the demo app</li>
+</ul>
+<h3 id='0-9-0' class='heading'>0.9.0</h3>
+
+<p>Initial release</p>
 
           </section>
         </section>

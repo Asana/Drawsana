@@ -14,8 +14,8 @@
     <a title="TextToolDelegate Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Drawsana Docs</a> (52% documented)</p>
-        <p class="header-right"><a href="https://github.com/stevelandeyasana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p><a href="../index.html">Drawsana Docs</a> (50% documented)</p>
+        <p class="header-right"><a href="https://github.com/Asana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -170,6 +170,12 @@
               <li class="nav-group-task">
                 <a href="../Classes/TextShapeEditingView.html">TextShapeEditingView</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShapeEditingView/DragActionType.html">– DragActionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShapeEditingView/Control.html">– Control</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -177,6 +183,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/MultiDecoder.html">MultiDecoder</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Global Variables.html">Other Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Other Global Variables.html#/s:8Drawsana16DRAWSANA_VERSIONSSvp">DRAWSANA_VERSION</a>
               </li>
             </ul>
           </li>
@@ -232,7 +246,7 @@ make sure it&rsquo;s above the keyboard.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L16">Show on GitHub</a>
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L16">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -264,7 +278,7 @@ point.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L21">Show on GitHub</a>
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L21">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -283,7 +297,9 @@ point.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The text tool is about to present a text editing view. You may configure
-it however you like.</p>
+it however you like. If you&rsquo;re just starting out, you probably want to
+call <code>editingView.addStandardControls()</code> to add the delete button and the
+two resize handles.</p>
 
                       </div>
                       <div class="declaration">
@@ -295,7 +311,40 @@ it however you like.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/stevelandeyasana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L25">Show on GitHub</a>
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana16TextToolDelegateP04textC29DidUpdateEditingViewTransformyAA0b5ShapehI0C_AA0kJ0V9transformtF"></a>
+                    <a name="//apple_ref/swift/Method/textToolDidUpdateEditingViewTransform(_:transform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC29DidUpdateEditingViewTransformyAA0b5ShapehI0C_AA0kJ0V9transformtF">textToolDidUpdateEditingViewTransform(_:transform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The user has changed the transform of the selected shape. You may leave
+this method empty, but unless you want your text controls to scale with
+the text, you&rsquo;ll need to do some math and apply some inverse scaling
+transforms here.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">textToolDidUpdateEditingViewTransform</span><span class="p">(</span><span class="n">_</span> <span class="nv">editingView</span><span class="p">:</span> <span class="kt"><a href="../Classes/TextShapeEditingView.html">TextShapeEditingView</a></span><span class="p">,</span> <span class="nv">transform</span><span class="p">:</span> <span class="kt"><a href="../Structs/ShapeTransform.html">ShapeTransform</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L33">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

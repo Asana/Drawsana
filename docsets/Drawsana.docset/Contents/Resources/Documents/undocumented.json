@@ -23,49 +23,49 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 92,
+      "line": 115,
       "symbol": "Drawing.add(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 97,
+      "line": 120,
       "symbol": "Drawing.update(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 101,
+      "line": 124,
       "symbol": "Drawing.remove(shape:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 106,
+      "line": 129,
       "symbol": "Drawing.getShape(at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 110,
+      "line": 133,
       "symbol": "Drawing.getShape(of:at:filter:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 124,
+      "line": 147,
       "symbol": "DrawsanaDecodingError",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/Drawing.swift",
-      "line": 125,
+      "line": 148,
       "symbol": "DrawsanaDecodingError.wrongShapeTypeError",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -163,98 +163,133 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/UserSettings.swift",
-      "line": 21,
+      "line": 24,
       "symbol": "UserSettings.fillColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/UserSettings.swift",
-      "line": 24,
+      "line": 30,
       "symbol": "UserSettings.strokeWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/UserSettings.swift",
-      "line": 27,
+      "line": 36,
       "symbol": "UserSettings.fontName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Data model/UserSettings.swift",
-      "line": 30,
+      "line": 42,
       "symbol": "UserSettings.fontSize",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 14,
+      "line": 11,
+      "symbol": "DRAWSANA_VERSION",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 16,
       "symbol": "DrawsanaViewDelegate.drawsanaView(_:didSwitchTo:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 17,
+      "symbol": "DrawsanaViewDelegate.drawsanaView(_:didStartDragWith:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 18,
+      "symbol": "DrawsanaViewDelegate.drawsanaView(_:didEndDragWith:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 19,
+      "symbol": "DrawsanaViewDelegate.drawsanaView(_:didChangeStrokeColor:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 20,
+      "symbol": "DrawsanaViewDelegate.drawsanaView(_:didChangeFillColor:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 21,
+      "symbol": "DrawsanaViewDelegate.drawsanaView(_:didChangeStrokeWidth:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 22,
+      "symbol": "DrawsanaViewDelegate.drawsanaView(_:didChangeFontName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
       "line": 23,
+      "symbol": "DrawsanaViewDelegate.drawsanaView(_:didChangeFontSize:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
+      "line": 32,
       "symbol": "DrawsanaView.delegate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 37,
-      "symbol": "DrawsanaView.toolSettings",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 42,
+      "line": 52,
       "symbol": "DrawsanaView.drawing",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 65,
-      "symbol": "DrawsanaView.selectionIndicatorInset",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 111,
+      "line": 129,
       "symbol": "DrawsanaView.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 116,
+      "line": 134,
       "symbol": "DrawsanaView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 180,
+      "line": 201,
       "symbol": "DrawsanaView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 362,
-      "symbol": "DrawsanaView.rerenderAllShapesInefficiently()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/DrawsanaView.swift",
-      "line": 456,
+      "line": 487,
       "symbol": "DrawsanaViewShapeUpdating.rerenderAllShapesInefficiently()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -506,7 +541,7 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/Implementations/PenShape.swift",
-      "line": 125,
+      "line": 147,
       "symbol": "PenShape.renderLatestSegment(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -743,6 +778,34 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/ShapeTransform.swift",
+      "line": 16,
+      "symbol": "ShapeTransform.translation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/ShapeTransform.swift",
+      "line": 17,
+      "symbol": "ShapeTransform.rotation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/ShapeTransform.swift",
+      "line": 18,
+      "symbol": "ShapeTransform.scale",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Shapes/ShapeTransform.swift",
+      "line": 20,
+      "symbol": "ShapeTransform.identity",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
       "line": 11,
       "symbol": "LineTool",
@@ -754,13 +817,6 @@
       "line": 12,
       "symbol": "LineTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 13,
-      "symbol": "LineTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -779,13 +835,6 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 18,
-      "symbol": "ArrowTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
       "line": 25,
       "symbol": "RectTool",
       "symbol_kind": "source.lang.swift.decl.class",
@@ -800,13 +849,6 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 27,
-      "symbol": "RectTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
       "line": 30,
       "symbol": "EllipseTool",
       "symbol_kind": "source.lang.swift.decl.class",
@@ -817,13 +859,6 @@
       "line": 31,
       "symbol": "EllipseTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/ArrowTool_EllipseTool_LineTool_RectTool.swift",
-      "line": 32,
-      "symbol": "EllipseTool.makeShape()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -863,57 +898,71 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 16,
+      "line": 15,
       "symbol": "PenTool.shapeInProgress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 22,
+      "line": 17,
       "symbol": "PenTool.velocityBasedWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 24,
+      "line": 27,
       "symbol": "PenTool.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 74,
+      "line": 89,
       "symbol": "EraserTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 75,
+      "line": 90,
       "symbol": "EraserTool.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 76,
+      "line": 91,
+      "symbol": "EraserTool.isProgressive",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
+      "line": 92,
       "symbol": "EraserTool.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 81,
+      "line": 97,
       "symbol": "EraserTool.handleTap(context:point:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
-      "line": 86,
+      "line": 102,
       "symbol": "EraserTool.handleDragStart(context:point:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/PenTool_EraserTool.swift",
+      "line": 107,
+      "symbol": "EraserTool.renderShapeInProgress(transientContext:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -933,7 +982,7 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/SelectionTool.swift",
-      "line": 31,
+      "line": 45,
       "symbol": "SelectionTool.init(delegate:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -947,29 +996,106 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
-      "line": 79,
+      "line": 25,
+      "symbol": "TextShapeEditingView.DragActionType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 26,
+      "symbol": "TextShapeEditingView.DragActionType.delete",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 27,
+      "symbol": "TextShapeEditingView.DragActionType.resizeAndRotate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 28,
+      "symbol": "TextShapeEditingView.DragActionType.changeWidth",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 31,
+      "symbol": "TextShapeEditingView.Control",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 32,
+      "symbol": "TextShapeEditingView.Control.view",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 33,
+      "symbol": "TextShapeEditingView.Control.dragActionType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 36,
+      "symbol": "TextShapeEditingView.controls",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 67,
       "symbol": "TextShapeEditingView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
-      "line": 83,
+      "line": 71,
       "symbol": "TextShapeEditingView.sizeThatFits(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
-      "line": 88,
+      "line": 76,
       "symbol": "TextShapeEditingView.becomeFirstResponder()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
-      "line": 93,
+      "line": 81,
       "symbol": "TextShapeEditingView.resignFirstResponder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 85,
+      "symbol": "TextShapeEditingView.addStandardControls()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 114,
+      "symbol": "TextShapeEditingView.addControl(dragActionType:view:applyConstraints:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextShapeEditingView.swift",
+      "line": 120,
+      "symbol": "TextShapeEditingView.getDragActionType(point:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -989,35 +1115,35 @@
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 28,
+      "line": 36,
       "symbol": "TextTool",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 53,
+      "line": 61,
       "symbol": "TextTool.init(delegate:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 304,
+      "line": 323,
       "symbol": "TextTool.textViewDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 312,
+      "line": 331,
       "symbol": "TextTool.textViewDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/stevelandey/dev/Drawsana/Drawsana/Tools/Implementations/Text tool/TextTool.swift",
-      "line": 316,
+      "line": 335,
       "symbol": "TextTool.textViewShouldEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
