@@ -342,8 +342,20 @@ extension ViewController: TextToolDelegate {
   }
 
   func textToolWillUseEditingView(_ editingView: TextShapeEditingView) {
-    editingView.addStandardControls()
-    for view in [editingView.deleteControlView, editingView.resizeAndRotateControlView] {
+    // This example implementation of `textToolWillUseEditingView` shows how you
+    // can customize the appearance of the text tool
+    //
+    // Important note: each handle's layer.anchorPoint is set to a non-0.5,0.5
+    // value, so the positions are offset from where AutoLayout puts them.
+    // That's why `halfButtonSize` is added and subtracted depending on which
+    // control is being configured.
+    //
+    // The anchor point is changed so that the controls can be scaled correctly
+    // in `textToolDidUpdateEditingViewTransform`.
+
+    let makeView: (UIImage?) -> UIView = {
+      let view = UIView()
+      view.translatesAutoresizingMaskIntoConstraints = false
       view.backgroundColor = .black
       view.layer.cornerRadius = 6
       view.layer.borderWidth = 1
@@ -352,18 +364,56 @@ extension ViewController: TextToolDelegate {
       view.layer.shadowOffset = CGSize(width: 1, height: 1)
       view.layer.shadowRadius = 3
       view.layer.shadowOpacity = 0.5
+      if let image = $0 {
+        view.frame = CGRect(origin: .zero, size: CGSize(width: 16, height: 16))
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = true
+        imageView.frame = view.bounds.insetBy(dx: 4, dy: 4)
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        view.addSubview(imageView)
+      }
+      return view
     }
-    let deleteImageView = UIImageView(image: UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate))
-    let rotateImageView = UIImageView(image: UIImage(named: "rotate")?.withRenderingMode(.alwaysTemplate))
 
-    for (controlView, imageView) in [(editingView.deleteControlView, deleteImageView), (editingView.resizeAndRotateControlView, rotateImageView)] {
-      controlView.frame = CGRect(origin: .zero, size: CGSize(width: 16, height: 16))
-      imageView.translatesAutoresizingMaskIntoConstraints = true
-      imageView.frame = controlView.bounds.insetBy(dx: 4, dy: 4)
-      imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-      imageView.contentMode = .scaleAspectFit
-      imageView.tintColor = .white
-      controlView.addSubview(imageView)
+    let buttonSize: CGFloat = 36
+    let halfButtonSize = buttonSize / 2
+
+    editingView.addControl(dragActionType: .delete, view: makeView(UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate))) { (textView, deleteControlView) in
+      deleteControlView.layer.anchorPoint = CGPoint(x: 1, y: 1)
+      NSLayoutConstraint.activate([
+        deleteControlView.widthAnchor.constraint(equalToConstant: buttonSize),
+        deleteControlView.heightAnchor.constraint(equalToConstant: buttonSize),
+        deleteControlView.rightAnchor.constraint(equalTo: textView.leftAnchor, constant: halfButtonSize),
+        deleteControlView.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: -3 + halfButtonSize),
+      ])
+    }
+
+    editingView.addControl(dragActionType: .resizeAndRotate, view: makeView(UIImage(named: "rotate")?.withRenderingMode(.alwaysTemplate))) { (textView, resizeAndRotateControlView) in
+      resizeAndRotateControlView.layer.anchorPoint = CGPoint(x: 0, y: 0)
+      NSLayoutConstraint.activate([
+        resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: buttonSize),
+        resizeAndRotateControlView.heightAnchor.constraint(equalToConstant: buttonSize),
+        resizeAndRotateControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5 - halfButtonSize),
+        resizeAndRotateControlView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4 - halfButtonSize),
+      ])
+    }
+
+    editingView.addControl(dragActionType: .changeWidth, view: makeView(nil)) { (textView, changeWidthControlView) in
+      changeWidthControlView.layer.anchorPoint = CGPoint(x: 0, y: 1)
+      NSLayoutConstraint.activate([
+        changeWidthControlView.widthAnchor.constraint(equalToConstant: buttonSize),
+        changeWidthControlView.heightAnchor.constraint(equalToConstant: buttonSize),
+        changeWidthControlView.leftAnchor.constraint(equalTo: textView.rightAnchor, constant: 5 - halfButtonSize),
+        changeWidthControlView.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: -4 + halfButtonSize),
+      ])
+    }
+  }
+
+  func textToolDidUpdateEditingViewTransform(_ editingView: TextShapeEditingView, transform: ShapeTransform) {
+    for control in editingView.controls {
+      control.view.transform = CGAffineTransform(scaleX: 1/transform.scale, y: 1/transform.scale)
     }
   }
 }

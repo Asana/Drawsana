@@ -29,8 +29,8 @@ public class TextShapeEditingView: UIView {
   }
 
   public struct Control {
-    let view: UIView
-    let dragActionType: DragActionType
+    public let view: UIView
+    public let dragActionType: DragActionType
   }
 
   public private(set) var controls = [Control]()
