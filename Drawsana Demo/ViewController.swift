@@ -380,7 +380,7 @@ extension ViewController: TextToolDelegate {
     let buttonSize: CGFloat = 36
     let halfButtonSize = buttonSize / 2
 
-    editingView.addControl(dragActionType: .delete, view: makeView(UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate))) { (textView, deleteControlView) in
+    editingView.addControl(dragActionType: .delete, view: makeView(UIImage(named: "icon_delete"))) { (textView, deleteControlView) in
       deleteControlView.layer.anchorPoint = CGPoint(x: 1, y: 1)
       NSLayoutConstraint.activate([
         deleteControlView.widthAnchor.constraint(equalToConstant: buttonSize),
@@ -390,7 +390,7 @@ extension ViewController: TextToolDelegate {
       ])
     }
 
-    editingView.addControl(dragActionType: .resizeAndRotate, view: makeView(UIImage(named: "rotate")?.withRenderingMode(.alwaysTemplate))) { (textView, resizeAndRotateControlView) in
+    editingView.addControl(dragActionType: .resizeAndRotate, view: makeView(UIImage(named: "icon_resize_rotate"))) { (textView, resizeAndRotateControlView) in
       resizeAndRotateControlView.layer.anchorPoint = CGPoint(x: 0, y: 0)
       NSLayoutConstraint.activate([
         resizeAndRotateControlView.widthAnchor.constraint(equalToConstant: buttonSize),
@@ -400,7 +400,7 @@ extension ViewController: TextToolDelegate {
       ])
     }
 
-    editingView.addControl(dragActionType: .changeWidth, view: makeView(nil)) { (textView, changeWidthControlView) in
+    editingView.addControl(dragActionType: .changeWidth, view: makeView(UIImage(named: "icon_change_width"))) { (textView, changeWidthControlView) in
       changeWidthControlView.layer.anchorPoint = CGPoint(x: 0, y: 1)
       NSLayoutConstraint.activate([
         changeWidthControlView.widthAnchor.constraint(equalToConstant: buttonSize),
