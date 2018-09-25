@@ -140,6 +140,9 @@ public class DrawsanaView: UIView {
     ]
     selectionIndicatorView.layer.actions = [
       "transform": NSNull(),
+      "lineWidth": NSNull(),
+      "lineDashPattern": NSNull(),
+      "cornerRadius": NSNull(),
     ]
 
     addSubview(drawingContentView)
