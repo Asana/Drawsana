@@ -1,4 +1,4 @@
-#  Drawsana
+#  Drawsana 0.9.0
 
 Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.
@@ -9,6 +9,8 @@ Drawsana might work for you!
 [Demo source code](https://github.com/Asana/Drawsana/blob/master/Drawsana%20Demo/ViewController.swift)
 
 [Docs](https://asana.github.io/Drawsana)
+
+_Like what you see? [Come work with us!](https://asana.com/jobs/apply/874145/software-engineerios)_
 
 ## Features
 
@@ -28,6 +30,10 @@ Drawsana might work for you!
 
 Add `Asana/Drawsana` to your Cartfile and update your project like you would for any other
 Carthage framework, or clone the source code and add the project to your workspace.
+
+```
+github "Asana/Drawsana" == 0.9.0
+```
 
 ## Usage
 
@@ -86,3 +92,17 @@ pip install ghp-import
 make publish-docs
 open https://asana.github.io/Drawsana
 ```
+
+## Changelog
+
+### 0.9.1 (in development)
+
+* `DrawsanaView.selectionIndicatorViewShapeLayer` is exposed, allowing you to more
+  easily customize the appearance of the selection indicator
+* Changes to `DrawsanaView.selectionIndicatorView`'s style are animated in fewer
+  cases, which more closely matches user intent
+* Improved text tool use in the demo app
+
+### 0.9.0
+
+Initial release
