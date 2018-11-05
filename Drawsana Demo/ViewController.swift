@@ -203,7 +203,7 @@ class ViewController: UIViewController {
 
     guard
       let image = drawingView.render(over: imageView.image),
-      let data = UIImageJPEGRepresentation(image, 0.75),
+      let data = image.jpegData(compressionQuality: 0.75),
       (try? data.write(to: savedImageURL)) != nil else
     {
       assert(false, "Can't create or save image")
