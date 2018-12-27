@@ -27,7 +27,7 @@ class DrawsanaUtilities {
 
   /// Render an image using CoreGraphics
   class func renderImage(size: CGSize, _ code: (CGContext) -> Void) -> UIImage? {
-    UIGraphicsBeginImageContextWithOptions(size, false, 0)
+    UIGraphicsBeginImageContextWithOptions(size, false, 1)
     guard let context = UIGraphicsGetCurrentContext() else {
       UIGraphicsEndImageContext()
       return nil
