@@ -127,6 +127,12 @@ extension ShapeWithTwoPoints {
     let y2 = max(a.y, b.y)
     return CGRect(x: x1, y: y1, width: x2 - x1, height: y2 - y1)
   }
+    
+    public var squareRect: CGRect {
+        let width = max((b.x - a.x), (b.y - a.y))
+        return CGRect(x: a.x, y: a.y, width: width, height: width)
+    }
+    
 
   public var boundingRect: CGRect {
     return rect.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2)
