@@ -1,5 +1,5 @@
 //
-//  PentagonShape.swift
+//  NgonShape.swift
 //  Drawsana
 //
 //  Created by Madan Gupta on 24/12/18.
@@ -9,7 +9,7 @@
 import CoreGraphics
 import UIKit
 
-public class PentagonShape:
+public class NgonShape:
     ShapeWithTwoPoints,
     ShapeWithStandardState,
     ShapeSelectable
@@ -19,7 +19,7 @@ public class PentagonShape:
         dashPhase, dashLengths, transform, type, sides
     }
     
-    public static let type: String = "Pentagon"
+    public static let type: String = "Ngon"
     
     public var id: String = UUID().uuidString
     public var a: CGPoint = .zero
@@ -46,7 +46,7 @@ public class PentagonShape:
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let type = try values.decode(String.self, forKey: .type)
-        if type != PentagonShape.type {
+        if type != NgonShape.type {
             throw DrawsanaDecodingError.wrongShapeTypeError
         }
         
@@ -68,7 +68,7 @@ public class PentagonShape:
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(PentagonShape.type, forKey: .type)
+        try container.encode(NgonShape.type, forKey: .type)
         try container.encode(id, forKey: .id)
         try container.encode(a, forKey: .a)
         try container.encode(b, forKey: .b)
@@ -121,15 +121,15 @@ public class PentagonShape:
     
 
     func polygonPointArray(sides:Int,x:CGFloat,y:CGFloat,radius:CGFloat,offset:CGFloat)->[CGPoint] {
-        let angle = (360/CGFloat(sides)).radians()
+        let angle = (360/CGFloat(sides)).radians
         let cx = x // x origin
         let cy = y // y origin
         let r = radius // radius of circle
         var i = 0
         var points = [CGPoint]()
         while i <= sides {
-            let xpo = cx + r * cos(angle * CGFloat(i) - offset.radians())
-            let ypo = cy + r * sin(angle * CGFloat(i) - offset.radians())
+            let xpo = cx + r * cos(angle * CGFloat(i) - offset.radians)
+            let ypo = cy + r * sin(angle * CGFloat(i) - offset.radians)
             points.append(CGPoint(x: xpo, y: ypo))
             i += 1
         }

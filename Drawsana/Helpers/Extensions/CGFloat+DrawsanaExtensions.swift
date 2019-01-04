@@ -7,8 +7,10 @@
 //
 
 extension CGFloat {
-    func radians() -> CGFloat {
-        let b = CGFloat(Double.pi) * self/180
-        return b
+    var radians: CGFloat {
+        get {
+            let b = CGFloat(Double.pi) * self/180
+            return b
+        }
     }
 }

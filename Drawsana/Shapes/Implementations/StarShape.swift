@@ -117,15 +117,15 @@ public class StarShape:
     }
     
     func starPointArray(sides:Int,x:CGFloat,y:CGFloat,radius:CGFloat,adjustment:CGFloat=0)->[CGPoint] {
-        let angle = (360/CGFloat(sides)).radians()
+        let angle = (360/CGFloat(sides)).radians
         let cx = x // x origin
         let cy = y // y origin
         let r  = radius // radius of circle
         var i = sides
         var points = [CGPoint]()
         while points.count <= sides {
-            let xpo = cx - r * cos(angle * CGFloat(i)+adjustment.radians())
-            let ypo = cy - r * sin(angle * CGFloat(i)+adjustment.radians())
+            let xpo = cx - r * cos(angle * CGFloat(i)+adjustment.radians)
+            let ypo = cy - r * sin(angle * CGFloat(i)+adjustment.radians)
             points.append(CGPoint(x: xpo, y: ypo))
             i -= 1;
         }
@@ -150,15 +150,15 @@ public class StarShape:
     }
     
     func polygonPointArray(sides:Int,x:CGFloat,y:CGFloat,radius:CGFloat,offset:CGFloat)->[CGPoint] {
-        let angle = (360/CGFloat(sides)).radians()
+        let angle = (360/CGFloat(sides)).radians
         let cx = x // x origin
         let cy = y // y origin
         let r = radius // radius of circle
         var i = 0
         var points = [CGPoint]()
         while i <= sides {
-            let xpo = cx + r * cos(angle * CGFloat(i) - offset.radians())
-            let ypo = cy + r * sin(angle * CGFloat(i) - offset.radians())
+            let xpo = cx + r * cos(angle * CGFloat(i) - offset.radians)
+            let ypo = cy + r * sin(angle * CGFloat(i) - offset.radians)
             points.append(CGPoint(x: xpo, y: ypo))
             i += 1
         }

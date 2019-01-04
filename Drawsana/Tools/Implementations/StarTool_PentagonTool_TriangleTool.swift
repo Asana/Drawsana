@@ -1,5 +1,5 @@
 //
-//  StarTool_PentagonTool_TriangelTool.swift
+//  StarTool_PentagonTool_TriangleTool.swift
 //  Drawsana
 //
 //  Created by Madan Gupta on 31/12/18.
@@ -16,12 +16,12 @@ public class StarTool: DrawingToolForShapeWithTwoPoints {
 
 public class PentagonTool: DrawingToolForShapeWithTwoPoints {
     public override var name: String { return "Pentagon" }
-    public override func makeShape() -> ShapeType { return PentagonShape(5) }
+    public override func makeShape() -> ShapeType { return NgonShape(5) }
 }
 
-public class TriangelTool: DrawingToolForShapeWithTwoPoints {
+public class TriangleTool: DrawingToolForShapeWithTwoPoints {
     public override var name: String { return "Triangle" }
-    public override func makeShape() -> ShapeType { return PentagonShape(3) }
+    public override func makeShape() -> ShapeType { return NgonShape(3) }
 }
 
 
