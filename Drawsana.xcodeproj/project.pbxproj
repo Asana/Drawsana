@@ -53,6 +53,7 @@
 		D0E97E8321D0D3BA007722D7 /* StarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E97E8221D0D3BA007722D7 /* StarShape.swift */; };
 		D0E97E8521D0DD90007722D7 /* NgonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E97E8421D0DD90007722D7 /* NgonShape.swift */; };
 		D0F3B43D21D34F4000701BB4 /* CGFloat+DrawsanaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F3B43C21D34F4000701BB4 /* CGFloat+DrawsanaExtensions.swift */; };
+		DF8C5A16227AE233008C58AE /* StraightLineTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C5A15227AE233008C58AE /* StraightLineTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		D0E97E8221D0D3BA007722D7 /* StarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarShape.swift; sourceTree = "<group>"; };
 		D0E97E8421D0DD90007722D7 /* NgonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NgonShape.swift; sourceTree = "<group>"; };
 		D0F3B43C21D34F4000701BB4 /* CGFloat+DrawsanaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+DrawsanaExtensions.swift"; sourceTree = "<group>"; };
+		DF8C5A15227AE233008C58AE /* StraightLineTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StraightLineTool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 			children = (
 				3706B15D211CF29500D41622 /* DrawingToolForShapeWithTwoPoints.swift */,
 				37885E29210A9C69003A918F /* ArrowTool_EllipseTool_LineTool_RectTool.swift */,
+				DF8C5A15227AE233008C58AE /* StraightLineTool.swift */,
 				D024467721DA1ED000E431C8 /* StarTool_PentagonTool_TriangleTool.swift */,
 				37885E2B210A9C95003A918F /* PenTool_EraserTool.swift */,
 				37885E2D210A9CDA003A918F /* SelectionTool.swift */,
@@ -503,6 +506,7 @@
 				3777F2FD21068A5C009A9AC5 /* Shape.swift in Sources */,
 				37885E2C210A9C95003A918F /* PenTool_EraserTool.swift in Sources */,
 				37362D5C21151684003E5ACA /* TextShape.swift in Sources */,
+				DF8C5A16227AE233008C58AE /* StraightLineTool.swift in Sources */,
 				371BE7D02123643100861596 /* ImmediatePanGestureRecognizer.swift in Sources */,
 				376229832113AD6E0034D0E3 /* Drawing.swift in Sources */,
 				37362D71211B7386003E5ACA /* TextShapeEditingView.swift in Sources */,

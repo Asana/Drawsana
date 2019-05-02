@@ -16,7 +16,7 @@ public class LineShape:
 {
   private enum CodingKeys: String, CodingKey {
     case id, a, b, strokeColor, strokeWidth, capStyle, joinStyle,
-    dashPhase, dashLengths, transform, type, arrowStyle
+    dashPhase, dashLengths, transform, type, arrowStyle, isStraight
   }
 
   public enum ArrowStyle: String, Codable {
@@ -37,6 +37,7 @@ public class LineShape:
   public var dashLengths: [CGFloat]?
   public var arrowStyle: ArrowStyle?
   public var transform: ShapeTransform = .identity
+  public var isStraight: Bool = false
 
   public init() {
   }
@@ -61,6 +62,7 @@ public class LineShape:
     joinStyle = CGLineJoin(rawValue: try values.decodeIfPresent(Int32.self, forKey: .joinStyle) ?? CGLineJoin.round.rawValue)!
     dashPhase = try values.decodeIfPresent(CGFloat.self, forKey: .dashPhase)
     dashLengths = try values.decodeIfPresent([CGFloat].self, forKey: .dashLengths)
+    isStraight = try values.decodeIfPresent(Bool.self, forKey: .isStraight) ?? false
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +87,7 @@ public class LineShape:
     }
     try container.encodeIfPresent(dashPhase, forKey: .dashPhase)
     try container.encodeIfPresent(dashLengths, forKey: .dashLengths)
+    try container.encodeIfPresent(isStraight, forKey: .isStraight)
   }
 
   public func render(in context: CGContext) {
@@ -99,7 +102,13 @@ public class LineShape:
       context.setLineDash(phase: 0, lengths: [])
     }
     context.move(to: a)
-    context.addLine(to: b)
+    if isStraight {
+      let isHorizontal = abs(a.x - b.x) > abs(a.y - b.y)
+      let c = CGPoint(x: isHorizontal ? a.x : a.y, y: isHorizontal ? b.x : b.y)
+      context.addLine(to: c)
+    } else {
+      context.addLine(to: b)
+    }
     context.strokePath()
 
     if case .some(.standard) = arrowStyle {
