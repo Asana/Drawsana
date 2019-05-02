@@ -104,13 +104,8 @@ public class LineShape:
     context.move(to: a)
     if isStraight {
       let angle = abs(atan2(b.y - a.y, b.x - a.x))
-      var c = CGPoint(x: b.x, y: b.y)
-      if (0 <= angle && angle < 3/4) || (9/4 <= angle && angle <= CGFloat.pi) {
-        c = CGPoint(x: b.x, y: a.y)
-      }
-      if (3/4 <= angle && angle < 3/2) || (3/2 <= angle && angle <= 9/4) {
-        c = CGPoint(x: a.x, y: b.y)
-      }
+      let isAngleWithGrondLarger45Degree = CGFloat.pi/4 <= angle && angle <= 3 * CGFloat.pi/4
+      let c = isAngleWithGrondLarger45Degree ?  CGPoint(x: a.x, y: b.y) : CGPoint(x: b.x, y: a.y)
       context.addLine(to: c)
     } else {
       context.addLine(to: b)
