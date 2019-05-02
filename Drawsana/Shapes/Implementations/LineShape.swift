@@ -103,7 +103,7 @@ public class LineShape:
     }
     context.move(to: a)
     if isStraight {
-      let isHorizontal = abs(a.x - b.x) > abs(a.y - b.y)
+      let isHorizontal = abs(b.y - a.x) > abs(b.x - a.y)
       let c = CGPoint(x: isHorizontal ? a.x : a.y, y: isHorizontal ? b.x : b.y)
       context.addLine(to: c)
     } else {
