@@ -53,6 +53,9 @@
 		D0E97E8321D0D3BA007722D7 /* StarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E97E8221D0D3BA007722D7 /* StarShape.swift */; };
 		D0E97E8521D0DD90007722D7 /* NgonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E97E8421D0DD90007722D7 /* NgonShape.swift */; };
 		D0F3B43D21D34F4000701BB4 /* CGFloat+DrawsanaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F3B43C21D34F4000701BB4 /* CGFloat+DrawsanaExtensions.swift */; };
+		DF8C5A1C227C0CC0008C58AE /* DrawingToolForShapeWithThreePoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C5A1B227C0CC0008C58AE /* DrawingToolForShapeWithThreePoints.swift */; };
+		DF8C5A1E227C0CCA008C58AE /* AngleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C5A1D227C0CCA008C58AE /* AngleShape.swift */; };
+		DF8C5A20227C18B0008C58AE /* AngleTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C5A1F227C18B0008C58AE /* AngleTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +141,9 @@
 		D0E97E8221D0D3BA007722D7 /* StarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarShape.swift; sourceTree = "<group>"; };
 		D0E97E8421D0DD90007722D7 /* NgonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NgonShape.swift; sourceTree = "<group>"; };
 		D0F3B43C21D34F4000701BB4 /* CGFloat+DrawsanaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+DrawsanaExtensions.swift"; sourceTree = "<group>"; };
+		DF8C5A1B227C0CC0008C58AE /* DrawingToolForShapeWithThreePoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingToolForShapeWithThreePoints.swift; sourceTree = "<group>"; };
+		DF8C5A1D227C0CCA008C58AE /* AngleShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngleShape.swift; sourceTree = "<group>"; };
+		DF8C5A1F227C18B0008C58AE /* AngleTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleTool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +208,7 @@
 		376229702113AA5C0034D0E3 /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
+				DF8C5A1D227C0CCA008C58AE /* AngleShape.swift */,
 				376229772113AB770034D0E3 /* EllipseShape.swift */,
 				D0E97E8221D0D3BA007722D7 /* StarShape.swift */,
 				D0E97E8421D0DD90007722D7 /* NgonShape.swift */,
@@ -226,11 +233,13 @@
 		3762297E2113AC7D0034D0E3 /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
+				DF8C5A1B227C0CC0008C58AE /* DrawingToolForShapeWithThreePoints.swift */,
 				3706B15D211CF29500D41622 /* DrawingToolForShapeWithTwoPoints.swift */,
 				37885E29210A9C69003A918F /* ArrowTool_EllipseTool_LineTool_RectTool.swift */,
 				D024467721DA1ED000E431C8 /* StarTool_PentagonTool_TriangleTool.swift */,
 				37885E2B210A9C95003A918F /* PenTool_EraserTool.swift */,
 				37885E2D210A9CDA003A918F /* SelectionTool.swift */,
+				DF8C5A1F227C18B0008C58AE /* AngleTool.swift */,
 				37362D6D211B7305003E5ACA /* Text tool */,
 			);
 			path = Implementations;
@@ -476,8 +485,10 @@
 			files = (
 				37362D5E2118D8A3003E5ACA /* ToolSettings.swift in Sources */,
 				D0E97E8521D0DD90007722D7 /* NgonShape.swift in Sources */,
+				DF8C5A20227C18B0008C58AE /* AngleTool.swift in Sources */,
 				376229872113ADD70034D0E3 /* UserSettings.swift in Sources */,
 				3762297D2113AC570034D0E3 /* CGPoint+DrawsanaExtensions.swift in Sources */,
+				DF8C5A1C227C0CC0008C58AE /* DrawingToolForShapeWithThreePoints.swift in Sources */,
 				3762296E2113A9E60034D0E3 /* DrawsanaUtilities.swift in Sources */,
 				3762297A2113AB7F0034D0E3 /* PenShape.swift in Sources */,
 				37362D6C211B6930003E5ACA /* CGRect+DrawsanaExtensions.swift in Sources */,
@@ -492,6 +503,7 @@
 				37885E2E210A9CDA003A918F /* SelectionTool.swift in Sources */,
 				37362D622118EE98003E5ACA /* DrawingOperations.swift in Sources */,
 				D0E97E8321D0D3BA007722D7 /* StarShape.swift in Sources */,
+				DF8C5A1E227C0CCA008C58AE /* AngleShape.swift in Sources */,
 				37362D6A211A01A1003E5ACA /* UIColor+DrawsanaExtensions.swift in Sources */,
 				376229782113AB770034D0E3 /* EllipseShape.swift in Sources */,
 				376229762113AB6E0034D0E3 /* RectShape.swift in Sources */,
