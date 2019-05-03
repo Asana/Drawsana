@@ -77,6 +77,7 @@ class ViewController: UIViewController {
     EllipseTool(),
     EraserTool(),
     LineTool(),
+    StraightLineTool(),
     ArrowTool(),
     RectTool(),
     StarTool(),
