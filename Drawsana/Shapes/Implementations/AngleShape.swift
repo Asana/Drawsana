@@ -145,6 +145,9 @@ public class AngleShape:
     let a = pow((pointB.x - pointA.x), 2) + pow((pointB.y - pointA.y), 2)
     let b = pow((pointB.x - pointC.x), 2) + pow((pointB.y - pointC.y), 2)
     let c = pow((pointC.x - pointA.x), 2) + pow((pointC.y - pointA.y), 2)
+    if a == 0 || b == 0 {
+      return 0
+    }
     return Int(acos((a + b - c) / sqrt(4 * a * b) ) * 180 / CGFloat.pi)
   }
   
