@@ -223,10 +223,10 @@ public class DrawsanaView: UIView {
 
   /// Render the drawing on top of an image, using that image's size. Shapes are
   /// re-scaled to match the resolution of the target without artifacts.
-  public func render(over image: UIImage?) -> UIImage? {
+    public func render(over image: UIImage?, scale:CGFloat = 0.0) -> UIImage? {
     let size = image?.size ?? drawing.size
-    let shapesImage = render(size: size)
-    return DrawsanaUtilities.renderImage(size: size) { (context: CGContext) -> Void in
+    let shapesImage = render(size: size, scale: scale)
+    return DrawsanaUtilities.renderImage(size: size, scale: scale) { (context: CGContext) -> Void in
       image?.draw(at: .zero)
       shapesImage?.draw(at: .zero)
     }
@@ -234,9 +234,9 @@ public class DrawsanaView: UIView {
 
   /// Render the drawing. If you pass a size, shapes are re-scaled to be full
   /// resolution at that size, otherwise the view size is used.
-  public func render(size: CGSize? = nil) -> UIImage? {
+    public func render(size: CGSize? = nil, scale:CGFloat = 0.0) -> UIImage? {
     let size = size ?? drawing.size
-    return DrawsanaUtilities.renderImage(size: size) { (context: CGContext) -> Void in
+        return DrawsanaUtilities.renderImage(size: size, scale:scale) { (context: CGContext) -> Void in
       context.saveGState()
       context.scaleBy(
         x: size.width / self.drawing.size.width,
