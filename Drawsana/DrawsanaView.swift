@@ -223,6 +223,9 @@ public class DrawsanaView: UIView {
 
   /// Render the drawing on top of an image, using that image's size. Shapes are
   /// re-scaled to match the resolution of the target without artifacts.
+  /// The scale parameter defines wether image is rendered at the device's native resolution (scale = 0.0)
+  /// or to scale it to the image size (scale 1.0). Use scale = 0.0 when rendering to display on screen and
+  /// 1.0 if you are saving the image to a file
     public func render(over image: UIImage?, scale:CGFloat = 0.0) -> UIImage? {
     let size = image?.size ?? drawing.size
     let shapesImage = render(size: size, scale: scale)
