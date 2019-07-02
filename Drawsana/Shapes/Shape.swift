@@ -138,3 +138,28 @@ extension ShapeWithTwoPoints {
     return rect.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2)
   }
 }
+
+/**
+ Special case of `Shape` where the shape is defined by exactly three points.
+ */
+public protocol ShapeWithThreePoints {
+  var a: CGPoint { get set }
+  var b: CGPoint { get set }
+  var c: CGPoint { get set }
+  
+  var strokeWidth: CGFloat { get set }
+}
+
+extension ShapeWithThreePoints {
+  public var rect: CGRect {
+    let x1 = min(a.x, b.x, c.x)
+    let y1 = min(a.y, b.y, c.y)
+    let x2 = max(a.x, b.x, c.x)
+    let y2 = max(a.y, b.y, c.y)
+    return CGRect(x: x1, y: y1, width: x2 - x1, height: y2 - y1)
+  }
+  
+  public var boundingRect: CGRect {
+    return rect.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2)
+  }
+}
