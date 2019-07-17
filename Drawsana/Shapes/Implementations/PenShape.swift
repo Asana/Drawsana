@@ -9,13 +9,17 @@
 import CoreGraphics
 import UIKit
 
-public struct PenLineSegment: Codable {
-  var a: CGPoint
-  var b: CGPoint
-  var width: CGFloat
+public struct PenLineSegment: Codable, Equatable {
+  public var a: CGPoint
+  public var b: CGPoint
+  public var width: CGFloat
 
-  var midPoint: CGPoint {
+  public var midPoint: CGPoint {
     return CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2)
+  }
+
+  public static func ==(_ a: PenLineSegment, _ b: PenLineSegment) -> Bool {
+    return a.a == b.a && a.b == b.b && a.width == b.width
   }
 }
 
