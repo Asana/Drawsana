@@ -362,3 +362,93 @@ class PenShapeTests: XCTestCase {
   }
 
 }
+
+class DrawingTests: XCTestCase {
+
+  func testBasicDecoding() {
+    Drawing.debugSerialization = true
+
+    let json = """
+      {
+        "shapes" : [
+          {
+            "a" : [
+              84,
+              70.5
+            ],
+            "b" : [
+              196.5,
+              166
+            ],
+            "id" : "F39E55DA-BF06-4EA1-B324-4C82F71CD3AA",
+            "strokeColor" : "#000000",
+            "strokeWidth" : 5,
+            "type" : "Line"
+          }
+        ],
+        "size" : [
+          320,
+          240
+        ]
+      }
+      """
+
+    let drawing = try! JSONDecoder().decode(Drawing.self, from: json.data(using: .utf8)!)
+    XCTAssertEqual(drawing.shapes.count, 1)
+  }
+
+  func testBasicDecodingErrorWithoutDebug() {
+    Drawing.debugSerialization = false
+
+    let json = """
+      {
+        "shapes" : [
+          {
+            "a" : [
+              84,
+              70.5
+            ],
+            "id" : "F39E55DA-BF06-4EA1-B324-4C82F71CD3AA",
+            "strokeColor" : "#000000",
+            "strokeWidth" : 5,
+            "type" : "Line"
+          }
+        ],
+        "size" : [
+          320,
+          240
+        ]
+      }
+      """
+
+    let drawing = try! JSONDecoder().decode(Drawing.self, from: json.data(using: .utf8)!)
+    XCTAssertEqual(drawing.shapes.count, 0)
+  }
+
+  func testBasicDecodingErrorWithDebug() {
+    Drawing.debugSerialization = true
+
+    let json = """
+      {
+        "shapes" : [
+          {
+            "a" : [
+              84,
+              70.5
+            ],
+            "id" : "F39E55DA-BF06-4EA1-B324-4C82F71CD3AA",
+            "strokeColor" : "#000000",
+            "strokeWidth" : 5,
+            "type" : "Line"
+          }
+        ],
+        "size" : [
+          320,
+          240
+        ]
+      }
+      """
+
+    XCTAssertThrowsError(try JSONDecoder().decode(Drawing.self, from: json.data(using: .utf8)!))
+  }
+}

@@ -90,12 +90,16 @@ public class Drawing: Codable {
       // Decoding failed, so bail out with a helpful error message. We choose
       // to crash here for now, but a custom error enum might be a good idea
       // in the future.
-      if shapes.count == countBefore && Drawing.debugSerialization {
-        // Use a special CodingKeys enum that only cares about the `type`, so
-        // we can report exactly what kind of thing can't be parsed
-        let typeContainer = try shapeIter.nestedContainer(keyedBy: ShapeTypeCodingKey.self)
-        let type = try typeContainer.decode(String.self, forKey: .type)
-        throw DrawsanaDecodingError.unknownShapeTypeError(type)
+      if shapes.count == countBefore {
+        if Drawing.debugSerialization {
+          // Use a special CodingKeys enum that only cares about the `type`, so
+          // we can report exactly what kind of thing can't be parsed
+          let typeContainer = try shapeIter.nestedContainer(keyedBy: ShapeTypeCodingKey.self)
+          let type = try typeContainer.decode(String.self, forKey: .type)
+          throw DrawsanaDecodingError.unknownShapeTypeError(type)
+        } else {
+          _ = try! shapeIter.decode(DummyCodable.self)
+        }
       }
     }
   }
@@ -164,6 +168,10 @@ public enum DrawsanaDecodingError: Error {
 }
 
 // MARK: Codable helpers
+
+/// If debug is off and we hit a shape with errors, use this struct to skip
+/// the current item
+private struct DummyCodable: Codable { }
 
 /// Wrap any non-concrete `Encodable` type (like a `Shape`) in this class to
 /// magically make it work with `container.encode(foo, forKey: .foo)`.
