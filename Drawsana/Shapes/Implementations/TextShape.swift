@@ -60,7 +60,7 @@ public class TextShape: Shape, ShapeSelectable {
     transform = try values.decode(ShapeTransform.self, forKey: .transform)
 
     if boundingRect == .zero {
-      print("Text bounding rect not present. This shape will not render correctly because of a bug in Drawsana <=0.9.*.")
+      print("Text bounding rect not present. This shape will not render correctly because of a bug in Drawsana <0.9.5.")
     }
   }
 
