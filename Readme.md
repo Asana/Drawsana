@@ -97,10 +97,15 @@ open https://asana.github.io/Drawsana
 
 ### 0.9.5 (in progress)
 * Convert to Swift 5
-* Fix `NgonShape` serialization bug
+* Fix `NgonShape` and `TextShape` serialization bugs. Old data can't be fixed, but
+  new data will be correct.
 * Deserialization error reporting is more detailed. Shapes that find a JSON object with
   the correct type will now throw errors instead of causing the whole operation to silently
-  fail.
+  fail, as long as you enable `Drawing.debugSerialization`.
+* Replacing `DrawingView.drawing` now behaves correctly instead of being unusably
+  buggy.
+* `PenLineSegment`'s members are now public.
+* `ShapeTransform` and `PenLineSegment` are now `Equatable`.
 
 ### 0.9.4
 * Star, triangle, pentagon, and angle tools
