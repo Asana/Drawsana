@@ -170,10 +170,6 @@ public enum DrawsanaDecodingError: Error {
 
 // MARK: Codable helpers
 
-/// If debug is off and we hit a shape with errors, use this struct to skip
-/// the current item
-private struct DummyCodable: Codable { }
-
 /// Wrap any non-concrete `Encodable` type (like a `Shape`) in this class to
 /// magically make it work with `container.encode(foo, forKey: .foo)`.
 private struct AnyEncodable: Encodable {
