@@ -63,6 +63,7 @@ struct DefaultShapes {
     shape.text = "xyzzy"
     shape.fillColor = .yellow
     shape.transform = defaultTransform
+    shape.boundingRect = CGRect(x: 1, y: 2, width: 3, height: 4)
     return shape
   }
 
@@ -200,7 +201,7 @@ class TextShapeTests: XCTestCase {
     return shape
   }
 
-  func testSerializeWithExplicitWidth() {
+  func testSerializeWithExplicitWidthAndBoundingRect() {
     let json = getJSON(DefaultShapes.text)
     let decodedShape = try! JSONDecoder().decode(TextShape.self, from: json)
     XCTAssertEqual(decodedShape.id, "shape")
@@ -210,9 +211,10 @@ class TextShapeTests: XCTestCase {
     XCTAssertEqual(decodedShape.text, "xyzzy")
     XCTAssertEqual(decodedShape.fillColor, .yellow)
     XCTAssertEqual(decodedShape.transform, defaultTransform)
+    XCTAssertEqual(decodedShape.boundingRect, CGRect(x: 1, y: 2, width: 3, height: 4))
   }
 
-  func testSerializeWithoutExplicitWidth() {
+  func testSerializeWithoutExplicitWidthOrBoundingRect() {
     let json = getJSON(textShapeWithNoExplicitWidth)
     let decodedShape = try! JSONDecoder().decode(TextShape.self, from: json)
     XCTAssertEqual(decodedShape.id, "shape")
@@ -222,6 +224,7 @@ class TextShapeTests: XCTestCase {
     XCTAssertEqual(decodedShape.text, "xyzzy")
     XCTAssertEqual(decodedShape.fillColor, .yellow)
     XCTAssertEqual(decodedShape.transform, defaultTransform)
+    XCTAssertEqual(decodedShape.boundingRect, .zero)
   }
 
   func testDeserializationFromJSON() {
