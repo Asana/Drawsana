@@ -23,6 +23,11 @@ public class Drawing: Codable {
 
   weak var delegate: DrawingDelegate?
 
+  /// Set to `true` to have decoding throw an error if a shape can't be decoded.
+  /// Otherwise, shapes with errors are ignored to avoid degrading user
+  /// experience.
+  public static var debugSerialization = false
+
   public var size: CGSize
   public private(set) var shapes: [Shape] = []
 
@@ -73,30 +78,37 @@ public class Drawing: Codable {
       // Try to decode every single kind of shape using this iterator.
       // Note: this might decode more than one shape, if they happen to occur
       // in the order used in `tryDecodingAllShapes(_:)`.
-      shapes.append(contentsOf: tryDecodingAllShapes(&shapeIter))
+      do {
+        try shapes.append(contentsOf: tryDecodingAllShapes(&shapeIter))
+      } catch {
+        if Drawing.debugSerialization {
+          throw error
+        }
+      }
+
 
       // Decoding failed, so bail out with a helpful error message. We choose
       // to crash here for now, but a custom error enum might be a good idea
       // in the future.
-      if shapes.count == countBefore {
+      if shapes.count == countBefore && Drawing.debugSerialization {
         // Use a special CodingKeys enum that only cares about the `type`, so
         // we can report exactly what kind of thing can't be parsed
         let typeContainer = try shapeIter.nestedContainer(keyedBy: ShapeTypeCodingKey.self)
         let type = try typeContainer.decode(String.self, forKey: .type)
-        fatalError("Can't decode shape of type \(type)")
+        throw DrawsanaDecodingError.unknownShapeTypeError(type)
       }
     }
   }
 
-  private func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer) -> [Shape] {
+  private func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer) throws -> [Shape] {
     let multiDecoder = MultiDecoder<Shape>(container: &container)
-    multiDecoder.tryDecoding(EllipseShape.self)
-    multiDecoder.tryDecoding(LineShape.self)
-    multiDecoder.tryDecoding(PenShape.self)
-    multiDecoder.tryDecoding(RectShape.self)
-    multiDecoder.tryDecoding(TextShape.self)
-    multiDecoder.tryDecoding(StarShape.self)
-    multiDecoder.tryDecoding(NgonShape.self)
+    try multiDecoder.tryDecoding(EllipseShape.self)
+    try multiDecoder.tryDecoding(LineShape.self)
+    try multiDecoder.tryDecoding(PenShape.self)
+    try multiDecoder.tryDecoding(RectShape.self)
+    try multiDecoder.tryDecoding(TextShape.self)
+    try multiDecoder.tryDecoding(StarShape.self)
+    try multiDecoder.tryDecoding(NgonShape.self)
     shapeDecoder?(multiDecoder)
     container = multiDecoder.container
     return multiDecoder.results
@@ -148,6 +160,7 @@ protocol DrawingDelegate: AnyObject {
 
 public enum DrawsanaDecodingError: Error {
   case wrongShapeTypeError
+  case unknownShapeTypeError(String)
 }
 
 // MARK: Codable helpers
@@ -173,10 +186,13 @@ public class MultiDecoder<ResultType> {
 
   /// Adds the decoded result to `results` if decoding succeeds, otherwise does
   /// nothing.
-  public func tryDecoding<T: Shape>(_ type: T.Type) {
+  public func tryDecoding<T: Shape>(_ type: T.Type) throws {
     do {
       results.append(try container.decode(T.self) as! ResultType)
-    } catch {
+    } catch Swift.DecodingError.valueNotFound {
+      return
+    } catch DrawsanaDecodingError.wrongShapeTypeError {
+      return
     }
   }
 }

@@ -188,7 +188,19 @@ class RectShapeTests: XCTestCase {
 
 class TextShapeTests: XCTestCase {
 
-  func testSerialize() {
+  var textShapeWithNoExplicitWidth: TextShape {
+    let shape = TextShape()
+    shape.id = "shape"
+    shape.explicitWidth = nil
+    shape.fontName = "Helvetica Neue"
+    shape.fontSize = 12
+    shape.text = "xyzzy"
+    shape.fillColor = .yellow
+    shape.transform = defaultTransform
+    return shape
+  }
+
+  func testSerializeWithExplicitWidth() {
     let json = getJSON(DefaultShapes.text)
     let decodedShape = try! JSONDecoder().decode(TextShape.self, from: json)
     XCTAssertEqual(decodedShape.id, "shape")
@@ -198,6 +210,52 @@ class TextShapeTests: XCTestCase {
     XCTAssertEqual(decodedShape.text, "xyzzy")
     XCTAssertEqual(decodedShape.fillColor, .yellow)
     XCTAssertEqual(decodedShape.transform, defaultTransform)
+  }
+
+  func testSerializeWithoutExplicitWidth() {
+    let json = getJSON(textShapeWithNoExplicitWidth)
+    let decodedShape = try! JSONDecoder().decode(TextShape.self, from: json)
+    XCTAssertEqual(decodedShape.id, "shape")
+    XCTAssertEqual(decodedShape.explicitWidth, nil)
+    XCTAssertEqual(decodedShape.fontName, "Helvetica Neue")
+    XCTAssertEqual(decodedShape.fontSize, 12)
+    XCTAssertEqual(decodedShape.text, "xyzzy")
+    XCTAssertEqual(decodedShape.fillColor, .yellow)
+    XCTAssertEqual(decodedShape.transform, defaultTransform)
+  }
+
+  func testDeserializationFromJSON() {
+    let jsonString = """
+      {
+        "fillColor" : "#000000",
+        "fontName" : "Marker Felt",
+        "fontSize" : 24,
+        "id" : "193B98AC-56A9-4038-9345-30D5BFDCFD84",
+        "text" : "Text",
+        "transform" : {
+          "rotation" : 0,
+          "scale" : 1,
+          "translation" : [
+            103.5,
+            110.5
+          ]
+        },
+        "type" : "Text"
+      }
+      """
+
+    let decodedShape = try! JSONDecoder().decode(
+      TextShape.self,
+      from: jsonString.data(using: .utf8)!)
+    XCTAssertEqual(decodedShape.id, "193B98AC-56A9-4038-9345-30D5BFDCFD84")
+    XCTAssertEqual(decodedShape.explicitWidth, nil)
+    XCTAssertEqual(decodedShape.fontName, "Marker Felt")
+    XCTAssertEqual(decodedShape.fontSize, 24)
+    XCTAssertEqual(decodedShape.text, "Text")
+    XCTAssertEqual(decodedShape.fillColor, UIColor(hexString: "#000000"))
+    XCTAssertEqual(
+      decodedShape.transform,
+      ShapeTransform(translation: CGPoint(x: 103.5, y: 110.5), rotation: 0, scale: 1))
   }
 
 }

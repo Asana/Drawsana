@@ -95,6 +95,12 @@ open https://asana.github.io/Drawsana
 
 ## Changelog
 
+### 0.10 (in progress)
+* Fix `NgonShape` serialization bug
+* Deserialization error reporting is more detailed. Shapes that find a JSON object with
+  the correct type will now throw errors instead of causing the whole operation to silently
+  fail.
+
 ### 0.9.4
 * Star, triangle, pentagon, and angle tools
 * `DrawsanaView.render()` accepts a `scale` parameter instead of always using zero

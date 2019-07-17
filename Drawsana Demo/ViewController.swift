@@ -186,6 +186,9 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Better error reporting in dev
+    Drawing.debugSerialization = true
+
     navigationItem.rightBarButtonItem = viewFinalImageButton
 
     // Set initial tool to whatever `toolIndex` says
@@ -259,9 +262,14 @@ class ViewController: UIViewController {
 
   @objc private func reload(_ sender: Any?) {
     print("Serializing/deserializing...")
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+    let jsonData = try! encoder.encode(drawingView.drawing)
+    print(String(data: jsonData, encoding: .utf8)!)
     drawingView.drawing = try! JSONDecoder().decode(
       Drawing.self,
-      from: try! JSONEncoder().encode(drawingView.drawing))
+      from: jsonData)
+    print(drawingView.drawing.shapes)
     print("Done")
   }
 
