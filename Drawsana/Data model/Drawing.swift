@@ -91,14 +91,15 @@ public class Drawing: Codable {
       // to crash here for now, but a custom error enum might be a good idea
       // in the future.
       if shapes.count == countBefore {
+        // Use a special CodingKeys enum that only cares about the `type`, so
+        // we can report exactly what kind of thing can't be parsed
+        let typeContainer = try shapeIter.nestedContainer(keyedBy: ShapeTypeCodingKey.self)
+        let type = try typeContainer.decode(String.self, forKey: .type)
+
+        // If in debug mode, this is an error. Otherwise, just ignore it and
+        // move on.
         if Drawing.debugSerialization {
-          // Use a special CodingKeys enum that only cares about the `type`, so
-          // we can report exactly what kind of thing can't be parsed
-          let typeContainer = try shapeIter.nestedContainer(keyedBy: ShapeTypeCodingKey.self)
-          let type = try typeContainer.decode(String.self, forKey: .type)
           throw DrawsanaDecodingError.unknownShapeTypeError(type)
-        } else {
-          _ = try! shapeIter.decode(DummyCodable.self)
         }
       }
     }
