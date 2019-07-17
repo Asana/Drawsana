@@ -95,6 +95,10 @@ open https://asana.github.io/Drawsana
 
 ## Changelog
 
+### 0.9.4
+* Star, triangle, pentagon, and angle tools
+* `DrawsanaView.render()` accepts a `scale` parameter instead of always using zero
+
 ### 0.9.2
 * Convert to Swift 4.2
 * CocoaPods support
