@@ -303,7 +303,7 @@ extension ViewController: DrawsanaViewDelegate {
   }
 
   func drawsanaView(_ drawsanaView: DrawsanaView, didChangeStrokeWidth strokeWidth: CGFloat) {
-    strokeWidthIndex = strokeWidths.index(of: drawingView.userSettings.strokeWidth) ?? 0
+    strokeWidthIndex = strokeWidths.firstIndex(of: drawingView.userSettings.strokeWidth) ?? 0
     strokeWidthButton.setTitle("\(Int(strokeWidths[strokeWidthIndex]))", for: .normal)
   }
 
