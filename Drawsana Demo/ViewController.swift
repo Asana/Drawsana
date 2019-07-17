@@ -51,6 +51,7 @@ class ViewController: UIViewController {
   let strokeColorButton = UIButton()
   let fillColorButton = UIButton()
   let strokeWidthButton = UIButton()
+  let reloadButton = UIButton()
   lazy var toolbarStackView = {
     return UIStackView(arrangedSubviews: [
       undoButton,
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
       strokeColorButton,
       fillColorButton,
       strokeWidthButton,
+      reloadButton,
       toolButton,
     ])
   }()
@@ -123,6 +125,12 @@ class ViewController: UIViewController {
     strokeWidthButton.addTarget(self, action: #selector(ViewController.cycleStrokeWidth(_:)), for: .touchUpInside)
     strokeWidthButton.layer.borderColor = UIColor.white.cgColor
     strokeWidthButton.layer.borderWidth = 0.5
+
+    reloadButton.translatesAutoresizingMaskIntoConstraints = false
+    reloadButton.addTarget(self, action: #selector(ViewController.reload(_:)), for: .touchUpInside)
+    reloadButton.layer.borderColor = UIColor.white.cgColor
+    reloadButton.layer.borderWidth = 0.5
+    reloadButton.setTitle("🔁", for: .normal)
 
     toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
     toolbarStackView.axis = .horizontal
@@ -247,6 +255,14 @@ class ViewController: UIViewController {
   @objc private func cycleStrokeWidth(_ sender: Any?) {
     strokeWidthIndex = (strokeWidthIndex + 1) % strokeWidths.count
     drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
+  }
+
+  @objc private func reload(_ sender: Any?) {
+    print("Serializing/deserializing...")
+    drawingView.drawing = try! JSONDecoder().decode(
+      Drawing.self,
+      from: try! JSONEncoder().encode(drawingView.drawing))
+    print("Done")
   }
 
   /// Update button states to reflect undo stack
