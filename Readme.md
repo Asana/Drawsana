@@ -95,7 +95,8 @@ open https://asana.github.io/Drawsana
 
 ## Changelog
 
-### 0.10 (in progress)
+### 0.9.5 (in progress)
+* Convert to Swift 5
 * Fix `NgonShape` serialization bug
 * Deserialization error reporting is more detailed. Shapes that find a JSON object with
   the correct type will now throw errors instead of causing the whole operation to silently
