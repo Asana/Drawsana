@@ -51,8 +51,14 @@ public class DrawsanaView: UIView {
 
   public var drawing: Drawing = Drawing(size: CGSize(width: 320, height: 320)) {
     didSet {
+      self.tool?.deactivate(context: self.toolOperationContext)
       drawing.delegate = self
       drawing.size = bounds.size
+      tool?.activate(shapeUpdater: self, context: self.toolOperationContext, shape: nil)
+      applyToolSettingsChanges()
+      if let tool = tool {
+        delegate?.drawsanaView(self, didSwitchTo: tool)
+      }
       redrawAbsolutelyEverything()
     }
   }
