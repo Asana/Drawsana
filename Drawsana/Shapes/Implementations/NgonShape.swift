@@ -53,6 +53,7 @@ public class NgonShape:
         id = try values.decode(String.self, forKey: .id)
         a = try values.decode(CGPoint.self, forKey: .a)
         b = try values.decode(CGPoint.self, forKey: .b)
+        sides = try values.decode(Int.self, forKey: .sides)
         
         strokeColor = try values.decodeColorIfPresent(forKey: .strokeColor)
         fillColor = try values.decodeColorIfPresent(forKey: .fillColor)
@@ -72,6 +73,7 @@ public class NgonShape:
         try container.encode(id, forKey: .id)
         try container.encode(a, forKey: .a)
         try container.encode(b, forKey: .b)
+        try container.encode(sides, forKey: .sides)
         try container.encode(strokeColor?.hexString, forKey: .strokeColor)
         try container.encode(fillColor?.hexString, forKey: .fillColor)
         try container.encode(strokeWidth, forKey: .strokeWidth)
