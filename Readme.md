@@ -1,4 +1,4 @@
-#  Drawsana 0.9.2
+#  Drawsana 0.9.5
 
 Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.
@@ -32,7 +32,7 @@ Add `Asana/Drawsana` to your Cartfile and update your project like you would for
 Carthage framework, or clone the source code and add the project to your workspace.
 
 ```
-github "Asana/Drawsana" == 0.9.2
+github "Asana/Drawsana" == 0.9.4
 ```
 
 ## Usage
