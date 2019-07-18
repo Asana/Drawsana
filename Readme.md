@@ -32,7 +32,7 @@ Add `Asana/Drawsana` to your Cartfile and update your project like you would for
 Carthage framework, or clone the source code and add the project to your workspace.
 
 ```
-github "Asana/Drawsana" == 0.9.4
+github "Asana/Drawsana" == 0.10.0
 ```
 
 ## Usage
