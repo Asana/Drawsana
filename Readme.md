@@ -1,4 +1,4 @@
-#  Drawsana 0.9.2
+#  Drawsana 0.10.0
 
 Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.
@@ -32,7 +32,7 @@ Add `Asana/Drawsana` to your Cartfile and update your project like you would for
 Carthage framework, or clone the source code and add the project to your workspace.
 
 ```
-github "Asana/Drawsana" == 0.9.2
+github "Asana/Drawsana" == 0.9.4
 ```
 
 ## Usage
@@ -94,6 +94,18 @@ open https://asana.github.io/Drawsana
 ```
 
 ## Changelog
+
+### 0.10.0
+* Convert to Swift 5
+* Fix `NgonShape` and `TextShape` serialization bugs. Old data can't be fixed, but
+  new data will be correct.
+* Deserialization error reporting is more detailed. Shapes that find a JSON object with
+  the correct type will now throw errors instead of causing the whole operation to silently
+  fail, as long as you enable `Drawing.debugSerialization`.
+* Replacing `DrawingView.drawing` now behaves correctly instead of being unusably
+  buggy.
+* `PenLineSegment`'s members are now public.
+* `ShapeTransform` and `PenLineSegment` are now `Equatable`.
 
 ### 0.9.4
 * Star, triangle, pentagon, and angle tools

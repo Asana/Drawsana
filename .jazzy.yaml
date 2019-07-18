@@ -37,28 +37,37 @@ custom_categories:
   - ShapeWithStandardState
   - ShapeWithStrokeState
   - ShapeWithTwoPoints
+  - ShapeWithThreePoints
 - name: Tool building blocks
   children:
   - DrawingTool
   - DrawingToolForShapeWithTwoPoints
+  - DrawingToolForShapeWithThreePoints
 - name: Shape implementations
   children:
+  - AngleShape
   - EllipseShape
   - LineShape
+  - NgonShape
   - PenShape
   - PenLineSegment
   - RectShape
+  - StarShape
   - TextShape
 - name: Tool implementations
   children:
+  - AngleTool
   - ArrowTool
   - EllipseTool
   - EraserTool
   - LineTool
   - PenTool
+  - PentagonTool
   - RectTool
   - SelectionTool
   - SelectionToolDelegate
+  - StarTool
   - TextTool
   - TextToolDelegate
   - TextShapeEditingView
+  - TriangleTool

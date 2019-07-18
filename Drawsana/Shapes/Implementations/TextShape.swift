@@ -11,7 +11,8 @@ import UIKit
 
 public class TextShape: Shape, ShapeSelectable {
   private enum CodingKeys: String, CodingKey {
-    case id, transform, text, fontName, fontSize, fillColor, type, explicitWidth
+    case id, transform, text, fontName, fontSize, fillColor, type,
+      explicitWidth, boundingRect
   }
 
   public static let type = "Text"
@@ -55,7 +56,12 @@ public class TextShape: Shape, ShapeSelectable {
     fontSize = try values.decode(CGFloat.self, forKey: .fontSize)
     fillColor = UIColor(hexString: try values.decode(String.self, forKey: .fillColor))
     explicitWidth = try values.decodeIfPresent(CGFloat.self, forKey: .explicitWidth)
+    boundingRect = try values.decodeIfPresent(CGRect.self, forKey: .boundingRect) ?? .zero
     transform = try values.decode(ShapeTransform.self, forKey: .transform)
+
+    if boundingRect == .zero {
+      print("Text bounding rect not present. This shape will not render correctly because of a bug in Drawsana <0.10.0.")
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -68,6 +74,7 @@ public class TextShape: Shape, ShapeSelectable {
     try container.encode(fontSize, forKey: .fontSize)
     try container.encodeIfPresent(explicitWidth, forKey: .explicitWidth)
     try container.encode(transform, forKey: .transform)
+    try container.encode(boundingRect, forKey: .boundingRect)
   }
 
   public func render(in context: CGContext) {

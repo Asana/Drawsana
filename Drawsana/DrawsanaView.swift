@@ -8,7 +8,7 @@
 
 import UIKit
 
-public let DRAWSANA_VERSION = "1.0"
+public let DRAWSANA_VERSION = "0.10.0"
 
 /// Set yourself as the `DrawsanaView`'s delegate to be notified when the active
 /// tool changes.
@@ -51,8 +51,15 @@ public class DrawsanaView: UIView {
 
   public var drawing: Drawing = Drawing(size: CGSize(width: 320, height: 320)) {
     didSet {
+      tool?.deactivate(context: self.toolOperationContext)
+      operationStack = DrawingOperationStack(drawing: drawing)
       drawing.delegate = self
       drawing.size = bounds.size
+      tool?.activate(shapeUpdater: self, context: self.toolOperationContext, shape: nil)
+      applyToolSettingsChanges()
+      if let tool = tool {
+        delegate?.drawsanaView(self, didSwitchTo: tool)
+      }
       redrawAbsolutelyEverything()
     }
   }

@@ -12,7 +12,7 @@ import CoreGraphics
  Simplified representation of three ordered affine transforms (translate,
  rotate, scale) that can be applied to `ShapeWithTransform`.
  */
-public struct ShapeTransform: Codable {
+public struct ShapeTransform: Codable, Equatable {
   public var translation: CGPoint
   public var rotation: CGFloat
   public var scale: CGFloat

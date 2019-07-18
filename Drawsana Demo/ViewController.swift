@@ -51,6 +51,7 @@ class ViewController: UIViewController {
   let strokeColorButton = UIButton()
   let fillColorButton = UIButton()
   let strokeWidthButton = UIButton()
+  let reloadButton = UIButton()
   lazy var toolbarStackView = {
     return UIStackView(arrangedSubviews: [
       undoButton,
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
       strokeColorButton,
       fillColorButton,
       strokeWidthButton,
+      reloadButton,
       toolButton,
     ])
   }()
@@ -124,6 +126,12 @@ class ViewController: UIViewController {
     strokeWidthButton.layer.borderColor = UIColor.white.cgColor
     strokeWidthButton.layer.borderWidth = 0.5
 
+    reloadButton.translatesAutoresizingMaskIntoConstraints = false
+    reloadButton.addTarget(self, action: #selector(ViewController.reload(_:)), for: .touchUpInside)
+    reloadButton.layer.borderColor = UIColor.white.cgColor
+    reloadButton.layer.borderWidth = 0.5
+    reloadButton.setTitle("🔁", for: .normal)
+
     toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
     toolbarStackView.axis = .horizontal
     toolbarStackView.distribution = .equalSpacing
@@ -177,6 +185,9 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    // Better error reporting in dev
+    Drawing.debugSerialization = true
 
     navigationItem.rightBarButtonItem = viewFinalImageButton
 
@@ -247,6 +258,19 @@ class ViewController: UIViewController {
   @objc private func cycleStrokeWidth(_ sender: Any?) {
     strokeWidthIndex = (strokeWidthIndex + 1) % strokeWidths.count
     drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
+  }
+
+  @objc private func reload(_ sender: Any?) {
+    print("Serializing/deserializing...")
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+    let jsonData = try! encoder.encode(drawingView.drawing)
+    print(String(data: jsonData, encoding: .utf8)!)
+    drawingView.drawing = try! JSONDecoder().decode(
+      Drawing.self,
+      from: jsonData)
+    print(drawingView.drawing.shapes)
+    print("Done")
   }
 
   /// Update button states to reflect undo stack
