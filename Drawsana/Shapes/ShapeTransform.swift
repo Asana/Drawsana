@@ -18,12 +18,6 @@ public struct ShapeTransform: Codable, Equatable {
   public var scale: CGFloat
 
   public static let identity = ShapeTransform(translation: .zero, rotation: 0, scale: 1)
-
-  public static func ==(_ a: ShapeTransform, _ b: ShapeTransform) -> Bool {
-    return a.translation == b.translation &&
-      a.rotation == b.rotation &&
-      a.scale == b.scale
-  }
 }
 
 extension ShapeTransform {

@@ -1,4 +1,4 @@
-#  Drawsana 0.9.5
+#  Drawsana 0.10.0
 
 Drawsana is a generalized framework for making freehand drawing views on iOS. You can
 let users scribble over images, add shapes and text, and even make your own tools.
@@ -95,7 +95,7 @@ open https://asana.github.io/Drawsana
 
 ## Changelog
 
-### 0.9.5 (in progress)
+### 0.10.0
 * Convert to Swift 5
 * Fix `NgonShape` and `TextShape` serialization bugs. Old data can't be fixed, but
   new data will be correct.

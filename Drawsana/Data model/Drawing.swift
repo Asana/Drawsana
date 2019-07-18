@@ -79,7 +79,7 @@ public class Drawing: Codable {
       // Note: this might decode more than one shape, if they happen to occur
       // in the order used in `tryDecodingAllShapes(_:)`.
       do {
-        try shapes.append(contentsOf: tryDecodingAllShapes(&shapeIter))
+        try shapes.append(contentsOf: decodeAllShapes(&shapeIter))
       } catch {
         if Drawing.debugSerialization {
           throw error
@@ -105,15 +105,15 @@ public class Drawing: Codable {
     }
   }
 
-  private func tryDecodingAllShapes(_ container: inout UnkeyedDecodingContainer) throws -> [Shape] {
+  private func decodeAllShapes(_ container: inout UnkeyedDecodingContainer) throws -> [Shape] {
     let multiDecoder = MultiDecoder<Shape>(container: &container)
-    try multiDecoder.tryDecoding(EllipseShape.self)
-    try multiDecoder.tryDecoding(LineShape.self)
-    try multiDecoder.tryDecoding(PenShape.self)
-    try multiDecoder.tryDecoding(RectShape.self)
-    try multiDecoder.tryDecoding(TextShape.self)
-    try multiDecoder.tryDecoding(StarShape.self)
-    try multiDecoder.tryDecoding(NgonShape.self)
+    try multiDecoder.decode(EllipseShape.self)
+    try multiDecoder.decode(LineShape.self)
+    try multiDecoder.decode(PenShape.self)
+    try multiDecoder.decode(RectShape.self)
+    try multiDecoder.decode(TextShape.self)
+    try multiDecoder.decode(StarShape.self)
+    try multiDecoder.decode(NgonShape.self)
     shapeDecoder?(multiDecoder)
     container = multiDecoder.container
     return multiDecoder.results
@@ -189,9 +189,14 @@ public class MultiDecoder<ResultType> {
     self.container = container
   }
 
-  /// Adds the decoded result to `results` if decoding succeeds, otherwise does
-  /// nothing.
-  public func tryDecoding<T: Shape>(_ type: T.Type) throws {
+  /// Adds the decoded result to `results` if decoding succeeds. If decoding
+  /// fails because the shape type doesn't match, do nothing. Throws all other
+  /// errors.
+  ///
+  /// Another way to put it is that this method catches
+  /// `DrawsanaDecodingError.wrongShapeTypeError` and
+  /// `Swift.DecodingError.valueNotFound`.
+  public func decode<T: Shape>(_ type: T.Type) throws {
     do {
       results.append(try container.decode(T.self) as! ResultType)
     } catch Swift.DecodingError.valueNotFound {

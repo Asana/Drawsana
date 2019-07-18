@@ -8,7 +8,7 @@
 
 import UIKit
 
-public let DRAWSANA_VERSION = "0.9.5"
+public let DRAWSANA_VERSION = "0.10.0"
 
 /// Set yourself as the `DrawsanaView`'s delegate to be notified when the active
 /// tool changes.
