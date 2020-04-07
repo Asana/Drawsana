@@ -129,8 +129,10 @@ extension ShapeWithTwoPoints {
   }
     
     public var squareRect: CGRect {
-        let width = max((b.x - a.x), (b.y - a.y))
-        return CGRect(x: a.x, y: a.y, width: width, height: width)
+        let width = min(abs(b.x - a.x), abs(b.y - a.y))
+        let x = b.x < a.x ? a.x - width : a.x
+        let y = b.y < a.y ? a.y - width : a.y
+        return CGRect(x: x, y: y, width: width, height: width)
     }
     
 
