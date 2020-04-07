@@ -13,10 +13,10 @@ import CoreGraphics
 /**
  Base class for tools (angle)
  */
-public class DrawingToolForShapeWithThreePoints: DrawingTool {
+open class DrawingToolForShapeWithThreePoints: DrawingTool {
   public typealias ShapeType = Shape & ShapeWithThreePoints
   
-  public var name: String { fatalError("Override me") }
+  open var name: String { fatalError("Override me") }
   
   public var shapeInProgress: ShapeType?
   
@@ -27,7 +27,7 @@ public class DrawingToolForShapeWithThreePoints: DrawingTool {
   public init() { }
   
   /// Override this method to return a shape ready to be drawn to the screen.
-  public func makeShape() -> ShapeType {
+  open func makeShape() -> ShapeType {
     fatalError("Override me")
   }
   
