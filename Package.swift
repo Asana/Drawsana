@@ -22,8 +22,5 @@ let package = Package(
             name: "Drawsana",
             dependencies: [],
 			path: "Drawsana"),
-        .testTarget(
-            name: "DrawsanaTests",
-            dependencies: ["Drawsana"]),
     ]
 )
