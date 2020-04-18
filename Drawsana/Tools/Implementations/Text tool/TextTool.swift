@@ -322,7 +322,11 @@ public class TextTool: NSObject, DrawingTool {
 extension TextTool: UITextViewDelegate {
   public func textViewDidChange(_ textView: UITextView) {
     guard let shape = selectedShape else { return }
-    shape.text = textView.text ?? ""
+    
+    if textView.markedTextRange == nil {
+      shape.text = textView.text ?? ""
+    }
+    
     updateShapeFrame()
     // TODO: Only update selection rect here instead of rerendering everything
     shapeUpdater?.rerenderAllShapesInefficiently()
