@@ -19,9 +19,9 @@ public struct PenLineSegment: Codable, Equatable {
   }
 }
 
-public class PenShape: Shape, ShapeWithStrokeState {
+public class PenShape: Shape, ShapeWithStrokeState, ShapeSelectable {
   private enum CodingKeys: String, CodingKey {
-    case id, isFinished, strokeColor, start, strokeWidth, segments, isEraser, type
+    case id, isFinished, strokeColor, start, strokeWidth, segments, isEraser, type, transform
   }
 
   public static let type: String = "Pen"
@@ -33,6 +33,23 @@ public class PenShape: Shape, ShapeWithStrokeState {
   public var strokeWidth: CGFloat = 10
   public var segments: [PenLineSegment] = []
   public var isEraser: Bool = false
+  public var transform: ShapeTransform = .identity
+
+  public var boundingRect: CGRect {
+    var minX = start.x, maxX = start.x
+    var minY = start.y, maxY = start.y
+    
+    for segment in segments {
+      let x = segment.b.x
+      let y = segment.b.y
+      if x < minX { minX = x }
+      if x > maxX { maxX = x }
+      if y < minY { minY = y }
+      if y > maxY { maxY = y }
+    }
+    let minimalRect = CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+    return minimalRect.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2)
+  }
 
   public init() {
   }
@@ -52,6 +69,7 @@ public class PenShape: Shape, ShapeWithStrokeState {
     strokeWidth = try values.decode(CGFloat.self, forKey: .strokeWidth)
     segments = try values.decode([PenLineSegment].self, forKey: .segments)
     isEraser = try values.decode(Bool.self, forKey: .isEraser)
+    transform = try values.decodeIfPresent(ShapeTransform.self, forKey: .transform) ?? .identity
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -64,10 +82,9 @@ public class PenShape: Shape, ShapeWithStrokeState {
     try container.encode(strokeWidth, forKey: .strokeWidth)
     try container.encode(segments, forKey: .segments)
     try container.encode(isEraser, forKey: .isEraser)
-  }
-
-  public func hitTest(point: CGPoint) -> Bool {
-    return false
+    if !transform.isIdentity {
+      try container.encode(transform, forKey: .transform)
+    }
   }
 
   public func add(segment: PenLineSegment) {
@@ -75,6 +92,7 @@ public class PenShape: Shape, ShapeWithStrokeState {
   }
 
   private func render(in context: CGContext, onlyLast: Bool = false) {
+    transform.begin(context: context)
     context.saveGState()
     if isEraser {
       context.setBlendMode(.clear)
@@ -138,6 +156,7 @@ public class PenShape: Shape, ShapeWithStrokeState {
       context.strokePath()
     }
     context.restoreGState()
+    transform.end(context: context)
   }
 
   public func render(in context: CGContext) {
