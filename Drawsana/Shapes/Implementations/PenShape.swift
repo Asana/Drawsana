@@ -14,6 +14,12 @@ public struct PenLineSegment: Codable, Equatable {
   public var b: CGPoint
   public var width: CGFloat
 
+  public init(a: CGPoint, b: CGPoint, width: CGFloat) {
+    self.a = a
+    self.b = b
+    self.width = width
+  }
+
   public var midPoint: CGPoint {
     return CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2)
   }
