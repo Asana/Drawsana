@@ -103,6 +103,9 @@ open https://asana.github.io/Drawsana
   `DrawingToolForShapeWithTwoPoints` are declared `open` instead of `public` so
   they can be subclassed.
 * `PenShape` now works with the selection tool.
+* `DrawsanaView.selectionIndicatorAnchorPointOffset` allows Drawsana to
+keep working when you change the anchorPoint.
+* `Shape.id` is now settable.
 * Fix bug that prevented character input of some languages, including Chinese.
 * Fix bugs in gesture recognizer.
 
