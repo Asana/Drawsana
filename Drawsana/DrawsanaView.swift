@@ -121,6 +121,11 @@ public class DrawsanaView: UIView {
   /// You may configure whatever properties you want to to make it look like
   /// you want it to look.
   public let selectionIndicatorView = UIView()
+    
+
+  /// Offset for the selection Indicatior, because it is placed relative to the anchorPoint.
+  /// You should only have to change this if your anchorPoint is different from the default (0.5, 0.5)
+  public var selectionIndicatorAnchorPointOffset = CGPoint(x: 0.5, y: 0.5)
 
   /// Layer that backs `DrawsanaView.selectionIndicatorView`. You may set this
   /// layer's properties to change its visual apparance. Its `path` and `frame`
@@ -369,7 +374,7 @@ public class DrawsanaView: UIView {
         // figure out where the shape is in space
         offset + shape.transform.translation +
         // Account for the coordinate system being anchored in the middle
-        CGPoint(x: -bounds.size.width / 2, y: -bounds.size.height / 2) +
+        CGPoint(x: -bounds.size.width * selectionIndicatorAnchorPointOffset.x, y: -bounds.size.height * selectionIndicatorAnchorPointOffset.y) +
         // We've just moved the CENTER of the selection view to the UPPER LEFT
         // of the shape, so adjust by half the selection size:
         CGPoint(x: selectionBounds.size.width / 2, y: selectionBounds.size.height / 2)),
