@@ -6,7 +6,6 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import CoreGraphics
 import UIKit
 
 public class TextShape: Shape, ShapeSelectable {

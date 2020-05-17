@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import CoreGraphics
+import Foundation
 
 /**
  Base class for tools (rect, line, ellipse) that are drawn by dragging from

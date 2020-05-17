@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import CoreGraphics
+import Foundation
 
 /**
  Stores list of shapes and size of drawing.

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public class StarTool: DrawingToolForShapeWithTwoPoints {
     public override var name: String { return "Star" }
     public override func makeShape() -> ShapeType { return StarShape() }

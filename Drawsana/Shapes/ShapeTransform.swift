@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import CoreGraphics
+import Foundation
 
 /**
  Simplified representation of three ordered affine transforms (translate,

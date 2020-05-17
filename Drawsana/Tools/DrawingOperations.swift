@@ -6,6 +6,8 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
+import Foundation
+
 /**
  Add a shape to the drawing. Undoing removes the shape.
  */
