@@ -16,7 +16,7 @@ import UIKit
 public protocol Shape: AnyObject, Codable {
   /// Globally unique identifier for this shape. Meant to be used for equality
   /// checks, especially for network-based updates.
-  var id: String { get }
+  var id: String { get set }
 
   /// String value of this shape, for serialization and debugging
   static var type: String { get }

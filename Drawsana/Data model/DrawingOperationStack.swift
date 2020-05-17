@@ -59,7 +59,7 @@ public class DrawingOperationStack {
     delegate?.drawingOperationStackDidRedo(self, operation: operation)
   }
 
-  /// Clear the redo Stack
+  /// Clear the redo stack
   @objc public func clearRedoStack() {
     redoStack = []
   }
