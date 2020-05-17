@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
 extension CGRect {
   var middle: CGPoint {

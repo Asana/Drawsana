@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
 /**
  All drawing tools must implement this protocol.

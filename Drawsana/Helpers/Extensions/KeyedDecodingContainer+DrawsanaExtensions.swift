@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension KeyedDecodingContainer {
   func decodeColorIfPresent(forKey key: K) throws -> UIColor? {
