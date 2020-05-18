@@ -1,3 +1,4 @@
 **/xcuserdata/
 .docs/
 build/
+.swiftpm

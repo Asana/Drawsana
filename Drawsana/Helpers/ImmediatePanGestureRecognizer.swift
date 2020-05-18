@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIKit.UIGestureRecognizerSubclass
 
 /**
  Replaces a tap gesture recognizer and a pan gesture recognizer with just one

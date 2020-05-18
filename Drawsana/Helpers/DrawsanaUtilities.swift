@@ -7,7 +7,7 @@
 //
 
 import CoreGraphics
-
+import UIKit
 /**
  Internal utility functions
  */

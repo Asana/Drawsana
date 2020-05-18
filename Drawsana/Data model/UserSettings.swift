@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import CoreGraphics
+import UIKit
 
 /**
  Collection of user-settable properties for use by tools when creating new

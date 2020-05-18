@@ -6,6 +6,8 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
+import CoreGraphics
+
 /**
  Add a shape to the drawing. Undoing removes the shape.
  */

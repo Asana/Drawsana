@@ -6,7 +6,7 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
-import CoreGraphics
+import UIKit
 
 public class PenTool: DrawingTool {
   public typealias ShapeType = PenShape

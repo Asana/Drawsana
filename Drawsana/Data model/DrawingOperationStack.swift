@@ -6,6 +6,8 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
+import Foundation
+
 /**
  Store and manage the undo/redo stack for a drawing
  */
