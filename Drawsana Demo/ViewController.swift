@@ -199,6 +199,22 @@ class ViewController: UIViewController {
     drawingView.userSettings.fontName = "Marker Felt"
     applyUndoViewState()
   }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+
+    let ts = TextShape()
+    ts.text = "Hello, world."
+    ts.transform.translation = CGPoint(x: 50, y: 50)
+    ts.boundingRect = CGRect(x: 0, y: 0, width: 150, height: 100)
+    drawingView.drawing.add(shape: ts)
+
+    let ls = LineShape()
+    ls.a = CGPoint(x: 50, y: 80)
+    ls.b = CGPoint(x: 170, y: 80)
+    ls.strokeColor = .blue
+    drawingView.drawing.add(shape: ls)
+  }
 
   var savedImageURL: URL {
     return FileManager.default.temporaryDirectory.appendingPathComponent("drawsana_demo").appendingPathExtension("jpg")
