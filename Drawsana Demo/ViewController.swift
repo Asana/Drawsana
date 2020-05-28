@@ -198,15 +198,12 @@ class ViewController: UIViewController {
     drawingView.userSettings.strokeWidth = strokeWidths[strokeWidthIndex]
     drawingView.userSettings.fontName = "Marker Felt"
     applyUndoViewState()
-  }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-
+    
     let ts = TextShape()
     ts.text = "Hello, world."
     ts.transform.translation = CGPoint(x: 50, y: 50)
     ts.boundingRect = CGRect(x: 0, y: 0, width: 150, height: 100)
+    ts.explicitWidth = ts.boundingRect.width
     drawingView.drawing.add(shape: ts)
 
     let ls = LineShape()
@@ -214,6 +211,17 @@ class ViewController: UIViewController {
     ls.b = CGPoint(x: 170, y: 80)
     ls.strokeColor = .blue
     drawingView.drawing.add(shape: ls)
+
+    let ps = PdfShape()
+    ps.a = CGPoint(x: 50, y: 100)
+    ps.b = CGPoint(x: 200, y: 250)
+    ps.pdfUrl = Bundle.main.url(forResource: "demo", withExtension: "pdf")
+    drawingView.drawing.add(shape: ps)
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    drawingView.redrawAbsolutelyEverything()
   }
 
   var savedImageURL: URL {
