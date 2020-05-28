@@ -237,7 +237,7 @@ public class TextTool: NSObject, DrawingTool {
 
   func updateTextView() {
     guard let shape = selectedShape else { return }
-    // editingView.textView.text = shape.text
+    editingView.textView.text = shape.text
     editingView.textView.font = shape.font
     editingView.textView.textColor = shape.fillColor
     editingView.bounds = shape.boundingRect
