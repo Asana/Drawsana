@@ -10,7 +10,7 @@ Drawsana might work for you!
 
 [Docs](https://asana.github.io/Drawsana)
 
-_Like what you see? [Come work with us!](https://asana.com/jobs/apply/874145/software-engineerios)_
+_Like what you see? [Come work with us!](https://asana.com/jobs/all#)_
 
 ## Features
 
