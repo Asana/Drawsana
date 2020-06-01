@@ -71,3 +71,9 @@ custom_categories:
   - TextToolDelegate
   - TextShapeEditingView
   - TriangleTool
+- name: Operations
+  - AddShapeOperation
+  - RemoveShapeOperation
+  - ChangeTransformOperation
+  - EditTextOperation
+  - ChangeExplicitWidthOperation
