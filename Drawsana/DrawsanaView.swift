@@ -213,6 +213,9 @@ public class DrawsanaView: UIView {
   public override func layoutSubviews() {
     super.layoutSubviews()
     drawing.size = frame.size
+
+    // Buffers may not be sized correctly
+    redrawAbsolutelyEverything()
   }
 
   // MARK: API
