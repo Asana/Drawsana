@@ -237,7 +237,10 @@ public class TextTool: NSObject, DrawingTool {
 
   func updateTextView() {
     guard let shape = selectedShape else { return }
-    // editingView.textView.text = shape.text
+    // Resetting text while markedTextRange exists breaks some keyboards.
+    if editingView.textView.markedTextRange == nil {
+      editingView.textView.text = shape.text
+    }
     editingView.textView.font = shape.font
     editingView.textView.textColor = shape.fillColor
     editingView.bounds = shape.boundingRect

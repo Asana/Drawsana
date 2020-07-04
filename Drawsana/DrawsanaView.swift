@@ -8,7 +8,7 @@
 
 import UIKit
 
-public let DRAWSANA_VERSION = "0.11.0"
+public let DRAWSANA_VERSION = "0.12.0"
 
 /// Set yourself as the `DrawsanaView`'s delegate to be notified when the active
 /// tool changes.
@@ -213,6 +213,9 @@ public class DrawsanaView: UIView {
   public override func layoutSubviews() {
     super.layoutSubviews()
     drawing.size = frame.size
+
+    // Buffers may not be sized correctly
+    redrawAbsolutelyEverything()
   }
 
   // MARK: API
