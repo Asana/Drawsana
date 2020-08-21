@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Protocol/TextToolDelegate" class="dashAnchor"></a>
     <a title="TextToolDelegate Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Drawsana Docs</a> (50% documented)</p>
+        <p><a href="../index.html">Drawsana 0.12.0 Docs</a> (46% documented)</p>
         <p class="header-right"><a href="https://github.com/Asana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,7 +51,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Data model.html">Data model</a>
+            <a href="../Data%20model.html">Data model</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/Drawing.html">Drawing</a>
@@ -69,7 +77,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Shape building blocks.html">Shape building blocks</a>
+            <a href="../Shape%20building%20blocks.html">Shape building blocks</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Protocols/Shape.html">Shape</a>
@@ -95,10 +103,13 @@
               <li class="nav-group-task">
                 <a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithThreePoints.html">ShapeWithThreePoints</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Tool building blocks.html">Tool building blocks</a>
+            <a href="../Tool%20building%20blocks.html">Tool building blocks</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Protocols/DrawingTool.html">DrawingTool</a>
@@ -106,11 +117,17 @@
               <li class="nav-group-task">
                 <a href="../Classes/DrawingToolForShapeWithTwoPoints.html">DrawingToolForShapeWithTwoPoints</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingToolForShapeWithThreePoints.html">DrawingToolForShapeWithThreePoints</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Shape implementations.html">Shape implementations</a>
+            <a href="../Shape%20implementations.html">Shape implementations</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AngleShape.html">AngleShape</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Classes/EllipseShape.html">EllipseShape</a>
               </li>
@@ -121,13 +138,19 @@
                 <a href="../Classes/LineShape/ArrowStyle.html">– ArrowStyle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/NgonShape.html">NgonShape</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/PenShape.html">PenShape</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Shape implementations.html#/s:8Drawsana14PenLineSegmentV">PenLineSegment</a>
+                <a href="../Structs/PenLineSegment.html">PenLineSegment</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RectShape.html">RectShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StarShape.html">StarShape</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TextShape.html">TextShape</a>
@@ -135,8 +158,11 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Tool implementations.html">Tool implementations</a>
+            <a href="../Tool%20implementations.html">Tool implementations</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AngleTool.html">AngleTool</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Classes/ArrowTool.html">ArrowTool</a>
               </li>
@@ -153,6 +179,9 @@
                 <a href="../Classes/PenTool.html">PenTool</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/PentagonTool.html">PentagonTool</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/RectTool.html">RectTool</a>
               </li>
               <li class="nav-group-task">
@@ -160,6 +189,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SelectionToolDelegate.html">SelectionToolDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StarTool.html">StarTool</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TextTool.html">TextTool</a>
@@ -176,10 +208,33 @@
               <li class="nav-group-task">
                 <a href="../Classes/TextShapeEditingView/Control.html">– Control</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TriangleTool.html">TriangleTool</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Other Classes.html">Other Classes</a>
+            <a href="../Operations.html">Operations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AddShapeOperation.html">AddShapeOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RemoveShapeOperation.html">RemoveShapeOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChangeTransformOperation.html">ChangeTransformOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EditTextOperation.html">EditTextOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChangeExplicitWidthOperation.html">ChangeExplicitWidthOperation</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Classes.html">Other Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/MultiDecoder.html">MultiDecoder</a>
@@ -187,15 +242,15 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Other Global Variables.html">Other Global Variables</a>
+            <a href="../Other%20Global%20Variables.html">Other Global Variables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Other Global Variables.html#/s:8Drawsana16DRAWSANA_VERSIONSSvp">DRAWSANA_VERSION</a>
+                <a href="../Other%20Global%20Variables.html#/s:8Drawsana16DRAWSANA_VERSIONSSvp">DRAWSANA_VERSION</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Other Enums.html">Other Enumerations</a>
+            <a href="../Other%20Enums.html">Other Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/DrawsanaDecodingError.html">DrawsanaDecodingError</a>
@@ -210,11 +265,15 @@
             <h1>TextToolDelegate</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">TextToolDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
             
+              <div class="slightly-smaller">
+                <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L11-L33">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -224,7 +283,7 @@
                     <code>
                     <a name="/s:8Drawsana16TextToolDelegateP04textc11PointForNewB006tappedF0So7CGPointVAG_tF"></a>
                     <a name="//apple_ref/swift/Method/textToolPointForNewText(tappedPoint:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textc11PointForNewB006tappedF0So7CGPointVAG_tF">textToolPointForNewText(tappedPoint:)</a>
+                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textc11PointForNewB006tappedF0So7CGPointVAG_tF">textToolPointForNewText(tappedPoint:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -246,7 +305,7 @@ make sure it&rsquo;s above the keyboard.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L16">Show on GitHub</a>
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L15">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -256,7 +315,7 @@ make sure it&rsquo;s above the keyboard.</p>
                     <code>
                     <a name="/s:8Drawsana16TextToolDelegateP04textC10DidTapAway11tappedPointySo7CGPointV_tF"></a>
                     <a name="//apple_ref/swift/Method/textToolDidTapAway(tappedPoint:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC10DidTapAway11tappedPointySo7CGPointV_tF">textToolDidTapAway(tappedPoint:)</a>
+                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC10DidTapAway11tappedPointySo7CGPointV_tF">textToolDidTapAway(tappedPoint:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -278,7 +337,7 @@ point.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L21">Show on GitHub</a>
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -288,7 +347,7 @@ point.</p>
                     <code>
                     <a name="/s:8Drawsana16TextToolDelegateP04textC18WillUseEditingViewyyAA0b5ShapehI0CF"></a>
                     <a name="//apple_ref/swift/Method/textToolWillUseEditingView(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC18WillUseEditingViewyyAA0b5ShapehI0CF">textToolWillUseEditingView(_:)</a>
+                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC18WillUseEditingViewyyAA0b5ShapehI0CF">textToolWillUseEditingView(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -311,7 +370,7 @@ two resize handles.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L27">Show on GitHub</a>
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -321,7 +380,7 @@ two resize handles.</p>
                     <code>
                     <a name="/s:8Drawsana16TextToolDelegateP04textC29DidUpdateEditingViewTransform_9transformyAA0b5ShapehI0C_AA0lJ0VtF"></a>
                     <a name="//apple_ref/swift/Method/textToolDidUpdateEditingViewTransform(_:transform:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC29DidUpdateEditingViewTransform_9transformyAA0b5ShapehI0C_AA0lJ0VtF">textToolDidUpdateEditingViewTransform(_:transform:)</a>
+                    <a class="token" href="#/s:8Drawsana16TextToolDelegateP04textC29DidUpdateEditingViewTransform_9transformyAA0b5ShapehI0C_AA0lJ0VtF">textToolDidUpdateEditingViewTransform(_:<wbr>transform:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -344,7 +403,7 @@ transforms here.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L33">Show on GitHub</a>
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/Implementations/Text tool/TextTool.swift#L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -355,7 +414,7 @@ transforms here.</p>
         </section>
         <section id="footer">
           <p>2018 <a class="link" href="https://asana.com" target="_blank" rel="external">Asana, Inc.</a></p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

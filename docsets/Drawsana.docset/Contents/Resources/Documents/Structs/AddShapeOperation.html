@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AddShapeOperation Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/AddShapeOperation" class="dashAnchor"></a>
+    <a title="AddShapeOperation Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Drawsana 0.12.0 Docs</a> (46% documented)</p>
+        <p class="header-right"><a href="https://github.com/Asana/Drawsana"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Drawsana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AddShapeOperation Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../UI.html">UI</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DrawsanaView.html">DrawsanaView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewDelegate.html">DrawsanaViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawsanaViewShapeUpdating.html">DrawsanaViewShapeUpdating</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Data%20model.html">Data model</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Drawing.html">Drawing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperation.html">DrawingOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingOperationStack.html">DrawingOperationStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingOperationStackDelegate.html">DrawingOperationStackDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ToolOperationContext.html">ToolOperationContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ToolSettings.html">ToolSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserSettings.html">UserSettings</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape%20building%20blocks.html">Shape building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Shape.html">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ShapeTransform.html">ShapeTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithBoundingRect.html">ShapeWithBoundingRect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTransform.html">ShapeWithTransform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeSelectable.html">ShapeSelectable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStandardState.html">ShapeWithStandardState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithStrokeState.html">ShapeWithStrokeState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithTwoPoints.html">ShapeWithTwoPoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeWithThreePoints.html">ShapeWithThreePoints</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool%20building%20blocks.html">Tool building blocks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DrawingTool.html">DrawingTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingToolForShapeWithTwoPoints.html">DrawingToolForShapeWithTwoPoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingToolForShapeWithThreePoints.html">DrawingToolForShapeWithThreePoints</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Shape%20implementations.html">Shape implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AngleShape.html">AngleShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseShape.html">EllipseShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineShape.html">LineShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineShape/ArrowStyle.html">– ArrowStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NgonShape.html">NgonShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenShape.html">PenShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PenLineSegment.html">PenLineSegment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectShape.html">RectShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StarShape.html">StarShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShape.html">TextShape</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Tool%20implementations.html">Tool implementations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AngleTool.html">AngleTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ArrowTool.html">ArrowTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EllipseTool.html">EllipseTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraserTool.html">EraserTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LineTool.html">LineTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PenTool.html">PenTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PentagonTool.html">PentagonTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RectTool.html">RectTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SelectionTool.html">SelectionTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SelectionToolDelegate.html">SelectionToolDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StarTool.html">StarTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextTool.html">TextTool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/TextToolDelegate.html">TextToolDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShapeEditingView.html">TextShapeEditingView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShapeEditingView/DragActionType.html">– DragActionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextShapeEditingView/Control.html">– Control</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TriangleTool.html">TriangleTool</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Operations.html">Operations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AddShapeOperation.html">AddShapeOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RemoveShapeOperation.html">RemoveShapeOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChangeTransformOperation.html">ChangeTransformOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EditTextOperation.html">EditTextOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChangeExplicitWidthOperation.html">ChangeExplicitWidthOperation</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/MultiDecoder.html">MultiDecoder</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Global%20Variables.html">Other Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Other%20Global%20Variables.html#/s:8Drawsana16DRAWSANA_VERSIONSSvp">DRAWSANA_VERSION</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/DrawsanaDecodingError.html">DrawsanaDecodingError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AddShapeOperation</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AddShapeOperation</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/DrawingOperation.html">DrawingOperation</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Add a shape to the drawing. Undoing removes the shape.</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/DrawingOperations.swift#L14-L28">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana17AddShapeOperationV5shapeAcA0C0_p_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana17AddShapeOperationV5shapeAcA0C0_p_tcfc">init(shape:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Shape.html">Shape</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/DrawingOperations.swift#L17-L19">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana17AddShapeOperationV5apply7drawingyAA7DrawingC_tF"></a>
+                    <a name="//apple_ref/swift/Method/apply(drawing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana17AddShapeOperationV5apply7drawingyAA7DrawingC_tF">apply(drawing:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">apply</span><span class="p">(</span><span class="nv">drawing</span><span class="p">:</span> <span class="kt"><a href="../Classes/Drawing.html">Drawing</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/DrawingOperations.swift#L21-L23">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Drawsana17AddShapeOperationV6revert7drawingyAA7DrawingC_tF"></a>
+                    <a name="//apple_ref/swift/Method/revert(drawing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Drawsana17AddShapeOperationV6revert7drawingyAA7DrawingC_tF">revert(drawing:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">revert</span><span class="p">(</span><span class="nv">drawing</span><span class="p">:</span> <span class="kt"><a href="../Classes/Drawing.html">Drawing</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/Asana/Drawsana/tree/master/Drawsana/Tools/DrawingOperations.swift#L25-L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>2018 <a class="link" href="https://asana.com" target="_blank" rel="external">Asana, Inc.</a></p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
