@@ -10,6 +10,8 @@ Drawsana might work for you!
 
 [Docs](https://asana.github.io/Drawsana)
 
+[Blog post: Let your users mark up images on iOS with Drawsana](https://blog.asana.com/2018/10/mark-up-images-ios-drawsana/)
+
 _Like what you see? [Come work with us!](https://asana.com/jobs/all#)_
 
 ## Features
