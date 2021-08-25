@@ -9,9 +9,11 @@
 import Foundation
 
 public class AngleTool: DrawingToolForShapeWithThreePoints {
-  public override var name: String { return "Angle" }
-  public override func makeShape() -> ShapeType {
-    let shape = AngleShape()
-    return shape
-  }
+    public override var name: String { return "Angle" }
+    public  override var image: UIImage {UIImage(named: "Angle")!}
+    
+    public override func makeShape() -> ShapeType {
+        let shape = AngleShape()
+        return shape
+    }
 }
