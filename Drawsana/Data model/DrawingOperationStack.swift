@@ -63,6 +63,13 @@ public class DrawingOperationStack {
   @objc public func clearRedoStack() {
     redoStack = []
   }
+    
+  @objc public func clearAllDrawing() {
+    for stackOperation in undoStack {
+        stackOperation.revert(drawing: drawing)
+            delegate?.drawingOperationStackDidUndo(self, operation: stackOperation)
+        }
+    }
 }
 
 public protocol DrawingOperationStackDelegate: AnyObject {
